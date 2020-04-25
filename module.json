@@ -2,7 +2,7 @@
 	"name": "wfrp4e-gm-toolkit",
 	"title": "GM Toolkit (WFRP4e)",
 	"description": "Utilities for WFRP4e GMs",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"minimumCoreVersion": "0.5.5",
 	"compatibleCoreVersion": "0.5.5",
 	"author": "Jagusti",
