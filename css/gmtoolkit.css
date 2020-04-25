@@ -1,0 +1,88 @@
+/************ CONTENTS ***************/
+/*************************************/
+/* 0. MODULE CONFLICTS
+/*  0.1. Furnace Advanced Macro fills
+/* 1. TOKEN HUD EXTENSIONS           
+/*  1a. Extension Div
+/*  1b. Hud Icons
+/*  1c. Override Core Hud
+/*  1d. Override Status Effects
+/*************************************/
+
+
+/* 0. MODULE CONFLICTS */
+/***************************/
+
+/* 0.1. Furnace Advanced Macros Fill */
+
+.macro-sheet .form-group.command .furnace-macro-command textarea {
+	-webkit-text-fill-color: unset;
+}
+
+
+
+/* 1. TOKEN HUD EXTENSIONS */
+/***************************/
+
+/* 1a. Extension Div */
+
+.tokenhudext {
+	display: flex; 
+	flex: 0 !important;
+    font-family: CaslonPro;
+    font-weight: 600;
+}
+
+.tokenhudext.left {
+	justify-content: flex-end; 
+}
+
+.tokenhudext.right {
+	justify-content: flex-start; 
+}
+
+/*  1b. Hud Icons */
+
+.control-icon.tokenhudicon {
+	width: fit-content;
+	min-width: 42px;
+	flex-basis: auto;
+	padding: 0 8px;
+    margin: 8px 0px;
+}
+
+.control-icon.tokenhudicon.left {
+	margin-right: 8px;
+}
+
+.control-icon.tokenhudicon.right {
+	margin-left: 8px;
+}
+
+/* 1c. Override core hud styles to avoid misalignment */ 
+
+#token-hud .attribute.elevation {
+	width: 42px;
+	flex: 0 0 42px;
+}
+
+#token-hud .col.left {
+    justify-content: center;
+    left: -90px;
+	align-items: flex-end;
+}
+
+#token-hud .col.right {
+    justify-content: center;
+    right: -90px;
+	align-items: flex-start;
+}
+
+/* 1d. Override Status Effects to avoid overlap */
+
+#token-hud .status-effects {
+    top: unset;
+	bottom: 0;
+	background: #ececec; /* Change background to improve status effect visibility */
+}
+

@@ -1,0 +1,22 @@
+{
+    "GMT.None" : "None", 
+    "GMT.Candle" :"Candle (10 yds)",
+    "GMT.DavrichLamp" : "Davrich Lamp (10 yds)",
+    "GMT.Torch" : "Torch (15 yds)",
+    "GMT.Lantern" : "Lantern (20 yds)",
+    "GMT.StormLantern.Dim" : "Storm Lantern (Broadbeam) (20 yds)",
+    "GMT.StormLantern.Bright" : "Storm Lantern (Narrowbeam) (30 yds)",
+    "GMT.StormLantern.Shut" : "Storm Lantern (Shuttered) (0 yds)",
+    "GMT.Light" : "Light (Petty Magic) (15 yds)",
+    "GMT.Witchlight" : "Witchlight (Miscast) (20 yds)",
+    "GMT.GlowingSkin" : "Glowing Sking (Mutation) (10yd)",
+    "GMT.Ablaze" : "Ablaze (Condition) (15 yds)",
+    "GMT.Pha" : "Pha's Protection (WP Bonus yds)",
+
+    "GMT.NormalVision" : "Normal",
+    "GMT.NoVision" : "None",
+    "GMT.NightVision" : "Night Vision",
+    "GMT.DarkVision" : "Dark Vision",
+    "GMT.Blinded" : "Blinded"
+    
+}
