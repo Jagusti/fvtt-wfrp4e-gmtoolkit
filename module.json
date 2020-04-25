@@ -14,7 +14,7 @@
 		  "name": "gm-toolkit-macros",
 		  "label": "GM Toolkit",
 		  "path": "packs/gm-toolkit-macros.db",
-		  "entity": "macro",
+		  "entity": "Macro",
 		  "module": "wfrp4e-gm-toolkit",
 		  "system": "wfrp4e"
 		}
