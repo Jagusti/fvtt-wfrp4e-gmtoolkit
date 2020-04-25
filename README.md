@@ -9,7 +9,14 @@ Foundry VTT: 0.5.5 +
 
 ## Installation Instructions
 
-1. Add via Add-n Modules tab of Foundry VTT setup.
+1. Add via Add-on Modules tab of Foundry VTT setup.
    - Manifest URL: https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json
 2. The GM needs to enable the module for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
+
+## References
+
+* [Changelog](CHANGLELOG.md): for latest and historical updates by version
+* [Backlog](/issues): for known bugs and suggested / planned features
+* [Wiki](/wiki): for functionality guides
+

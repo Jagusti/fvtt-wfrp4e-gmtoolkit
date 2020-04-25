@@ -1,4 +1,4 @@
-/* Open a dialog for quickly changing vision and lighting parameters of the selected tokens.
+/* Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * This macro requires the advanced macros functionality of Furnace by @KaKaRoTo#4756
  * https://github.com/kakaroto/fvtt-module-furnace/
  * This macro is adapted for WFRP4e from Token Vision Configuration by @Sky#9453

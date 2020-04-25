@@ -1,4 +1,4 @@
-/* Adds a set amount of XP to targeted characters.
+/* Adds a set amount of XP to targeted character(s).
  * Adds XP update note to the Chat log.
  * This macro - Add XP - was written by DasSauerkraut#3215
  * https://github.com/CatoThe1stElder/WFRP-4th-Edition-FoundryVTT/wiki/Macro-Repository#add-xp

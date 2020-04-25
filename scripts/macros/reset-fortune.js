@@ -1,5 +1,5 @@
-/* Restores Fortune to a character's Fate leve.
- * Applies any Luck talent bo
+/* Restores Fortune the Fate level of targetted character(s).
+ * Applies any Luck talent bonus.
  */
 
 game.user.targets.forEach(target => {
