@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `Changed` for changes in existing functionality.
 - `Deprecated` for soon-to-be removed features.
 - `Removed` for now removed features.
-- `Fixed for` any bug fixes.
+- `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
 ---
@@ -16,8 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased].
 
 **Base Documentation**
-- [ ] Set up [Issue Log](/issues), and carry over planned / unreleased functionality.
-- [ ] Document initial functionality on [repository wiki](/wiki).
+- [ ] Set up [Issue Backlog](../../issues), and carry over planned / unreleased functionality.
+- [ ] Document initial functionality on [repository wiki](../../wiki).
 - [ ] Add functionality screenshots
 
 **Functionality**
@@ -35,14 +35,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## Version 0.2
+## Version 0.2-dev
 ### Changed
 - Added feature descriptions to changelog.
-- Set macro icons.
+- Set macro icons and some descriptions.
 
-### Fixed for
+### Fixed
 - Typos in macro descriptions.
 - Include macro pack and correct script pack for Token Hud Extensions (doh!)
+- Fixed links to wiki and issue backlog.
 
 ## Version 0.1
 

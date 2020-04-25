@@ -16,7 +16,7 @@ Foundry VTT: 0.5.5 +
 
 ## References
 
-* [Changelog](CHANGLELOG.md): for latest and historical updates by version
-* [Backlog](/issues): for known bugs and suggested / planned features
-* [Wiki](/wiki): for functionality guides
+* [Changelog](/CHANGELOG.md): for latest and historical updates by version
+* [Backlog](../../issues): for known bugs and suggested / planned features
+* [Wiki](../../wiki): for functionality guides
 
