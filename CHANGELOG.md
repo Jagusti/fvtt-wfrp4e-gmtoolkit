@@ -9,7 +9,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 See [Issue Backlog](../../issues). 
 
+### Fixed
+- Typos in Set Token and Light macro dropdown (Storm Lantern).
+
+
 ---
+
+## Version 0.2.1
+
+### Changed
+- Chat log for Add XP macro is reported from player rather than character.
+
+### Added
+- Rather than silently failing or throwing a console error if a token hasn't been targeted or selected first, a UI notification is presented for all macros in the GM Toolkit as appropriate. 
+- 
 
 ## Version 0.2
 

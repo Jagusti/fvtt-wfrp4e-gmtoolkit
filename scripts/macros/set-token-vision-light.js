@@ -35,7 +35,7 @@ new Dialog({
           <option value="torch">Torch (15 yds)</option>
           <option value="lantern">Lantern (20 yds)</option>
           <option value="storm-dim">Storm Lantern (Broadbeam) (20 yds)</option>
-          <option value="storm-bright">Storm Lantern (Narrowbeam (30 yds)</option>
+          <option value="storm-bright">Storm Lantern (Narrowbeam) (30 yds)</option>
           <option value="light">Light (Petty Magic) (15 yds)</option>
           <option value="witchlight">Witchlight (Miscast) (20 yds)</option>
           <option value="glowing-skin">Glowing Skin (Mutation) (10 yds)</option>

@@ -2,6 +2,9 @@
  * Applies any Luck talent bonus.
  */
 
+if (game.user.targets.size < 1) 
+  return ui.notifications.error("Please target a token first.");
+  
 game.user.targets.forEach(target => {
 	console.log(target.actor.data.data.status.fortune.value);
 
