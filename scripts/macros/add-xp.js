@@ -11,9 +11,14 @@ game.user.targets.forEach(target => {
    target.actor.update({
       "data.details.experience.total": target.actor.data.data.details.experience.total + XP
     })
- 
+    
     let chatContent = `Adding ${XP} XP to ${target.data.name}. <hr> Total  XP:  
      ${target.actor.data.data.details.experience.total} -> ${target.actor.data.data.details.experience.total + XP} | Current XP: ${target.actor.data.data.details.experience.current} -> ${target.actor.data.data.details.experience.current + XP}`;
+     
+     let chatContent = game.i18n.localize("GMT.AddingXPText", {XP: XP, targetName: target.data.name, XPTotal: target.actor.data.data.details.experience.total, 
+          newXPTotal: target.actor.data.data.details.experience.total + XP, XPCurrent: target.actor.data.data.details.experience.current, 
+          newXPCurrent: target.actor.data.data.details.experience.current + XP } )
+    } )
 let chatData = {
       user: game.user._id,
       speaker: ChatMessage.getSpeaker(),

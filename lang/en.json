@@ -15,8 +15,17 @@
 
     "GMT.NormalVision" : "Normal",
     "GMT.NoVision" : "None",
-    "GMT.NightVision" : "Night Vision",
-    "GMT.DarkVision" : "Dark Vision",
-    "GMT.Blinded" : "Blinded"
+    "GMT.NightVision" : "Night Vision (Talent)",
+    "GMT.DarkVision" : "Dark Vision (Trait)",
+    "GMT.Blinded" : "Blinded",
     
+    "GMT.LuckTalent": "Luck",
+    "GMT.ResetFortuneMsg": "Resetting Fortune for {targetName} from {startingFortune} to {newFortune}.",
+    "GMT.NoToken": "Please select a token first.",
+    "GMT.SetVisionTitle": "Paramétrer la vision/luminosité du Token",
+    "GMT.Apply": "Apply Changes",    
+    "GMT.NightVisionTalent": "Night Vision",
+    "GMT.VisionType": "Vision Type:",
+    "GMT.LightSource": "Light Source:",
+    "GMT.AddingXPText": "Adding {XP} XP to {targetName}. <hr> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}`
 }
