@@ -6,41 +6,77 @@
  */
 
 if (canvas.tokens.controlledTokens.length < 1) 
-  return ui.notifications.error("Please select a token first.");
+  return ui.notifications.error( game.i18n.localize("GMT.NoToken") );
 
 let applyChanges = false;
 
 console.log("Before Dialog: ", token.actor.name, "Night Vision:", token.actor.advNightVision);
 
 new Dialog({
-  title: `Set Token Vision and Light`,
+  title: game.i18n.localize("GMT.SetVisionTitle"),
   content: `
     <form> 
       <div class="form-group">
-        <label>Vision Type:</label>
+        <label>`
+      + game.i18n.localize("GMT.VisionType") +         
+      `:</label>
         <select id="vision-type" name="vision-type"> 
           <option value="normalVision">Normal</option>
-          <option value="blindedVision">Blinded (Condition)</option>
-          <option value="nightVision">Night Vision (Talent)</option>
-          <option value="darkVision">Dark Vision (Trait)</option>
-          <option value="noVision">No Vision</option>
+          <option value="blindedVision">` 
+      + game.i18n.localize("GMT.Blinded") + 
+      `</option>
+          <option value="nightVision">` 
+      + game.i18n.localize("GMT.NightVision") + 
+       `(Talent)</option>
+          <option value="darkVision">` 
+      + game.i18n.localize("GMT.DarkVision") + 
+         `</option>
+          <option value="noVision">`
+      + game.i18n.localize("GMT.NoVision") + 
+          `</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Light Source:</label>
+        <label>`
+      + game.i18n.localize("GMT.NoVision") + 
+      `</label>
         <select id="light-source" name="light-source">
-          <option value="none">None</option>
-          <option value="candle">Candle (10 yds)</option>
-          <option value="davrich-lamp">Davrich Lamp (10 yds)</option>
-          <option value="torch">Torch (15 yds)</option>
-          <option value="lantern">Lantern (20 yds)</option>
-          <option value="storm-dim">Storm Lantern (Broadbeam) (20 yds)</option>
-          <option value="storm-bright">Storm Lantern (Narrowbeam) (30 yds)</option>
-          <option value="light">Light (Petty Magic) (15 yds)</option>
-          <option value="witchlight">Witchlight (Miscast) (20 yds)</option>
-          <option value="glowing-skin">Glowing Skin (Mutation) (10 yds)</option>
-          <option value="ablaze">Ablaze (Condition) (15 yds)</option>
-          <option value="pha">Pha's Protection (WP Bonus yds)</option>
+          <option value="none">` 
+          + game.i18n.localize("GMT.None") +           
+          `</option>
+          <option value="candle">`
+          + game.i18n.localize("GMT.Candle") +           
+          `</option>
+          <option value="davrich-lamp">`
+          + game.i18n.localize("GMT.DavrichLamp") + 
+          `</option>
+          <option value="torch">`
+          + game.i18n.localize("GMT.Torch") + 
+          `</option>
+          <option value="lantern">`
+          + game.i18n.localize("GMT.Lantern") + 
+          `</option>
+          <option value="storm-dim">` 
+          + game.i18n.localize("GMT.StormLantern.Dim") + 
+           `</option>
+          <option value="storm-bright">` 
+          + game.i18n.localize("GMT.StormLantern.Bright") + 
+          `</option>
+          <option value="light">`
+          + game.i18n.localize("GMT.Light") + 
+          `</option>
+          <option value="witchlight">`
+          + game.i18n.localize("GMT.Witchlight") + 
+          `</option>
+          <option value="glowing-skin">` 
+          + game.i18n.localize("GMT.GlowingSkin") + 
+          `</option>
+          <option value="ablaze">` 
+          + game.i18n.localize("GMT.Ablaze") + 
+          `</option>
+          <option value="pha">`
+          + game.i18n.localize("GMT.Pha") + 
+          `</option>
         </select>
       </div>
     </form>
@@ -48,12 +84,12 @@ new Dialog({
   buttons: {
     yes: {
       icon: "<i class='fas fa-check'></i>",
-      label: `Apply Changes`,
+      label: game.i18n.localize("GMT.Apply"),
       callback: () => applyChanges = true
     },
     no: {
       icon: "<i class='fas fa-times'></i>",
-      label: `Cancel Changes`
+      label: game.i18n.localize("GMT.Cancel"),
     },
   },
   default: "yes",
@@ -150,13 +186,13 @@ new Dialog({
             brightSight = 0; 			
             break;
           case "nightVision":
-			let item = token.actor.items.find(i => i.data.name === "Night Vision")
+			let item = token.actor.items.find(i => i.data.name.toLowerCase() === game.i18n.localize("GMT.NightVisionTalent").toLowerCase() );
 				if(item == undefined || item.data.data.advances.value < 1) {
 					advNightVision = 0;
 				} else { 
 					for (let item of token.actor.items)
 						{
-						  if (item.type == "talent" && item.name == "Night Vision")
+						  if (item.type == "talent" && item.name.toLowerCase() == game.i18n.localize("GMT.NightVisionTalent").toLowerCase() )
 						  {
 							advNightVision += item.data.data.advances.value;
 						  }

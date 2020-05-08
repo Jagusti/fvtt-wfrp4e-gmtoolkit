@@ -1,0 +1,32 @@
+{
+    "GMT.None": "Aucun", 
+    "GMT.Candle":"Bougie (10 m)",
+    "GMT.DavrichLamp": "Lampe Davrich (10 m)",
+    "GMT.Torch": "Torche (15 m)",
+    "GMT.Lantern": "Lanterne (20 m)",
+    "GMT.StormLantern.Dim": "Lampe Tempête (ouverte) (20 m)",
+    "GMT.StormLantern.Bright": "Storm Lantern (ciblée) (30 m)",
+    "GMT.StormLantern.Shut": "Storm Lantern (voilée) (0 m)",
+    "GMT.Light": "Lumière (Magie Mineure) (15 m)",
+    "GMT.Witchlight": "Lueur occulte (Incantations Imparfaites)) (20 m)",
+    "GMT.GlowingSkin": "Peau Luisante (Mutation) (10 m)",
+    "GMT.Ablaze": "En Flammes (Etat) (15 m)",
+    "GMT.Pha": "Protection de Pha (Bonus de FM m)",
+
+    "GMT.NormalVision": "Normal",
+    "GMT.NoVision": "Acune",
+    "GMT.NightVision": "Vision Nocturne (Talent)",
+    "GMT.DarkVision": "Infravision (Trait)",
+    "GMT.Blinded": "Aveuglé",
+    
+    "GMT.LuckTalent": "Chanceux",
+    "GMT.NoToken": "Sélectionnez un token.",
+    "GMT.ResetFortuneMsg": "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
+    "GMT.SetVisionTitle": "Set Token Vision and Light",
+    "GMT.Apply": "Appliquer les changements",
+    "GMT.Cancel": "Annuler",
+    "GMT.NightVisionTalent": "Vision Nocturne",
+    "GMT.VisionType": "Type de Vision:",
+    "GMT.LightSource": "Source de Lumière:",
+    "GMT.AddingXPText": "Ajout de {XP} PX à {targetName}. <hr> PX Total : {XPTotal} -> {newXPTotal} | PX Courants: {XPCurrent} -> {newXPCurrent}"
+}
