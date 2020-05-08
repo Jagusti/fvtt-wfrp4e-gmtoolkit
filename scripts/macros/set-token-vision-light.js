@@ -5,7 +5,7 @@
  * https://github.com/Sky-Captain-13/foundry/tree/master/scriptMacros
  */
 
-if (!token) 
+if (canvas.tokens.controlledTokens.length < 1) 
   return ui.notifications.error("Please select a token first.");
 
 let applyChanges = false;

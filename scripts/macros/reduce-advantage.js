@@ -1,7 +1,7 @@
 /* Reduces Advantage for the selected token by 1 (to minimum 0).
 */
 
-if (!token)
+if (canvas.tokens.controlledTokens.length < 1) 
   return ui.notifications.error("Please select a token first.");
 
 if (Number(actor.data.data.status.advantage.value) > 0)

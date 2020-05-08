@@ -23,6 +23,7 @@ See [Issue Backlog](../../issues).
 - Increase Advantage macro caps advantage at character max. Thanks to JDW#6422.
 - Reduce Advantage macro no longer drops advantage below 0.
 - Typo in Set Token and Light macro dropdown options.
+- Macros relying on token selection no longer run when no token is selected. 
 
 ## Version 0.2
 
