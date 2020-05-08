@@ -7,16 +7,16 @@ if (game.user.targets.size < 1)
   
 game.user.targets.forEach(target => {
 	console.log(target.actor.data.data.status.fortune.value);
-
+  
 	let startingFortune = target.actor.data.data.status.fortune.value;
 	let advLuck = 0;
-	let item = target.actor.items.find(i => i.data.name === "Luck")
+	let item = target.actor.items.find(i => i.data.name === game.i18n.localize("GMT.LuckTalent") )
 		if(item == undefined || item.data.data.advances.value < 1) {
 			advLuck = 0;
 		} else { 
 			for (let item of target.actor.items)
 				{
-				  if (item.type == "talent" && item.name == "Luck")
+				  if (item.type == "talent" && item.name == game.i18n.localize("GMT.LuckTalent") )
 				  {
 					advLuck += item.data.data.advances.value;
 				  }
@@ -27,11 +27,10 @@ game.user.targets.forEach(target => {
 		"data.status.fortune.value": target.actor.data.data.status.fate.value + advLuck
     })
  
-    let chatContent = `Resetting Fortune for ${target.data.name} from ${startingFortune} to ${target.actor.data.data.status.fate.value + advLuck}.`;
-
-	let chatData = {
-		user: game.user._id,
-		content: chatContent
+    let chatContent = game.i18n.format("GMT.ResetFortuneMsg",{targetName:target.data.name, startingFortune: startingFortune, newFortune: target.actor.data.data.status.fate.value + advLuck } );
+    let chatData = {
+      user: game.user._id,
+      content: chatContent
     };
 
     ChatMessage.create(chatData, {});  
