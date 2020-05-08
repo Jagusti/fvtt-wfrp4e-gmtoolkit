@@ -13,6 +13,9 @@ Foundry VTT: 0.5.5 +
    - Manifest URL: https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json
 2. The GM needs to enable the module for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
+3. [Import macros](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your Macro Directory via `Compendiums` > `Macro` > `GM Toolkit`.
+   - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
+   - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
 
 ## References
 

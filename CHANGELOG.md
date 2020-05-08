@@ -1,7 +1,5 @@
 # Changelog
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project tries to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) conventions.
+All notable changes to this project will be documented in this file.  The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project tries to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) conventions.
 
 ---
 
@@ -9,20 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 See [Issue Backlog](../../issues). 
 
-### Fixed
-- Typos in Set Token and Light macro dropdown (Storm Lantern).
-
-
 ---
 
 ## Version 0.2.1
 
 ### Changed
 - Chat log for Add XP macro is reported from player rather than character.
+- UI feedback for advantage macros improved to show change and new value, or no change if none made.
 
 ### Added
 - Rather than silently failing or throwing a console error if a token hasn't been targeted or selected first, a UI notification is presented for all macros in the GM Toolkit as appropriate. 
-- 
+- Added script files for Advantage macros. 
+
+### Fixed
+- Increase Advantage macro caps advantage at character max. Thanks to JDW#6422.
+- Reduce Advantage macro no longer drops advantage below 0.
+- Typo in Set Token and Light macro dropdown options.
 
 ## Version 0.2
 
@@ -42,7 +42,7 @@ See [Issue Backlog](../../issues).
   - Add Movement and Initiative to Token Hud, including tooltips for modes and Initiative/Agility values. 
   - Add Fortune, Resolve, and Corruption to Token Hud, including tooltips for Fate, Resilience and Sin values.
 - Macros (available from Compendium > Macro > GM Toolkit)
-  - **Reset Fortune:**  reset Fortune for the *targeted* character to their Fate level, accounting for Luck talent advanced.
+  - **Reset Fortune:**  reset Fortune for the *targeted* character to their Fate level, accounting for Luck talent advances.
   - **Set Token Vision and Light:** opens a dialog for quickly changing vision and lighting parameters of the *selected* token(s). Night Vision applies range enhancements. Blinded condition and Dark Vision trait are supported. Light sources range from candles through Storm Lantern, as well as Petty Magic, Witchlight, Glowing Skin and Ablaze condition. **Requires** The [Furnace]( https://github.com/kakaroto/fvtt-module-furnace/) module by KaKaRoTo#4756.
   - **Add XP:** adds 20XP (configurable in macro script) to *selected* tokens, confirming change and new levels in chat message. By DasSauerkraut#3215.
   - **Pull Everyone to Scene:** yanks every player into the scene that the GM is on. Does not activate the scene. 

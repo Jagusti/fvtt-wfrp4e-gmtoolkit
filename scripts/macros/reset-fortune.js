@@ -27,7 +27,7 @@ game.user.targets.forEach(target => {
 		"data.status.fortune.value": target.actor.data.data.status.fate.value + advLuck
     })
  
-    let chatContent = `Resetting Fortune for ${target.data.name} from ${startingFortune} to ${target.actor.data.data.status.fate.value + luckNum}.`;
+    let chatContent = `Resetting Fortune for ${target.data.name} from ${startingFortune} to ${target.actor.data.data.status.fate.value + advLuck}.`;
 
 	let chatData = {
 		user: game.user._id,
