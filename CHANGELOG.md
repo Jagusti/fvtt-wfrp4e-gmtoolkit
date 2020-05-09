@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 
-See [Issue Backlog](../../issues). 
+See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
 ## Version 0.3
 
@@ -17,7 +17,7 @@ See [Issue Backlog](../../issues).
 - Rationalised console messages for macros.
 
 ### Added
-- French translation support started. Thanks to @LeRatierBretonnnien#2065!
+- French translation support started. Thanks to @LeRatierBretonnien#2065!
 
 ## Version 0.2.1
 

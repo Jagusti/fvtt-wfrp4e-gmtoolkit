@@ -8,6 +8,7 @@ WFRP: 1.2.5 +
 Foundry VTT: 0.5.5 +
 
 ## Installation Instructions
+For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
 
 1. Add via Add-on Modules tab of Foundry VTT setup.
    - Manifest URL: https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json
@@ -16,10 +17,11 @@ Foundry VTT: 0.5.5 +
 3. [Import macros](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your Macro Directory via `Compendiums` > `Macro` > `GM Toolkit`.
    - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
    - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
+4. Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
 
 ## References
 
 * [Changelog](/CHANGELOG.md): for latest and historical updates by version
-* [Backlog](../../issues): for known bugs and suggested / planned features
+* [Backlog](../../issues): for known bugs and suggested / planned enhancements
+* [Roadmap](../../milestones): for planned feature schedule
 * [Wiki](../../wiki): for functionality guides
-
