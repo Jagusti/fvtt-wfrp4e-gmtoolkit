@@ -1,16 +1,25 @@
 /* Reduces Advantage for the selected token by 1 (to minimum 0).
 */
 
-if (canvas.tokens.controlledTokens.length < 1) 
-  return ui.notifications.error("Please select a token first.");
+if (canvas.tokens.controlledTokens.length != 1) 
+  return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
 
-if (Number(actor.data.data.status.advantage.value) > 0)
+let actorName = actor.data.name;
+let startingAdvantage = Number(actor.data.data.status.advantage.value);
+let uiNotice = String("No change made.");
+
+if (startingAdvantage > 0)
     {
-        actor.update({"data.status.advantage.value" : Number(actor.data.data.status.advantage.value)-1}); 
+        let newAdvantage = Number(startingAdvantage - 1);
 
-        ui.notifications.notify(`Advantage reduced by 1 to ${Number(actor.data.data.status.advantage.value)-1} for ${actor.data.name}.`)
+        actor.update({"data.status.advantage.value" : newAdvantage}); 
+
+        uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reduced",{actorName, startingAdvantage, newAdvantage } );
+
     } 
     else 
     {
-        ui.notifications.notify(`${actor.data.name} already has ${actor.data.data.status.advantage.value} Advantage. No change made.`);
+        uiNotice = game.i18n.format("GMTOOLKIT.Advantage.None",{actorName, startingAdvantage } );
     }
+
+ui.notifications.notify(uiNotice);

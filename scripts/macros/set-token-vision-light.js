@@ -6,76 +6,78 @@
  */
 
 if (canvas.tokens.controlledTokens.length < 1) 
-  return ui.notifications.error( game.i18n.localize("GMT.NoToken") );
+  return ui.notifications.error( game.i18n.localize("GMTOOLKIT.Token.Select") );
 
 let applyChanges = false;
 
-console.log("Before Dialog: ", token.actor.name, "Night Vision:", token.actor.advNightVision);
-
 new Dialog({
-  title: game.i18n.localize("GMT.SetVisionTitle"),
+  title: game.i18n.localize("GMTOOLKIT.Dialog.SetVisionLight.Title"),
   content: `
     <form> 
       <div class="form-group">
         <label>`
-      + game.i18n.localize("GMT.VisionType") +         
-      `:</label>
+      + game.i18n.localize("GMTOOLKIT.Dialog.SetVisionLight.VisionType") +         
+      `</label>
         <select id="vision-type" name="vision-type"> 
-          <option value="normalVision">Normal</option>
-          <option value="blindedVision">` 
-      + game.i18n.localize("GMT.Blinded") + 
+          <option value="normalVision">` 
+          + game.i18n.localize("GMTOOLKIT.Vision.Normal") + 
+           `<option value="blindedVision">` 
+      + game.i18n.localize("GMTOOLKIT.Vision.Blinded") + 
       `</option>
           <option value="nightVision">` 
-      + game.i18n.localize("GMT.NightVision") + 
-       `(Talent)</option>
+      + game.i18n.localize("GMTOOLKIT.Vision.Night") + 
+       `</option>
           <option value="darkVision">` 
-      + game.i18n.localize("GMT.DarkVision") + 
+      + game.i18n.localize("GMTOOLKIT.Vision.Dark") + 
          `</option>
           <option value="noVision">`
-      + game.i18n.localize("GMT.NoVision") + 
+      + game.i18n.localize("GMTOOLKIT.Vision.None") + 
           `</option>
         </select>
       </div>
       <div class="form-group">
         <label>`
-      + game.i18n.localize("GMT.NoVision") + 
+      + game.i18n.localize("GMTOOLKIT.Dialog.SetVisionLight.LightSource") + 
       `</label>
         <select id="light-source" name="light-source">
           <option value="none">` 
-          + game.i18n.localize("GMT.None") +           
+          + game.i18n.localize("GMTOOLKIT.LightSource.NoLight") +           
           `</option>
           <option value="candle">`
-          + game.i18n.localize("GMT.Candle") +           
+          + game.i18n.localize("GMTOOLKIT.LightSource.Candle") +           
           `</option>
           <option value="davrich-lamp">`
-          + game.i18n.localize("GMT.DavrichLamp") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.DavrichLamp") + 
           `</option>
           <option value="torch">`
-          + game.i18n.localize("GMT.Torch") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Torch") + 
           `</option>
           <option value="lantern">`
-          + game.i18n.localize("GMT.Lantern") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Lantern") + 
           `</option>
           <option value="storm-dim">` 
-          + game.i18n.localize("GMT.StormLantern.Dim") + 
-           `</option>
+          + game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Dim") + 
+          `</option>
           <option value="storm-bright">` 
-          + game.i18n.localize("GMT.StormLantern.Bright") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Bright") + 
+          `</option>
+          <option value="storm-shut">` 
+          + game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Shut") + 
           `</option>
           <option value="light">`
-          + game.i18n.localize("GMT.Light") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Light") + 
           `</option>
           <option value="witchlight">`
-          + game.i18n.localize("GMT.Witchlight") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Witchlight") + 
           `</option>
           <option value="glowing-skin">` 
-          + game.i18n.localize("GMT.GlowingSkin") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.GlowingSkin") + 
           `</option>
           <option value="ablaze">` 
-          + game.i18n.localize("GMT.Ablaze") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Ablaze") + 
           `</option>
           <option value="pha">`
-          + game.i18n.localize("GMT.Pha") + 
+          + game.i18n.localize("GMTOOLKIT.LightSource.Pha") + 
           `</option>
         </select>
       </div>
@@ -84,12 +86,12 @@ new Dialog({
   buttons: {
     yes: {
       icon: "<i class='fas fa-check'></i>",
-      label: game.i18n.localize("GMT.Apply"),
+      label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
       callback: () => applyChanges = true
     },
     no: {
       icon: "<i class='fas fa-times'></i>",
-      label: game.i18n.localize("GMT.Cancel"),
+      label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
     },
   },
   default: "yes",
@@ -186,13 +188,13 @@ new Dialog({
             brightSight = 0; 			
             break;
           case "nightVision":
-			let item = token.actor.items.find(i => i.data.name.toLowerCase() === game.i18n.localize("GMT.NightVisionTalent").toLowerCase() );
+			let item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
 				if(item == undefined || item.data.data.advances.value < 1) {
 					advNightVision = 0;
 				} else { 
 					for (let item of token.actor.items)
 						{
-						  if (item.type == "talent" && item.name.toLowerCase() == game.i18n.localize("GMT.NightVisionTalent").toLowerCase() )
+						  if (item.type == "talent" && item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() )
 						  {
 							advNightVision += item.data.data.advances.value;
 						  }

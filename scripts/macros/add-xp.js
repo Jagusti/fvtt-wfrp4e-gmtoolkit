@@ -1,31 +1,45 @@
 /* Adds a set amount of XP to targeted character(s).
  * Adds XP update note to the Chat log.
- * This macro - Add XP - was written by DasSauerkraut#3215
- * https://github.com/CatoThe1stElder/WFRP-4th-Edition-FoundryVTT/wiki/Macro-Repository#add-xp
  */
 
  // Enter Wanted XP.
 let XP = 20; // TODO: Add dialog box for XP. 
 
 if (game.user.targets.size < 1) 
-  return ui.notifications.error("Please target a token first.");
+  return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"));
+
+let targetName = String(); 
+let XPTotal = Number();
+let newXPTotal = Number();
+let XPCurrent = Number();
+let newXPCurrent = Number();
+let chatContent = String("No change made.");
 
 game.user.targets.forEach(target => {
-  console.log(target.actor.data.data.details.experience.total)
-   target.actor.update({
-      "data.details.experience.total": target.actor.data.data.details.experience.total + XP
-    })
-         
-let chatContent = game.i18n.format("GMT.AddingXPText", {XP: XP, targetName: target.data.name, XPTotal: target.actor.data.data.details.experience.total, 
-      newXPTotal: target.actor.data.data.details.experience.total + XP, XPCurrent: target.actor.data.data.details.experience.current, 
-      newXPCurrent: target.actor.data.data.details.experience.current + XP } )
+targetName = target.data.name; 
 
-let chatData = {
-      user: game.user._id,
-      content: chatContent
-    };
+if (target.actor.data.type == "character")
+  {
+    XPTotal = target.actor.data.data.details.experience.total; 
+    newXPTotal = XPTotal + XP;
+    XPCurrent = target.actor.data.data.details.experience.current; 
+    newXPCurrent = XPCurrent + XP;
+
+    target.actor.update({
+      "data.details.experience.total": newXPTotal
+    })
+        
+    chatContent = game.i18n.format("GMTOOLKIT.AddXP.Success", {XP, targetName, XPTotal, newXPTotal, XPCurrent, newXPCurrent} )
+  } else {
+    chatContent = game.i18n.format("GMTOOLKIT.AddXP.NotPC", {targetName} )
+  }
+
+  let chatData = {
+    user: game.user._id,
+    content: chatContent
+  };
 
 ChatMessage.create(chatData, {});  
+console.log(chatContent)
 
-console.log(target.actor.data.data.details.experience.total + XP)
 })

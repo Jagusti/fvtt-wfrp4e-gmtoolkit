@@ -3,36 +3,46 @@
  */
 
 if (game.user.targets.size < 1) 
-  return ui.notifications.error("Please target a token first.");
-  
-game.user.targets.forEach(target => {
-	console.log(target.actor.data.data.status.fortune.value);
-  
-	let startingFortune = target.actor.data.data.status.fortune.value;
-	let advLuck = 0;
-	let item = target.actor.items.find(i => i.data.name === game.i18n.localize("GMT.LuckTalent") )
-		if(item == undefined || item.data.data.advances.value < 1) {
-			advLuck = 0;
-		} else { 
-			for (let item of target.actor.items)
-				{
-				  if (item.type == "talent" && item.name == game.i18n.localize("GMT.LuckTalent") )
-				  {
-					advLuck += item.data.data.advances.value;
-				  }
-				}
-		}
+  return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"));
 
-	target.actor.update({
-		"data.status.fortune.value": target.actor.data.data.status.fate.value + advLuck
-    })
+let targetName = String(); 
+let startingFortune = Number();
+let newFortune = Number();
+let chatContent = String("No change made.");
+
+game.user.targets.forEach(target => {
+	targetName = target.data.name; 
+	
+	if (target.actor.data.type == "character")
+		{
+  			startingFortune = target.actor.data.data.status.fortune.value;
+			let advLuck = 0;
+			let item = target.actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
+			if(item == undefined || item.data.data.advances.value < 1) {
+				advLuck = 0;
+				} else { 
+					for (let item of target.actor.items)
+						{
+						if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.Luck"))
+							{
+								advLuck += item.data.data.advances.value;
+							}
+						}
+				}
+			newFortune = target.actor.data.data.status.fate.value +advLuck
+			target.actor.update({
+				"data.status.fortune.value": newFortune
+			})
  
-    let chatContent = game.i18n.format("GMT.ResetFortuneMsg",{targetName:target.data.name, startingFortune: startingFortune, newFortune: target.actor.data.data.status.fate.value + advLuck } );
-    let chatData = {
-      user: game.user._id,
-      content: chatContent
-    };
+			chatContent = game.i18n.format("GMTOOLKIT.ResetFortune.Success",{targetName, startingFortune, newFortune} );
+		} else {
+			chatContent = game.i18n.format("GMTOOLKIT.ResetFortune.NotPC", {targetName} )
+		  }
+	let chatData = {
+		user: game.user._id,
+		content: chatContent
+	};
 
     ChatMessage.create(chatData, {});  
- 	console.log(target.actor.data.data.status.fortune.value);
+ 	console.log(chatContent);
 })

@@ -1,7 +1,12 @@
 /* Resets Advantage for the selected token to 0 */
 
-if (canvas.tokens.controlledTokens.length < 1) 
-  return ui.notifications.error("Please select a token first.");
+if (canvas.tokens.controlledTokens.length != 1) 
+  return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
+  
+let startingAdvantage = Number(actor.data.data.status.advantage.value);
 
 actor.update({"data.status.advantage.value" : 0})
-ui.notifications.notify(`Advantage reset to 0 for ${actor.data.name}.`)
+
+let uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reset",{actorName: actor.data.name, startingAdvantage} );
+
+ui.notifications.notify(uiNotice);
