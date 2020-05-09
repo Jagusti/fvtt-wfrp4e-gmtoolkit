@@ -7,7 +7,17 @@ All notable changes to this project will be documented in this file.  The format
 
 See [Issue Backlog](../../issues). 
 
----
+## Version 0.3
+
+### Changed
+- Extended and standardised localization strings.
+- Refactored macros extensively to support translation and handling situations where no token is selected or targeted.
+  - All macros are now fully localized.
+  - Error and success notifications for macros are significantly improved.
+- Rationalised console messages for macros.
+
+### Added
+- French translation support started. Thanks to @LeRatierBretonnnien#2065!
 
 ## Version 0.2.1
 
