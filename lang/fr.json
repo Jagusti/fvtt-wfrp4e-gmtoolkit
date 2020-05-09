@@ -2,9 +2,9 @@
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
 
-    "GMTOOLKIT.Token.Select": "Please select one or more tokens first.",
-    "GMTOOLKIT.Token.SingleSelect": "Please select a single token first.",
-    "GMTOOLKIT.Token.TargetPCs": "Please target one or more PC tokens first.",
+    "GMTOOLKIT.Token.Select": "Merci de selectionner 1 ou 2 tokens.",
+    "GMTOOLKIT.Token.SingleSelect": "Merci de sélectioner 1 token seulement.",
+    "GMTOOLKIT.Token.TargetPCs": "Merci de sélectionner 1 ou plusieurs tokens de Joueurs.",
 
     "GMTOOLKIT.Dialog.SetVisionLight.Title" : "Paramétrer la vision/luminosité du Token",
     "GMTOOLKIT.Dialog.SetVisionLight.VisionType" : "Type de Vision",
@@ -16,8 +16,8 @@
     "GMTOOLKIT.LightSource.Torch" : "Torche (15 m)",
     "GMTOOLKIT.LightSource.Lantern" : "Lanterne (20 m)",
     "GMTOOLKIT.LightSource.StormLantern.Dim" : "Lampe Tempête (ouverte) (20 m)",
-    "GMTOOLKIT.LightSource.StormLantern.Bright" : "Storm Lantern (ciblée) (30 m)",
-    "GMTOOLKIT.LightSource.StormLantern.Shut" : "Storm Lantern (voilée) (0 m)",
+    "GMTOOLKIT.LightSource.StormLantern.Bright" : "Lampe Tempête (ciblée) (30 m)",
+    "GMTOOLKIT.LightSource.StormLantern.Shut" : "Lampe Tempête (voilée) (0 m)",
     "GMTOOLKIT.LightSource.Light" : "Lumière (Magie Mineure) (15 m)",
     "GMTOOLKIT.LightSource.Witchlight" : "Lueur occulte (Incantations Imparfaites) (20 m)",
     "GMTOOLKIT.LightSource.GlowingSkin" : "Peau Luisante (Mutation) (10 m)",
@@ -34,15 +34,14 @@
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
 
     "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
-    "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} is not a Player Character. No change made to Fortune points.",
+    "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.",
   
     "GMTOOLKIT.AddXP.Success" : "Ajout de {XP} PX à {targetName}. <hr> PX Total : {XPTotal} -> {newXPTotal} | PX Courants: {XPCurrent} -> {newXPCurrent}.",
-    "GMTOOLKIT.AddXP.NotPC" : "{targetName} is not a Player Character. No change made to Experience Points.",
+    "GMTOOLKIT.AddXP.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux PX.",
 
-    "GMTOOLKIT.Advantage.Increased" : "Advantage increased from {startingAdvantage} to {newAdvantage} for {actorName}.",
-    "GMTOOLKIT.Advantage.Max" : "{actorName} already has {startingAdvantage} of maximum {maxAdvantage} Advantage. No change made.",
-    "GMTOOLKIT.Advantage.Reduced" : "Advantage reduced from {startingAdvantage} to {newAdvantage} for {actorName}.",
-    "GMTOOLKIT.Advantage.None" : "{actorName} already has {startingAdvantage} Advantage. No change made.",
-    "GMTOOLKIT.Advantage.Reset" : "Advantage reset from {startingAdvantage} to 0 for {actorName}."
-
+    "GMTOOLKIT.Advantage.Increased" : "Points d'Avantages incrémentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
+    "GMTOOLKIT.Advantage.Max" : "{actorName} a déja {startingAdvantage} sur un maximum de {maxAdvantage} Points d'Avantages. Aucun changement.",
+    "GMTOOLKIT.Advantage.Reduced" : "Points d'Avantages incrémentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
+    "GMTOOLKIT.Advantage.None" : "{actorName} a déja {startingAdvantage} Points d'Avantages. Aucun changement.",
+    "GMTOOLKIT.Advantage.Reset" : "Points d'Avantages remis à 0 (valur précédente {startingAdvantage}) pour {actorName}."
 }
