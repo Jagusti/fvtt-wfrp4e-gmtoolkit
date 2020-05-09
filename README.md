@@ -11,6 +11,7 @@ Foundry VTT: 0.5.5 +
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
 
 1. Add via Add-on Modules tab of Foundry VTT setup.
+   - Module Name: `GM Toolkit (WFRP4e)`
    - Manifest URL: https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json
 2. The GM needs to enable the module for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
