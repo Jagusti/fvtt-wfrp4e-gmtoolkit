@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.  The format
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
+## Version 0.3.1
+- *Fixed* Luck Talent translation in French translation file
+
 ## Version 0.3
 
 ### Changed

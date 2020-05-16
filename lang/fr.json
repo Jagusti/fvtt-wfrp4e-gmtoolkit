@@ -30,7 +30,7 @@
     "GMTOOLKIT.Vision.Dark" : "Infravision (Trait)",
     "GMTOOLKIT.Vision.Blinded" : "Aveuglé (Etat)",
     
-    "GMTOOLKIT.LuckTalent" : "Chanceux",
+    "GMTOOLKIT.Talent.Luck" : "Chanceux",
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
 
     "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
