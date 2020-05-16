@@ -4,7 +4,7 @@
 	"description": "Utilities for WFRP4e GMs",
 	"version": "0.3.1",
 	"minimumCoreVersion": "0.5.5",
-	"compatibleCoreVersion": "0.5.5",
+	"compatibleCoreVersion": "0.5.7",
 	"author": "Jagusti",
 	"systems": ["wfrp4e"],
 	"scripts": ["/scripts/token-hud-extension.js"],
