@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+- *Added* Perception and Intuition to Token Hud.
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 

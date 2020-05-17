@@ -62,6 +62,7 @@ class TokenHudExtension {
         
         const actorData = actor.data;
         const actorStatus = actorData.data.status;
+        const actorCharacteristics = actor.data.data.characteristics;
 
         if (actorData.type === "character") {
         
@@ -72,20 +73,23 @@ class TokenHudExtension {
             let corruption = actorStatus.corruption.value
             let maxCorruption = actorStatus.corruption.max || (actor.data.data.characteristics.wp.bonus + actor.data.data.characteristics.t.bonus) // default max does not consider Pure Soul talent
             let sin = actorStatus.sin.value
+            let perception = actor.items.find(i => i.data.name === game.i18n.localize('Perception')  ).data.data.advances.value + actorCharacteristics.i.value
+            let intuition = actor.items.find(i => i.data.name === game.i18n.localize('Intuition') ).data.data.advances.value + actorCharacteristics.i.value
 
             let TooltipFate = game.i18n.localize('Fortune') + ": " + fortune +"; " + game.i18n.localize('Fate') +": " + fate
             let TooltipResolve = game.i18n.localize('Resolve') + ": " + resolve +"; " + game.i18n.localize('Resilience') +": " + resilience
             let TooltipCorruption = game.i18n.localize('Corruption') + ": " + corruption +" / " + maxCorruption + "; " + game.i18n.localize('Sin') +": " + sin
+            let TooltipPerception = game.i18n.localize('Perception') + ": " + perception +"; " + game.i18n.localize('Intuition') +": " + intuition
 
             let divTokenHudExt = '<div class="tokenhudext left">';
 
             let hudFateResolve = '<div class="control-icon tokenhudicon left" title="' + TooltipFate + '"><i class="fas fa-dice"></i> ' + fortune + '</div>'  + '<div class="control-icon tokenhudicon left" title="' + TooltipResolve + '"><i class="fas fa-hand-rock"></i> ' + resolve + '</div>';
             html.find('.control-icon.config').wrap(divTokenHudExt);
             html.find('.control-icon.config').before(hudFateResolve);
-
-            let hudCorruption = '<div class="control-icon tokenhudicon left" title="' + TooltipCorruption + '"><i class="fas fa-bahai"></i> ' + corruption + '</div>';
+     
+            let hudCorruptionPerception = '<div class="control-icon tokenhudicon left" title="' + TooltipCorruption + '"><i class="fas fa-bahai"></i> ' + corruption + '</div>'  + '<div class="control-icon tokenhudicon left" title="' + TooltipPerception + '"><i class="fas fa-eye"></i> ' + perception + '</div>';
             html.find('.control-icon.target').wrap(divTokenHudExt);
-            html.find('.control-icon.target').before(hudCorruption);
+            html.find('.control-icon.target').before(hudCorruptionPerception);
 
         }
     }
