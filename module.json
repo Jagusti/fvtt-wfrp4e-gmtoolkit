@@ -2,12 +2,15 @@
 	"name": "wfrp4e-gm-toolkit",
 	"title": "GM Toolkit (WFRP4e)",
 	"description": "Utilities for WFRP4e GMs",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"minimumCoreVersion": "0.5.5",
 	"compatibleCoreVersion": "0.5.7",
 	"author": "Jagusti",
 	"systems": ["wfrp4e"],
-	"scripts": ["/scripts/token-hud-extension.js"],
+	"scripts": [
+		"/scripts/token-hud-extension.js",
+		"/scripts/gm-toolkit.js"
+	],
 	"styles": ["/css/gmtoolkit.css"],
 	"packs": [
 		{

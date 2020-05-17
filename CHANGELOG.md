@@ -7,8 +7,11 @@ All notable changes to this project will be documented in this file.  The format
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
+## Version 0.3.2
+- *Added* Advanced macros in the Toolkit require Kakaroto's Furnace module. If this is not installed and active, a warning message is displayed. Console logs are included to confirm whether Furnace is installed and advanced macro support is enabled.
+
 ## Version 0.3.1
-- *Fixed* Luck Talent translation in French translation file
+- *Fixed* Luck Talent translation in French translation file. Thanks to JDW for flagging. 
 
 ## Version 0.3
 
