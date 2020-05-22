@@ -4,13 +4,14 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+
+See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+## Version 0.4
 - *Breaking changes* to token selection validation to make compatible with FVTT v0.6.0. All Advantage macros plus Set Token Vision and Light macro should be re-imported from the macro compendium. 
+- *Added* interactions for Token Hud Extension: various skill and characteristic tests, status value adjustments and table rolls. Full details on https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/token-hud-extensions. 
 - *Added* Perception and Intuition to Token Hud.
 - *Added* Swim value to Movement tip on Token Hud.
 - *Fixed* alignment of first-child Token Hud icons. 
-- *Added* interactions for Token Hud Extension: various skill and characteristic tests, status value adjustments and table rolls. Full details on https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/token-hud-extensions. 
-
-See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
 ## Version 0.3.2
 - *Added* Advanced macros in the Toolkit require Kakaroto's Furnace module. If this is not installed and active, a warning message is displayed. Console logs are included to confirm whether Furnace is installed and advanced macro support is enabled.
