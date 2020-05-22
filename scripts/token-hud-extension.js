@@ -14,8 +14,9 @@ class TokenHudExtension {
         let move = actorMoveDetails.value;
         let walk = actorMoveDetails.walk;
         let run = actorMoveDetails.run;
+        let swim = actorMoveDetails.value / 2;
 
-        let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run
+        let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
         
         let divTokenHudExt = '<div class="tokenhudext left">';
         let hudMovement = '<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>';
