@@ -104,7 +104,7 @@ class TokenHudExtension {
 
             // Corruption and Sin
             let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
-            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
+            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip
 
             // Perception and Intuition
             let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
@@ -148,7 +148,9 @@ function hasSkill (actor, targetSkill) {
     // Match exact skill only
     skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
     if (skill == null) {
-        console.log("GM Toolkit (WFRP4e) | " + actor.name + " does not have the " + targetSkill + " skill. Aborting skill test. ")
+        let message = actor.name + " does not have the " + targetSkill + " skill. Aborting skill test. ";
+        console.log("GM Toolkit (WFRP4e) | " + message)
+        ui.notifications.error(message) 
     } else {
         console.log("GM Toolkit (WFRP4e) | " + actor.name + " has the " + game.i18n.localize(targetSkill) + " skill.") 
     }
