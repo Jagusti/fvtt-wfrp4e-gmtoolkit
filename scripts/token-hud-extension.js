@@ -19,9 +19,9 @@ class TokenHudExtension {
         let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
         
         let divTokenHudExt = '<div class="tokenhudext left">';
-        let hudMovement = '<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>';
-
         html.find('.attribute.elevation').wrap(divTokenHudExt);
+
+        let hudMovement = '<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>';
         html.find('.attribute.elevation').before(hudMovement);
 
     }
@@ -47,9 +47,9 @@ class TokenHudExtension {
        let TooltipInitiative = game.i18n.localize('CHAR.I') + ": " + initiative +"; " + game.i18n.localize('CHAR.Ag') +": " + agility
 
        let divTokenHudExt = '<div class="tokenhudext right">';
-       let hudInitiative = '<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>';
-
        html.find('.control-icon.combat').wrap(divTokenHudExt);
+
+       let hudInitiative = '<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>';
        html.find('.control-icon.combat').after(hudInitiative);
 
    }
@@ -62,11 +62,12 @@ class TokenHudExtension {
             
         // console.log("GM Toolkit Token Hud Extensions | Actor?", actor); 
         
-        const actorData = actor.data;
-        const actorStatus = actorData.data.status;
-        const actorCharacteristics = actor.data.data.characteristics;
-
-        if (actorData.type === "character") {
+        if (actor.data.type === "character") {
+            
+            // Set variables
+            const actorData = actor.data;
+            const actorStatus = actorData.data.status;
+            const actorCharacteristics = actor.data.data.characteristics;
         
             let fortune = actorStatus.fortune.value 
             let fate = actorStatus.fate.value
@@ -78,20 +79,36 @@ class TokenHudExtension {
             let perception = actor.items.find(i => i.data.name === game.i18n.localize('Perception')  ).data.data.advances.value + actorCharacteristics.i.value
             let intuition = actor.items.find(i => i.data.name === game.i18n.localize('Intuition') ).data.data.advances.value + actorCharacteristics.i.value
 
-            let TooltipFate = game.i18n.localize('Fortune') + ": " + fortune +"; " + game.i18n.localize('Fate') +": " + fate
+            let TooltipFortune = game.i18n.localize('Fortune') + ": " + fortune +"; " + game.i18n.localize('Fate') +": " + fate
             let TooltipResolve = game.i18n.localize('Resolve') + ": " + resolve +"; " + game.i18n.localize('Resilience') +": " + resilience
             let TooltipCorruption = game.i18n.localize('Corruption') + ": " + corruption +" / " + maxCorruption + "; " + game.i18n.localize('Sin') +": " + sin
             let TooltipPerception = game.i18n.localize('Perception') + ": " + perception +"; " + game.i18n.localize('Intuition') +": " + intuition
 
             let divTokenHudExt = '<div class="tokenhudext left">';
-
-            let hudFateResolve = '<div class="control-icon tokenhudicon left" title="' + TooltipFate + '"><i class="fas fa-dice"></i> ' + fortune + '</div>'  + '<div class="control-icon tokenhudicon left" title="' + TooltipResolve + '"><i class="fas fa-hand-rock"></i> ' + resolve + '</div>';
+            
+            // Create space for Hud Extensions next to config icon
+            // Resolve, Resilience, Fortune, Fate
             html.find('.control-icon.config').wrap(divTokenHudExt);
-            html.find('.control-icon.config').before(hudFateResolve);
-     
-            let hudCorruptionPerception = '<div class="control-icon tokenhudicon left" title="' + TooltipCorruption + '"><i class="fas fa-bahai"></i> ' + corruption + '</div>'  + '<div class="control-icon tokenhudicon left" title="' + TooltipPerception + '"><i class="fas fa-eye"></i> ' + perception + '</div>';
+
+            // Resolve and Resilience
+            let hudResolve = $(`<div class="control-icon tokenhudicon left" title="` + TooltipResolve + `"><i class="fas fa-hand-rock">&nbsp;` + resolve + `</i></div>`);
+            html.find('.control-icon.config').before(hudResolve); // Add Resolve token tip
+
+            // Fortune and Fate
+            let hudFortune = $(`<div class="control-icon tokenhudicon left" title="` + TooltipFortune + `"><i class="fas fa-dice">&nbsp;` + fortune + `</i></div>`);
+            html.find('.control-icon.config').before(hudFortune); // Add Fortune token tip
+
+            // Create space for Hud Extensions next to target icon
+            // Corruption, Sin, Perception, Intuition
             html.find('.control-icon.target').wrap(divTokenHudExt);
-            html.find('.control-icon.target').before(hudCorruptionPerception);
+
+            // Corruption and Sin
+            let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
+            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
+
+            // Perception and Intuition
+            let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
+            html.find('.control-icon.target').before(hudPerception); // Add Perception token tip
 
         }
     }
@@ -99,7 +116,7 @@ class TokenHudExtension {
 }
 
 Hooks.on('ready', () => {
-    if (game.user.isGM) {
+    if (game.user.isGM) {  // TODO: Optionalise to allow players to access hud extensions
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addMovementTokenTip(app, html, data) });
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addInitiativeTokenTip(app, html, data) });
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addPlayerCharacterTokenTip(app, html, data) });
