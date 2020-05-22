@@ -29,6 +29,7 @@ class TokenHudExtension {
     static async addInitiativeTokenTip(app, html, data) {
         
        // Do not show initiative token tip unless this is the active scene 
+       // TODO: Make conditional visibility an option
        if (game.scenes.active.isView === false)
         return;
 
@@ -72,7 +73,7 @@ class TokenHudExtension {
             let resolve = actorStatus.resolve.value 
             let resilience = actorStatus.resilience.value
             let corruption = actorStatus.corruption.value
-            let maxCorruption = actorStatus.corruption.max || (actor.data.data.characteristics.wp.bonus + actor.data.data.characteristics.t.bonus) // default max does not consider Pure Soul talent
+            let maxCorruption = actorStatus.corruption.max 
             let sin = actorStatus.sin.value
             let perception = actor.items.find(i => i.data.name === game.i18n.localize('Perception')  ).data.data.advances.value + actorCharacteristics.i.value
             let intuition = actor.items.find(i => i.data.name === game.i18n.localize('Intuition') ).data.data.advances.value + actorCharacteristics.i.value
