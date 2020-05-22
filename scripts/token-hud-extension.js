@@ -4,9 +4,7 @@ class TokenHudExtension {
 
         let actor = game.actors.get(data.actorId);
         if (actor === undefined)
-            return;
-
-        // console.log("GM Toolkit Token Hud Extensions | Actor?", actor);
+            return;;
             
         const actorData = actor.data;
         const actorMoveDetails = actorData.data.details.move;
@@ -18,11 +16,75 @@ class TokenHudExtension {
 
         let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
         
+        // Create space for Hud Extensions next to elevation icon
         let divTokenHudExt = '<div class="tokenhudext left">';
         html.find('.attribute.elevation').wrap(divTokenHudExt);
 
         let hudMovement = '<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>';
-        html.find('.attribute.elevation').before(hudMovement);
+        html.find('.attribute.elevation').before(hudMovement);// Add Movement token tip
+        // Add interactions for Movement
+        hudMovement.find('i').dblclick(async (ev) => {
+            // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
+            if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
+                if (hasSkill(actor, "Swim") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+            }
+            if (ev.ctrlKey && ev.altKey) {
+                if (hasSkill(actor, "Climb") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.ctrlKey && ev.shiftKey) {
+                if (hasSkill(actor, "Drive") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.altKey && ev.shiftKey) {
+                // TODO: Interrogate actor Ride specializations and offer selection if more than one is available
+                if (hasSkill(actor, "Ride") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.ctrlKey) {
+                if (hasSkill(actor, "Dodge") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.altKey) {
+                if (hasSkill(actor, "Athletics") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.shiftKey) {
+                // TODO: Interrogate actor Stealth specializations and offer selection if more than one is available
+                if (hasSkill(actor, "Stealth") !== null) {
+                    actor.setupSkill(skill.data);
+                } 
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            console.log("GM Toolkit (WFRP4e) | " + "Movement Button Clicked")
+        }) 
 
     }
     
@@ -37,8 +99,6 @@ class TokenHudExtension {
        if (actor === undefined)
             return;
 
-        // console.log("GM Toolkit Token Hud Extensions | Actor?", actor); 
-
        const actorCharacteristics = actor.data.data.characteristics;
 
        let initiative = actorCharacteristics.i.value;
@@ -46,11 +106,26 @@ class TokenHudExtension {
 
        let TooltipInitiative = game.i18n.localize('CHAR.I') + ": " + initiative +"; " + game.i18n.localize('CHAR.Ag') +": " + agility
 
+       // Create space for Hud Extensions next to combat icon
        let divTokenHudExt = '<div class="tokenhudext right">';
        html.find('.control-icon.combat').wrap(divTokenHudExt);
 
        let hudInitiative = '<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>';
-       html.find('.control-icon.combat').after(hudInitiative);
+       html.find('.control-icon.combat').after(hudInitiative); // Add Initiative and Agility token tip
+       // Add interactions for Initiative and Agility
+        hudInitiative.find('i').dblclick(async (ev) => {
+            // console.log("GM Toolkit (WFRP4e) | Initiative hud extension double-clicked.")
+            if (ev.ctrlKey) {
+                actor.setupCharacteristic("i");
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+            if (ev.altKey) {
+                actor.setupCharacteristic("ag");
+                ev.preventDefault();
+                ev.stopPropagation();
+            } 
+        })
 
    }
 
@@ -59,8 +134,6 @@ class TokenHudExtension {
         let actor = game.actors.get(data.actorId);
         if (actor === undefined)
             return;
-            
-        // console.log("GM Toolkit Token Hud Extensions | Actor?", actor); 
         
         if (actor.data.type === "character") {
             
