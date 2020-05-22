@@ -20,7 +20,7 @@ class TokenHudExtension {
         let divTokenHudExt = '<div class="tokenhudext left">';
         html.find('.attribute.elevation').wrap(divTokenHudExt);
 
-        let hudMovement = '<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>';
+        let hudMovement = $('<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>');
         html.find('.attribute.elevation').before(hudMovement);// Add Movement token tip
         // Add interactions for Movement
         hudMovement.find('i').dblclick(async (ev) => {
@@ -110,7 +110,7 @@ class TokenHudExtension {
        let divTokenHudExt = '<div class="tokenhudext right">';
        html.find('.control-icon.combat').wrap(divTokenHudExt);
 
-       let hudInitiative = '<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>';
+       let hudInitiative = $('<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>');
        html.find('.control-icon.combat').after(hudInitiative); // Add Initiative and Agility token tip
        // Add interactions for Initiative and Agility
         hudInitiative.find('i').dblclick(async (ev) => {
