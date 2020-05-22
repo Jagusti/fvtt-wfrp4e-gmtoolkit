@@ -53,6 +53,7 @@
 
 .control-icon.tokenhudicon.left {
 	margin-right: 8px;
+	margin-top: auto;  /* Override margin-top for first-child to maintain middle alignment */
 }
 
 .control-icon.tokenhudicon.right {

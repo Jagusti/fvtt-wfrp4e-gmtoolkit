@@ -4,7 +4,7 @@
  * https://github.com/CatoThe1stElder/WFRP-4th-Edition-FoundryVTT/wiki/Macro-Repository#add-xp
 */
 
-if (canvas.tokens.controlledTokens.length != 1) 
+if (canvas.tokens.controlled.length != 1) 
   return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
 
 let actorName = actor.data.name;
