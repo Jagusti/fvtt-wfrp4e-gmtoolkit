@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+- *Breaking changes* to token selection validation to make compatible with FVTT v0.6.0. All Advantage macros plus Set Token Vision and Light macro should be re-imported from the macro compendium. 
 - *Added* Perception and Intuition to Token Hud.
 - *Added* Swim value to Movement tip on Token Hud.
 - *Fixed* alignment of first-child Token Hud icons. 
