@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.  The format
 - *Added* Perception and Intuition to Token Hud.
 - *Added* Swim value to Movement tip on Token Hud.
 - *Fixed* alignment of first-child Token Hud icons. 
+- *Added* interactions for Token Hud Extension: various skill and characteristic tests, status value adjustments and table rolls. Full details on https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/token-hud-extensions. 
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
