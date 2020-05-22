@@ -109,12 +109,52 @@ class TokenHudExtension {
             // Perception and Intuition
             let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
             html.find('.control-icon.target').before(hudPerception); // Add Perception token tip
+            // Add interactions for Perception and Intuition
+            hudPerception.find('i').dblclick(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Perception hud extension double-clicked.") 
+                if (ev.altKey) {
+                    if (hasSkill(actor, "Intuition") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.ctrlKey) {
+                    if (hasSkill(actor, "Perception") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })
 
         }
     }
 
 }
 
+/* 
+
+*/ 
+/** 
+ * Returns whether an actor has the skill to be tested.
+ * @param {Object} actor 
+ * @param {String} targetSkill - Name of skill to be tested.
+ * @return {Object} The skill object to be tested.
+**/ 
+function hasSkill (actor, targetSkill) {
+    // Match exact skill only
+    skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
+    if (skill == null) {
+        console.log("GM Toolkit (WFRP4e) | " + actor.name + " does not have the " + targetSkill + " skill. Aborting skill test. ")
+    } else {
+        console.log("GM Toolkit (WFRP4e) | " + actor.name + " has the " + game.i18n.localize(targetSkill) + " skill.") 
+    }
+    return (skill);
+}
+// 
 Hooks.on('ready', () => {
     if (game.user.isGM) {  // TODO: Optionalise to allow players to access hud extensions
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addMovementTokenTip(app, html, data) });
@@ -124,4 +164,4 @@ Hooks.on('ready', () => {
 
 });
 
-console.log("GM Toolkit Token Hud Extensions loaded.");
+console.log("GM Toolkit (WFRP4e) | Token Hud Extensions loaded.");
