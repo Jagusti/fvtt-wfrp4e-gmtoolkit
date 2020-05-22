@@ -5,7 +5,7 @@
  * https://github.com/Sky-Captain-13/foundry/tree/master/scriptMacros
  */
 
-if (canvas.tokens.controlledTokens.length < 1) 
+if (canvas.tokens.controlled.length < 1) 
   return ui.notifications.error( game.i18n.localize("GMTOOLKIT.Token.Select") );
 
 let applyChanges = false;
