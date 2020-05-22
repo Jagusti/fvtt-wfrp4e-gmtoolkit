@@ -93,10 +93,110 @@ class TokenHudExtension {
             // Resolve and Resilience
             let hudResolve = $(`<div class="control-icon tokenhudicon left" title="` + TooltipResolve + `"><i class="fas fa-hand-rock">&nbsp;` + resolve + `</i></div>`);
             html.find('.control-icon.config').before(hudResolve); // Add Resolve token tip
+            // Add interactions for Resolve and Resilience
+            hudResolve.find('i').contextmenu(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
+                if (ev.ctrlKey) {
+                    adjustStatus(actor, "Resolve", -1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey) {
+                    adjustStatus(actor, "Resolve", 1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })
+            hudResolve.find('i').dblclick(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Resolve hud extension double-clicked.")
+                if (ev.ctrlKey) {
+                    if (hasSkill(actor, "Cool") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.altKey) {
+                    if (hasSkill(actor, "Endurance") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey) {
+                    if (hasSkill(actor, "Consume Alcohol") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })  
 
             // Fortune and Fate
             let hudFortune = $(`<div class="control-icon tokenhudicon left" title="` + TooltipFortune + `"><i class="fas fa-dice">&nbsp;` + fortune + `</i></div>`);
             html.find('.control-icon.config').before(hudFortune); // Add Fortune token tip
+            // Add interactions for Fortune and Fate
+            hudFortune.find('i').contextmenu(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
+                console.log("Fortune Button Right-Clicked") // TODO: Add localization
+                if (ev.ctrlKey) {
+                    adjustStatus(actor, "Fortune", -1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey) {
+                    adjustStatus(actor, "Fortune", 1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })
+            hudFortune.find('i').dblclick(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Fortune hud extension double-clicked.")
+                if (ev.shiftKey && ev.altKey) {
+                    if (hasSkill(actor, "Charm Animal") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.ctrlKey) {
+                    if (hasSkill(actor, "Gamble") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey) {
+                    if (hasSkill(actor, "Charm") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.altKey) {
+                    if (hasSkill(actor, "Gossip") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })
+
 
             // Create space for Hud Extensions next to target icon
             // Corruption, Sin, Perception, Intuition
@@ -107,7 +207,7 @@ class TokenHudExtension {
             html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
             // Add interactions for Corruption and Sin           
             hudCorruption.find('i').contextmenu(async (ev) => {
-                console.log("Corruption Button Right-Clicked") // TODO: Add localization
+                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
                 if (ev.ctrlKey && ev.altKey) {
                     adjustStatus(actor, "Sin", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
@@ -211,12 +311,6 @@ class TokenHudExtension {
     }
 
 }
-
-/* 
- * Reusable Token Hud functions
- * hasSkill
- * adjustStatus
-*/ 
 
 /** 
  * Returns whether an actor has the skill to be tested.
