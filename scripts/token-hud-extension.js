@@ -105,9 +105,83 @@ class TokenHudExtension {
             // Corruption and Sin
             let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
             html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
-            // Add interactions for Corruption and Sin            
+            // Add interactions for Corruption and Sin           
+            hudCorruption.find('i').contextmenu(async (ev) => {
+                console.log("Corruption Button Right-Clicked") // TODO: Add localization
+                if (ev.ctrlKey && ev.altKey) {
+                    adjustStatus(actor, "Sin", -1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey && ev.altKey) {
+                    adjustStatus(actor, "Sin", 1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.ctrlKey) {
+                    adjustStatus(actor, "Corruption", -1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey) {
+                    adjustStatus(actor, "Corruption", 1);
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            })            
             hudCorruption.find('i').dblclick(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.") 
+                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
+                if (ev.ctrlKey && ev.shiftKey) {
+                    let result = WFRP_Tables.formatChatRoll("mutatemental");
+                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a mental mutation.") 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.ctrlKey && ev.altKey) {
+                    let littlePrayer = new Roll("d100") 
+                    littlePrayer.roll();
+                    let result = `${actor.name} offered a Little Prayer to the Gods (${littlePrayer.result}).`  // TODO: Add Localization
+                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "gmroll", true));
+                    console.log("GM Toolkit (WFRP4e) | " + result) 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey && ev.altKey) {
+                    let result = WFRP_Tables.formatChatRoll("wrath");
+                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    console.log("GM Toolkit (WFRP4e) | " + actor.name + " incurred the Wrath of the Gods.") 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.ctrlKey) {
+                    let result = WFRP_Tables.formatChatRoll("mutatephys");
+                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a physical mutation.") 
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.altKey) {
+                    if (hasSkill(actor, "Pray") !== null) {
+                        actor.setupSkill(skill.data);
+                    }
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+            }) 
 
             // Perception and Intuition
             let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
@@ -141,7 +215,7 @@ class TokenHudExtension {
 /* 
  * Reusable Token Hud functions
  * hasSkill
- * createChatLog
+ * adjustStatus
 */ 
 
 /** 
@@ -164,19 +238,90 @@ function hasSkill (actor, targetSkill) {
 }
 
 /** 
- * Creates chat log message with results of hud interaction. 
- * @param {Object} actor 
- * @param {String} chatContent - message to be sent
+ * Increase or reduce the status value from the Token Hud
+ * @param {Object} actor        
+ * @param {String} status - Characteristic to be adjusted
+ * @param {Number} [1|-1] - increase or decrease value for status
 **/ 
-function createChatLog (actor, chatContent) {
-    let chatData = {
-        speaker: { actor: "actor", alias: actor.name },
-		user: game.user._id,
-        content: chatContent
-    };
+function adjustStatus (actor, status, change) {
+    let originalStatus = Number();
+    let newStatus = Number();
+   
+    switch (status)
+    {
+        case "Resolve":
+            originalStatus = actor.data.data.status.resolve.value
+            if (Number(change) < 0) {
+                newStatus = Math.max((originalStatus + Number(change)),0)
+            } else {
+                    maxStatus = actor.data.data.status.resilience.value
+                    newStatus = Math.min((originalStatus + Number(change)),maxStatus)
+                }
+            actor.update({
+                "data.status.resolve.value": newStatus
+            })
+            break;
+        case "Sin":
+            originalStatus = actor.data.data.status.sin.value
+            if (Number(change) < 0) {
+                newStatus = Math.max((originalStatus + Number(change)),0)
+            } else {
+                    newStatus = Number(originalStatus + change)
+                }
+            actor.update({
+                "data.status.sin.value": newStatus
+            })
+            break;
+        case "Corruption":
+            originalStatus = actor.data.data.status.corruption.value
+            if (Number(change) < 0) {
+                newStatus = Math.max((originalStatus + Number(change)),0)
+            } else {
+                    maxStatus = actor.data.data.status.corruption.max
+                    newStatus = Math.min((originalStatus + Number(change)),maxStatus)
+                }
+            actor.update({
+                "data.status.corruption.value": newStatus
+            })
+            break;
+        case "Fortune":
+            originalStatus = actor.data.data.status.fortune.value
+            if (Number(change) < 0) {
+                newStatus = Math.max((originalStatus + Number(change)),0)
+            } else {
+                    let item = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
+                    let advLuck = Number();
+                    if(item == undefined || item.data.data.advances.value < 1) {
+                        advLuck = 0;
+                        } else { 
+                            for (let item of target.actor.items)
+                                {
+                                if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.Luck"))
+                                    {
+                                        advLuck += item.data.data.advances.value;
+                                    }
+                                }
+                        }
+                    maxStatus = actor.data.data.status.fate.value + advLuck
+                    newStatus = Math.min((originalStatus + Number(change)),maxStatus)
+                }
+            actor.update({
+                "data.status.fortune.value": newStatus
+            })
+            break;    
+    }
 
-    ChatMessage.create(chatData, {});  
-}
+    targetName = actor.data.name
+    // TODO: Context-specific message for no change 
+    // TODO: Context-specific message for no max value reached
+    // Chat log message to confirm outcome
+    result = (game.i18n.localize(status) + " changed from " + Number(originalStatus) + " to " + Number(newStatus) + " for " + targetName + ".")
+    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+    // sendChatMessage (actor, chatContent)   
+    // UI notification to confirm outcome
+    ui.notifications.notify(result) 
+    return(result)
+}  
 
 /*
  * TODO: Extend here for module settings
