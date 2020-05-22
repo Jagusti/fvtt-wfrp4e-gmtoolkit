@@ -104,7 +104,10 @@ class TokenHudExtension {
 
             // Corruption and Sin
             let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
-            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip
+            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
+            // Add interactions for Corruption and Sin            
+            hudCorruption.find('i').dblclick(async (ev) => {
+                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.") 
 
             // Perception and Intuition
             let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
@@ -136,8 +139,11 @@ class TokenHudExtension {
 }
 
 /* 
-
+ * Reusable Token Hud functions
+ * hasSkill
+ * createChatLog
 */ 
+
 /** 
  * Returns whether an actor has the skill to be tested.
  * @param {Object} actor 
@@ -156,6 +162,25 @@ function hasSkill (actor, targetSkill) {
     }
     return (skill);
 }
+
+/** 
+ * Creates chat log message with results of hud interaction. 
+ * @param {Object} actor 
+ * @param {String} chatContent - message to be sent
+**/ 
+function createChatLog (actor, chatContent) {
+    let chatData = {
+        speaker: { actor: "actor", alias: actor.name },
+		user: game.user._id,
+        content: chatContent
+    };
+
+    ChatMessage.create(chatData, {});  
+}
+
+/*
+ * TODO: Extend here for module settings
+*/
 // 
 Hooks.on('ready', () => {
     if (game.user.isGM) {  // TODO: Optionalise to allow players to access hud extensions
