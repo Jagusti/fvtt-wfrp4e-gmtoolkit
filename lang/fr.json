@@ -36,6 +36,7 @@
     
     "GMTOOLKIT.Talent.Luck" : "Chanceux",
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
+    "GMTOOLKIT.Talent.StrongMinded" : "Strong-minded",
 
     "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
     "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.",

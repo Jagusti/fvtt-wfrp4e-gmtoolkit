@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 - *Added* shortcut to make Track test (CTRL + SHIFT + Initiative hud extension).
+- *Added* Strong-minded advances for determining maximum Resolve when increasing through Token Hud. 
+- *Fixed* undeclared target error when adding Fortune through Token Hud.
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 ## Version 0.4

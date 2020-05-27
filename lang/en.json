@@ -36,6 +36,7 @@
     
     "GMTOOLKIT.Talent.Luck" : "Luck",
     "GMTOOLKIT.Talent.NightVision" : "Night Vision",
+    "GMTOOLKIT.Talent.StrongMinded" : "Strong-minded",
 
     "GMTOOLKIT.ResetFortune.Success" : "Resetting Fortune for {targetName} from {startingFortune} to {newFortune}.",
     "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} is not a Player Character. No change made to Fortune points.",

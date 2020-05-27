@@ -429,13 +429,26 @@ function adjustStatus (actor, status, change) {
             if (Number(change) < 0) {
                 newStatus = Math.max((originalStatus + Number(change)),0)
             } else {
-                    maxStatus = actor.data.data.status.resilience.value
+                    let item = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.StrongMinded") )
+                    let advStrongMinded = Number();
+                    if(item == undefined || item.data.data.advances.value < 1) {
+                        advStrongMinded = 0;
+                        } else { 
+                            for (let item of actor.items)
+                                {
+                                if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.StrongMinded"))
+                                    {
+                                        advStrongMinded += item.data.data.advances.value;
+                                    }
+                                }
+                        }
+                    maxStatus = actor.data.data.status.resilience.value + advStrongMinded
                     newStatus = Math.min((originalStatus + Number(change)),maxStatus)
                 }
             actor.update({
                 "data.status.resolve.value": newStatus
             })
-            break;
+            break;    
         case "Sin":
             originalStatus = actor.data.data.status.sin.value
             if (Number(change) < 0) {
@@ -469,7 +482,7 @@ function adjustStatus (actor, status, change) {
                     if(item == undefined || item.data.data.advances.value < 1) {
                         advLuck = 0;
                         } else { 
-                            for (let item of target.actor.items)
+                            for (let item of actor.items)
                                 {
                                 if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.Luck"))
                                     {
@@ -483,7 +496,7 @@ function adjustStatus (actor, status, change) {
             actor.update({
                 "data.status.fortune.value": newStatus
             })
-            break;    
+            break;     
     }
 
     targetName = actor.data.name
