@@ -115,6 +115,14 @@ class TokenHudExtension {
        // Add interactions for Initiative and Agility
         hudInitiative.find('i').dblclick(async (ev) => {
             // console.log("GM Toolkit (WFRP4e) | Initiative hud extension double-clicked.")
+            if (ev.ctrlKey && ev.shiftKey) {
+                if (hasSkill(actor, "Track") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
             if (ev.ctrlKey) {
                 actor.setupCharacteristic("i");
                 ev.preventDefault();

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+- *Added* shortcut to make Track test (CTRL + SHIFT + Initiative hud extension).
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 ## Version 0.4
