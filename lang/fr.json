@@ -1,8 +1,4 @@
-{
-    "GMTOOLKIT.Log.FurnaceInstalled" : "GM Toolkit (WFRP4e) | Furnace module installed and activated. Advanced macros supported.",
-    "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Furnace module not active. Install and activate the Furnace module to enable advanced macros support.",
-    "GMTOOLKIT.Message.InstallFurnace" : "Please install and activate the Furnace module to enable advanced GM Toolkit macros.",
-  
+{  
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
 
@@ -36,7 +32,6 @@
     
     "GMTOOLKIT.Talent.Luck" : "Chanceux",
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
-    "GMTOOLKIT.Talent.StrongMinded" : "Strong-minded",
 
     "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
     "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.",
