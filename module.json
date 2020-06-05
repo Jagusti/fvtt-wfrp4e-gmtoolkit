@@ -9,6 +9,7 @@
 	"systems": ["wfrp4e"],
 	"scripts": [
 		"/scripts/token-hud-extension.js",
+		"/scripts/advantage.js",
 		"/scripts/gm-toolkit.js"
 	],
 	"styles": ["/css/gmtoolkit.css"],
