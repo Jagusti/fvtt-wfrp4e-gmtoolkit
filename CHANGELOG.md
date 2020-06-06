@@ -7,8 +7,11 @@ All notable changes to this project will be documented in this file.  The format
 - *Added* shortcut to make Track test (CTRL + SHIFT + Initiative hud extension).
 - *Added* Strong-minded advances for determining maximum Resolve when increasing through Token Hud. 
 - *Fixed* undeclared target error when adding Fortune through Token Hud.
+- *Fixed* unlinked actor issue when adjusting advantage from selected token. 
+- *Added* macro to toggle Token Vision and Global Illumination on the current viewed scene.
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+
 ## Version 0.4
 - *Breaking changes* to token selection validation to make compatible with FVTT v0.6.0. All Advantage macros plus Set Token Vision and Light macro should be re-imported from the macro compendium. 
 - *Added* interactions for Token Hud Extension: various skill and characteristic tests, status value adjustments and table rolls. Full details on https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/token-hud-extensions. 
