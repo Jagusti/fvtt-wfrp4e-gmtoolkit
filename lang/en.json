@@ -49,6 +49,9 @@
     "GMTOOLKIT.Advantage.Max" : "{actorName} already has {startingAdvantage} of maximum {maxAdvantage} Advantage. No change made.",
     "GMTOOLKIT.Advantage.Reduced" : "Advantage reduced from {startingAdvantage} to {newAdvantage} for {actorName}.",
     "GMTOOLKIT.Advantage.None" : "{actorName} already has {startingAdvantage} Advantage. No change made.",
-    "GMTOOLKIT.Advantage.Reset" : "Advantage reset from {startingAdvantage} to 0 for {actorName}."
+    "GMTOOLKIT.Advantage.Reset" : "Advantage reset from {startingAdvantage} to 0 for {actorName}.", 
+
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in {sceneName}."
 
 }
