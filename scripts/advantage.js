@@ -93,3 +93,47 @@ function adjustAdvantage (token, resourceBase, adjustment) {
         new: newAdvantage 
     }
 }
+
+function clearAdvantage(context) {
+    
+    let settingClearAdvantage = String(game.settings.get("wfrp4e-gm-toolkit", "clearAdvantage"))
+    
+    if (settingClearAdvantage == "always" || settingClearAdvantage == context) {
+        for (let token of canvas.tokens.placeables) {
+            console.log(token)
+            token.actor.update({"data.status.advantage.value": 0 });
+        }
+        
+        let uiNotice = String()
+        if (context == "start") (uiNotice = game.i18n.format("GMTOOLKIT.Combat.Started")) 
+        if (context == "end") (uiNotice = game.i18n.format("GMTOOLKIT.Combat.Ended")) 
+
+        uiNotice += " " + game.i18n.format("GMTOOLKIT.Advantage.Cleared",{sceneName: game.scenes.viewed.name} )
+        ui.notifications.notify(uiNotice);
+    }
+}
+
+Hooks.on("preUpdateCombat", function() {
+    if (game.combat.round == 0) clearAdvantage("start")
+})
+
+Hooks.on("preDeleteCombat", function() {
+    clearAdvantage("end");
+});
+ 
+Hooks.on("init", function() {	
+	game.settings.register("wfrp4e-gm-toolkit", "clearAdvantage", {
+		name: "GMTOOLKIT.Settings.clearAdvantage.name",
+		hint: "GMTOOLKIT.Settings.clearAdvantage.hint",
+		scope: "world",
+		config: true,
+		default: "always",
+		type: String,
+		choices: {
+			"always": "GMTOOLKIT.Settings.clearAdvantage.both",
+			"start": "GMTOOLKIT.Settings.clearAdvantage.start",
+			"end": "GMTOOLKIT.Settings.clearAdvantage.end",
+			"never": "GMTOOLKIT.Settings.clearAdvantage.never"
+		}
+	});
+});

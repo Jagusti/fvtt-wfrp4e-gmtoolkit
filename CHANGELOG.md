@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.  The format
 - *Fixed* undeclared target error when adding Fortune through Token Hud.
 - *Fixed* unlinked actor issue when adjusting advantage from selected token. 
 - *Added* macro to toggle Token Vision and Global Illumination on the current viewed scene.
+- *Added* option to reset Advantage for all tokens (including non-combatants), at start and/or end of combat encounter.
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 

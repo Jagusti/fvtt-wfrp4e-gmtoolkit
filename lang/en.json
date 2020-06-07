@@ -3,6 +3,13 @@
     "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Furnace module not active. Install and activate the Furnace module to enable advanced macros support.",
     "GMTOOLKIT.Message.InstallFurnace" : "Please install and activate the Furnace module to enable advanced GM Toolkit macros.",
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
+
+    "GMTOOLKIT.Settings.clearAdvantage.name" : "Clear Advantage for all tokens",
+    "GMTOOLKIT.Settings.clearAdvantage.hint" : "Tracked combatants (who appear in the Combat Tracker) always have their Advantage reset to 0 when combat ends. Select an option to additionally reset Advantage for all tokens in the viewed scene, including non-combatants, at the start and/or end of combat.",
+    "GMTOOLKIT.Settings.clearAdvantage.both" : "At both start and end of encounter (default module behaviour)",
+    "GMTOOLKIT.Settings.clearAdvantage.start" : "At start of encounter only (on Begin Combat)",
+    "GMTOOLKIT.Settings.clearAdvantage.end" : "At end of encounter only (on End Combat)",
+    "GMTOOLKIT.Settings.clearAdvantage.never" : "Only combatants at end of encounter (default system behaviour)",
   
     "GMTOOLKIT.Dialog.Apply": "Apply Changes",    
     "GMTOOLKIT.Dialog.Cancel" : "Cancel",
@@ -50,8 +57,11 @@
     "GMTOOLKIT.Advantage.Reduced" : "Advantage reduced from {startingAdvantage} to {newAdvantage} for {actorName}.",
     "GMTOOLKIT.Advantage.None" : "{actorName} already has {startingAdvantage} Advantage. No change made.",
     "GMTOOLKIT.Advantage.Reset" : "Advantage reset from {startingAdvantage} to 0 for {actorName}.", 
+    "GMTOOLKIT.Advantage.Cleared" : "Advantage has been cleared for all tokens in scene {sceneName}.", 
+    "GMTOOLKIT.Combat.Started" : "New combat encounter has begun.", 
+    "GMTOOLKIT.Combat.Ended" : "Combat encounter has ended.", 
 
-    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in {sceneName}.",
-    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in {sceneName}."
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in scene {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in scene {sceneName}."
 
 }
