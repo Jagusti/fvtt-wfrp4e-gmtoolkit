@@ -9,7 +9,10 @@ All notable changes to this project will be documented in this file.  The format
 - *Fixed* undeclared target error when adding Fortune through Token Hud.
 - *Fixed* unlinked actor issue when adjusting advantage from selected token. 
 - *Added* macro to toggle Token Vision and Global Illumination on the current viewed scene.
-- *Added* option to reset Advantage for all tokens (including non-combatants), at start and/or end of combat encounter.
+- *Added* user setting to optionally reset Advantage for all tokens (including non-combatants), at start and/or end of combat encounter.
+- *Added* user setting to optionally activate scene after pulling everyone to it (always, never or prompt).
+- *Added* multiple translation strings for various settings and prompts.
+- *Added* French translation (thanks to LeRatierBretonnien).
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 

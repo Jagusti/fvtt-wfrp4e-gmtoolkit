@@ -62,6 +62,21 @@
     "GMTOOLKIT.Combat.Ended" : "Combat encounter has ended.", 
 
     "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in scene {sceneName}.",
-    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in scene {sceneName}."
+    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in scene {sceneName}.", 
 
+    "GMTOOLKIT.Settings.ScenePullActivate.name" : "Pull Everyone to Scene",
+    "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activate the currently viewed scene when pulling everyone to it.",
+    "GMTOOLKIT.Settings.ScenePullActivate.Always" : "Always also activate scene",
+    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Never also activate scene",
+    "GMTOOLKIT.Settings.ScenePullActivate.Prompt" : "Prompt to activate scene",
+    "GMTOOLKIT.Message.ScenePullActivate.NoPermission" : "Only GMs can pull players to scenes!",
+    "GMTOOLKIT.Message.ScenePullActivate.Pulled" : "Characters have been pulled to {sceneName}. Scene is {sceneActiveState}.",
+    "GMTOOLKIT.Message.ScenePullActivate.Activated" : "Characters have been pulled to {sceneName} and scene has been activated.",
+    "GMTOOLKIT.Dialog.ScenePullActivate.Title" : "Pull Everyone to Scene",
+    "GMTOOLKIT.Dialog.ScenePullActivate.Prompt" : "Do you want to activate the scene also?",
+    "GMTOOLKIT.Dialog.ScenePullActivate.ActivateScene" : "Activate Scene",
+    "GMTOOLKIT.Dialog.ScenePullActivate.PullOnly" : "Pull Only",
+    "GMTOOLKIT.Scene.NotActive" : "not active",
+    "GMTOOLKIT.Scene.Active" : "active"
+    
 }
