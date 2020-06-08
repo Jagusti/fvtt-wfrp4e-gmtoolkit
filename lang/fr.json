@@ -1,4 +1,16 @@
 {  
+    "GMTOOLKIT.Log.FurnaceInstalled" : "GM Toolkit (WFRP4e) | Le module Furnace est installé et activé. Les Macros avancées sont possibles.",
+    "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Le module Furnace n'est pas installé ou activé. Installez et activez le module Furnance pour active le support des Macros avancées.",
+    "GMTOOLKIT.Message.InstallFurnace" : "Merci d'installer et d'activer le module Furnace pour activer le support des Macros avancées.",
+    "GMTOOLKIT.Message.UnexpectedNoChange" : "Un évènement inattendu est survenu. Pas de changements effectué.",
+
+    "GMTOOLKIT.Settings.clearAdvantage.name" : "Supprimer les avantages pour tous les Tokens",
+    "GMTOOLKIT.Settings.clearAdvantage.hint" : "Les combattants suivis (qui sont dans le 'Combat Tracker') ont toujours leurs Avantages remis à 0 à la fin du combat. Sélectionnez une option complémentaire pour mettre à 0 les avantages pour tout les Tokens dans la scène, y compris les non-combattants, au début et à la fin d'un combat.",
+    "GMTOOLKIT.Settings.clearAdvantage.both" : "Au début et à la fin du combat (par défaut)",
+    "GMTOOLKIT.Settings.clearAdvantage.start" : "Au début du combat seulement",
+    "GMTOOLKIT.Settings.clearAdvantage.end" : "A la fin du combat seulement",
+    "GMTOOLKIT.Settings.clearAdvantage.never" : "Seulement les combattants à la fin du combat (par défaut du système)",
+
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
 
@@ -32,6 +44,7 @@
     
     "GMTOOLKIT.Talent.Luck" : "Chanceux",
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
+    "GMTOOLKIT.Talent.StrongMinded" : "Obstiné",
 
     "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
     "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.",
@@ -43,5 +56,12 @@
     "GMTOOLKIT.Advantage.Max" : "{actorName} a déja {startingAdvantage} sur un maximum de {maxAdvantage} Points d'Avantages. Aucun changement.",
     "GMTOOLKIT.Advantage.Reduced" : "Points d'Avantages incrémentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
     "GMTOOLKIT.Advantage.None" : "{actorName} a déja {startingAdvantage} Points d'Avantages. Aucun changement.",
-    "GMTOOLKIT.Advantage.Reset" : "Points d'Avantages remis à 0 (valur précédente {startingAdvantage}) pour {actorName}."
+    "GMTOOLKIT.Advantage.Reset" : "Points d'Avantages remis à 0 (valur précédente {startingAdvantage}) pour {actorName}.",
+    "GMTOOLKIT.Advantage.Cleared" : "Les Avanatges ont été mis à zero pour tout les Tokens de la la scène {sceneName}.", 
+    "GMTOOLKIT.Combat.Started" : "Un nouveau combat a démarré.", 
+    "GMTOOLKIT.Combat.Ended" : "Le combat s'est terminé.", 
+
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "La vision des Tokens est activé et l'Illumination Globale est désactivé dans la scène {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Tokens est déssactivé et l'Illumination Globale est activé dans la scène {sceneName}."
+    
 }
