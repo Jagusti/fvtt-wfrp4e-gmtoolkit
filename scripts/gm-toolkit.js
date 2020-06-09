@@ -30,6 +30,7 @@ Hooks.on("init", function() {
 	});
 });
 
+
 Hooks.on('ready', async () => {
 	// Only show warning to GMs
 	if (!game.user.isGM)
