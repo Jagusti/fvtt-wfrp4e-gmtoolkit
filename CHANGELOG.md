@@ -11,8 +11,10 @@ All notable changes to this project will be documented in this file.  The format
 - *Added* macro to toggle Token Vision and Global Illumination on the current viewed scene.
 - *Added* user setting to optionally reset Advantage for all tokens (including non-combatants), at start and/or end of combat encounter.
 - *Added* user setting to optionally activate scene after pulling everyone to it (always, never or prompt).
+- *Added* user settings to configure default amount of XP to add, and optionally prompt for how many each time. Improved data input validation and handling.
 - *Added* multiple translation strings for various settings and prompts.
 - *Added* French translation (thanks to LeRatierBretonnien).
+- *Changed* Foundry 0.6.2 compatibility.
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
