@@ -3,6 +3,7 @@
     "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Furnace module not active. Install and activate the Furnace module to enable advanced macros support.",
     "GMTOOLKIT.Message.InstallFurnace" : "Please install and activate the Furnace module to enable advanced GM Toolkit macros.",
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
+    "GMTOOLKIT.Message.NoChangeMade" : "No change made.",
 
     "GMTOOLKIT.Settings.clearAdvantage.name" : "Clear Advantage for all tokens",
     "GMTOOLKIT.Settings.clearAdvantage.hint" : "Tracked combatants (who appear in the Combat Tracker) always have their Advantage reset to 0 when combat ends. Select an option to additionally reset Advantage for all tokens in the viewed scene, including non-combatants, at the start and/or end of combat.",
@@ -77,6 +78,13 @@
     "GMTOOLKIT.Dialog.ScenePullActivate.ActivateScene" : "Activate Scene",
     "GMTOOLKIT.Dialog.ScenePullActivate.PullOnly" : "Pull Only",
     "GMTOOLKIT.Scene.NotActive" : "not active",
-    "GMTOOLKIT.Scene.Active" : "active"
-    
+    "GMTOOLKIT.Scene.Active" : "active",
+
+    "GMTOOLKIT.Settings.AddXP.Default.name" : "Add XP",
+    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Default amount of XP to add.",
+    "GMTOOLKIT.Settings.AddXP.Prompt.name" : "Prompt for XP amount",
+    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Always ask how many XP to add.",
+    "GMTOOLKIT.Dialog.AddXP.Title" : "Add Experience Points",
+    "GMTOOLKIT.Dialog.AddXP.Prompt" : "How many?",
+    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total."
 }
