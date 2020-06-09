@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+
+See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+
+## Version 0.5
 - *Added* shortcut to make Track test (CTRL + SHIFT + Initiative hud extension).
 - *Added* Strong-minded advances for determining maximum Resolve when increasing through Token Hud. 
 - *Fixed* undeclared target error when adding Fortune through Token Hud.
@@ -12,11 +16,10 @@ All notable changes to this project will be documented in this file.  The format
 - *Added* user setting to optionally reset Advantage for all tokens (including non-combatants), at start and/or end of combat encounter.
 - *Added* user setting to optionally activate scene after pulling everyone to it (always, never or prompt).
 - *Added* user settings to configure default amount of XP to add, and optionally prompt for how many each time. Improved data input validation and handling.
+- *Changed* startup checks to ensure that Furnace module is installed *and* has Advanced Macros enabled.
 - *Added* multiple translation strings for various settings and prompts.
-- *Added* French translation (thanks to LeRatierBretonnien).
+- *Added* French translations for enhancements and changes (thanks to @LeRatierBretonnien).
 - *Changed* Foundry 0.6.2 compatibility.
-
-See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
 ## Version 0.4
 - *Breaking changes* to token selection validation to make compatible with FVTT v0.6.0. All Advantage macros plus Set Token Vision and Light macro should be re-imported from the macro compendium. 

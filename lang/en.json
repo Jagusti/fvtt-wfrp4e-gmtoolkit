@@ -1,7 +1,8 @@
 {
     "GMTOOLKIT.Log.FurnaceInstalled" : "GM Toolkit (WFRP4e) | Furnace module installed and activated. Advanced macros supported.",
     "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Furnace module not active. Install and activate the Furnace module to enable advanced macros support.",
-    "GMTOOLKIT.Message.InstallFurnace" : "Please install and activate the Furnace module to enable advanced GM Toolkit macros.",
+    "GMTOOLKIT.Message.InstallFurnace" : "Please install and activate the Furnace module. Enable advanced macros to use GM Toolkit macros.",
+    "GMTOOLKIT.Message.EnableAdvancedMacros": "Please enable Advanced Macros for the Furnace module to use the GM Toolkit macros.",
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
     "GMTOOLKIT.Message.NoChangeMade" : "No change made.",
 
