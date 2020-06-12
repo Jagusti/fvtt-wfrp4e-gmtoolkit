@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
+- *Fixed* typo in Add XP macro
 
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 

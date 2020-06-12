@@ -52,7 +52,7 @@ function addXP(XP) {
   let newXPTotal = Number();
   let XPCurrent = Number();
   let newXPCurrent = Number();
-  let chatContent = Strong(game.i18n.localize("GMTOOLKIT.Dialog.Cancel"));
+  let chatContent = String(game.i18n.localize("GMTOOLKIT.Dialog.Cancel"));
 
   game.user.targets.forEach(target => {
   targetName = target.data.name; 
