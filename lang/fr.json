@@ -62,6 +62,29 @@
     "GMTOOLKIT.Combat.Ended" : "Le combat s'est terminé.", 
 
     "GMTOOLKIT.Scene.TokenNotGlobal" : "La vision des Tokens est activé et l'Illumination Globale est désactivé dans la scène {sceneName}.",
-    "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Tokens est déssactivé et l'Illumination Globale est activé dans la scène {sceneName}."
-    
+    "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Tokens est déssactivé et l'Illumination Globale est activé dans la scène {sceneName}.",
+
+    "GMTOOLKIT.Settings.ScenePullActivate.name" : "Envoyer tout le monde sur la scène",
+    "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activer la scène actuellement visualisé lorsque tout le monde et envoyé dessus.",
+    "GMTOOLKIT.Settings.ScenePullActivate.Always" : "Toujours activer aussi la scène",
+    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Ne jamais activer aussi la scène",
+    "GMTOOLKIT.Settings.ScenePullActivate.Prompt" : "Demander pour activer la scène",
+    "GMTOOLKIT.Message.ScenePullActivate.NoPermission" : "Seuls les MJs peuvent envoyer les joueurs sur la scène!",
+    "GMTOOLKIT.Message.ScenePullActivate.Pulled" : "Les personnages ont été envoyés sur la scène {sceneName}. La scène est {sceneActiveState}.",
+    "GMTOOLKIT.Message.ScenePullActivate.Activated" : "Les personnages ont été envoyés sur la scène {sceneName} et elle a été activée.",
+    "GMTOOLKIT.Dialog.ScenePullActivate.Title" : "Envoyer tout le monde sur la scène",
+    "GMTOOLKIT.Dialog.ScenePullActivate.Prompt" : "Voulez-vous activer la scène également ?",
+    "GMTOOLKIT.Dialog.ScenePullActivate.ActivateScene" : "Activer la scène",
+    "GMTOOLKIT.Dialog.ScenePullActivate.PullOnly" : "Envoyer seulement",
+    "GMTOOLKIT.Scene.NotActive" : "non active",
+    "GMTOOLKIT.Scene.Active" : "active",
+
+    "GMTOOLKIT.Settings.AddXP.Default.name" : "Ajouter des PX",
+    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Valeur de PX par défaut à ajouter.",
+    "GMTOOLKIT.Settings.AddXP.Prompt.name" : "Demander pour le montant de PX",
+    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Toujours demander le montant de PX.",
+    "GMTOOLKIT.Dialog.AddXP.Title" : "Ajouter des PX",
+    "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien?",
+    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront enlevés du total de PX du personnage."
+
 }
