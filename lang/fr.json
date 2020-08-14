@@ -1,7 +1,4 @@
 {  
-    "GMTOOLKIT.Log.FurnaceInstalled" : "GM Toolkit (WFRP4e) | Le module Furnace est installé et activé. Les Macros avancées sont possibles.",
-    "GMTOOLKIT.Log.FurnaceNotInstalled" : "GM Toolkit (WFRP4e) | Le module Furnace n'est pas installé ou activé. Installez et activez le module Furnance pour active le support des Macros avancées.",
-    "GMTOOLKIT.Message.InstallFurnace" : "Merci d'installer et d'activer le module Furnace pour activer le support des Macros avancées.",
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Un évènement inattendu est survenu. Pas de changements effectué.",
 
     "GMTOOLKIT.Settings.clearAdvantage.name" : "Supprimer les avantages pour tous les Tokens",

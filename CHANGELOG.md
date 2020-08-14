@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.  The format
 ---
 
 ## Unreleased
-
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+
+- *Added* French translations for enhancements and changes (thanks to @LeRatierBretonnien).
+- *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
+- *Changed* macro code to improve notification and string handling. 
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro
