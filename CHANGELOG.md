@@ -9,6 +9,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* French translations for enhancements and changes (thanks to @LeRatierBretonnien).
 - *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
 - *Changed* macro code to improve notification and string handling. 
+- *Added* explicit dependency on WFRP4e system, as supported by Foundry 0.6.6.
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro

@@ -3,8 +3,8 @@
 	"title": "GM Toolkit (WFRP4e)",
 	"description": "Utilities for WFRP4e GMs",
 	"version": "0.5.1",
-	"minimumCoreVersion": "0.5.5",
-	"compatibleCoreVersion": "0.6.2",
+	"minimumCoreVersion": "0.6.6",
+	"compatibleCoreVersion": "0.6.6",
 	"author": "Jagusti",
 	"systems": ["wfrp4e"],
 	"scripts": [
@@ -13,6 +13,12 @@
 		"/scripts/gm-toolkit.js"
 	],
 	"styles": ["/css/gmtoolkit.css"],
+	"dependencies": [
+		{
+			"name": "wfrp4e",
+			"type": "system"
+		}
+	],
 	"packs": [
 		{
 		  "name": "gm-toolkit-macros",
@@ -24,16 +30,16 @@
 		}
 	],
     "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      },
-      {
-        "lang": "fr",
-        "name": "French",
-        "path": "lang/fr.json"
-      }
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		},
+		{
+			"lang": "fr",
+			"name": "French",
+			"path": "lang/fr.json"
+		}
 	],
 	"url": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit",
 	"manifest": "https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json",
