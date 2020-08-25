@@ -16,22 +16,3 @@ if (thisScene.data.tokenVision) {
 }
 
 ui.notifications.notify(uiNotice);
-
-
-
-(() => {
-    let thisScene = game.scenes.viewed
-    let uiNotice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange", {});
-
-    if (thisScene.data.tokenVision) {
-            thisScene.update({'tokenVision':false})
-            thisScene.update({'globalLight':true})
-            uiNotice = game.i18n.format("GMTOOLKIT.Scene.GlobalNotToken",{sceneName: thisScene.name}, {});
-        } else {
-            thisScene.update({'tokenVision':true})
-            thisScene.update({'globalLight':false})
-            uiNotice = game.i18n.format("GMTOOLKIT.Scene.TokenNotGlobal",{sceneName: thisScene.name}, {});
-        }
-
-    ui.notifications.notify(uiNotice, {});
-})();
