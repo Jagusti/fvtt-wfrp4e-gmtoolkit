@@ -10,6 +10,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
 - *Changed* macro code to improve notification and string handling. 
 - *Added* explicit dependency on WFRP4e system, as supported by Foundry 0.6.6.
+- *Added* option to toggle token hud extensions. Hud extensions are enabled by default. This update also makes the token hud extension available to non-GMs, and each user can enable or disable it independently. 
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro

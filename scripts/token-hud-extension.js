@@ -512,16 +512,28 @@ function adjustStatus (actor, status, change) {
 }  
 
 /*
- * TODO: Extend here for module settings
+ * Add option to enable or disable Token Hud Extensions
 */
-// 
-Hooks.on('ready', () => {
-    if (game.user.isGM) {  // TODO: Optionalise to allow players to access hud extensions
+Hooks.on("init", () => {
+	game.settings.register("wfrp4e-gm-toolkit", "enableTokenHudExtensions", {
+		name: "GMTOOLKIT.Settings.TokenHudExtensions.EnabledFor.name",
+		hint: "GMTOOLKIT.Settings.TokenHudExtensions.EnabledFor.hint",
+		scope: "client",
+		config: true,
+		default: true,
+        type: Boolean,
+        onChange: () => window.location.reload()
+	});
+});
+
+Hooks.on("ready", () => {
+    if (game.settings.get("wfrp4e-gm-toolkit", "enableTokenHudExtensions")) {  
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addMovementTokenTip(app, html, data) });
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addInitiativeTokenTip(app, html, data) });
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addPlayerCharacterTokenTip(app, html, data) });
+        console.log("GM Toolkit (WFRP4e) | Token Hud Extensions loaded.");
+    }    else {
+        console.log("GM Toolkit (WFRP4e) | Token Hud Extensions not loaded.");       
     }
 
 });
-
-console.log("GM Toolkit (WFRP4e) | Token Hud Extensions loaded.");
