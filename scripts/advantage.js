@@ -21,6 +21,8 @@ function getResourceBase(actor,baseActor) {
 }
 
 function updateAdvantage(token, adjustment) {
+    if (canvas.tokens.controlled.length !== 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
+    
     const selected = token 
     let baseActor = getBaseActor(token) 
     let resourceBase = getResourceBase(selected.actor,baseActor)

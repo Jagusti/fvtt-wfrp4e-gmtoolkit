@@ -2,7 +2,9 @@
  * Optionally activates the scene, depending on module setting. 
  */
 
-(() => {
+pullEveryoneToScene();
+
+async function pullEveryoneToScene() {
     if (!game.user.isGM) {
         ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.ScenePullActivate.NoPermission'), {});
     }
@@ -58,4 +60,4 @@
             ui.notifications.notify(game.i18n.format('GMTOOLKIT.Message.ScenePullActivate.Pulled', {sceneName: thisScene.name, sceneActiveState}))
         }
     }
-})();
+};

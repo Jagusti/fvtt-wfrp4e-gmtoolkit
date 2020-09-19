@@ -2,7 +2,9 @@
  * Applies any Luck talent bonus.
  */
 
-(() => {
+resetFortune();
+
+async function resetFortune() {
 	if (game.user.targets.size < 1) 
 	return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"),{});
 
@@ -47,4 +49,4 @@
 		ChatMessage.create(chatData, {});  
 		console.log(chatContent);
 	})
-})();
+};

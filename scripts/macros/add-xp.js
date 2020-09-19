@@ -5,10 +5,11 @@
 * Adds XP update note to the Chat log.
  */
 
-(() => {
+addXP();
 
-  if (game.user.targets.size < 1) 
-  return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"), {});
+async function addXP() {
+
+  if (game.user.targets.size < 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"), {});
   
   // Set default XP
   let XP = Number(game.settings.get("wfrp4e-gm-toolkit", "addXPDefault"))
@@ -31,7 +32,7 @@
           label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
           callback: (html) => {
             let XP = html.find('#add-xp').val();
-            addXP(Number(XP));
+            updateXP(Number(XP));
           }
         },
         no: {
@@ -42,10 +43,10 @@
       default: "yes"
   }).render(true);
   } else {
-    addXP(XP)
+    updateXP(XP)
   }
   
-  function addXP(XP) {
+  function updateXP(XP) {
     XP = Math.round(XP);
     if (isNaN(XP)) return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Dialog.AddXP.InvalidXP'))
   
@@ -84,4 +85,4 @@
     console.log(chatContent)
     })
   }
-})();
+};
