@@ -1,16 +1,26 @@
 # Changelog
-All notable changes to this project will be documented in this file.  The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project tries to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) conventions.
+All notable changes to this project will be documented in this file.  The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
-- *Added* French translations for enhancements and changes (thanks to @LeRatierBretonnien).
+- *Added* French translations for enhancements and changes to Version 0.5.1 (thanks to @LeRatierBretonnien).
 - *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
 - *Changed* macro code to improve notification and string handling. 
 - *Added* explicit dependency on WFRP4e system, as supported by Foundry 0.6.6.
 - *Added* option to toggle token hud extensions. Hud extensions are enabled by default. This update also makes the token hud extension available to non-GMs, and each user can enable or disable it independently. 
+- *Added* module settings for the GM to
+  - define token vision distances for normal and Dark Vision in dim or night conditions. 
+  - allow Night or Dark Vision even if token does not have the relevant talent or trait. 
+- *Fixed* Night Vision to work with characters with the Trait, and not just characters with the Talent.
+- *Changed* No Vision setting to also clear light emission from token.
+- *Added* Soulfire (Magic Miscast) to light source options. 
+- *Fixed* Storm Lantern lighting options. 
+  - Broadbeam is treated as unshuttered and providing 360° illumination.
+  - Shuttered eliminates light emission.
+
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro

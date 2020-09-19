@@ -516,8 +516,8 @@ function adjustStatus (actor, status, change) {
 */
 Hooks.on("init", () => {
 	game.settings.register("wfrp4e-gm-toolkit", "enableTokenHudExtensions", {
-		name: "GMTOOLKIT.Settings.TokenHudExtensions.EnabledFor.name",
-		hint: "GMTOOLKIT.Settings.TokenHudExtensions.EnabledFor.hint",
+		name: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name",
+		hint: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint",
 		scope: "client",
 		config: true,
 		default: true,

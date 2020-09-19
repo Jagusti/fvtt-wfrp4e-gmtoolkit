@@ -28,4 +28,38 @@ Hooks.on("init", function() {
 		default: false,
 		type: Boolean
 	});
+	game.settings.register("wfrp4e-gm-toolkit", "rangeNormalSight", {
+		name: "GMTOOLKIT.Settings.Vision.NormalSight.name",
+		hint: "GMTOOLKIT.Settings.Vision.NormalSight.hint",
+		scope: "world",
+		config: true,
+		default: 2,
+		type: Number,
+	});
+	game.settings.register("wfrp4e-gm-toolkit", "rangeDarkVision", {
+		name: "GMTOOLKIT.Settings.Vision.DarkVision.name",
+		hint: "GMTOOLKIT.Settings.Vision.DarkVision.hint",
+		scope: "world",
+		config: true,
+		default: 120,
+		type: Number,
+	});
+	game.settings.register("wfrp4e-gm-toolkit", "overrideNightVision", {
+		name: "GMTOOLKIT.Settings.Vision.OverrideNightVision.name",
+		hint: "GMTOOLKIT.Settings.Vision.OverrideNightVision.hint",
+		scope: "world",
+		config: true,
+		default: false,
+		type: Boolean,
+	});
+	game.settings.register("wfrp4e-gm-toolkit", "overrideDarkVision", {
+		name: "GMTOOLKIT.Settings.Vision.OverrideDarkVision.name",
+		hint: "GMTOOLKIT.Settings.Vision.OverrideDarkVision.hint",
+		scope: "world",
+		config: true,
+		default: false,
+		type: Boolean,
+  });
 });
+
+

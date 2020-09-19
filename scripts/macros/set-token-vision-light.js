@@ -3,7 +3,9 @@
  * https://github.com/Sky-Captain-13/foundry/tree/master/scriptMacros
  */
 
-(() => { 
+setTokenVisionLight();
+
+async function setTokenVisionLight() { 
   if (canvas.tokens.controlled.length < 1) 
     return ui.notifications.error( game.i18n.localize("GMTOOLKIT.Token.Select"),{} );
 
@@ -64,6 +66,9 @@
             <option value="storm-shut"> 
             ${game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Shut")}
             </option>
+            <option value="ablaze"> 
+            ${game.i18n.localize("GMTOOLKIT.LightSource.Ablaze")} 
+            </option>
             <option value="light">
             ${game.i18n.localize("GMTOOLKIT.LightSource.Light")}
             </option>
@@ -73,8 +78,8 @@
             <option value="glowing-skin">
             ${game.i18n.localize("GMTOOLKIT.LightSource.GlowingSkin")}
             </option>
-            <option value="ablaze"> 
-            ${game.i18n.localize("GMTOOLKIT.LightSource.Ablaze")} 
+            <option value="soulfire">
+            ${game.i18n.localize("GMTOOLKIT.LightSource.Soulfire")} 
             </option>
             <option value="pha">
             ${game.i18n.localize("GMTOOLKIT.LightSource.Pha")} 
@@ -99,12 +104,13 @@
       if (applyChanges) {
         for ( let token of canvas.tokens.controlled ) {
           let visionType = html.find('[name="vision-type"]')[0].value || "nochange"; // TODO: default vision option based on condition -> trait -> talent
+          let item; // used for finding whether token has Night Vision or Dark Vision 
           let lightSource = html.find('[name="light-source"]')[0].value || "nochange";
           let advNightVision = 0;
           let dimSight = 0;
           let brightSight = 0;
           let dimLight = 0;
-          let brightLight = 0; // TODO: user define brightLight distance as ratio of dimLight
+          let brightLight = 0; // 
           let lightAngle = 360;
           let lightColor = ""; // TODO: apply colours for different light sources
           let lockRotation = token.data.lockRotation;
@@ -113,105 +119,113 @@
           switch (lightSource) {
             case "none":
               dimLight = 0;
-              brightLight = 0;
               break;
             case "candle":
               dimLight = 10;
-              brightLight = 5;
               break;
             case "torch":
               dimLight = 15;
-              brightLight = 7.5;
               break;
             case "davrich-lamp":
               dimLight = 10;
-              brightLight = 5;
               break;
             case "lantern":
               dimLight = 20;
-              brightLight = 10;
               break;
             case "storm-dim":
               dimLight = 20;
-              brightLight = 10;
-              lockRotation = false;
-              lightAngle = 90;
+              lightAngle = 0;
               break;
-            case "storm-bright":
-              dimLight = 30;
-              brightLight = 15;
-              lockRotation = false;
-              lightAngle = 60;
+              case "storm-bright":
+                dimLight = 30;
+                lockRotation = false;
+                lightAngle = 60;
+                break;
+            case "storm-shut":
+              dimLight = 0;
               break;
             case "light":
               dimLight = 15;
-              brightLight = 7.5;
               break;
             case "witchlight":
               dimLight = 20;
-              brightLight = 10;
               break;
             case "glowing-skin":
               dimLight = 10;
-              brightLight = 5;
               break;
             case "ablaze":
               dimLight = 15;
-              brightLight = 7.5;
               break;
             case "pha":
               dimLight = token.actor.data.data.characteristics.wp.bonus;
-              brightLight = (dimLight / 2);
               break;
-            case "nochange":
-            default:
-              dimLight = token.data.dimLight;
-              brightLight = token.data.brightLight;
-              lightAngle = token.data.lightAngle;
-              lockRotation = token.data.lockRotation;
-              lightColor = token.data.lightColor;
-          }
-      
-      
+              case "soulfire":
+                dimLight = 15;
+                break;
+                case "nochange":
+                  default:
+                    dimLight = token.data.dimLight;
+                    brightLight = token.data.brightLight;
+                    lightAngle = token.data.lightAngle;
+                    lockRotation = token.data.lockRotation;
+                    lightColor = token.data.lightColor;
+                  }
+          
+          // TODO: Add custom brightLight settings for different light sources OR user defined ratio
+          brightLight = (dimLight / 2);
+                  
           // Get Vision Type Values
       switch (visionType) {
-            case "noVision":
-              dimSight = 0;
-              brightSight = 0;
-              break;
-            case "normalVision":
-              dimSight = 2; // TODO: user define normal vision
-              brightSight = 0;
-              break;
-            case "blindedVision":
-              dimSight = 1;
-              brightSight = 0; 			
-              break;
-            case "nightVision":
-        let item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
-          if(item == undefined || item.data.data.advances.value < 1) {
-            advNightVision = 0;
-          } else { 
-            for (let item of token.actor.items)
-              {
-                if (item.type == "talent" && item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() )
+        case "blindedVision":
+          brightSight = 1;
+          dimSight = 0;
+          break;
+        case "noVision":
+          dimSight = 0;
+          brightSight = 0;
+          dimLight = 0;
+          brightLight = 0;
+          break;
+        case "darkVision": 
+          item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Trait.DarkVision").toLowerCase() );
+            if(item == undefined) { 
+            (game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")) ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))  : dimSight = 0 ;
+          } else {
+            dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"));
+          }
+          brightSight = (dimSight / 2);
+          break;
+        case "nightVision":
+          item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
+            if(item == undefined) { 
+              (game.settings.get("wfrp4e-gm-toolkit", "OverrideNightVision")) ? advNightVision = 1  : advNightVision = 0 ;
+            } else { 
+              for (let item of token.actor.items)
                 {
-                advNightVision += item.data.data.advances.value;
+                  if (item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() ) {
+                    switch (item.type) {
+                      case "trait" :
+                        advNightVision = 1;
+                        break;
+                      case "talent" :
+                        advNightVision += item.data.data.advances.value;
+                        break;
+                    }
+                  }
                 }
-              }
-          }
-        dimSight = (20 * advNightVision) + dimLight; 
-        brightSight = (5 * advNightVision) + brightLight;
-        break;
-            case "darkVision":
-              dimSight = 60;
-              brightSight= 30;
-              break;
-            case "nochange":
-              default:
-              dimSight = token.data.dimSight;
-              brightSight = token.data.brightSight;
-          }
+            }
+          brightSight = (20 * advNightVision); 
+          dimSight = brightSight + dimLight; 
+          break;
+        case "normalVision":
+          dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"));
+          brightSight = 0;
+          break;
+        case "nochange":
+          default:
+          dimSight = token.data.dimSight;
+          brightSight = token.data.brightSight;
+      }
       
           // Update Token
           token.update({
@@ -231,4 +245,4 @@
       }
     }
   }).render(true);
-})();
+};
