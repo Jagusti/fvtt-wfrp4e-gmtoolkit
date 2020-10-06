@@ -39,6 +39,11 @@
 			"lang": "fr",
 			"name": "French",
 			"path": "lang/fr.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polski",
+			"path": "lang/pl.json"
 		}
 	],
 	"url": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit",

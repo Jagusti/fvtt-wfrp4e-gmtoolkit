@@ -107,6 +107,8 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
 
-    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
+    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!",
 
+    "GMTOOLKIT.CHAT.LittlePrayerResult" : "{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).",
+    "GMTOOLKIT.CHAT.StatusChange" : "{status} changed from {originalStatus} to {newStatus} for {targetName}."
 }

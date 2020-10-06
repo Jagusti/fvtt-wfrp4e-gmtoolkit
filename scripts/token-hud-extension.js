@@ -56,7 +56,7 @@ class TokenHudExtension {
             }
             if (ev.altKey && ev.shiftKey) {
                 // TODO: Interrogate actor Ride specializations and offer selection if more than one is available
-                if (hasSkill(actor, "Ride") !== null) {
+                if (hasSkill(actor, "Ride (Horse)") !== null) {
                     actor.setupSkill(skill.data);
                 }
                 ev.preventDefault();
@@ -81,7 +81,7 @@ class TokenHudExtension {
             }
             if (ev.shiftKey) {
                 // TODO: Interrogate actor Stealth specializations and offer selection if more than one is available
-                if (hasSkill(actor, "Stealth") !== null) {
+                if (hasSkill(actor, "Stealth", true) !== null) {
                     actor.setupSkill(skill.data);
                 } 
                 ev.preventDefault();
@@ -326,7 +326,9 @@ class TokenHudExtension {
                 if (ev.ctrlKey && ev.altKey) {
                     let littlePrayer = new Roll("d100") 
                     littlePrayer.roll();
-                    let result = `${actor.name} offered a Little Prayer to the Gods (${littlePrayer.result}).`  // TODO: Add Localization
+                    
+                    let result = game.i18n.format("GMTOOLKIT.CHAT.LittlePrayerResult",{actorName: actor.name, littlePrayerResult: littlePrayer.result});
+                    
                     ChatMessage.create(WFRP_Utility.chatDataSetup(result, "gmroll", true));
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
@@ -394,15 +396,27 @@ class TokenHudExtension {
  * @param {String} targetSkill - Name of skill to be tested.
  * @return {Object} The skill object to be tested.
 **/ 
-function hasSkill (actor, targetSkill) {
+function hasSkill (actor, targetSkill, isGrouped) {
     // Match exact skill only
-    skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
-    if (skill == null) {
-        let message = actor.name + " does not have the " + targetSkill + " skill. Aborting skill test. ";
-        console.log("GM Toolkit (WFRP4e) | " + message)
-        ui.notifications.error(message) 
+    if(!isGrouped) {
+        skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
+        if (skill == null) {
+            let message = actor.name + " does not have the " + targetSkill + " skill. Aborting skill test. ";
+            console.log("GM Toolkit (WFRP4e) | " + message)
+            ui.notifications.error(message) 
+        } else {
+            console.log("GM Toolkit (WFRP4e) | " + actor.name + " has the " + game.i18n.localize(targetSkill) + " skill.") 
+        }
     } else {
-        console.log("GM Toolkit (WFRP4e) | " + actor.name + " has the " + game.i18n.localize(targetSkill) + " skill.") 
+        skills = actor.items.filter(i => i.type == "skill" && i.data.name.indexOf(game.i18n.localize(targetSkill)) > -1);
+        if(skills.length != 1) {
+            let message = actor.name + " does not have single skill from group skill: " + targetSkill + ". Aborting skill test. ";
+            console.log("GM Toolkit (WFRP4e) | " + message)
+            ui.notifications.error(message) 
+        } else {
+            console.log("GM Toolkit (WFRP4e) | " + actor.name + " has the " + game.i18n.localize(targetSkill) + " skill.") 
+            skill = skills[0];
+        }       
     }
     return (skill);
 }
