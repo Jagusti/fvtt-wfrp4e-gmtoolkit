@@ -93,8 +93,8 @@
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Tylko MG może zarzącać końcem sesji!",
 
-    "GMTOOLKIT.CHAT.LittlePrayerResult" : "{actorName} podarował Małą Modlite bogom ({littlePrayerResult}).",
-    "GMTOOLKIT.CHAT.StatusChange" : "{status} zmieniono z {originalStatus} na {newStatus} dla {targetName}.",
+    "GMTOOLKIT.CHAT.LittlePrayerResult" : "<p>{actorName} podarował Małą Modlite bogom ({littlePrayerResult}).</p>",
+    "GMTOOLKIT.CHAT.StatusChange" : "<p>{status} zmieniono z {originalStatus} na {newStatus} dla {targetName}.</p>",
 
     "Move_X" : "Ruch",
     "Walk_X" : "Chód",

@@ -109,6 +109,6 @@
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!",
 
-    "GMTOOLKIT.CHAT.LittlePrayerResult" : "{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).",
-    "GMTOOLKIT.CHAT.StatusChange" : "{status} changed from {originalStatus} to {newStatus} for {targetName}."
+    "GMTOOLKIT.CHAT.LittlePrayerResult" : "<p>{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).</p>",
+    "GMTOOLKIT.CHAT.StatusChange" : "<p>{status} changed from {originalStatus} to {newStatus} for {targetName}.</p>"
 }
