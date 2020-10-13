@@ -7,8 +7,8 @@
 	"compatibleCoreVersion": "0.7.5",
 	"author": "Jagusti",
 	"systems": ["wfrp4e"],
+	"esmodules" : ["/scripts/token-hud-extension.js"],
 	"scripts": [
-		"/scripts/token-hud-extension.js",
 		"/scripts/advantage.js",
 		"/scripts/gm-toolkit.js"
 	],

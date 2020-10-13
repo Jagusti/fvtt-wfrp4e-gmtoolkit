@@ -1,4 +1,7 @@
-class TokenHudExtension {
+import WFRP_Utility from "../../../systems/wfrp4e/modules/system/utility-wfrp4e.js";
+import WFRP_Tables from "../../../systems/wfrp4e/modules/system/tables-wfrp4e.js";
+
+export default class TokenHudExtension {
 
     static async addTokenHudExtensions(app, html, data) {
         let actor = canvas.tokens.get(data._id).actor;
@@ -7,6 +10,7 @@ class TokenHudExtension {
         this.addMovementTokenTip(app, html, data, actor)
         this.addPlayerCharacterTokenTip(app, html, data, actor)
         this.addInitiativeTokenTip(app, html, data, actor)
+        this.addArmorTokenTip(app, html, data, actor);
     }
 
     static async addMovementTokenTip(app, html, data, actor) {
@@ -136,6 +140,49 @@ class TokenHudExtension {
 
    }
 
+   
+   static async addArmorTokenTip(app, html, data, actor) {
+
+        if (game.scenes.active.isView === false)
+        return;
+
+        const actorCharacteristics = actor.data.data.characteristics;
+        const ap = actor.prepareItems();
+        let toughness = actorCharacteristics.t.value;
+        let shieldAp = (ap.AP.shield - ap.totalShieldDamage);
+
+        let TooltipAp = game.i18n.localize('CHAR.T') + ": " + toughness +"; " + game.i18n.localize("SHEET.ShieldAP") + ": " + (ap.AP.shield - ap.totalShieldDamage) + "&#10;";
+        TooltipAp += game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.head.label + "): " + ap.AP.head.value + "; " + game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.body.label + "): " + ap.AP.body.value + "&#10;";
+        TooltipAp += game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.rArm.label + "): " + ap.AP.rArm.value + "; " + game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.lArm.label + "): " + ap.AP.lArm.value + "&#10;";
+        TooltipAp += game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.rLeg.label + "): " + ap.AP.rLeg.value + "; " + game.i18n.localize("SHEET.ArmourAP") + " (" + ap.AP.lLeg.label + "): " + ap.AP.lLeg.value;
+        // Create space for Hud Extensions next to status icon
+        let divTokenHudExt = '<div class="tokenhudext right">';
+
+        html.find('.control-icon.effects').wrap(divTokenHudExt);
+        let hudAp = $('<div class="control-icon tokenhudicon right" title="' + TooltipAp + '"><i class="fas fa-shield-alt"></i> ' + toughness + "/" + shieldAp + '</div>');
+        html.find('.control-icon.effects').after(hudAp);
+        hudAp.find('i').dblclick(async (ev) => {
+            if (ev.ctrlKey && ev.shiftKey) {
+                if (hasSkill(actor, "Dodge") !== null) {
+                    actor.setupSkill(skill.data);
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                return;
+            }
+            if (ev.ctrlKey) {
+                actor.setupCharacteristic("t");
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+            if (ev.altKey) {
+                actor.setupCharacteristic("wp");
+                ev.preventDefault();
+                ev.stopPropagation();
+            } 
+        })
+    }   
+
     static async addPlayerCharacterTokenTip(app, html, data, actor) {
         
         if (actor.data.type === "character") {
@@ -173,14 +220,14 @@ class TokenHudExtension {
             hudResolve.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Resolve", -1);
+                    let result = adjustStatus(actor, "Resolve", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Resolve", 1);
+                    let result = adjustStatus(actor, "Resolve", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -190,7 +237,7 @@ class TokenHudExtension {
             hudResolve.find('i').dblclick(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension double-clicked.")
                 if (ev.ctrlKey) {
-                    if (hasSkill(actor, "Cool") !== null) {
+                    if ( hasSkill(actor, "Cool") !== null) {
                         actor.setupSkill(skill.data);
                     }
                     ev.preventDefault();
@@ -223,14 +270,14 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
                 console.log("Fortune Button Right-Clicked") // TODO: Add localization
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Fortune", -1);
+                    let result = adjustStatus(actor, "Fortune", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Fortune", 1);
+                    let result = adjustStatus(actor, "Fortune", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -279,34 +326,34 @@ class TokenHudExtension {
             html.find('.control-icon.target').wrap(divTokenHudExt);
 
             // Corruption and Sin
-            let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
+            let hudCorruption = $(`<div class="control-icon tokenhudicon left corruption" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
             html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
             // Add interactions for Corruption and Sin           
             hudCorruption.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
                 if (ev.ctrlKey && ev.altKey) {
-                    await adjustStatus(actor, "Sin", -1);
+                    let result = adjustStatus(actor, "Sin", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey && ev.altKey) {
-                    await adjustStatus(actor, "Sin", 1);
+                    let result = adjustStatus(actor, "Sin", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Corruption", -1);
+                    let result = adjustStatus(actor, "Corruption", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Corruption", 1);
+                    let result = adjustStatus(actor, "Corruption", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -387,7 +434,6 @@ class TokenHudExtension {
 
         }
     }
-
 }
 
 /** 
@@ -552,5 +598,4 @@ Hooks.on("ready", () => {
     }    else {
         console.log("GM Toolkit (WFRP4e) | Token Hud Extensions not loaded.");       
     }
-
 });
