@@ -1,4 +1,4 @@
-Hooks.on("init", function() {
+Hooks.once("init", function() {
 	game.settings.register("wfrp4e-gm-toolkit", "scenePullActivate", {
 		name: "GMTOOLKIT.Settings.ScenePullActivate.name",
 		hint: "GMTOOLKIT.Settings.ScenePullActivate.hint",

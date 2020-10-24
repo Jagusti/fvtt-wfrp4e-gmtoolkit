@@ -124,7 +124,7 @@ Hooks.on("preDeleteCombat", function() {
     clearAdvantage("end");
 });
  
-Hooks.on("init", function() {	
+Hooks.once("init", function() {	
 	game.settings.register("wfrp4e-gm-toolkit", "clearAdvantage", {
 		name: "GMTOOLKIT.Settings.clearAdvantage.name",
 		hint: "GMTOOLKIT.Settings.clearAdvantage.hint",

@@ -515,7 +515,7 @@ async function adjustStatus (actor, status, change) {
 /*
  * Add option to enable or disable Token Hud Extensions
 */
-Hooks.on("init", () => {
+Hooks.once("init", () => {
 	game.settings.register("wfrp4e-gm-toolkit", "enableTokenHudExtensions", {
 		name: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name",
 		hint: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint",
