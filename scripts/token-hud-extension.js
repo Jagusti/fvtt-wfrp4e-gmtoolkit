@@ -178,14 +178,14 @@ class TokenHudExtension {
             hudResolve.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
                 if (ev.ctrlKey) {
-                    adjustStatus(actor, "Resolve", -1);
+                    await adjustStatus(actor, "Resolve", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    adjustStatus(actor, "Resolve", 1);
+                    await adjustStatus(actor, "Resolve", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -228,14 +228,14 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
                 console.log("Fortune Button Right-Clicked") // TODO: Add localization
                 if (ev.ctrlKey) {
-                    adjustStatus(actor, "Fortune", -1);
+                    await adjustStatus(actor, "Fortune", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    adjustStatus(actor, "Fortune", 1);
+                    await adjustStatus(actor, "Fortune", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -290,28 +290,28 @@ class TokenHudExtension {
             hudCorruption.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
                 if (ev.ctrlKey && ev.altKey) {
-                    adjustStatus(actor, "Sin", -1);
+                    await adjustStatus(actor, "Sin", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey && ev.altKey) {
-                    adjustStatus(actor, "Sin", 1);
+                    await adjustStatus(actor, "Sin", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey) {
-                    adjustStatus(actor, "Corruption", -1);
+                    await adjustStatus(actor, "Corruption", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    adjustStatus(actor, "Corruption", 1);
+                    await adjustStatus(actor, "Corruption", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -418,7 +418,7 @@ function hasSkill (actor, targetSkill) {
  * @param {String} status - Characteristic to be adjusted
  * @param {Number} [1|-1] - increase or decrease value for status
 **/ 
-function adjustStatus (actor, status, change) {
+async function adjustStatus (actor, status, change) {
     let originalStatus = Number();
     let newStatus = Number();
    
@@ -445,7 +445,7 @@ function adjustStatus (actor, status, change) {
                     maxStatus = actor.data.data.status.resilience.value + advStrongMinded
                     newStatus = Math.min((originalStatus + Number(change)),maxStatus)
                 }
-            actor.update({
+            await actor.update({
                 "data.status.resolve.value": newStatus
             })
             break;    
@@ -456,7 +456,7 @@ function adjustStatus (actor, status, change) {
             } else {
                     newStatus = Number(originalStatus + change)
                 }
-            actor.update({
+            await actor.update({
                 "data.status.sin.value": newStatus
             })
             break;
@@ -468,7 +468,7 @@ function adjustStatus (actor, status, change) {
                     maxStatus = actor.data.data.status.corruption.max
                     newStatus = Math.min((originalStatus + Number(change)),maxStatus)
                 }
-            actor.update({
+            await actor.update({
                 "data.status.corruption.value": newStatus
             })
             break;
@@ -493,7 +493,7 @@ function adjustStatus (actor, status, change) {
                     maxStatus = actor.data.data.status.fate.value + advLuck
                     newStatus = Math.min((originalStatus + Number(change)),maxStatus)
                 }
-            actor.update({
+            await actor.update({
                 "data.status.fortune.value": newStatus
             })
             break;     
@@ -508,6 +508,7 @@ function adjustStatus (actor, status, change) {
     // sendChatMessage (actor, chatContent)   
     // UI notification to confirm outcome
     ui.notifications.notify(result) 
+    canvas.hud.token.render();
     return(result)
 }  
 
