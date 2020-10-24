@@ -22,6 +22,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Shuttered eliminates light emission.
 - *Added* dynamic update to token hud when Advantage is increased, reduced or cleared. Any changes are visible immediately in the token hud resource bar if the token hud is active. This applies when using the relevant advantage macros as well as when starting or ending combat, depending on the Clear Advantage setting. 
 - *Added* dynamic update to Token Hud Extension when using shortcuts to increment or decrement Resolve, Resilience, Fortune, Fate, Sin or Corruption. Any changes are visible immediately in the token hud resource bar if the token hud is active. 
+- *Changed* Token Hud setting description to clarify that the hud extension is only shown on controlled tokens. GMs can generally see any token hud, but players will only see their own characters token hud. 
 
 
 ## Version 0.5.1
