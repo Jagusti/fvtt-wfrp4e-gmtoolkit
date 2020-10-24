@@ -20,6 +20,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* Storm Lantern lighting options. 
   - Broadbeam is treated as unshuttered and providing 360° illumination.
   - Shuttered eliminates light emission.
+- *Added* dynamic update to token hud when Advantage is increased, reduced or cleared. Any changes are visible immediately in the token hud resource bar if the token hud is active. This applies when using the relevant advantage macros as well as when starting or ending combat, depending on the Clear Advantage setting. 
 
 
 ## Version 0.5.1

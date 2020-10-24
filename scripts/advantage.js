@@ -1,6 +1,6 @@
 function getBaseActor(token) {
     if (token.data.actorLink) {
-        return getActor = token.actor.data; // use linked actor
+        return getActor = token.actor._data; // use linked actor
     } else {
         return getActor = token.data.actorData; // use synthetic actor
     }
@@ -12,38 +12,37 @@ function getResourceBase(actor,baseActor) {
     let resourceMax = Number();
     if (resourceData !== undefined && resourceData.status !== undefined && resourceData.status.advantage !== undefined) {
             resourceCurrent = Number(resourceData.status.advantage.value);
-            resourceMax = resourceData.status.advantage.max | actor.data.data.status.advantage.max;
+            resourceMax = resourceData.status.advantage.max | actor._data.data.status.advantage.max;
         } else {
-            resourceMax = actor.data.data.status.advantage.max;
+            resourceMax = actor._data.data.status.advantage.max;
             // console.log("No status defined. Setting current value to " + resourceCurrent)
         } 
-    return {"base":resourceData, "current":resourceCurrent, "max":resourceMax}; 
+    return {"current":resourceCurrent, "max":resourceMax}; 
 }
 
-function updateAdvantage(token, adjustment) {
+async function updateAdvantage(token, adjustment) {
     if (canvas.tokens.controlled.length !== 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
     
-    const selected = token 
     let baseActor = getBaseActor(token) 
-    let resourceBase = getResourceBase(selected.actor,baseActor)
-    let updateAdvantage = adjustAdvantage(selected, resourceBase, adjustment)
+    let resourceBase = getResourceBase(token.actor, baseActor)
+    let updatedAdvantage = await adjustAdvantage(token, resourceBase, adjustment)
     let uiNotice = String()
     
-    switch (updateAdvantage.outcome) {   
+    switch (updatedAdvantage.outcome) {   
         case "increased":
-            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Increased",{actorName: token.name, startingAdvantage: updateAdvantage.starting, newAdvantage: updateAdvantage.new } );
+            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Increased",{actorName: token.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new } );
             break;
         case "reduced":
-            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reduced",{actorName: token.name, startingAdvantage: updateAdvantage.starting, newAdvantage: updateAdvantage.new } );
+            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reduced",{actorName: token.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new } );
             break; 
         case "reset":
-            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reset",{actorName: token.name, startingAdvantage: updateAdvantage.starting} );
+            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reset",{actorName: token.name, startingAdvantage: updatedAdvantage.starting} );
             break;
         case "min":
-            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.None",{actorName: token.name, startingAdvantage: updateAdvantage.starting } );
+            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.None",{actorName: token.name, startingAdvantage: updatedAdvantage.starting } );
             break;
         case "max":
-            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Max",{actorName: token.name, startingAdvantage: updateAdvantage.starting, maxAdvantage: resourceBase.max } );
+            uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Max",{actorName: token.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max } );
             break;
         case "nochange":
             default:
@@ -52,9 +51,10 @@ function updateAdvantage(token, adjustment) {
     }  
 
     ui.notifications.notify(uiNotice);
+    canvas.hud.token.render();
 }
 
-function adjustAdvantage (token, resourceBase, adjustment) {
+async function adjustAdvantage (token, resourceBase, adjustment) {
     let startingAdvantage = resourceBase.current
     let newAdvantage = Number()
     let updateResult = String()
@@ -63,7 +63,7 @@ function adjustAdvantage (token, resourceBase, adjustment) {
         case "increase":
             if (startingAdvantage < resourceBase.max) {
                     newAdvantage = Number(startingAdvantage + 1);
-                    token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "increased"
                 } else {
                     updateResult = "max"
@@ -72,7 +72,7 @@ function adjustAdvantage (token, resourceBase, adjustment) {
         case "reduce":
             if (startingAdvantage > 0) {
                     newAdvantage = Number(startingAdvantage - 1);
-                    token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "reduced"
                 } else {
                     updateResult = "min"
@@ -83,7 +83,7 @@ function adjustAdvantage (token, resourceBase, adjustment) {
                     updateResult = "min"
                 } else {
                     newAdvantage = Number(0);
-                    token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "reset"
             }
             break;
@@ -96,14 +96,15 @@ function adjustAdvantage (token, resourceBase, adjustment) {
     }
 }
 
-function clearAdvantage(context) {
+async function clearAdvantage(context) {
     
     let settingClearAdvantage = String(game.settings.get("wfrp4e-gm-toolkit", "clearAdvantage"))
     
     if (settingClearAdvantage == "always" || settingClearAdvantage == context) {
         for (let token of canvas.tokens.placeables) {
             console.log(token)
-            token.actor.update({"data.status.advantage.value": 0 });
+            await token.actor.update({"data.status.advantage.value": 0 });
+            if (token.hasActiveHUD) canvas.hud.token.render();
         }
         
         let uiNotice = String()
