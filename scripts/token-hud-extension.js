@@ -1,11 +1,16 @@
 class TokenHudExtension {
 
-    static async addMovementTokenTip(app, html, data) {
+    static async addTokenHudExtensions(app, html, data) {
+        let actor = canvas.tokens.get(data._id).actor;
+        if (actor === undefined) return;    
 
-        let actor = game.actors.get(data.actorId);
-        if (actor === undefined)
-            return;;
-            
+        this.addMovementTokenTip(app, html, data, actor)
+        this.addPlayerCharacterTokenTip(app, html, data, actor)
+        this.addInitiativeTokenTip(app, html, data, actor)
+    }
+
+    static async addMovementTokenTip(app, html, data, actor) {
+   
         const actorData = actor.data;
         const actorMoveDetails = actorData.data.details.move;
 
@@ -88,16 +93,12 @@ class TokenHudExtension {
 
     }
     
-    static async addInitiativeTokenTip(app, html, data) {
+    static async addInitiativeTokenTip(app, html, data, actor) {
         
        // Do not show initiative token tip unless this is the active scene 
        // TODO: Make conditional visibility an option
        if (game.scenes.active.isView === false)
         return;
-
-       let actor = game.actors.get(data.actorId);
-       if (actor === undefined)
-            return;
 
        const actorCharacteristics = actor.data.data.characteristics;
 
@@ -137,11 +138,7 @@ class TokenHudExtension {
 
    }
 
-    static async addPlayerCharacterTokenTip(app, html, data) {
-
-        let actor = game.actors.get(data.actorId);
-        if (actor === undefined)
-            return;
+    static async addPlayerCharacterTokenTip(app, html, data, actor) {
         
         if (actor.data.type === "character") {
             
@@ -529,9 +526,7 @@ Hooks.once("init", () => {
 
 Hooks.on("ready", () => {
     if (game.settings.get("wfrp4e-gm-toolkit", "enableTokenHudExtensions")) {  
-        Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addMovementTokenTip(app, html, data) });
-        Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addInitiativeTokenTip(app, html, data) });
-        Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addPlayerCharacterTokenTip(app, html, data) });
+        Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addTokenHudExtensions(app, html, data) });
         console.log("GM Toolkit (WFRP4e) | Token Hud Extensions loaded.");
     }    else {
         console.log("GM Toolkit (WFRP4e) | Token Hud Extensions not loaded.");       
