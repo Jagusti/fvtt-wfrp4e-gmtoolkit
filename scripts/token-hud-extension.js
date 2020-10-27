@@ -95,10 +95,8 @@ class TokenHudExtension {
     
     static async addInitiativeTokenTip(app, html, data, actor) {
         
-       // Do not show initiative token tip unless this is the active scene 
-       // TODO: Make conditional visibility an option
-       if (game.scenes.active.isView === false)
-        return;
+       // Optionally do not show initiative token tip unless this is the active scene 
+       if (game.settings.get("wfrp4e-gm-toolkit", "alwaysShowHudInitiative") === false && game.scenes.active.isView === false ) return;
 
        const actorCharacteristics = actor.data.data.characteristics;
 
@@ -521,6 +519,15 @@ Hooks.once("init", () => {
 		default: true,
         type: Boolean,
         onChange: () => window.location.reload()
+    });
+    
+    game.settings.register("wfrp4e-gm-toolkit", "alwaysShowHudInitiative", {
+		name: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name",
+		hint: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint",
+		scope: "client",
+		config: true,
+		default: true,
+        type: Boolean
 	});
 });
 
