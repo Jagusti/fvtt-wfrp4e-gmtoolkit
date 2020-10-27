@@ -494,13 +494,13 @@ async function adjustStatus (actor, status, change) {
             break;     
     }
 
-    targetName = actor.data.name
-    // TODO: Context-specific message for no change 
-    // TODO: Context-specific message for no max value reached
-    // Chat log message to confirm outcome
-    result = (game.i18n.localize(status) + " changed from " + Number(originalStatus) + " to " + Number(newStatus) + " for " + targetName + ".")
-    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
-    // sendChatMessage (actor, chatContent)   
+    if (Number(originalStatus) != Number(newStatus)) {
+        result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusChanged",{targetStatus: (game.i18n.localize(status)), targetName: actor.data.name, originalStatus, newStatus} );
+    } else {
+        result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusNotChanged",{targetStatus: (game.i18n.localize(status)), targetName: actor.data.name, originalStatus} );
+    }
+    
+    ChatMessage.create(WFRP_Utility.chatDataSetup(result));
     // UI notification to confirm outcome
     ui.notifications.notify(result) 
     canvas.hud.token.render();
