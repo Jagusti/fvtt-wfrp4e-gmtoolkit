@@ -26,6 +26,13 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* option to always show Initiative in Token Hud Extension. Previously Initiative and Agility tooltips and shortcuts were only available in active scenes. This option is now enabled for all scenes by default. 
 - *Added* a message to confirm when no changes are made when using the status change shortcuts to alter Fate, Fortune, Resolve or Resilience via the Token Hud Extension. This can occur when the status attribute is already at 0 or its maximum value.
 - *Fixed* a console error that was thrown when chat messages were logged when status changes were made via the Token Hud Extension. 
+- *Added* colour and light animation effects to differentiate light sources. Preconfigured settings are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
+- *Changed* the bright radius of various light sources. New values are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
+- *Changed* the application of Night Vision to require a minimum level of light in the scene. This is fulfilled by any of the following criteria:
+  -  global darkness level of less than 1 (indicating some ambient light)
+  -  the token itself having some kind of light source (conferring a dimLight setting > 0)
+  -  global illumination being enabled on the scene. 
+- *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
 
 
 ## Version 0.5.1

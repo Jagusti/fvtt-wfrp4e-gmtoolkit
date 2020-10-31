@@ -22,7 +22,7 @@ async function setTokenVisionLight() {
           <select id="vision-type" name="vision-type"> 
             <option value="normalVision">
             ${game.i18n.localize("GMTOOLKIT.Vision.Normal")} 
-            </opton> 
+            </option> 
             <option value="blindedVision"> 
             ${game.i18n.localize("GMTOOLKIT.Vision.Blinded")} 
             </option>
@@ -57,10 +57,10 @@ async function setTokenVisionLight() {
             <option value="lantern">
             ${game.i18n.localize("GMTOOLKIT.LightSource.Lantern")}
             </option>
-            <option value="storm-dim">
+            <option value="storm-broad">
             ${game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Dim")} 
             </option>
-            <option value="storm-bright">
+            <option value="storm-narrow">
             ${game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Bright")} 
             </option>
             <option value="storm-shut"> 
@@ -103,7 +103,7 @@ async function setTokenVisionLight() {
     close: html => {
       if (applyChanges) {
         for ( let token of canvas.tokens.controlled ) {
-          let visionType = html.find('[name="vision-type"]')[0].value || "nochange"; // TODO: default vision option based on condition -> trait -> talent
+          let visionType = html.find('[name="vision-type"]')[0].value || "nochange"; // TODO: default vision option based on condition -> trait -> talent. Issue Log: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/42
           let item; // used for finding whether token has Night Vision or Dark Vision 
           let lightSource = html.find('[name="light-source"]')[0].value || "nochange";
           let advNightVision = 0;
@@ -112,68 +112,138 @@ async function setTokenVisionLight() {
           let dimLight = 0;
           let brightLight = 0; // 
           let lightAngle = 360;
-          let lightColor = ""; // TODO: apply colours for different light sources
           let lockRotation = token.data.lockRotation;
+          let lightColor = ""; 
+          let lightColorIntensity = 0;
+          let animationIntensity = 1;
+          let animationSpeed = 1;
+          let animationType = "none";
       
           // Get Light Source Values
           switch (lightSource) {
             case "none":
+            case "storm-shut":
               dimLight = 0;
               break;
             case "candle":
               dimLight = 10;
-              break;
-            case "torch":
-              dimLight = 15;
+              brightLight = 5;
+              lightColor = "#ffaa00";
+              lightColorIntensity = 0.3;
+              animationIntensity = 8;
+              animationSpeed = 8;
+              animationType = "torch";
               break;
             case "davrich-lamp":
               dimLight = 10;
+              brightLight = 5;
+              lightColor = "#ffaa00";
+              lightColorIntensity = 0.4;
+              animationIntensity = 4;
+              animationSpeed = 4;
+              animationType = "torch";
+              break;
+            case "torch":
+              dimLight = 15;
+              brightLight = 7.5;
+              lightColor = "#ffaa00";
+              lightColorIntensity = 0.5;
+              animationIntensity = 7;
+              animationSpeed = 7;
+              animationType = "torch"
               break;
             case "lantern":
               dimLight = 20;
+              brightLight = 10;
+              lightColor = "#ffcc66";
+              lightColorIntensity = 0.7;
+              animationIntensity = 3;
+              animationSpeed = 3;
+              animationType = "torch";
               break;
-            case "storm-dim":
+            case "storm-broad":
               dimLight = 20;
-              lightAngle = 0;
+              brightLight = 10;
+              lightColor = "#ffcc66";
+              lightColorIntensity = 0.5;
+              animationIntensity = 1;
+              animationSpeed = 2;
+              animationType = "torch";
               break;
-              case "storm-bright":
-                dimLight = 30;
-                lockRotation = false;
-                lightAngle = 60;
-                break;
-            case "storm-shut":
-              dimLight = 0;
+            case "storm-narrow":
+              dimLight = 30;
+              brightLight = 20;
+              lightColor = "#ffcc66";
+              lightColorIntensity = 0.7;
+              animationIntensity = 1;
+              animationSpeed = 1;
+              animationType = "torch";
+              lockRotation = false;
+              lightAngle = 60;
               break;
             case "light":
               dimLight = 15;
+              brightLight = 7.5;
+              lightColor = "#99ffff";
+              lightColorIntensity = 0.5;
+              animationIntensity = 3;
+              animationSpeed = 2;
+              animationType = "pulse"
               break;
             case "witchlight":
               dimLight = 20;
+              brightLight = 10;
+              lightColor = "#99ffff";
+              lightColorIntensity = 0.7;
+              animationIntensity = 6;
+              animationSpeed = 2;
+              animationType = "chroma"
               break;
             case "glowing-skin":
               dimLight = 10;
+              brightLight = 3;
+              lightColor = "#ffbd80";
+              lightColorIntensity = 0.3;
+              animationIntensity = 2;
+              animationSpeed = 2;
+              animationType = "pulse";
               break;
             case "ablaze":
               dimLight = 15;
+              brightLight = 7.5;
+              lightColor = "#ff7733";
+              lightColorIntensity = 0.5;
+              animationIntensity = 7;
+              animationSpeed = 7;
+              animationType = "torch"
               break;
             case "pha":
               dimLight = token.actor.data.data.characteristics.wp.bonus;
+              brightLight = token.actor.data.data.characteristics.wp.bonus;
+              lightColor = "#ffddbb";
+              lightColorIntensity = 0.6;
+              animationIntensity = 4;
+              animationSpeed = 4;
+              animationType = "sunburst"
               break;
-              case "soulfire":
-                dimLight = 15;
-                break;
-                case "nochange":
-                  default:
-                    dimLight = token.data.dimLight;
-                    brightLight = token.data.brightLight;
-                    lightAngle = token.data.lightAngle;
-                    lockRotation = token.data.lockRotation;
-                    lightColor = token.data.lightColor;
-                  }
-          
-          // TODO: Add custom brightLight settings for different light sources OR user defined ratio
-          brightLight = (dimLight / 2);
-                  
+            case "soulfire":
+              dimLight = 15;
+              brightLight = 7.5;
+              lightColor = "#ff7733";
+              lightColorIntensity = 0.5;
+              animationIntensity = 7;
+              animationSpeed = 7;
+              animationType = "fog"
+              break;
+            case "nochange":
+              default:
+                dimLight = token.data.dimLight;
+                brightLight = token.data.brightLight;
+                lightAngle = token.data.lightAngle;
+                lockRotation = token.data.lockRotation;
+                lightColor = token.data.lightColor;
+          }
+                           
           // Get Vision Type Values
       switch (visionType) {
         case "blindedVision":
@@ -196,26 +266,29 @@ async function setTokenVisionLight() {
           brightSight = (dimSight / 2);
           break;
         case "nightVision":
-          item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
-            if(item == undefined) { 
-              (game.settings.get("wfrp4e-gm-toolkit", "OverrideNightVision")) ? advNightVision = 1  : advNightVision = 0 ;
-            } else { 
-              for (let item of token.actor.items)
-                {
-                  if (item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() ) {
-                    switch (item.type) {
-                      case "trait" :
-                        advNightVision = 1;
-                        break;
-                      case "talent" :
-                        advNightVision += item.data.data.advances.value;
-                        break;
+          // Night Vision requires some minimal illumination to provide a benefit
+          if (game.scenes.viewed.data.darkness < 1 | dimLight > 0 | game.scenes.viewed.globalLight) {
+            item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
+              if(item == undefined) { 
+                (game.settings.get("wfrp4e-gm-toolkit", "overrideNightVision")) ? advNightVision = 1  : advNightVision = 0 ;
+              } else { 
+                for (let item of token.actor.items)
+                  {
+                    if (item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() ) {
+                      switch (item.type) {
+                        case "trait" :
+                          advNightVision = 1;
+                          break;
+                        case "talent" :
+                          advNightVision += item.data.data.advances.value;
+                          break;
+                      }
                     }
                   }
-                }
-            }
-          brightSight = (20 * advNightVision); 
-          dimSight = brightSight + dimLight; 
+              }
+            brightSight = (20 * advNightVision); 
+            dimSight = brightSight + dimLight;
+          }
           break;
         case "normalVision":
           dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"));
@@ -236,6 +309,12 @@ async function setTokenVisionLight() {
             brightLight:  brightLight,
             lightAngle: lightAngle,
             lightColor: lightColor,
+            lightAlpha: lightColorIntensity,
+            lightAnimation: {
+              intensity: animationIntensity,
+              speed: animationSpeed,
+              type: animationType
+            },
             dimSight: dimSight,
             brightSight: brightSight,
             lockRotation: lockRotation,
