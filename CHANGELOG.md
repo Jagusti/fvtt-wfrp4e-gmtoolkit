@@ -27,12 +27,14 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* a message to confirm when no changes are made when using the status change shortcuts to alter Fate, Fortune, Resolve or Resilience via the Token Hud Extension. This can occur when the status attribute is already at 0 or its maximum value.
 - *Fixed* a console error that was thrown when chat messages were logged when status changes were made via the Token Hud Extension. 
 - *Added* colour and light animation effects to differentiate light sources. Preconfigured settings are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
-- *Changed* the bright radius of various light sources. New values are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
+- *Changed* the bright radius of various light sources. Previously these were treated as half the dim radius. New values are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
 - *Changed* the application of Night Vision to require a minimum level of light in the scene. This is fulfilled by any of the following criteria:
   -  global darkness level of less than 1 (indicating some ambient light)
   -  the token itself having some kind of light source (conferring a dimLight setting > 0)
   -  global illumination being enabled on the scene. 
 - *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
+- *Added* new custom icons for the Toolkit macros. 
+- *Changed* macro compendium to include latest versions of macros. Updated macros will need to be manually re-imported from the compendium. 
 
 
 ## Version 0.5.1
