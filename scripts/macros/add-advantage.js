@@ -2,4 +2,4 @@
  * Caps at character's maximum advantage. 
 */
 
-updateAdvantage(token,"increase");
+updateAdvantage(token,`increase`);
