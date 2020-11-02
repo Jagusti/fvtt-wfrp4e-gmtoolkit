@@ -83,7 +83,7 @@
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Pull Everyone to Scene",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activate the currently viewed scene when pulling everyone to it.",
     "GMTOOLKIT.Settings.ScenePullActivate.Always" : "Always also activate scene",
-    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Never also activate scene",
+    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Never also activate scene (default module behaviour)",
     "GMTOOLKIT.Settings.ScenePullActivate.Prompt" : "Prompt to activate scene",
     "GMTOOLKIT.Message.ScenePullActivate.NoPermission" : "Only GMs can pull players to scenes!",
     "GMTOOLKIT.Message.ScenePullActivate.Pulled" : "Characters have been pulled to {sceneName}. Scene is {sceneActiveState}.",
@@ -101,5 +101,8 @@
     "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Always ask how many XP to add.",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Add Experience Points",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "How many?",
-    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total."
+    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total.",
+
+    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
+
 }

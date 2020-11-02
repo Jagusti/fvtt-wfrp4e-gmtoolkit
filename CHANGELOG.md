@@ -6,12 +6,14 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
+## Version 0.6
+
 - *Added* French translations for enhancements and changes to Version 0.5.1 (thanks to @LeRatierBretonnien).
 - *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
 - *Changed* macro code to improve notification and string handling. 
 - *Added* explicit dependency on WFRP4e system, as supported by Foundry 0.6.6.
 - *Added* option to toggle token hud extensions. Hud extensions are enabled by default. This update also makes the token hud extension available to non-GMs, and each user can enable or disable it independently. 
-- *Added* module settings for the GM to
+- *Added* module settings for the GM to:
   - define token vision distances for normal and Dark Vision in dim or night conditions. 
   - allow Night or Dark Vision even if token does not have the relevant talent or trait. 
 - *Fixed* Night Vision to work with characters with the Trait, and not just characters with the Talent.
@@ -35,7 +37,6 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
 - *Added* new custom icons for the Toolkit macros. 
 - *Changed* macro compendium to include latest versions of macros. Updated macros will need to be manually re-imported from the compendium. 
-
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro

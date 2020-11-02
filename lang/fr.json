@@ -83,7 +83,7 @@
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Envoyer tout le monde sur la scène",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activer la scène actuellement visualisé lorsque tout le monde et envoyé dessus.",
     "GMTOOLKIT.Settings.ScenePullActivate.Always" : "Toujours activer aussi la scène",
-    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Ne jamais activer aussi la scène",
+    "GMTOOLKIT.Settings.ScenePullActivate.Never" : "Ne jamais activer aussi la scène (par défaut)",
     "GMTOOLKIT.Settings.ScenePullActivate.Prompt" : "Demander pour activer la scène",
     "GMTOOLKIT.Message.ScenePullActivate.NoPermission" : "Seuls les MJs peuvent envoyer les joueurs sur la scène!",
     "GMTOOLKIT.Message.ScenePullActivate.Pulled" : "Les personnages ont été envoyés sur la scène {sceneName}. La scène est {sceneActiveState}.",
@@ -101,6 +101,8 @@
     "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Toujours demander le montant de PX.",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Ajouter des PX",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien?",
-    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront enlevés du total de PX du personnage."
+    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront enlevés du total de PX du personnage.", 
+    
+    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
 
 }
