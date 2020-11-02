@@ -28,6 +28,7 @@
     "GMTOOLKIT.Dialog.SetVisionLight.LightSource": "Light Source",
 
     "GMTOOLKIT.LightSource.NoLight" : "No Light", 
+    "GMTOOLKIT.LightSource.Matches" : "Matches (5 yds)",
     "GMTOOLKIT.LightSource.Candle" : "Candle (10 yds)",
     "GMTOOLKIT.LightSource.DavrichLamp" : "Davrich Lamp (10 yds)",
     "GMTOOLKIT.LightSource.Torch" : "Torch (15 yds)",

@@ -45,6 +45,9 @@ async function setTokenVisionLight() {
             <option value="none"> 
             ${game.i18n.localize("GMTOOLKIT.LightSource.NoLight")}
             </option>
+            <option value="matches">
+            ${game.i18n.localize("GMTOOLKIT.LightSource.Matches")} 
+            </option>
             <option value="candle">
             ${game.i18n.localize("GMTOOLKIT.LightSource.Candle")} 
             </option>
@@ -124,6 +127,15 @@ async function setTokenVisionLight() {
             case "none":
             case "storm-shut":
               dimLight = 0;
+              break;
+            case "matches":
+              dimLight = 5;
+              brightLight = 2;
+              lightColor = "#ffaa00";
+              lightColorIntensity = 0.3;
+              animationIntensity = 8;
+              animationSpeed = 8;
+              animationType = "torch";
               break;
             case "candle":
               dimLight = 10;

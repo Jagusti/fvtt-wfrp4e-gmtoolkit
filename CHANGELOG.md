@@ -35,7 +35,9 @@ Token Vision and Light
   - allow Night or Dark Vision even if token does not have the relevant talent or trait. 
 - *Fixed* Night Vision to work with characters with the Trait, and not just characters with the Talent.
 - *Changed* No Vision setting to also clear light emission from token.
-- *Added* Soulfire (Magic Miscast) to light source options. 
+- *Added* new light source options
+  -  Soulfire (Magic Miscast).
+  -  Matches (trappings).
 - *Fixed* Storm Lantern lighting options. 
   - Broadbeam is treated as unshuttered and providing 360° illumination.
   - Shuttered eliminates light emission.

@@ -27,6 +27,7 @@
     "GMTOOLKIT.Dialog.SetVisionLight.LightSource" : "Source de Lumière",
   
     "GMTOOLKIT.LightSource.None" : "Aucun", 
+    "GMTOOLKIT.LightSource.Matches" : "Allumettes (5 m)",
     "GMTOOLKIT.LightSource.Candle" : "Bougie (10 m)",
     "GMTOOLKIT.LightSource.DavrichLamp" : "Lampe Davrich (10 m)",
     "GMTOOLKIT.LightSource.Torch" : "Torche (15 m)",
@@ -105,7 +106,7 @@
 
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
-        
+
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
 
 }
