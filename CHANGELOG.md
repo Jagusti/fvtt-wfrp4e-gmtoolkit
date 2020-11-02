@@ -8,11 +8,28 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
 ## Version 0.6
 
+General Module Stuff
+- *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
 - *Added* French translations for enhancements and changes to Version 0.5.1 (thanks to @LeRatierBretonnien).
-- *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
-- *Changed* macro code to improve notification and string handling. 
 - *Added* explicit dependency on WFRP4e system, as supported by Foundry 0.6.6.
+
+Macros
+- *Removed* dependency on external Furnace module. Macros should be re-imported from the macro compendium to take advantage. Thanks to Forien for support with this. 
+- *Added* new custom icons for the Toolkit macros.
+- *Added* `End of Session` macro which automatically runs end of session admin macros (`Add XP` and `Reset Fortune`), as well as ensuring the game is paused. 
+- *Changed* macro compendium to include latest versions of macros. **Updated macros will need to be manually re-imported from the compendium.** 
+- *Changed* macro code to improve notification and string handling. 
+
+Token Hud Extension
 - *Added* option to toggle token hud extensions. Hud extensions are enabled by default. This update also makes the token hud extension available to non-GMs, and each user can enable or disable it independently. 
+- *Added* dynamic update to token hud when Advantage is increased, reduced or cleared. Any changes are visible immediately in the token hud resource bar if the token hud is active. This applies when using the relevant advantage macros as well as when starting or ending combat, depending on the Clear Advantage setting. 
+- *Added* dynamic update to Token Hud Extension when using shortcuts to increment or decrement Resolve, Resilience, Fortune, Fate, Sin or Corruption. Any changes are visible immediately in the token hud resource bar if the token hud is active. 
+- *Changed* Token Hud setting description to clarify that the hud extension is only shown on controlled tokens. GMs can generally see any token hud, but players will only see their own characters token hud. 
+- *Added* option to always show Initiative in Token Hud Extension. Previously Initiative and Agility tooltips and shortcuts were only available in active scenes. This option is now enabled for all scenes by default. 
+- *Added* a message to confirm when no changes are made when using the status change shortcuts to alter Fate, Fortune, Resolve or Resilience via the Token Hud Extension. This can occur when the status attribute is already at 0 or its maximum value.
+- *Fixed* a console error that was thrown when chat messages were logged when status changes were made via the Token Hud Extension. 
+
+Token Vision and Light
 - *Added* module settings for the GM to:
   - define token vision distances for normal and Dark Vision in dim or night conditions. 
   - allow Night or Dark Vision even if token does not have the relevant talent or trait. 
@@ -22,21 +39,12 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* Storm Lantern lighting options. 
   - Broadbeam is treated as unshuttered and providing 360° illumination.
   - Shuttered eliminates light emission.
-- *Added* dynamic update to token hud when Advantage is increased, reduced or cleared. Any changes are visible immediately in the token hud resource bar if the token hud is active. This applies when using the relevant advantage macros as well as when starting or ending combat, depending on the Clear Advantage setting. 
-- *Added* dynamic update to Token Hud Extension when using shortcuts to increment or decrement Resolve, Resilience, Fortune, Fate, Sin or Corruption. Any changes are visible immediately in the token hud resource bar if the token hud is active. 
-- *Changed* Token Hud setting description to clarify that the hud extension is only shown on controlled tokens. GMs can generally see any token hud, but players will only see their own characters token hud. 
-- *Added* option to always show Initiative in Token Hud Extension. Previously Initiative and Agility tooltips and shortcuts were only available in active scenes. This option is now enabled for all scenes by default. 
-- *Added* a message to confirm when no changes are made when using the status change shortcuts to alter Fate, Fortune, Resolve or Resilience via the Token Hud Extension. This can occur when the status attribute is already at 0 or its maximum value.
-- *Fixed* a console error that was thrown when chat messages were logged when status changes were made via the Token Hud Extension. 
 - *Added* colour and light animation effects to differentiate light sources. Preconfigured settings are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
 - *Changed* the bright radius of various light sources. Previously these were treated as half the dim radius. New values are documented on the [wiki](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/set-token-vision-and-light#light-sources). 
 - *Changed* the application of Night Vision to require a minimum level of light in the scene. This is fulfilled by any of the following criteria:
   -  global darkness level of less than 1 (indicating some ambient light)
   -  the token itself having some kind of light source (conferring a dimLight setting > 0)
   -  global illumination being enabled on the scene. 
-- *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
-- *Added* new custom icons for the Toolkit macros. 
-- *Changed* macro compendium to include latest versions of macros. Updated macros will need to be manually re-imported from the compendium. 
 
 ## Version 0.5.1
 - *Fixed* typo in Add XP macro
