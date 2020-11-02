@@ -8,11 +8,15 @@ endSession();
 
 async function endSession () {
     if (!game.user.isGM) {
-        ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.ScenePullActivate.NoPermission'), {});
+        ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.SessionEnd.NoPermission'), {});
     }
 
     await game.macros.getName("Add XP").execute();
     await game.macros.getName("Reset Fortune").execute();
+
     await game.togglePause(true);
 
-}
+   /* if (game.settings.get("wfrp4e-gm-toolkit", "exportChat")) {
+        game.messages.export();
+    };*/
+};

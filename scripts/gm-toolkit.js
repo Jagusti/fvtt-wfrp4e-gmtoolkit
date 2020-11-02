@@ -59,7 +59,15 @@ Hooks.once("init", function() {
 		config: true,
 		default: false,
 		type: Boolean,
-  });
+  	});
+	game.settings.register("wfrp4e-gm-toolkit", "exportChat", {
+		name: "GMTOOLKIT.Settings.SessionEnd.ExportChat.name",
+		hint: "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint",
+		scope: "world",
+		config: false,
+		default: false,
+		type: Boolean,
+	});
 });
 
 

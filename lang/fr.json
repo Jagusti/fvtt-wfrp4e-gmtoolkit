@@ -102,7 +102,10 @@
     "GMTOOLKIT.Dialog.AddXP.Title" : "Ajouter des PX",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien?",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront enlevés du total de PX du personnage.", 
-    
+
+    "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
+    "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
+        
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
 
 }

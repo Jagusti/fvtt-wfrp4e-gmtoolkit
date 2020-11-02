@@ -103,6 +103,9 @@
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "How many?",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total.",
 
+    "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
+    "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
+
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
 
 }
