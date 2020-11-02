@@ -42,6 +42,6 @@
 		}
 	],
 	"url": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit",
-	"manifest": "https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/dev/module.json",
-	"download": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/archive/dev.zip"
+	"manifest": "https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json",
+	"download": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/archive/master.zip"
 }
