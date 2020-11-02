@@ -13,6 +13,6 @@ async function endSession () {
 
     await game.macros.getName("Add XP").execute();
     await game.macros.getName("Reset Fortune").execute();
-    game.togglePause();
+    await game.togglePause(true);
 
 }
