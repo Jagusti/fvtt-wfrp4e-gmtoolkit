@@ -1,11 +1,11 @@
 # GM Toolkit (WFRP 4e)
 
-Utility module with tweaks, enhancements and macros to help GMs with game management when running [Warhammer Fantasy Roleplay (4e)](https://github.com/CatoThe1stElder/WFRP-4th-Edition-FoundryVTT) sessions in [Foundry Virtual Tabletop](https://foundryvtt.com/). 
+Utility module with tweaks, enhancements and macros to help GMs with game management when running [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) sessions in [Foundry Virtual Tabletop](https://foundryvtt.com/). 
 
 ## Compatibility
 
-WFRP: 1.2.5 +
-Foundry VTT: 0.6.6 +
+WFRP: 2.2.1 +
+Foundry VTT: 0.7.5 +
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
