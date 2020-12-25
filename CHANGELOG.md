@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
-- *Changed* Set Token Vision and Light macro to use Normal Vision range if Night Vision is selected but the token does not have it. In fact, it sets the Dim Light range to the higher of the default Normal Vision range and the calculated Dim Vision range, which would be 0 if the token doesn't have Night Vision.  
+- *Changed* Set Token Vision and Light macro to use Normal Vision range if Night Vision is selected but the token does not have it. In fact, it sets the Dim Light range to the higher of the default Normal Vision range and the calculated Dim Vision range, which would be 0 if the token doesn't have Night Vision.
+- *Fixed* a bug that could prevent advantage macros from updating or capping correctly. 
 
 ## Version 0.6
 
