@@ -1,6 +1,6 @@
 function getBaseActor(token) {
     if (token.data.actorLink) {
-        return getActor = token.actor._data; // use linked actor
+        return getActor = token.actor.data; // use linked actor
     } else {
         return getActor = token.data.actorData; // use synthetic actor
     }
@@ -12,9 +12,9 @@ function getResourceBase(actor,baseActor) {
     let resourceMax = Number();
     if (resourceData !== undefined && resourceData.status !== undefined && resourceData.status.advantage !== undefined) {
             resourceCurrent = Number(resourceData.status.advantage.value);
-            resourceMax = resourceData.status.advantage.max | actor._data.data.status.advantage.max;
+            resourceMax = resourceData.status.advantage.max | actor.data.data.status.advantage.max;
         } else {
-            resourceMax = actor._data.data.status.advantage.max;
+            resourceMax = actor.data.data.status.advantage.max;
             // console.log("No status defined. Setting current value to " + resourceCurrent)
         } 
     return {"current":resourceCurrent, "max":resourceMax}; 
