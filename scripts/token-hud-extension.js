@@ -19,7 +19,7 @@ class TokenHudExtension {
         let run = actorMoveDetails.run;
         let swim = actorMoveDetails.value / 2;
 
-        let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
+        let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; &#10;" + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
         
         // Create space for Hud Extensions next to elevation icon
         let divTokenHudExt = '<div class="tokenhudext left">';
@@ -316,8 +316,8 @@ class TokenHudExtension {
             hudCorruption.find('i').dblclick(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
                 if (ev.ctrlKey && ev.shiftKey) {
-                    let result = WFRP_Tables.formatChatRoll("mutatemental");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    let result = game.wfrp4e.tables.formatChatRoll("mutatemental");
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a mental mutation.") 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -327,23 +327,23 @@ class TokenHudExtension {
                     let littlePrayer = new Roll("d100") 
                     littlePrayer.roll();
                     let result = `${actor.name} offered a Little Prayer to the Gods (${littlePrayer.result}).`  // TODO: Add Localization
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "gmroll", true));
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "gmroll", true));
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey && ev.altKey) {
-                    let result = WFRP_Tables.formatChatRoll("wrath");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    let result = game.wfrp4e.tables.formatChatRoll("wrath");
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " incurred the Wrath of the Gods.") 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey) {
-                    let result = WFRP_Tables.formatChatRoll("mutatephys");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    let result = game.wfrp4e.tables.formatChatRoll("mutatephys");
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a physical mutation.") 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -500,7 +500,7 @@ async function adjustStatus (actor, status, change) {
         result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusNotChanged",{targetStatus: (game.i18n.localize(status)), targetName: actor.data.name, originalStatus} );
     }
     
-    ChatMessage.create(WFRP_Utility.chatDataSetup(result));
+    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result));
     // UI notification to confirm outcome
     ui.notifications.notify(result) 
     canvas.hud.token.render();
