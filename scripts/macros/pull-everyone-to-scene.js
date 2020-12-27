@@ -51,7 +51,7 @@ async function pullEveryoneToScene() {
             for ( let u of game.users.players ) {
                 game.socket.emit("pullToScene", thisScene.id, u.id);
             }
-            let sceneActiveState = String()
+            let sceneActiveState = ""
             if (thisScene.data.active == true ) {
                 sceneActiveState = game.i18n.localize('GMTOOLKIT.Scene.Active')
             } else {
