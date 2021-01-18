@@ -4,8 +4,12 @@ class TokenHudExtension {
         let actor = canvas.tokens.get(data._id).actor;
         if (actor === undefined) return;    
 
+        const wfrp4eContent = {} 
+        wfrp4eContent.core = game.modules.get("wfrp4e-core")?.active || false;
+        // console.log('GM Toolkit (WFRP4e) | ' + wfrp4eContent.core)
+
         this.addMovementTokenTip(app, html, data, actor)
-        this.addPlayerCharacterTokenTip(app, html, data, actor)
+        this.addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent)
         this.addInitiativeTokenTip(app, html, data, actor)
     }
 
@@ -136,7 +140,7 @@ class TokenHudExtension {
 
    }
 
-    static async addPlayerCharacterTokenTip(app, html, data, actor) {
+    static async addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent) {
         
         if (actor.data.type === "character") {
             
@@ -315,7 +319,7 @@ class TokenHudExtension {
             })            
             hudCorruption.find('i').dblclick(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
-                if (ev.ctrlKey && ev.shiftKey) {
+                if (ev.ctrlKey && ev.shiftKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("mutatemental");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a mental mutation.") 
@@ -333,7 +337,7 @@ class TokenHudExtension {
                     ev.stopPropagation();
                     return;
                 }
-                if (ev.shiftKey && ev.altKey) {
+                if (ev.shiftKey && ev.altKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("wrath");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " incurred the Wrath of the Gods.") 
@@ -341,7 +345,7 @@ class TokenHudExtension {
                     ev.stopPropagation();
                     return;
                 }
-                if (ev.ctrlKey) {
+                if (ev.ctrlKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("mutatephys");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a physical mutation.") 
