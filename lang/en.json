@@ -107,6 +107,14 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
 
-    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
+    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!", 
 
+    "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Only GMs can send Dark Whispers!",
+    "GMTOOLKIT.Message.DarkWhispers.OpeningText" : "<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><em>Do not in any way reveal that you have received this message.</em>",
+    "GMTOOLKIT.Message.DarkWhispers.ClosingText" : "<em>If you do as directed, your Corruption total will be reduced by <strong>1</strong>.<em>",
+    "GMTOOLKIT.Dialog.DarkWhispers.Title": "Send Dark Whispers",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets": "Whisper to",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "Message",
+    "GMTOOLKIT.Dialog.DarkWhispers.Apply": "Whisper"
+    
 }

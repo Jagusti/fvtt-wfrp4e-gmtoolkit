@@ -8,7 +8,7 @@ function formDarkWhispers() {
 
   // Non-GMs are not permitted to send Dark Whispers
   if (!game.user.isGM) {      
-    return ui.notifications.error('Only GMs can send Dark Whispers.', {});
+    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoPermission'));
   }
 
   // Only other users who are currently logged in and have an assigned character are available to whisper to. 
@@ -24,19 +24,19 @@ function formDarkWhispers() {
       `
   });
 
-  // Show dialog to write message and select target player characters
-  new Dialog({
-    title:"Send Dark Whispers",
-    content:`Whisper To: <br>${checkOptions} <br>
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" cols="50"></textarea><br>`,
-    buttons:{
-      whisper:{   
-        label:"Whisper",
-        callback: (html) => sendDarkWhispers(html, users)
-      }
+ // Show dialog to write message and select target player characters
+ new Dialog({
+  title: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Title'),
+  content:`${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')}: <br>${checkOptions} <br>
+    <label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label>
+    <textarea id="message" name="message" rows="4" cols="50"></textarea><br>`,
+  buttons:{
+    whisper:{   
+      label: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Apply'),
+      callback: (html) => sendDarkWhispers(html, users)
     }
-  }).render(true);
+  }
+}).render(true);
 }
 
 function sendDarkWhispers(html, users) {
@@ -49,12 +49,9 @@ function sendDarkWhispers(html, users) {
     var messageText = html.find('[name="message"]')[0].value
   }
 
-  let messageOpenerRaw = `<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><em>Do not in any way reveal that you have received this message.</em>`
-  let messageCloserRaw = `<em>If you do as directed, your Corruption total will be reduced by <strong>1</strong>.<em>`
-
-  // Construct and send message to whisper targets
+// Construct and send message to whisper targets
   ChatMessage.create({
-      content: `${messageOpenerRaw } <blockquote>${messageText}</blockquote> ${messageCloserRaw}`,
-      whisper: targets
-    });
+    content: `${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.OpeningText')} <blockquote>${messageText}</blockquote> ${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.ClosingText')}`,
+    whisper: targets
+  });
 }
