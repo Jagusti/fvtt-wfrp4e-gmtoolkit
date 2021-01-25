@@ -68,6 +68,19 @@ Hooks.once("init", function() {
 		default: false,
 		type: Boolean,
 	});
+	game.settings.register("wfrp4e-gm-toolkit", "targetDarkWhispers", {
+		name: "GMTOOLKIT.Settings.DarkWhispers.Filter.name",
+		hint: "GMTOOLKIT.Settings.DarkWhispers.Filter.hint",
+		scope: "world",
+		config: true,
+		default: "all",
+		type: String,
+		choices: {
+            "all": "GMTOOLKIT.Settings.DarkWhispers.Filter.All",
+			"present": "GMTOOLKIT.Settings.DarkWhispers.Filter.Present",
+			"absent": "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent",
+		}
+	});
 });
 
 

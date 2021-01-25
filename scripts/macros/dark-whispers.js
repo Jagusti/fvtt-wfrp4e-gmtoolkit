@@ -1,24 +1,37 @@
 /* Open a dialog to send a Dark Whisper (WFRP p183) to selected player character(s).
- * Original macro developed by Vindico#9103. 
+ * Adapted from original macro developed by Vindico#9103. 
  */
 
-formDarkWhispers();
+formDarkWhispers(); // change parameter for 'all', 'absent' or 'present' party members. Set default in module settings. 
 
-function formDarkWhispers() {
+function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", "targetDarkWhispers"))) {
 
   // Non-GMs are not permitted to send Dark Whispers
   if (!game.user.isGM) {      
     return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoPermission'));
   }
 
-  // Only other users who are currently logged in and have an assigned character are available to whisper to. 
-  let users = game.users.filter(user => user.active && !user.isSelf && !!user.character);
+  // Only other users who have an assigned character are available to whisper to. By default only users who are currently logged in are included. 
+  let users = []
+  switch (targets) { 
+  case 'all':
+      users = game.users.filter(user => !user.isSelf && !!user.character);
+      break;
+  case 'absent':
+      users = game.users.filter(user => !user.active  && !user.isSelf && !!user.character);
+      break;
+  case 'present':
+  default:
+     users = game.users.filter(user => user.active  && !user.isSelf && !!user.character);
+     break;
+  }
+
   if (!users) {   
     return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
   }
   
   // Build list of player / characters to select via dialog
-  let corruptionAvailable = 0; 
+  let corruptionAvailable = 0; // count to check there are characters with corruption to target
   let checkOptions = "";
   users.forEach(user => {
     let actorCorruption = {
