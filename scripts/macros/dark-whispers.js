@@ -56,12 +56,12 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
   };
 
- // Show dialog to write message and select target player characters
+ // Show dialog to write whisper message and select target player characters
  new Dialog({
   title: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Title'),
   content:`<div class="form-group "><label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')} </label></div>${checkOptions} 
     <div class="form-group message"><label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label></div>
-    <div class="form-group"><textarea id="message" name="message" rows="4" cols="50"></textarea></div>`,
+    <div class="form-group"><textarea id="message" name="message" rows="4" cols="50">${game.wfrp4e.tables.rollTable('darkwhispers').description}</textarea></div>`,
   buttons:{
     whisper:{   
       label: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Apply'),

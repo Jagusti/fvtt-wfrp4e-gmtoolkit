@@ -1,0 +1,19 @@
+{
+    "name": "Dark Whispers",
+    "die": "1d3",
+    "rows": [
+       {
+      "description": "Let your quarry go.",
+      "range": [1, 1]
+    }, {
+      "description": "'Accidentally' strike an ally.",
+      "range": [2, 2]
+    }, {
+        "description": "Fall asleep on watch.",
+        "range": [3, 3]
+    }, {
+        "description": "Kneel before the Magister.",
+        "range": [4, 4]
+    }
+    ]
+  }
