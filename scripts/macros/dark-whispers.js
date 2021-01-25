@@ -2,7 +2,7 @@
  * Adapted from original macro developed by Vindico#9103. 
  */
 
-formDarkWhispers(); // change parameter for 'all', 'absent' or 'present' party members. Set default in module settings. 
+formDarkWhispers(); //  Set default user target filter in module settings. Override by adding parameter to 'all', 'absent' or 'present' party members. Clear parameter to revert to default. 
 
 function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", "targetDarkWhispers"))) {
 
@@ -59,7 +59,7 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
  // Show dialog to write message and select target player characters
  new Dialog({
   title: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Title'),
-  content:`<div class="form-group "><label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')}: </label></div>${checkOptions} 
+  content:`<div class="form-group "><label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')} </label></div>${checkOptions} 
     <div class="form-group message"><label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label></div>
     <div class="form-group"><textarea id="message" name="message" rows="4" cols="50"></textarea></div>`,
   buttons:{
@@ -81,9 +81,16 @@ function sendDarkWhispers(html, users) {
     var messageText = html.find('[name="message"]')[0].value
   }
 
-// Construct and send message to whisper targets
-  ChatMessage.create({
-    content: `${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.OpeningText')} <blockquote>${messageText}</blockquote> ${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.ClosingText')}`,
-    whisper: targets
-  });
+  // abort if no whisper or character is selected 
+  if (targets.length == 0 || messageText.length == 0) {
+    return ui.notifications.error(game.i18n.format('GMTOOLKIT.Message.DarkWhispers.WhisperAborted', {currentUser: game.users.current.name}));
+  }
+
+  // Construct and send message to whisper targets
+  let whisperMessage = `${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.OpeningText')} <blockquote>${messageText}</blockquote> ${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.ClosingText')}` 
+
+    ChatMessage.create({
+      content: whisperMessage,
+      whisper: targets
+    });
 }

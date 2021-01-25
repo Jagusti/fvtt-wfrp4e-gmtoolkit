@@ -111,18 +111,19 @@
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!", 
 
     "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Dark Whispers Targets",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Default user filter for offering Dark Whisper deals. This setting can be overridden by changing the 'targets' parameter in the macro for 'all', 'present' or 'absent' party members.",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "All party members (default)",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "Absent only (not logged in)",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "Present only (logged in)",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Set the default filter to select characters to receive a Dark Whisper. Override this by setting a parameter in the macro for 'all', 'present' or 'absent' party members.",
+	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "All party members (default)",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "Logged out party members only",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "Logged in party members only",
 
     "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Only GMs can send Dark Whispers!",
+    "GMTOOLKIT.Message.DarkWhispers.WhisperAborted" : "So Dark Whispers will not be heard at this time. Be silent for now, but do not call upon Dark Gods lightly, {currentUser}.",
     "GMTOOLKIT.Message.DarkWhispers.OpeningText" : "<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><em>Do not in any way reveal that you have received this message.</em>",
     "GMTOOLKIT.Message.DarkWhispers.ClosingText" : "<em>If you do as directed, your Corruption total will be reduced by <strong>1</strong>.<em>",
-    "GMTOOLKIT.Dialog.DarkWhispers.Title" : "Send Dark Whispers",
-    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets" : "Whisper to",
-    "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "Message",
-    "GMTOOLKIT.Dialog.DarkWhispers.Apply" : "Whisper", 
+    "GMTOOLKIT.Dialog.DarkWhispers.Title" : "Dark Whispers",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets" : "Who have the Dark Gods chosen?",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "What is their Ask?",
+    "GMTOOLKIT.Dialog.DarkWhispers.Apply" : "Send Dark Whisper", 
     "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "No available characters have Corruption to exchange for a Dark Whisper."
     
 }
