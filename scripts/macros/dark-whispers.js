@@ -18,18 +18,19 @@ function formDarkWhispers() {
   // Build list of player / characters to select via dialog
   users.forEach(user => {
     checkOptions+=`
-        <input type="checkbox" name="${user.id}" value="${user.name}" >\n
-        <label for="${user.id}"> ${user.character.name} (${user.name})</label>
-        <br>
+        <div class="form-group">
+        <input type="checkbox" name="${user.id}" value="${user.name}">
+        <label for="${user.id}"> <strong>${user.character.name}</strong> (${user.name})</label>
+        </div>
       `
   });
 
  // Show dialog to write message and select target player characters
  new Dialog({
   title: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Title'),
-  content:`${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')}: <br>${checkOptions} <br>
-    <label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label>
-    <textarea id="message" name="message" rows="4" cols="50"></textarea><br>`,
+  content:`<div class="form-group "><label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')}: </label></div>${checkOptions} 
+    <div class="form-group message"><label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label></div>
+    <div class="form-group"><textarea id="message" name="message" rows="4" cols="50"></textarea></div>`,
   buttons:{
     whisper:{   
       label: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Apply'),
