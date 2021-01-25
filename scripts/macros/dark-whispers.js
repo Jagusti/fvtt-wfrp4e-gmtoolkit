@@ -13,17 +13,35 @@ function formDarkWhispers() {
 
   // Only other users who are currently logged in and have an assigned character are available to whisper to. 
   let users = game.users.filter(user => user.active && !user.isSelf && !!user.character);
-  let checkOptions = "";
-
+  if (!users) {   
+    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
+  }
+  
   // Build list of player / characters to select via dialog
+  let corruptionAvailable = 0; 
+  let checkOptions = "";
   users.forEach(user => {
+    let actorCorruption = {
+      value: game.actors.get(user.character.id).data.data.status.corruption.value, 
+      max: game.actors.get(user.character.id).data.data.status.corruption.max
+    };
+    corruptionAvailable += actorCorruption.value;
+    // Make unselectable if no Corruption to deal with
+    let canWhisperTo = "disabled";
+    if (actorCorruption.value == true) {canWhisperTo = "enabled"};
+
     checkOptions+=`
         <div class="form-group">
-        <input type="checkbox" name="${user.id}" value="${user.name}">
+        <input type="checkbox" name="${user.id}" value="${user.name}" ${canWhisperTo}>
         <label for="${user.id}"> <strong>${user.character.name}</strong> (${user.name})</label>
+        <label for="${user.id}"> ${actorCorruption.value} / ${actorCorruption.max} ${game.i18n.localize('GMTOOLKIT.Status.Corruption')} </label>
         </div>
       `
   });
+  
+  if (corruptionAvailable == 0) {   
+    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
+  };
 
  // Show dialog to write message and select target player characters
  new Dialog({

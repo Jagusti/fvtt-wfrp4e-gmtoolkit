@@ -62,6 +62,7 @@
     "GMTOOLKIT.Talent.NightVision" : "Night Vision",
     "GMTOOLKIT.Talent.StrongMinded" : "Strong-minded",
     "GMTOOLKIT.Trait.DarkVision" : "Dark Vision",
+    "GMTOOLKIT.Status.Corruption" : "Corruption",
 
     "GMTOOLKIT.ResetFortune.Success" : "Resetting Fortune for {targetName} from {startingFortune} to {newFortune}.",
     "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} is not a Player Character. No change made to Fortune points.",
@@ -112,9 +113,9 @@
     "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Only GMs can send Dark Whispers!",
     "GMTOOLKIT.Message.DarkWhispers.OpeningText" : "<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><em>Do not in any way reveal that you have received this message.</em>",
     "GMTOOLKIT.Message.DarkWhispers.ClosingText" : "<em>If you do as directed, your Corruption total will be reduced by <strong>1</strong>.<em>",
-    "GMTOOLKIT.Dialog.DarkWhispers.Title": "Send Dark Whispers",
-    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets": "Whisper to",
+    "GMTOOLKIT.Dialog.DarkWhispers.Title" : "Send Dark Whispers",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets" : "Whisper to",
     "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "Message",
-    "GMTOOLKIT.Dialog.DarkWhispers.Apply": "Whisper"
-    
+    "GMTOOLKIT.Dialog.DarkWhispers.Apply" : "Whisper", 
+    "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "No available characters have Corruption to exchange for a Dark Whisper."
 }
