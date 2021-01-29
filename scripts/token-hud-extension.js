@@ -317,7 +317,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
                 if (ev.ctrlKey && ev.shiftKey) {
                     let result = WFRP_Tables.formatChatRoll("mutatemental");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a mental mutation.") 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -327,7 +327,7 @@ class TokenHudExtension {
                     let littlePrayer = new Roll("d100") 
                     littlePrayer.roll();
                     let result = `${actor.name} offered a Little Prayer to the Gods (${littlePrayer.result}).`  // TODO: Add Localization
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "gmroll", true));
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "gmroll", true));
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -335,7 +335,7 @@ class TokenHudExtension {
                 }
                 if (ev.shiftKey && ev.altKey) {
                     let result = WFRP_Tables.formatChatRoll("wrath");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " incurred the Wrath of the Gods.") 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -343,7 +343,7 @@ class TokenHudExtension {
                 }
                 if (ev.ctrlKey) {
                     let result = WFRP_Tables.formatChatRoll("mutatephys");
-                    ChatMessage.create(WFRP_Utility.chatDataSetup(result, "roll", true));
+                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a physical mutation.") 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -500,7 +500,7 @@ async function adjustStatus (actor, status, change) {
         result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusNotChanged",{targetStatus: (game.i18n.localize(status)), targetName: actor.data.name, originalStatus} );
     }
     
-    ChatMessage.create(WFRP_Utility.chatDataSetup(result));
+    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result));
     // UI notification to confirm outcome
     ui.notifications.notify(result) 
     canvas.hud.token.render();
