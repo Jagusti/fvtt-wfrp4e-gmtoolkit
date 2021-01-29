@@ -42,7 +42,6 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     // Make unselectable if no Corruption to deal with
     let canWhisperTo = 'disabled title="No Corruption to spend on offer"';
     if (actorCorruption.value >0 ) {canWhisperTo = "enabled"};
-    console.log(actorCorruption)
 
     checkOptions+=`
         <div class="form-group">

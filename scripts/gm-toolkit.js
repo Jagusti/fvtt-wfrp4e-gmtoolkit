@@ -15,7 +15,7 @@ static async chatListeners(html) {
 		event.preventDefault();	
 		if (!game.user.isGM) {
 			let actor = game.user.character;
-			if ( actor ) { 
+			if ( actor ) {  // assigned player character
 				let response = "";
 				// data-button tells us what button was clicked
 				switch ($(event.currentTarget).attr("data-button")) {
@@ -31,7 +31,7 @@ static async chatListeners(html) {
 				};
 
 				// Add the ask from the original message
-				response += `<blockquote>${$(event.target).attr("data-ask")}</blockquote>`
+				response += `<blockquote>${$(event.currentTarget).attr("data-ask")}</blockquote>`
 
 				let chatData = {
 					speaker: ChatMessage.getSpeaker("token"),
@@ -39,11 +39,12 @@ static async chatListeners(html) {
 					whisper: ChatMessage.getWhisperRecipients("GM")
 				}; 
 				ChatMessage.create(chatData, {});
-			} else {
+			} else { // player without character
 				ui.notifications.notify(game.i18n.format('GMTOOLKIT.Notification.NoActor', {currentUser: game.users.current.name}));
 			}
-		}  else {
-			ui.notifications.notify(game.i18n.localize("GMTOOLKIT.Notification.UserMustBePlayer"));
+		}  else { // non-player (ie, GM)
+			let buttonAction = event.currentTarget.text
+			ui.notifications.notify(game.i18n.format('GMTOOLKIT.Notification.UserMustBePlayer', {action: buttonAction}));
 		}
 	})
 }; // End of chatListeners
