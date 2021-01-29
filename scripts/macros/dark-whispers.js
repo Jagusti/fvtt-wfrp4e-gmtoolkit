@@ -62,7 +62,7 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     <div class="form-group ">
       <label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')} </label>
     </div>
-    ${checkOptions} // filtered character list
+    ${checkOptions} 
     <div class="form-group message">
       <label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label>
     </div>

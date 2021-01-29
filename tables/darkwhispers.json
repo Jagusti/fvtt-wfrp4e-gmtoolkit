@@ -1,19 +1,37 @@
 {
     "name": "Dark Whispers",
-    "die": "1d3",
+    "die": "1d9",
     "rows": [
        {
-      "description": "Let your quarry go.",
-      "range": [1, 1]
+        "description": "Let your quarry go.",
+        "range": [1, 1]
     }, {
-      "description": "'Accidentally' strike an ally.",
-      "range": [2, 2]
+        "description": "'Accidentally' strike an ally.",
+        "range": [2, 2]
     }, {
         "description": "Fall asleep on watch.",
         "range": [3, 3]
     }, {
-        "description": "Kneel before the Magister.",
+        "description": "Kneel before the Magister. Show your allegiance.",
         "range": [4, 4]
-    }
+    }, {
+        "description": "Nobody's that good or lucky. However popular or powerful they are. Call out the cheat!",
+        "range": [5, 5]
+    }, {
+        "description": "You're not as prepared as you thought you were.",
+        "range": [6, 6]
+    }, {
+        "description": "Exert your authority. Make an example of the weakest or most vulnerable.",
+        "range": [6, 6]
+    }, {
+        "description": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own. ",
+        "range": [7, 7]
+    }, {
+        "description": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
+        "range": [8, 8]
+    }, {
+        "description": "Secrets are burdensome. Be generous and give them away.",
+        "range": [9, 9]
+    }    
     ]
   }
