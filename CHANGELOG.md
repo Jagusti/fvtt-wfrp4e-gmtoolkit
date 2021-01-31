@@ -8,6 +8,11 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
 - *Changed* Set Token Vision and Light macro to use Normal Vision range if Night Vision is selected but the token does not have it. In fact, it sets the Dim Light range to the higher of the default Normal Vision range and the calculated Dim Vision range, which would be 0 if the token doesn't have Night Vision.
 - *Fixed* a bug that could prevent advantage macros from updating or capping correctly. 
+- *Changed* the 'Simply d100' macro to explicitly state the number of dice rolled. This was temporarily breaking on an earlier version of FVTT. Whil the current version does not break, this change is applied for full compatibility. 
+- *Added* macro to Send Dark Whispers. GMs can target one or more player characters who have at least 1 Corruption with an offer from the Dark Gods. This supports the game feature described on page 183 of the WFRP 4e rulebook - basically to let something dodgy happen to reduce their Corruption by 1. Players can accept or reject the offer from the private chat message they are sent. Corruption is not automatically removed if the player accepts as:
+  - there may be a significant delay in the narrative before the player is able to meet the conditions. 
+  - the GM rather than the system should make the decision whether the character has met the terms of the offer.
+- *Added* a new system table with suggestions for Dark Whispers. This is available through a chat command (`/table darkwhispers`) but is also used by the Send Dark Whispers macro to prepopulate the dialog box and to give the GM a starting point for inspiration. 
 
 ## Version 0.6
 
