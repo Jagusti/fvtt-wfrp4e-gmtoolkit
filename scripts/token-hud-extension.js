@@ -4,8 +4,12 @@ class TokenHudExtension {
         let actor = canvas.tokens.get(data._id).actor;
         if (actor === undefined) return;    
 
+        const wfrp4eContent = {} 
+        wfrp4eContent.core = game.modules.get("wfrp4e-core")?.active || false;
+        // console.log('GM Toolkit (WFRP4e) | ' + wfrp4eContent.core)
+
         this.addMovementTokenTip(app, html, data, actor)
-        this.addPlayerCharacterTokenTip(app, html, data, actor)
+        this.addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent)
         this.addInitiativeTokenTip(app, html, data, actor)
     }
 
@@ -32,7 +36,7 @@ class TokenHudExtension {
             // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
             if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
                 if (hasSkill(actor, "Swim") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -40,7 +44,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey && ev.altKey) {
                 if (hasSkill(actor, "Climb") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -48,7 +52,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey && ev.shiftKey) {
                 if (hasSkill(actor, "Drive") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -57,7 +61,7 @@ class TokenHudExtension {
             if (ev.altKey && ev.shiftKey) {
                 // TODO: Interrogate actor Ride specializations and offer selection if more than one is available
                 if (hasSkill(actor, "Ride") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -65,7 +69,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey) {
                 if (hasSkill(actor, "Dodge") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -73,7 +77,7 @@ class TokenHudExtension {
             }
             if (ev.altKey) {
                 if (hasSkill(actor, "Athletics") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -82,7 +86,7 @@ class TokenHudExtension {
             if (ev.shiftKey) {
                 // TODO: Interrogate actor Stealth specializations and offer selection if more than one is available
                 if (hasSkill(actor, "Stealth") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 } 
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -116,19 +120,19 @@ class TokenHudExtension {
             // console.log("GM Toolkit (WFRP4e) | Initiative hud extension double-clicked.")
             if (ev.ctrlKey && ev.shiftKey) {
                 if (hasSkill(actor, "Track") !== null) {
-                    actor.setupSkill(skill.data);
+                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
                 return;
             }
             if (ev.ctrlKey) {
-                actor.setupCharacteristic("i");
+                actor.setupCharacteristic("i").then(setupData => {actor.basicTest(setupData)});
                 ev.preventDefault();
                 ev.stopPropagation();
             }
             if (ev.altKey) {
-                actor.setupCharacteristic("ag");
+                actor.setupCharacteristic("ag").then(setupData => {actor.basicTest(setupData)});
                 ev.preventDefault();
                 ev.stopPropagation();
             } 
@@ -136,7 +140,7 @@ class TokenHudExtension {
 
    }
 
-    static async addPlayerCharacterTokenTip(app, html, data, actor) {
+    static async addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent) {
         
         if (actor.data.type === "character") {
             
@@ -191,7 +195,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension double-clicked.")
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Cool") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -199,7 +203,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Endurance") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -207,7 +211,7 @@ class TokenHudExtension {
                 }
                 if (ev.shiftKey) {
                     if (hasSkill(actor, "Consume Alcohol") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -241,7 +245,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension double-clicked.")
                 if (ev.shiftKey && ev.altKey) {
                     if (hasSkill(actor, "Charm Animal") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -249,7 +253,7 @@ class TokenHudExtension {
                 }
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Gamble") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -257,7 +261,7 @@ class TokenHudExtension {
                 }
                 if (ev.shiftKey) {
                     if (hasSkill(actor, "Charm") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -265,7 +269,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Gossip") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -315,8 +319,8 @@ class TokenHudExtension {
             })            
             hudCorruption.find('i').dblclick(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
-                if (ev.ctrlKey && ev.shiftKey) {
-                    let result = WFRP_Tables.formatChatRoll("mutatemental");
+                if (ev.ctrlKey && ev.shiftKey && wfrp4eContent.core) {
+                    let result = game.wfrp4e.tables.formatChatRoll("mutatemental");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a mental mutation.") 
                     ev.preventDefault();
@@ -333,16 +337,16 @@ class TokenHudExtension {
                     ev.stopPropagation();
                     return;
                 }
-                if (ev.shiftKey && ev.altKey) {
-                    let result = WFRP_Tables.formatChatRoll("wrath");
+                if (ev.shiftKey && ev.altKey && wfrp4eContent.core) {
+                    let result = game.wfrp4e.tables.formatChatRoll("wrath");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " incurred the Wrath of the Gods.") 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
-                if (ev.ctrlKey) {
-                    let result = WFRP_Tables.formatChatRoll("mutatephys");
+                if (ev.ctrlKey && wfrp4eContent.core) {
+                    let result = game.wfrp4e.tables.formatChatRoll("mutatephys");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
                     console.log("GM Toolkit (WFRP4e) | " + actor.name + " spawned a physical mutation.") 
                     ev.preventDefault();
@@ -351,7 +355,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Pray") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -367,7 +371,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Perception hud extension double-clicked.") 
                 if (ev.altKey) {
                     if (hasSkill(actor, "Intuition") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -375,7 +379,7 @@ class TokenHudExtension {
                 }
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Perception") !== null) {
-                        actor.setupSkill(skill.data);
+                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
