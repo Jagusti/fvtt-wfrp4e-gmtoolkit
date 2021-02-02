@@ -87,3 +87,23 @@
 	background: #ececec; /* Change background to improve status effect visibility */
 }
 
+
+/* 2. COMMON CONTROLS */
+/***************************/
+
+/* 2a. Textarea */
+
+.form-group textarea, 
+.dialog-content textarea { 
+	color: #d6d6d6;
+	padding: 1px 3px;
+	margin: 0;
+	font-family: var(--actor-input-font-family);
+	font-size: var(--actor-input-font-size);
+	font-weight: var(--actor-input-font-weight);
+	color: #d6d6d6;
+	border: 1px solid #736953a6;
+	border-left: none;
+	box-shadow: 0px 0px 10px inset black;
+	background: #352516;
+}
