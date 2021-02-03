@@ -121,7 +121,7 @@ Hooks.once("init", function() {
 		name: "GMTOOLKIT.Settings.SessionEnd.ExportChat.name",
 		hint: "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint",
 		scope: "world",
-		config: false,
+		config: true,
 		default: false,
 		type: Boolean,
 	});

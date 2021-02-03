@@ -11,12 +11,14 @@ async function endSession () {
         ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.SessionEnd.NoPermission'), {});
     }
 
+    await game.togglePause(true);
+
     await game.macros.getName("Add XP").execute();
     await game.macros.getName("Reset Fortune").execute();
 
-    await game.togglePause(true);
+    if (game.settings.get("wfrp4e-gm-toolkit", "exportChat")) {
+        await game.messages.export();
+    };
 
-   /* if (game.settings.get("wfrp4e-gm-toolkit", "exportChat")) {
-        game.messages.export();
-    };*/
+    console.log("GM Toolkit (WFRP4e) | End of Session Routine completed")
 };

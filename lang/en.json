@@ -64,11 +64,11 @@
     "GMTOOLKIT.Trait.DarkVision" : "Dark Vision",
     "GMTOOLKIT.Status.Corruption" : "Corruption",
 
-    "GMTOOLKIT.ResetFortune.Success" : "Resetting Fortune for {targetName} from {startingFortune} to {newFortune}.",
-    "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} is not a Player Character. No change made to Fortune points.",
+    "GMTOOLKIT.ResetFortune.Success" : "<p>Resetting Fortune for {targetName} from {startingFortune} to {newFortune}.</p>",
+    "GMTOOLKIT.ResetFortune.NotPC" : "<p>{targetName} is not a Player Character. No change made to Fortune points.</p>",
   
-    "GMTOOLKIT.AddXP.Success" : "Adding {XP} XP to {targetName}. <hr> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}.",
-    "GMTOOLKIT.AddXP.NotPC" : "{targetName} is not a Player Character. No change made to Experience Points.",
+    "GMTOOLKIT.AddXP.Success" : "<p>Adding {XP} XP to {targetName}. <hr> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.NotPC" : "<p>{targetName} is not a Player Character. No change made to Experience Points.</p>",
 
     "GMTOOLKIT.Advantage.Increased" : "Advantage increased from {startingAdvantage} to {newAdvantage} for {actorName}.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} already has {startingAdvantage} of maximum {maxAdvantage} Advantage. No change made.",
@@ -135,6 +135,6 @@
     "GMTOOLKIT.Settings.DarkWhispers.message.taunt" : "<p><strong>The Dark Gods can see you are troubled.</strong></p><p><em>For a discrete favour they can unburden you of 1 Corruption.</em></p><blockquote>{message}</blockquote><p>What harm can it do? Take the offer and step back from the brink of Chaos.</p>",
     "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><p><em>Do not in any way reveal that you have received this message.</em></p><blockquote>{message}</blockquote><p>If you do as directed, your Corruption total will be reduced by 1.</p>", 
     "GMTOOLKIT.Notification.NoActor" : "No Character is selected or associated with {currentuser}.",
-    "GMTOOLKIT.Notification.UserMustBePlayer" : "Only player character can {action}."
+    "GMTOOLKIT.Notification.UserMustBePlayer" : "Only player characters can {action}."
 
 }

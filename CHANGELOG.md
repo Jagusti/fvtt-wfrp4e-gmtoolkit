@@ -13,6 +13,13 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - there may be a significant delay in the narrative before the player is able to meet the conditions. 
   - the GM rather than the system should make the decision whether the character has met the terms of the offer.
 - *Added* a new system table with suggestions for Dark Whispers. This is available through a chat command (`/table darkwhispers`) but is also used by the Send Dark Whispers macro to prepopulate the dialog box and to give the GM a starting point for inspiration. 
+- *Added* compatibility updates for WFRP4e version 3 and premium content,
+  -  Replaced obsolete references to `WFRP_Utility` and `WFRP_Tables` with `game.wfrp4e.utility` and `game.wfrp4e.tables` respectively.
+  -  Updated skill and characteristic test calls to use the new basicTest functionality.
+  -  If premium core content module is not installed, the Token Hud Extension shortcuts for rolling on the Physical/Mental Mutation and Wrath of Gods tables will silently fail (avoiding a 'Table not found' error). 
+-  *Added* new module setting to export the chat log as part of the End of Session Routine. 
+-  *Fixed* a macro compendium error, restoring the Set Token Light and Vision macro. 
+-  *Fixed* translation strings for Add XP and Reset Fortune that would trigger console warnings. 
 
 ## Version 0.6
 
