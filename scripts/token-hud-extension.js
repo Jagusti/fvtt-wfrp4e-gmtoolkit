@@ -177,14 +177,14 @@ class TokenHudExtension {
             hudResolve.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Resolve", -1);
+                    let result = await adjustStatus(actor, "Resolve", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Resolve", 1);
+                    let result = await adjustStatus(actor, "Resolve", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -227,14 +227,14 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
                 console.log("Fortune Button Right-Clicked") // TODO: Add localization
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Fortune", -1);
+                    let result = await adjustStatus(actor, "Fortune", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Fortune", 1);
+                    let result = await adjustStatus(actor, "Fortune", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -289,28 +289,28 @@ class TokenHudExtension {
             hudCorruption.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
                 if (ev.ctrlKey && ev.altKey) {
-                    await adjustStatus(actor, "Sin", -1);
+                    let result = await adjustStatus(actor, "Sin", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey && ev.altKey) {
-                    await adjustStatus(actor, "Sin", 1);
+                    let result = await adjustStatus(actor, "Sin", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey) {
-                    await adjustStatus(actor, "Corruption", -1);
+                    let result = await adjustStatus(actor, "Corruption", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
-                    await adjustStatus(actor, "Corruption", 1);
+                    let result = await adjustStatus(actor, "Corruption", 1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
                     ev.stopPropagation();
