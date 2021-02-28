@@ -14,6 +14,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "If disabled, Initiative and Agility tooltips and shortcuts are only available in active scenes. Enabled by default.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} changed from {originalStatus} to {newStatus} for {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} is unchanged at {originalStatus} for {targetName}",
+    "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).</p>",
+
 
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",

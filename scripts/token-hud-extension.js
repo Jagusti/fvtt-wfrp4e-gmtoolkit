@@ -330,7 +330,7 @@ class TokenHudExtension {
                 if (ev.ctrlKey && ev.altKey) {
                     let littlePrayer = new Roll("d100") 
                     littlePrayer.roll();
-                    let result = `${actor.name} offered a Little Prayer to the Gods (${littlePrayer.result}).`  // TODO: Add Localization
+                    let result = game.i18n.format("GMTOOLKIT.TokenHudExtension.LittlePrayerResult",{actorName: actor.name, littlePrayerResult: littlePrayer.result});
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "gmroll", true));
                     console.log("GM Toolkit (WFRP4e) | " + result) 
                     ev.preventDefault();
