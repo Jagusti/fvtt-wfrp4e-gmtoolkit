@@ -225,7 +225,7 @@ class TokenHudExtension {
             // Add interactions for Fortune and Fate
             hudFortune.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
-                console.log("Fortune Button Right-Clicked") // TODO: Add localization
+                console.log("Fortune Button Right-Clicked") 
                 if (ev.ctrlKey) {
                     let result = await adjustStatus(actor, "Fortune", -1);
                     console.log("GM Toolkit (WFRP4e) | " + result) 
