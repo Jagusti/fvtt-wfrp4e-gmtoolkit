@@ -271,7 +271,7 @@ async function setTokenVisionLight() {
         case "darkVision": 
           item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Trait.DarkVision").toLowerCase() );
             if(item == undefined) { 
-            (game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")) ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))  : dimSight = 0 ;
+            (game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")) ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))  : dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")) ;
           } else {
             dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"));
           }
@@ -299,7 +299,7 @@ async function setTokenVisionLight() {
                   }
               }
             brightSight = (20 * advNightVision); 
-            dimSight = brightSight + dimLight;
+            dimSight = Math.max(brightSight + dimLight, Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")));
           }
           break;
         case "normalVision":

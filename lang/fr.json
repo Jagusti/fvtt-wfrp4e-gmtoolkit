@@ -14,6 +14,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "If disabled, Initiative and Agility tooltips and shortcuts are only available in active scenes. Enabled by default.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} changed from {originalStatus} to {newStatus} for {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} is unchanged at {originalStatus} for {targetName}",
+    "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).</p>",
+
 
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
@@ -62,12 +64,13 @@
     "GMTOOLKIT.Talent.NightVision" : "Vision Nocturne",
     "GMTOOLKIT.Talent.StrongMinded" : "Obstiné",
     "GMTOOLKIT.Trait.DarkVision" : "Dark Vision",
+    "GMTOOLKIT.Status.Corruption" : "Corruption",
 
-    "GMTOOLKIT.ResetFortune.Success" : "Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.",    
-    "GMTOOLKIT.ResetFortune.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.",
+    "GMTOOLKIT.ResetFortune.Success" : "<p>Les Points de Chance de {targetName} ont été changés de {startingFortune} à {newFortune}.</p>",    
+    "GMTOOLKIT.ResetFortune.NotPC" : "<p>{targetName} n'est pas un PJ. Aucun changement aux Points de Chance.</p>",
   
-    "GMTOOLKIT.AddXP.Success" : "Ajout de {XP} PX à {targetName}. <hr> PX Total : {XPTotal} -> {newXPTotal} | PX Courants: {XPCurrent} -> {newXPCurrent}.",
-    "GMTOOLKIT.AddXP.NotPC" : "{targetName} n'est pas un PJ. Aucun changement aux PX.",
+    "GMTOOLKIT.AddXP.Success" : "<p>Ajout de {XP} PX à {targetName}. <hr> PX Total : {XPTotal} -> {newXPTotal} | PX Courants: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.NotPC" : "<p>{targetName} n'est pas un PJ. Aucun changement aux PX.</p>",
 
     "GMTOOLKIT.Advantage.Increased" : "Points d'Avantages incrémentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} a déja {startingAdvantage} sur un maximum de {maxAdvantage} Points d'Avantages. Aucun changement.",
@@ -107,6 +110,33 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
 
-    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!"
+    "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!", 
+
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Dark Whispers Targets",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Set the default filter to select characters to receive a Dark Whisper. Override this by setting a parameter in the macro for 'all', 'present' or 'absent' party members.",
+	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "All party members (default)",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "Logged out party members only",
+    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "Logged in party members only",
+
+    "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Only GMs can send Dark Whispers!",
+    "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "No available characters have Corruption to exchange for a Dark Whisper.", 
+    "GMTOOLKIT.Message.DarkWhispers.WhisperAborted" : "So, Dark Whispers will not be heard at this time. Be silent for now, but do not call upon Dark Gods lightly, {currentUser}.",
+    "GMTOOLKIT.Dialog.DarkWhispers.Title" : "Dark Whispers",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets" : "Who have the Dark Gods chosen?",
+    "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "What is their Ask?",
+    "GMTOOLKIT.Dialog.DarkWhispers.SendPublic" : "Announce", 
+    "GMTOOLKIT.Dialog.DarkWhispers.SendWhisper" : "Whisper", 
+    
+    "GMTOOLKIT.Message.DarkWhispers.Accept" : "Heed the Whisper", 
+    "GMTOOLKIT.Message.DarkWhispers.Reject" : "Deny the Dark Gods", 
+    "GMTOOLKIT.Message.DarkWhispers.Accepted" : "<p>{currentUser} succumbs to the Dark Whispers.</p>", 
+    "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser} spurns the offer of the Dark Gods.</p>", 
+    
+    "GMTOOLKIT.Settings.DarkWhispers.message.name" : "Dark Whispers message template",
+    "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "Choose the tone of Dark Whisper to suit your game.", 
+    "GMTOOLKIT.Settings.DarkWhispers.message.taunt" : "<p><strong>The Dark Gods can see you are troubled.</strong></p><p><em>For a discrete favour they can unburden you of 1 Corruption.</em></p><blockquote>{message}</blockquote><p>What harm can it do? Take the offer and step back from the brink of Chaos.</p>",
+    "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>Dark Whispers Linger In Your Ears ... </strong></p><p><em>Do not in any way reveal that you have received this message.</em></p><blockquote>{message}</blockquote><p>If you do as directed, your Corruption total will be reduced by 1.</p>", 
+    "GMTOOLKIT.Notification.NoActor" : "No Character is selected or associated with {currentuser}.",
+    "GMTOOLKIT.Notification.UserMustBePlayer" : "Only player characters can {action}."
 
 }

@@ -6,6 +6,32 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
+## Version 0.6.2
+
+General Module Stuff
+- *Added* compatibility updates for WFRP4e version 3 and premium content,
+  -  Replaced obsolete references to `WFRP_Utility` and `WFRP_Tables` with `game.wfrp4e.utility` and `game.wfrp4e.tables` respectively.
+  -  Updated skill and characteristic test calls to use the new basicTest functionality.
+  -  If premium core content module is not installed, the Token Hud Extension shortcuts for rolling on the Physical/Mental Mutation and Wrath of Gods tables will silently fail (avoiding a 'Table not found' error). 
+- *Changed* minimum core Foundry compatibility to 0.7.9. Minimum WFRP4e system compatibility is 3.4.1.  
+
+Macros
+- *Changed* Set Token Vision and Light macro to use Normal Vision range if Night Vision is selected but the token does not have it. In fact, it sets the Dim Light range to the higher of the default Normal Vision range and the calculated Dim Vision range, which would be 0 if the token doesn't have Night Vision.
+- *Fixed* a bug that could prevent advantage macros from updating or capping correctly. 
+- *Changed* the 'Simply d100' macro to explicitly state the number of dice rolled. This was temporarily breaking on an earlier version of FVTT. While the current version does not break, this change is applied for full compatibility. 
+- *Added* new module setting to export the chat log as part of the End of Session Routine. 
+- *Fixed* a macro compendium error, restoring the Set Token Light and Vision macro. 
+- *Fixed* translation strings for Add XP and Reset Fortune that would trigger console warnings. 
+
+Token Hud Extension 
+-  *Added* translation string for Little Prayer result, which can be rolled from Token Hud extensions.
+
+Dark Whispers
+- *Added* macro to Send Dark Whispers. GMs can target one or more player characters who have at least 1 Corruption with an offer from the Dark Gods. This supports the game feature described on page 183 of the WFRP 4e rulebook - basically to let something dodgy happen to reduce their Corruption by 1. Players can accept or reject the offer from the private chat message they are sent. Corruption is not automatically removed if the player accepts as:
+  - there may be a significant delay in the narrative before the player is able to meet the conditions. 
+  - the GM rather than the system should make the decision about whether the character has met the terms of the offer.
+- *Added* a new system table with suggestions for Dark Whispers. This is available through a chat command (`/table darkwhispers`) but is also used by the Send Dark Whispers macro to prepopulate the dialog box and to give the GM a starting point for inspiration. 
+
 ## Version 0.6
 
 General Module Stuff
