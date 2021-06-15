@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Fixed* compatibility note in README
+- *Added* descriptors to roll results to help GMs make quicker and more consistent results handling. This appends roll Description text with a "Yes, and ...", "No, but ..." etc phrase depending on the success level, as outlined in the GM Screen. Elaboration can be found on p152 of the core rulebook. 
 
 ## Version 0.6.2
 
