@@ -5,8 +5,18 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
-- *Fixed* compatibility note in README
-- *Added* descriptors to roll results to help GMs make quicker and more consistent results handling. This appends roll Description text with a "Yes, and ...", "No, but ..." etc phrase depending on the success level, as outlined in the GM Screen. Elaboration can be found on p152 of the core rulebook. 
+
+## Version 0.6.3
+
+- *Changed* Foundry compatibility to up to 0.7.10. WFRP4e system compatibility is up to 3.6.2.  
+  - This is the final release of the GM Toolkit to support FVTT 0.7.x and WFRP4e 3.x.
+- *Changed* manifest to point to latest release note for installation file and download link. 
+  - Installation link will now consistently reference "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest/download/module.json" rather than the raw repository file. 
+  - Download link points to a version specific archive file. 
+- *Added* links to release notes and bugs, as well as expanded [manifest+](https://foundryvtt.wiki/en/development/manifest-plus) fields to manifest
+- *Removed* `wfrp4e` as an explicit dependency in manifest file (as this is sufficiently handled through the system declaration).
+- *Added* dramatic test outcome hints (such as "Yes, and ..." or "No, but ...") to roll results descriptions in the chat log, depending on success levels. More information can be found on p152 of the core rulebook. 
+- *Added* links to [ko-fi](https://ko-fi.com/jagusti) for those who may wish to support work on the Toolkit. The module is freeware, and there's no expectation or obligation to make a contribution, but any is welcome. 
 
 ## Version 0.6.2
 
