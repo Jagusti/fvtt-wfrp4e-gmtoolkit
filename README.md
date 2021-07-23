@@ -4,8 +4,8 @@ Utility module with tweaks, enhancements and macros to help GMs with game manage
 
 ## Compatibility
 
-WFRP: 3.4.1+
-Foundry VTT: 0.7.9
+WFRP: 3.4.1 - 3.6.2
+Foundry VTT: 0.7.10
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
