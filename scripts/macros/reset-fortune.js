@@ -42,7 +42,7 @@ async function resetFortune() {
 				chatContent = game.i18n.format("GMTOOLKIT.ResetFortune.NotPC", {targetName} )
 			}
 		let chatData = {
-			user: game.user._id,
+			user: game.user.id,
 			content: chatContent
 		};
 

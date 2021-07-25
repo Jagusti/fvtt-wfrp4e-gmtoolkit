@@ -77,7 +77,7 @@ async function addXP() {
       }
   
       let chatData = {
-        user: game.user._id,
+        user: game.user.id,
         content: chatContent
       };
   
