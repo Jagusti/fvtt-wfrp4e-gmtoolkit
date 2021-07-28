@@ -51,7 +51,7 @@ async function updateAdvantage(token, adjustment) {
     }  
 
     ui.notifications.notify(uiNotice);
-    canvas.hud.token.render();
+    if (token.hasActiveHUD) {canvas.hud.token.render();}
 }
 
 async function adjustAdvantage (token, resourceBase, adjustment) {
@@ -63,7 +63,7 @@ async function adjustAdvantage (token, resourceBase, adjustment) {
         case "increase":
             if (startingAdvantage < resourceBase.max) {
                     newAdvantage = Number(startingAdvantage + 1);
-                    await token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.document.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "increased"
                 } else {
                     updateResult = "max"
@@ -72,7 +72,7 @@ async function adjustAdvantage (token, resourceBase, adjustment) {
         case "reduce":
             if (startingAdvantage > 0) {
                     newAdvantage = Number(startingAdvantage - 1);
-                    await token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.document.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "reduced"
                 } else {
                     updateResult = "min"
@@ -83,12 +83,12 @@ async function adjustAdvantage (token, resourceBase, adjustment) {
                     updateResult = "min"
                 } else {
                     newAdvantage = Number(0);
-                    await token.actor.update({"data.status.advantage.value": newAdvantage });
+                    await token.document.actor.update({"data.status.advantage.value": newAdvantage });
                     updateResult =  "reset"
             }
             break;
     }
-    
+    // console.log(updateResult);
     return {
         outcome: updateResult, 
         starting: startingAdvantage,
@@ -103,8 +103,8 @@ async function clearAdvantage(context) {
     if (settingClearAdvantage == "always" || settingClearAdvantage == context) {
         for (let token of canvas.tokens.placeables) {
             console.log(token)
-            await token.actor.update({"data.status.advantage.value": 0 });
-            if (token.hasActiveHUD) canvas.hud.token.render();
+            await token.document.actor.update({"data.status.advantage.value": 0 });
+            if (token.hasActiveHUD) {canvas.hud.token.render();}
         }
         
         let uiNotice = String()
