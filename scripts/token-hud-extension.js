@@ -1,7 +1,8 @@
 class TokenHudExtension {
 
     static async addTokenHudExtensions(app, html, data) {
-        let actor = canvas.tokens.get(data._id).actor;
+        // let actor = canvas.tokens.get(data.id).actor;
+        let actor = game.actors.get(canvas.tokens.controlled[0].actor.id)
         if (actor === undefined) return;    
 
         const wfrp4eContent = {} 
@@ -36,7 +37,7 @@ class TokenHudExtension {
             // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
             if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
                 if (hasSkill(actor, "Swim") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -44,7 +45,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey && ev.altKey) {
                 if (hasSkill(actor, "Climb") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -52,7 +53,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey && ev.shiftKey) {
                 if (hasSkill(actor, "Drive") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -61,7 +62,7 @@ class TokenHudExtension {
             if (ev.altKey && ev.shiftKey) {
                 // TODO: Interrogate actor Ride specializations and offer selection if more than one is available
                 if (hasSkill(actor, "Ride") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -69,7 +70,7 @@ class TokenHudExtension {
             }
             if (ev.ctrlKey) {
                 if (hasSkill(actor, "Dodge") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -77,7 +78,7 @@ class TokenHudExtension {
             }
             if (ev.altKey) {
                 if (hasSkill(actor, "Athletics") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -86,7 +87,7 @@ class TokenHudExtension {
             if (ev.shiftKey) {
                 // TODO: Interrogate actor Stealth specializations and offer selection if more than one is available
                 if (hasSkill(actor, "Stealth") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 } 
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -110,17 +111,19 @@ class TokenHudExtension {
        let TooltipInitiative = game.i18n.localize('CHAR.I') + ": " + initiative +"; " + game.i18n.localize('CHAR.Ag') +": " + agility
 
        // Create space for Hud Extensions next to combat icon
+       let hudDataCombat =  '[data-action="combat"]' 
        let divTokenHudExt = '<div class="tokenhudext right">';
-       html.find('.control-icon.combat').wrap(divTokenHudExt);
-
+       html.find(`.control-icon${hudDataCombat}`).wrap(divTokenHudExt);
+       
        let hudInitiative = $('<div class="control-icon tokenhudicon right" title="' + TooltipInitiative + '"><i class="fas fa-spinner"></i> ' + initiative + '</div>');
-       html.find('.control-icon.combat').after(hudInitiative); // Add Initiative and Agility token tip
+       html.find(`.control-icon${hudDataCombat}`).after(hudInitiative); // Add Initiative and Agility token tip
+
        // Add interactions for Initiative and Agility
         hudInitiative.find('i').dblclick(async (ev) => {
             // console.log("GM Toolkit (WFRP4e) | Initiative hud extension double-clicked.")
             if (ev.ctrlKey && ev.shiftKey) {
                 if (hasSkill(actor, "Track") !== null) {
-                    actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                    actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -168,11 +171,13 @@ class TokenHudExtension {
             
             // Create space for Hud Extensions next to config icon
             // Resolve, Resilience, Fortune, Fate
-            html.find('.control-icon.config').wrap(divTokenHudExt);
+            let hudDataConfig =  '[data-action="config"]' 
+            html.find(`.control-icon${hudDataConfig}`).wrap(divTokenHudExt);
 
             // Resolve and Resilience
             let hudResolve = $(`<div class="control-icon tokenhudicon left" title="` + TooltipResolve + `"><i class="fas fa-hand-rock">&nbsp;` + resolve + `</i></div>`);
-            html.find('.control-icon.config').before(hudResolve); // Add Resolve token tip
+            html.find(`.control-icon${hudDataConfig}`).before(hudResolve); // Add Resolve token tip
+
             // Add interactions for Resolve and Resilience
             hudResolve.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
@@ -195,7 +200,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Resolve hud extension double-clicked.")
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Cool") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -203,7 +208,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Endurance") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -211,7 +216,7 @@ class TokenHudExtension {
                 }
                 if (ev.shiftKey) {
                     if (hasSkill(actor, "Consume Alcohol") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -221,7 +226,7 @@ class TokenHudExtension {
 
             // Fortune and Fate
             let hudFortune = $(`<div class="control-icon tokenhudicon left" title="` + TooltipFortune + `"><i class="fas fa-dice">&nbsp;` + fortune + `</i></div>`);
-            html.find('.control-icon.config').before(hudFortune); // Add Fortune token tip
+            html.find(`.control-icon${hudDataConfig}`).before(hudFortune); // Add Fortune token tip
             // Add interactions for Fortune and Fate
             hudFortune.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
@@ -245,7 +250,7 @@ class TokenHudExtension {
                 // console.log("GM Toolkit (WFRP4e) | Fortune hud extension double-clicked.")
                 if (ev.shiftKey && ev.altKey) {
                     if (hasSkill(actor, "Charm Animal") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -253,7 +258,7 @@ class TokenHudExtension {
                 }
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Gamble") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -261,7 +266,7 @@ class TokenHudExtension {
                 }
                 if (ev.shiftKey) {
                     if (hasSkill(actor, "Charm") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -269,7 +274,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Gossip") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -280,11 +285,13 @@ class TokenHudExtension {
 
             // Create space for Hud Extensions next to target icon
             // Corruption, Sin, Perception, Intuition
-            html.find('.control-icon.target').wrap(divTokenHudExt);
+            let hudDataTarget =  '[data-action="target"]' 
+            html.find(`.control-icon${hudDataTarget}`).wrap(divTokenHudExt);
 
             // Corruption and Sin
             let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="` + TooltipCorruption + `"><i class="fas fa-bahai">&nbsp;` + corruption + `</i></div>`);
-            html.find('.control-icon.target').before(hudCorruption); // Add Corruption token tip        
+            html.find(`.control-icon${hudDataTarget}`).before(hudCorruption); // Add Corruption token tip        
+
             // Add interactions for Corruption and Sin           
             hudCorruption.find('i').contextmenu(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
@@ -355,7 +362,7 @@ class TokenHudExtension {
                 }
                 if (ev.altKey) {
                     if (hasSkill(actor, "Pray") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -365,13 +372,14 @@ class TokenHudExtension {
 
             // Perception and Intuition
             let hudPerception = $(`<div class="control-icon tokenhudicon left" title="` + TooltipPerception + `"><i class="fas fa-eye">&nbsp;` + perception + `</i></div>`);
-            html.find('.control-icon.target').before(hudPerception); // Add Perception token tip
+            html.find(`.control-icon${hudDataTarget}`).before(hudPerception);  // Add Perception token tip
+
             // Add interactions for Perception and Intuition
             hudPerception.find('i').dblclick(async (ev) => {
                 // console.log("GM Toolkit (WFRP4e) | Perception hud extension double-clicked.") 
                 if (ev.altKey) {
                     if (hasSkill(actor, "Intuition") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
@@ -379,7 +387,7 @@ class TokenHudExtension {
                 }
                 if (ev.ctrlKey) {
                     if (hasSkill(actor, "Perception") !== null) {
-                        actor.setupSkill(skill.data).then(setupData => {actor.basicTest(setupData)});
+                        actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
                     ev.preventDefault();
                     ev.stopPropagation();
