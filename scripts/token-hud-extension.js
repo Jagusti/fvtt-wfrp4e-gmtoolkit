@@ -519,6 +519,8 @@ async function adjustStatus (actor, status, change) {
     return(result)
 }  
 
+// Settings
+
 /*
  * Add option to enable or disable Token Hud Extensions
 */
@@ -530,7 +532,7 @@ Hooks.once("init", () => {
 		config: true,
 		default: true,
         type: Boolean,
-        onChange: () => window.location.reload()
+        onChange: debouncedReload 
     });
     
     game.settings.register("wfrp4e-gm-toolkit", "alwaysShowHudInitiative", {
@@ -539,7 +541,8 @@ Hooks.once("init", () => {
 		scope: "client",
 		config: true,
 		default: true,
-        type: Boolean
+        type: Boolean,
+        onChange: debouncedReload 
 	});
 });
 

@@ -54,6 +54,9 @@ static async chatListeners(html) {
 /* Settings
 / ---------
 */
+const debouncedReload = foundry.utils.debounce(() => {
+    window.location.reload();
+  }, 100);
 
 Hooks.once("init", function() {
 	game.settings.register("wfrp4e-gm-toolkit", "scenePullActivate", {
@@ -83,7 +86,8 @@ Hooks.once("init", function() {
 		scope: "world",
 		config: true,
 		default: false,
-		type: Boolean
+		type: Boolean,
+        onChange: debouncedReload 
 	});
 	game.settings.register("wfrp4e-gm-toolkit", "rangeNormalSight", {
 		name: "GMTOOLKIT.Settings.Vision.NormalSight.name",

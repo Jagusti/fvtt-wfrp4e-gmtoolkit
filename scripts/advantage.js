@@ -102,7 +102,9 @@ async function clearAdvantage(context) {
     
     if (settingClearAdvantage == "always" || settingClearAdvantage == context) {
         for (let token of canvas.tokens.placeables) {
-            console.log(token)
+            // console.log(token)
+            //party[0].setAdvantage(0)
+            // canvas.tokens.controlled[0].actor.modifyAdvantage(1); if (canvas.tokens.controlled[0].hasActiveHUD) {canvas.hud.token.render();}
             await token.document.actor.update({"data.status.advantage.value": 0 });
             if (token.hasActiveHUD) {canvas.hud.token.render();}
         }
@@ -137,6 +139,7 @@ Hooks.once("init", function() {
 			"start": "GMTOOLKIT.Settings.clearAdvantage.start",
 			"end": "GMTOOLKIT.Settings.clearAdvantage.end",
 			"never": "GMTOOLKIT.Settings.clearAdvantage.never"
-		}
+		},
+        onChange: debouncedReload 
 	});
 });
