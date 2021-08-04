@@ -19,19 +19,23 @@ class TokenHudExtension {
         const actorData = actor.data;
         const actorMoveDetails = actorData.data.details.move;
 
-        let move = actorMoveDetails.value;
-        let walk = actorMoveDetails.walk;
-        let run = actorMoveDetails.run;
-        let swim = actorMoveDetails.value / 2;
-
-        let TooltipMovement = game.i18n.localize('Move') + ": " + move +"; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim
+        let move = actorMoveDetails.value;      
+        let TooltipMovement = game.i18n.localize('Move') + ": " + move
+        let displayedMovement = move
+        if (actor.type != 'vehicle') {
+            let walk = actorMoveDetails.walk;
+            let run = actorMoveDetails.run;
+            let swim = actorMoveDetails.value / 2;
+            TooltipMovement += "; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim;
+            displayedMovement = run
+        }
+        let hudMovement = $('<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + displayedMovement + '</div>');
         
         // Create space for Hud Extensions next to elevation icon
         let divTokenHudExt = '<div class="tokenhudext left">';
         html.find('.attribute.elevation').wrap(divTokenHudExt);
-
-        let hudMovement = $('<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + run + '</div>');
         html.find('.attribute.elevation').before(hudMovement);// Add Movement token tip
+        
         // Add interactions for Movement
         hudMovement.find('i').dblclick(async (ev) => {
             // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
