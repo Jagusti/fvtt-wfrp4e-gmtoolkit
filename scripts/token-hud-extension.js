@@ -105,7 +105,7 @@ class TokenHudExtension {
     static async addInitiativeTokenTip(app, html, data, actor) {
         
        // Optionally do not show initiative token tip unless this is the active scene 
-       if (game.settings.get("wfrp4e-gm-toolkit", "alwaysShowHudInitiative") === false && game.scenes.active.isView === false ) return;
+       if (game.settings.get("wfrp4e-gm-toolkit", "alwaysShowHudInitiative") === false && game.scenes.active.isView === false || actor.type == 'vehicle') return;
 
        const actorCharacteristics = actor.data.data.characteristics;
 
