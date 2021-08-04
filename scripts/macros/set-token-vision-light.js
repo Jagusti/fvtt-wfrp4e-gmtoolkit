@@ -313,7 +313,7 @@ async function setTokenVisionLight() {
       }
       
           // Update Token
-          token.update({
+          token.document.update({
             vision: true,
             visionType: visionType,
             lightSource: lightSource,
