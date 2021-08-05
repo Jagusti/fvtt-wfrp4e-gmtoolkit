@@ -42,8 +42,7 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     };
     corruptionAvailable += actorCorruption.value;
     // Make unselectable if character has no Corruption to deal with
-    // TODO: add translation string for tooltip
-    let canWhisperTo = (actorCorruption.value ) ?  'enabled title="Someone to bargain with."' : 'disabled title="No Corruption to spend on offer."' ;
+    let canWhisperTo = (actorCorruption.value) ? `enabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.HasCorruption')}"` : `disabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.NoCorruption')}"`;
 
     checkOptions+=`
         <div class="form-group">

@@ -125,6 +125,8 @@
     "GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage": "Quelle est leur requête ?",
     "GMTOOLKIT.Dialog.DarkWhispers.SendPublic" : "Annoncer",
     "GMTOOLKIT.Dialog.DarkWhispers.SendWhisper" : "Murmurer",
+    "GMTOOLKIT.Dialog.DarkWhispers.NoCorruption" : "No Corruption to spend on offer.", 
+    "GMTOOLKIT.Dialog.DarkWhispers.HasCorruption" : "Someone to bargain with.", 
     
     "GMTOOLKIT.Message.DarkWhispers.Accept" : "Obéir au Murmure",
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "Ignorer les Dieux Noirs",
