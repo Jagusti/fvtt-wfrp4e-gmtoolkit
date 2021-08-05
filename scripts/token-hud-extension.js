@@ -38,6 +38,7 @@ class TokenHudExtension {
         
         // Add interactions for Movement
         hudMovement.find('i').dblclick(async (ev) => {
+            if (actor.type == 'vehicle') return;
             // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
             if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
                 if (hasSkill(actor, "Swim") !== null) {
