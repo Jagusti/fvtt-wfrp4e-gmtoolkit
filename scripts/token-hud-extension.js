@@ -22,14 +22,16 @@ class TokenHudExtension {
         let move = actorMoveDetails.value;      
         let TooltipMovement = game.i18n.localize('Move') + ": " + move
         let displayedMovement = move
+        let movementIcon = "fa-dharmachakra"
         if (actor.type != 'vehicle') {
             let walk = actorMoveDetails.walk;
             let run = actorMoveDetails.run;
             let swim = actorMoveDetails.value / 2;
+            movementIcon = "fa-shoe-prints"
             TooltipMovement += "; " + game.i18n.localize('Walk') +": " + walk + "; " + game.i18n.localize('Run') + ": " + run + "; " + game.i18n.localize('Swim') + ": " + swim;
             displayedMovement = run
         }
-        let hudMovement = $('<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas fa-shoe-prints"></i> ' + displayedMovement + '</div>');
+        let hudMovement = $('<div class="control-icon tokenhudicon left" title="' + TooltipMovement + '"><i class="fas '+ movementIcon +'"></i> ' + displayedMovement + '</div>');
         
         // Create space for Hud Extensions next to elevation icon
         let divTokenHudExt = '<div class="tokenhudext left">';
