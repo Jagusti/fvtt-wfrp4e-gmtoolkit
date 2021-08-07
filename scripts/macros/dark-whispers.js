@@ -11,18 +11,19 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoPermission'));
   }
 
-  // Only other users who have an assigned character are available to whisper to. By default only users who are currently logged in are included. 
+  //TODO: Switch to actor based selection
+  // Only users who have an assigned player character are available to whisper to. 
   let users = []
   switch (targets) { 
-  case 'all':
-      users = game.users.filter(user => !user.isSelf && !!user.character);
+    case 'all':
+      users = game.users.filter(user => (user.character?.type == 'character'));
       break;
   case 'absent':
-      users = game.users.filter(user => !user.active  && !user.isSelf && !!user.character);
+      users = game.users.filter(user => !user.active && (user.character?.type == 'character'));
       break;
   case 'present':
   default:
-     users = game.users.filter(user => user.active  && !user.isSelf && !!user.character);
+     users = game.users.filter(user => user.active && (user.character?.type == 'character'));
      break;
   }
 
@@ -31,6 +32,7 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
   }
   
   // Build list of player / characters to select via dialog
+  //TODO: Map individual Corruption values, rather than increment
   let corruptionAvailable = 0; // count to check there are characters with corruption to target
   let checkOptions = "";
   users.forEach(user => {
@@ -40,8 +42,7 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
     };
     corruptionAvailable += actorCorruption.value;
     // Make unselectable if character has no Corruption to deal with
-    let canWhisperTo = 'disabled title="No Corruption to spend on offer"';
-    if (actorCorruption.value >0 ) {canWhisperTo = "enabled"};
+    let canWhisperTo = (actorCorruption.value) ? `enabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.HasCorruption')}"` : `disabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.NoCorruption')}"`;
 
     checkOptions+=`
         <div class="form-group">

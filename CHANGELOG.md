@@ -6,8 +6,29 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
-## Version 0.6.3
+## Version 0.7.0
+- *Changed* macros to be compatible with FVTT 0.8.8 and WFRP4e 4.0.x. 
+  - Add XP and Reset Fortune. No change is needed for the End of Session Routine macro that uses these.
+  - Advantage macros (to add, reduce or clear combat advantage).
+  - Token Hud Extension display and interactions.
+  - Set Token Vision and Light. 
+- *Changed* settings to use `debouncedReload` instead of `window.location.reload`.
+- *Changed* some module settings to trigger a reload of the client so they can take immediate effect, rather than require manually reloading the game:
+  - Always show Initiative in Token Hud Extension. The setting to Enable Token Hud Extension already forces a client refresh. 
+  - Clear Advantage for all tokens
+  - Prompt for XP amount
+- *Fixed* vehicle handling in Token Hud Extension:
+  - `undefined` error for Movement: only base Movement is shown for vehicles
+  - `NaN` error: no longer attempts to display initiative or agility for vehicles
+  - Context shortcuts are disabled for vehicles
+  - Vehicle movement displays wheel icon rather than feet icon
+- *Fixed* TypeError issues when triggering skill tests via Token Hud Extension when an actor does not have the relevant skill. 
+- *Changed* Send Dark Whispers macro to offer only users with player character actors (thereby excluding vehicles, creatures and other potentially player controlled actors that do not have Corruption).
+- *Added* localisation strings for Send Dark Whispers tooltips.
+- *Updated* French translations (thanks to @McGregor777).
 
+
+## Version 0.6.3
 - *Changed* Foundry compatibility to up to 0.7.10. WFRP4e system compatibility is up to 3.6.2.  
   - This is the final release of the GM Toolkit to support FVTT 0.7.x and WFRP4e 3.x.
 - *Changed* manifest to point to latest release note for installation file and download link. 
