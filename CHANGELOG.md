@@ -24,6 +24,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Vehicle movement displays wheel icon rather than feet icon
 - *Fixed* TypeError issues when triggering skill tests via Token Hud Extension when an actor does not have the relevant skill. 
 - *Changed* Send Dark Whispers macro to offer only users with player character actors (thereby excluding vehicles, creatures and other potentially player controlled actors that do not have Corruption).
+- *Added* base macro template to support secret party tests made by the GM (such as Perception and Stealth). 
 - *Added* localisation strings for Send Dark Whispers tooltips.
 - *Updated* French translations (thanks to @McGregor777).
 
