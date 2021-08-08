@@ -110,6 +110,7 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Proposer d'enregister le journal de Conversation au lancement de la macro de Routine de Fin de session.",
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Seuls les MJ peuvent administrer les rites de fin de session!", 
+    "GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission" : "Only GMs can make secret party tests!",
 
     "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Cibles des Sombres murmures",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Définit le filtre par défaut pour sélectionner les Personnages recevant un Sombre murmure. Vous pouvez écraser ce paramètre en le définissant directement dans la macro en \"all\", \"present\" ou \"absent\".",
