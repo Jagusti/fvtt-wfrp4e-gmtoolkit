@@ -111,6 +111,7 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!", 
+    "GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission" : "Only GMs can make secret party tests!",
 
     "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Dark Whispers Targets",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Set the default filter to select characters to receive a Dark Whisper. Override this by setting a parameter in the macro for 'all', 'present' or 'absent' party members.",

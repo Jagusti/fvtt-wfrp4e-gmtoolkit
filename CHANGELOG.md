@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
 ## Version 0.7.0
+- *Added* new macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members. 
 - *Changed* macros to be compatible with FVTT 0.8.8 and WFRP4e 4.0.x. 
   - Add XP and Reset Fortune. No change is needed for the End of Session Routine macro that uses these.
   - Advantage macros (to add, reduce or clear combat advantage).
