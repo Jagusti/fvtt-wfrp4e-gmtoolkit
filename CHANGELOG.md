@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
 ## Version 0.7.0
-- *Added* new macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members. 
+- *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
 - *Changed* macros to be compatible with FVTT 0.8.8 and WFRP4e 4.0.x. 
   - Add XP and Reset Fortune. No change is needed for the End of Session Routine macro that uses these.
   - Advantage macros (to add, reduce or clear combat advantage).
@@ -25,7 +25,6 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Vehicle movement displays wheel icon rather than feet icon
 - *Fixed* TypeError issues when triggering skill tests via Token Hud Extension when an actor does not have the relevant skill. 
 - *Changed* Send Dark Whispers macro to offer only users with player character actors (thereby excluding vehicles, creatures and other potentially player controlled actors that do not have Corruption).
-- *Added* base macro template to support secret party tests made by the GM (such as Perception and Stealth). 
 - *Added* localisation strings for Send Dark Whispers tooltips.
 - *Updated* French translations (thanks to @McGregor777).
 
