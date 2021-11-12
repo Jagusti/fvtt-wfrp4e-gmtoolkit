@@ -65,8 +65,8 @@
     "GMTOOLKIT.Trait.DarkVision" : "Infravision",
     "GMTOOLKIT.Status.Corruption" : "Corruption",
 
-    "GMTOOLKIT.ResetFortune.Success" : "<p>Les points de Chance de {targetName} sont passés de {startingFortune} à {newFortune}.</p>",    
-    "GMTOOLKIT.ResetFortune.NotPC" : "<p>{targetName} n'est pas un PJ. Aucun changement apporté aux points de Chance.</p>",
+    "GMTOOLKIT.ResetFortune.Restored" : "Fortune has been restored",
+    "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
   
     "GMTOOLKIT.AddXP.Success" : "<p>Ajout de {XP} PX à {targetName}. <hr> PX total : {XPTotal} -> {newXPTotal} | PX actuels : {XPCurrent} -> {newXPCurrent}.</p>",
     "GMTOOLKIT.AddXP.NotPC" : "<p>{targetName} n'est pas un PJ. Aucun changement apporté aux PX.</p>",
