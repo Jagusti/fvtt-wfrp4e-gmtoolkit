@@ -2,12 +2,16 @@
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
     "GMTOOLKIT.Message.NoChangeMade" : "No change made.",
 
-    "GMTOOLKIT.Settings.clearAdvantage.name" : "Clear Advantage for all tokens",
-    "GMTOOLKIT.Settings.clearAdvantage.hint" : "Tracked combatants (who appear in the Combat Tracker) always have their Advantage reset to 0 when combat ends. Select an option to additionally reset Advantage for all tokens in the viewed scene, including non-combatants, at the start and/or end of combat.",
+    "GMTOOLKIT.Settings.Advantage.Clear.name" : "Clear Advantage for all tokens",
+    "GMTOOLKIT.Settings.Advantage.Clear.hint" : "Tracked combatants (who appear in the Combat Tracker) always have their Advantage reset to 0 when combat ends. Select an option to additionally reset Advantage for all tokens in the viewed scene, including non-combatants, at the start and/or end of combat.",
     "GMTOOLKIT.Settings.clearAdvantage.both" : "At both start and end of encounter (default module behaviour)",
     "GMTOOLKIT.Settings.clearAdvantage.start" : "At start of encounter only (on Begin Combat)",
     "GMTOOLKIT.Settings.clearAdvantage.end" : "At end of encounter only (on End Combat)",
     "GMTOOLKIT.Settings.clearAdvantage.never" : "Only combatants at end of encounter (default system behaviour)",
+    "GMTOOLKIT.Settings.Advantage.PersistNotices.name" : "Persist Advantage handling notifications",
+    "GMTOOLKIT.Settings.Advantage.PersistNotices.hint" : "Keep up to latest three Advantage related notices onscreen until dismissed.",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name" : "Update Advantage when Wounds are dealt",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint" : "Clear the Advantage from characters who take Wounds in an opposed test, and increase the Advantage for the character who deals the wound loss.",
 
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name" : "Enable Token Hud Extensions",
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "Make tooltips and interactions for key attributes and skills available from the hud of controlled tokens. Enabled by default.",
@@ -16,7 +20,6 @@
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} changed from {originalStatus} to {newStatus} for {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} is unchanged at {originalStatus} for {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} offered a Little Prayer to the Gods ({littlePrayerResult}).</p>",
-
   
     "GMTOOLKIT.Dialog.Apply": "Apply Changes",    
     "GMTOOLKIT.Dialog.Cancel" : "Cancel",
@@ -79,7 +82,9 @@
     "GMTOOLKIT.Advantage.Reset" : "Advantage reset from {startingAdvantage} to 0 for {actorName}.", 
     "GMTOOLKIT.Advantage.Cleared" : "Advantage has been cleared for all tokens in scene {sceneName}.", 
     "GMTOOLKIT.Combat.Started" : "New combat encounter has begun.", 
-    "GMTOOLKIT.Combat.Ended" : "Combat encounter has ended.", 
+    "GMTOOLKIT.Combat.Ended" : "Combat encounter has ended.",
+    "GMTOOLKIT.Advantage.Automation.OpposedDamage" : "{actorName} lost an opposed test against {attackerName}, suffering {totalWoundLoss} Wounds. Updating Advantage.",
+    "GMTOOLKIT.Advantage.NotInCombat" : "{actorName} is not in an active encounter in scene {sceneName}. No change to Advantage is being made.", 
 
     "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in scene {sceneName}.",
     "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in scene {sceneName}.", 

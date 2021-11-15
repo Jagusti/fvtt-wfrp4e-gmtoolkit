@@ -1,12 +1,17 @@
 {  
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Un évènement inattendu est survenu. Aucun de changement effectué.",
+    "GMTOOLKIT.Message.NoChangeMade" : "Aucun de changement effectué.",
 
-    "GMTOOLKIT.Settings.clearAdvantage.name" : "Supprimer les avantages pour tous les Pions",
-    "GMTOOLKIT.Settings.clearAdvantage.hint" : "Les points d'Avantage des combattants suivis (présents sur la \"Piste de combat') sont toujours remis à 0 à la fin du combat. Sélectionnez une option complémentaire pour mettre à 0 les points d'Avantage de tous les Pions dans la Scène, y compris les non-combattants, au début et à la fin d'un combat.",
+    "GMTOOLKIT.Settings.Advantage.Clear.name" : "Supprimer les avantages pour tous les Pions",
+    "GMTOOLKIT.Settings.Advantage.Clear.hint" : "Les points d'Avantage des combattants suivis (présents sur la \"Piste de combat') sont toujours remis à 0 à la fin du combat. Sélectionnez une option complémentaire pour mettre à 0 les points d'Avantage de tous les Pions dans la Scène, y compris les non-combattants, au début et à la fin d'un combat.",
     "GMTOOLKIT.Settings.clearAdvantage.both" : "Au début et à la fin du combat (par défaut)",
     "GMTOOLKIT.Settings.clearAdvantage.start" : "Au début du combat seulement",
     "GMTOOLKIT.Settings.clearAdvantage.end" : "A la fin du combat seulement",
     "GMTOOLKIT.Settings.clearAdvantage.never" : "Seulement les combattants à la fin du combat (par défaut du système)",
+    "GMTOOLKIT.Settings.Advantage.PersistNotices.name" : "Persist Advantage handling notifications",
+    "GMTOOLKIT.Settings.Advantage.PersistNotices.hint" : "Keep up to latest three Advantage related notices onscreen until dismissed.",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name" : "Update Advantage when Wounds are dealt",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint" : "Clear the Advantage from characters who take Wounds in an opposed test, and increase the Advantage for the character who deals the wound loss.",
 
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name" : "Activer les Extensions de l'ATH de Pion",
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "Crée des info-bulles et des interactions pour les attributs et les Compétences clés disponibles grâce à l'ATH des Pions contrôlés. Activé par défaut.",
@@ -27,7 +32,7 @@
     "GMTOOLKIT.Dialog.SetVisionLight.VisionType" : "Type de vision",
     "GMTOOLKIT.Dialog.SetVisionLight.LightSource" : "Source d'éclairage",
   
-    "GMTOOLKIT.LightSource.None" : "Aucun", 
+    "GMTOOLKIT.LightSource.NoLight" : "Aucun", 
     "GMTOOLKIT.LightSource.Matches" : "Allumettes (5 m)",
     "GMTOOLKIT.LightSource.Candle" : "Bougie (10 m)",
     "GMTOOLKIT.LightSource.DavrichLamp" : "Lampe Davrich (10 m)",
@@ -43,7 +48,6 @@
     "GMTOOLKIT.LightSource.Pha" : "Protection de Pha (Bonus de FM m)",
     "GMTOOLKIT.LightSource.Soulfire" : "Feu de l'âme (Incantation Imparfaite) (15 m)",
 
-    "GMTOOLKIT.Vision.NaturalSight" : "Vue naturelle",
     "GMTOOLKIT.Vision.Normal" : "Normal",
     "GMTOOLKIT.Vision.None" : "Acune",
     "GMTOOLKIT.Vision.Night" : "Vision nocturne (Talent, Trait)",
@@ -78,7 +82,9 @@
     "GMTOOLKIT.Advantage.Reset" : "Points d'Avantage réduits de {startingAdvantage} à 0 pour {actorName}.",
     "GMTOOLKIT.Advantage.Cleared" : "Les points d'Avantage de tous les Pions de la Scène {sceneName} ont été remis à zéro.",
     "GMTOOLKIT.Combat.Started" : "Un nouveau combat a démarré.", 
-    "GMTOOLKIT.Combat.Ended" : "Le combat s'est terminé.", 
+    "GMTOOLKIT.Combat.Ended" : "Le combat s'est terminé.",
+    "GMTOOLKIT.Advantage.Automation.OpposedDamage" : "{actorName} lost an opposed test against {attackerName}, suffering {totalWoundLoss} Wounds. Updating Advantage.", 
+    "GMTOOLKIT.Advantage.NotInCombat" : "{actorName} is not in an active encounter in scene {sceneName}. No change to Advantage is being made.", 
 
     "GMTOOLKIT.Scene.TokenNotGlobal" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
     "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Pions est déssactivé et l'Illumination globale est activé dans la Scène {sceneName}.",

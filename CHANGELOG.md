@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Changed* Reset Fortune macro to not require tokens. All player characters have their Fortune points restored when the macro is run.
+- *Changed* Advantage scripts to handle non-token characters. 
+- *Added* option to automate changes to Advantage when a character deals or is dealt combat damage in opposed contests. 
+- *Added* option for sticky notifications for Advantage updates. This is introduced to provide better visibility of automated changes to Advantage, so that any related amendnents are not missed. 
+  - The option is disabled by default. Foundry supports a limit of 3 notification popups being displayed, so these should be cleared down each turn. Other notifications are typically queued and will appear after the on-screen popus are dismissed.
+  - When enabled, Advantage related info popups will persist until manually dismissed. 
+  - A copy of the notification is also kept in the console session. These are lost when the application or browser is refreshed or shut down, or the console log is cleared. 
+- *Added* localisation support for new Advantage messaging.
+- *Added* check to ensure combat is active when using the Increase or Reduce Advantage macros. 
+  - No change is made if the selected character is not in an encounter in the viewed scene.
+  - The Clear Advantage macro can still be used to reset advantage for a token if it is outside of combat.
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
