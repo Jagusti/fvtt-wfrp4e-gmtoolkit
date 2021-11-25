@@ -13,7 +13,7 @@
 		"ko-fi": "jagusti"
 	  }
 	],
-	"systems": ["wfrp4e"],
+	"system": ["wfrp4e"],
 	"scripts": [
 		"/scripts/token-hud-extension.js",
 		"/scripts/advantage.js",
