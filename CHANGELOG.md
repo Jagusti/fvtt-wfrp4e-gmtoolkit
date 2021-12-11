@@ -16,6 +16,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* check to ensure combat is active when using the Increase or Reduce Advantage macros. 
   - No change is made if the selected character is not in an encounter in the viewed scene.
   - The Clear Advantage macro can still be used to reset advantage for a token if it is outside of combat.
+- *Changed* the automatic clearing of Advantage to happen when tokens are added or removed from a combat / encounter, rather than when a combat encounter is added or begun. This now allows for multiple combats in a scene without resetting Advantage when a new one is initiated. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 

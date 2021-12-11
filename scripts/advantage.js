@@ -1,8 +1,13 @@
-async function updateAdvantage(character, adjustment) {    
+/* 
+character   :   Token, Actor. Combatant is passed in as Token.
+adjustment  :   increase (+1), reduce (=0), clear (-1)
+context     :   macro, wfrp4e:applyDamage, createCombatant, createActiveEffect
+ */
+async function updateAdvantage(character, adjustment, context = "macro") {    
     // Guards
     if (character === undefined) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
     if (character?.document?.documentName == "Token") {
-        if (canvas.tokens.controlled.length != 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
+        if (context == "macro" && canvas.tokens.controlled.length != 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
         if (!character.inCombat && (adjustment == "increase" || adjustment == "reduce")) return ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: character.name, sceneName : game.scenes.viewed.name})}`);
     }
 
@@ -86,12 +91,15 @@ async function adjustAdvantage (character, advantage, adjustment) {
 async function reportAdvantageUpdate(updatedAdvantage, character, resourceBase) {
     switch (updatedAdvantage.outcome) {
         case "increased":
+            // TODO: add context to notification (eg, win opposed test)
             uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
             break;
-        case "reduced":
+            case "reduced":
+            // TODO: add context to notification (eg, not gained advantage)
             uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
             break;
         case "reset":
+            // TODO: add context to notification (eg, added to or removed from combat, suffer condition, lose opposed test)
             uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
             break;
         case "min":
@@ -119,22 +127,40 @@ async function clearAdvantage(context) {
             if (token.hasActiveHUD) {canvas.hud.token.render(true);}
         }        
         let uiNotice = String()
-        if (context == "start") (uiNotice = game.i18n.format("GMTOOLKIT.Combat.Started")) 
+        // if (context == "start") (uiNotice = game.i18n.format("GMTOOLKIT.Combat.Started")) 
         if (context == "end") (uiNotice = game.i18n.format("GMTOOLKIT.Combat.Ended")) 
         uiNotice += ` ${game.i18n.format("GMTOOLKIT.Advantage.Cleared",{sceneName: game.scenes.viewed.name} )}`
         ui.notifications.notify(message = uiNotice, type = "info", options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")});
     }
 }
 
-Hooks.on("preUpdateCombat", function() {
-    if (game.combat.round == 0) clearAdvantage("start")
-})
+
+Hooks.on("createCombatant", function(combatant) {
+    // TODO: update START option to take effect when character is added, not when encounter is created or combat begins
+    // TODO: add "added to combat" context to notification
+    let settingClearAdvantage = String(game.settings.get("wfrp4e-gm-toolkit", "clearAdvantage"))    
+    if (settingClearAdvantage == "always" || settingClearAdvantage == "start") {
+        token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        updateAdvantage(token, "clear", "createCombatant");
+    } 
+});
+
+Hooks.on("deleteCombatant", function(combatant) {
+    // TODO: update ALWAYS option to include deleting combatant
+    // TODO: add "removed from combat" context to notification
+    // reset advantage when a character is removed from a combat, even if the combat has not been ended
+    if (String(game.settings.get("wfrp4e-gm-toolkit", "clearAdvantage")) == "always") {
+        token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        updateAdvantage(token, "clear", "deleteCombatant");
+    } 
+});
 
 Hooks.on("preDeleteCombat", function() {
     clearAdvantage("end");
-});
+}); 
  
 Hooks.once("init", function() {	
+    // TODO: Adjust UI control / options to align with updated handling of when to clear advantage 
 	game.settings.register("wfrp4e-gm-toolkit", "clearAdvantage", {
 		name: "GMTOOLKIT.Settings.Advantage.Clear.name",
 		hint: "GMTOOLKIT.Settings.Advantage.Clear.hint",
@@ -164,7 +190,7 @@ Hooks.once("init", function() {
 		hint: "GMTOOLKIT.Settings.Advantage.PersistNotices.hint",
 		scope: "world",
 		config: true,
-		default: true,
+		default: false,
 		type: Boolean,
         onChange: debouncedReload 
 	});
@@ -183,12 +209,12 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     // Clear advantage on actor that has taken damage
     var character = scriptArgs.actor.data.token
     console.log(character.document.documentName)
-    await updateAdvantage(scriptArgs.actor.data.token,"clear");
+    await updateAdvantage(scriptArgs.actor.data.token,"clear","wfrp4e:applyDamage" );
 
     // Increase advantage on actor that dealt damage
     var character = scriptArgs.attacker.data.token
     console.log(character.document.documentName)
-    await updateAdvantage(scriptArgs.attacker.data.token,"increase");
+    await updateAdvantage(scriptArgs.attacker.data.token,"increase","wfrp4e:applyDamage");
 
     console.log(`GM Toolkit (WFRP4e) | Automate Damage Advantage: Finished.`)
 });
