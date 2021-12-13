@@ -14,11 +14,8 @@
 	  }
 	],
 	"system": ["wfrp4e"],
-	"scripts": [
-		"/scripts/token-hud-extension.js",
-		"/scripts/advantage.js",
-		"/scripts/gm-toolkit.js"
-	],
+	"esmodules": ["gm-toolkit.mjs"],
+	"scripts": [],
 	"styles": ["/css/gmtoolkit.css"],
 	"packs": [
 		{
