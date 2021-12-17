@@ -14,7 +14,7 @@
 	  }
 	],
 	"system": ["wfrp4e"],
-	"esmodules": ["gm-toolkit.mjs"],
+	"esmodules": ["wfrp4e-gm-toolkit.mjs"],
 	"scripts": [],
 	"styles": ["/css/gmtoolkit.css"],
 	"packs": [

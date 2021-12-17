@@ -1,20 +1,22 @@
 // Import Modules
-import GMToolkit from './modules/classes/gm-toolkit.mjs'
-import GMToolkitSettings from './modules/classes/gm-toolkit-settings.mjs'
-import TokenHudExtension from './modules/classes/token-hud-extension.mjs'
-import DarkWhispers from './modules/classes/dark-whispers.mjs'
-import Advantage from './modules/classes/advantage.mjs'
+import GMToolkit from './modules/gm-toolkit.mjs'
+import GMToolkitSettings from './modules/gm-toolkit-settings.mjs'
+import TokenHudExtension from './modules/token-hud-extension.mjs'
+import DarkWhispers from './modules/dark-whispers.mjs'
+import Advantage from './modules/advantage.mjs'
 
 /**
- * Register our module's debug flag with developer mode's custom hook
+ * Register module debug flag with Developer Mode custom hook
  */
  Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
     registerPackageDebugFlag(GMToolkit.MODULE_ID);
   });
 
-// Carry out initialisation routines
+/** 
+ * Carry out initialisation routines
+ */
 Hooks.once("init", function () {
-    console.log(`${GMToolkit.MODULE_ID} | Initialising ${GMToolkit.MODULE_NAME}.`);
+    GMToolkit.log(false ,`Initialising ${GMToolkit.MODULE_NAME}.`);
     GMToolkitSettings.register();
     game.gmtoolkit = {
         advantage : Advantage
@@ -23,10 +25,13 @@ Hooks.once("init", function () {
     // game.gmtoolkit.advantage.updateAdvantage(token,`increase`);
 });
 
-
+/** 
+ * Signal end of initialisation routines
+ */
 Hooks.once("ready", function () {
-    GMToolkit.log(false ,`Ready.`);
+    GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
     });
+
 
 // ---- Set up Hooks ----
 // Activate Dark Whisper chat listeners
