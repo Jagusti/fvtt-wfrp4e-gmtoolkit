@@ -17,6 +17,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - No change is made if the selected character is not in an encounter in the viewed scene.
   - The Clear Advantage macro can still be used to reset advantage for a token if it is outside of combat.
 - *Changed* the automatic clearing of Advantage to happen when tokens are added or removed from a combat / encounter, rather than when a combat encounter is added or begun. This now allows for multiple combats in a scene without resetting Advantage when a new one is initiated. 
+- *Changed* existing scripts into ES modules, refactoring extensively across the application.
+- *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 

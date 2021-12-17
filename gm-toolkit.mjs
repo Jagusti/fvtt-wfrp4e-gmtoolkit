@@ -5,6 +5,13 @@ import TokenHudExtension from './modules/classes/token-hud-extension.mjs'
 import DarkWhispers from './modules/classes/dark-whispers.mjs'
 import Advantage from './modules/classes/advantage.mjs'
 
+/**
+ * Register our module's debug flag with developer mode's custom hook
+ */
+ Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
+    registerPackageDebugFlag(GMToolkit.MODULE_ID);
+  });
+
 // Carry out initialisation routines
 Hooks.once("init", function () {
     console.log(`${GMToolkit.MODULE_ID} | Initialising ${GMToolkit.MODULE_NAME}.`);
@@ -16,6 +23,10 @@ Hooks.once("init", function () {
     // game.gmtoolkit.advantage.updateAdvantage(token,`increase`);
 });
 
+
+Hooks.once("ready", function () {
+    GMToolkit.log(false ,`Ready.`);
+    });
 
 // ---- Set up Hooks ----
 // Activate Dark Whisper chat listeners
