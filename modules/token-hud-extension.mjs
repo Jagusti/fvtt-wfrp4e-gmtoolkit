@@ -11,7 +11,7 @@ export default class TokenHudExtension {
 
         const wfrp4eContent = {} 
         wfrp4eContent.core = game.modules.get("wfrp4e-core")?.active || false;
-        // console.log('GM Toolkit (WFRP4e) | ' + wfrp4eContent.core)
+        GMToolkit.log(false, wfrp4eContent.core)
 
         this.addMovementTokenTip(app, html, data, actor)
         this.addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent)
@@ -45,7 +45,7 @@ export default class TokenHudExtension {
         // Add interactions for Movement
         hudMovement.find('i').dblclick(async (ev) => {
             if (actor.type == 'vehicle') return;
-            // console.log("GM Toolkit (WFRP4e) | Movement hud extension double-clicked.")
+            GMToolkit.log(false, `Movement hud extension double-clicked.`)
             if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
                 let skill = (hasSkill(actor,"Swim"))
                 if (skill != null) {
@@ -111,7 +111,7 @@ export default class TokenHudExtension {
                 ev.stopPropagation();
                 return;
             }
-            console.log("GM Toolkit (WFRP4e) | " + "Movement Button Clicked")
+            GMToolkit.log(false, `Movement Button Clicked`)
         }) 
 
     }
@@ -138,7 +138,7 @@ export default class TokenHudExtension {
 
        // Add interactions for Initiative and Agility
         hudInitiative.find('i').dblclick(async (ev) => {
-            // console.log("GM Toolkit (WFRP4e) | Initiative hud extension double-clicked.")
+            GMToolkit.log(false, `Initiative hud extension double-clicked.`)
             if (ev.ctrlKey && ev.shiftKey) {
                 let skill = (hasSkill(actor,"Track"))
                 if (skill != null) {
@@ -199,24 +199,24 @@ export default class TokenHudExtension {
 
             // Add interactions for Resolve and Resilience
             hudResolve.find('i').contextmenu(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Resolve hud extension right-clicked.")
+                GMToolkit.log(false, `Resolve hud extension right-clicked.`)
                 if (ev.ctrlKey) {
                     let result = await adjustStatus(actor, "Resolve", -1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
                     let result = await adjustStatus(actor, "Resolve", 1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
             })
             hudResolve.find('i').dblclick(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Resolve hud extension double-clicked.")
+                GMToolkit.log(false, `Resolve hud extension double-clicked.`)
                 if (ev.ctrlKey) {
                     let skill = (hasSkill(actor,"Cool"))
                     if (skill != null) {
@@ -251,24 +251,24 @@ export default class TokenHudExtension {
             html.find(`.control-icon${hudDataConfig}`).before(hudFortune); // Add Fortune token tip
             // Add interactions for Fortune and Fate
             hudFortune.find('i').contextmenu(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Fortune hud extension right-clicked.")
+                GMToolkit.log(false, `Fortune hud extension right-clicked.`)
                 if (ev.ctrlKey) {
                     let result = await adjustStatus(actor, "Fortune", -1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
                     let result = await adjustStatus(actor, "Fortune", 1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
             })
             hudFortune.find('i').dblclick(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Fortune hud extension double-clicked.")
+                GMToolkit.log(false, `Fortune hud extension double-clicked.`)
                 if (ev.shiftKey && ev.altKey) {
                     let skill = (hasSkill(actor,"Charm Animal"))
                     if (skill != null) {
@@ -319,42 +319,42 @@ export default class TokenHudExtension {
 
             // Add interactions for Corruption and Sin           
             hudCorruption.find('i').contextmenu(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension right-clicked.")
+                GMToolkit.log(false,`Corruption hud extension right-clicked.`)
                 if (ev.ctrlKey && ev.altKey) {
                     let result = await adjustStatus(actor, "Sin", -1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey && ev.altKey) {
                     let result = await adjustStatus(actor, "Sin", 1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey) {
                     let result = await adjustStatus(actor, "Corruption", -1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.shiftKey) {
                     let result = await adjustStatus(actor, "Corruption", 1);
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
             })            
             hudCorruption.find('i').dblclick(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Corruption hud extension double-clicked.")
+                GMToolkit.log(false, `Corruption hud extension double-clicked.`)
                 if (ev.ctrlKey && ev.shiftKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("mutatemental");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    console.log(`${GMToolkit.MODULE_NAME} | ${actor.name} spawned a mental mutation.`) 
+                    GMToolkit.log(false, `${actor.name} spawned a mental mutation.`) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
@@ -364,7 +364,7 @@ export default class TokenHudExtension {
                     littlePrayer.roll();
                     let result = game.i18n.format("GMTOOLKIT.TokenHudExtension.LittlePrayerResult",{actorName: actor.name, littlePrayerResult: littlePrayer.result});
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "gmroll", true));
-                    console.log(`${GMToolkit.MODULE_NAME} | ${result}`) 
+                    GMToolkit.log(false, result) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
@@ -372,7 +372,7 @@ export default class TokenHudExtension {
                 if (ev.shiftKey && ev.altKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("wrath");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    console.log(`${GMToolkit.MODULE_NAME} | ${actor.name} incurred the Wrath of the Gods.`) 
+                    GMToolkit.log(false, `${actor.name} incurred the Wrath of the Gods.`) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
@@ -380,7 +380,7 @@ export default class TokenHudExtension {
                 if (ev.ctrlKey && wfrp4eContent.core) {
                     let result = game.wfrp4e.tables.formatChatRoll("mutatephys");
                     ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    console.log(`${GMToolkit.MODULE_NAME} | ${actor.name} spawned a physical mutation.`) 
+                    GMToolkit.log(false, `${actor.name} spawned a physical mutation.`) 
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
@@ -402,7 +402,7 @@ export default class TokenHudExtension {
 
             // Add interactions for Perception and Intuition
             hudPerception.find('i').dblclick(async (ev) => {
-                // console.log("GM Toolkit (WFRP4e) | Perception hud extension double-clicked.") 
+                GMToolkit.log(false, `Perception hud extension double-clicked.`) 
                 if (ev.altKey) {
                     let skill = (hasSkill(actor,"Intuition"))
                     if (skill != null) {
@@ -458,9 +458,9 @@ Hooks.once("init", () => {
 Hooks.on("ready", () => {
     if (game.settings.get(GMToolkit.MODULE_ID, "enableTokenHudExtensions")) {  
         Hooks.on('renderTokenHUD', (app, html, data) => { TokenHudExtension.addTokenHudExtensions(app, html, data) });
-        console.log(`${GMToolkit.MODULE_NAME} | Token Hud Extensions loaded.`);
+        GMToolkit.log(false, `Token Hud Extensions loaded.`);
     }    else {
-        console.log(`${GMToolkit.MODULE_NAME} | Token Hud Extensions not loaded.`);
+        GMToolkit.log(false, `Token Hud Extensions not loaded.`);
     }
 
 });

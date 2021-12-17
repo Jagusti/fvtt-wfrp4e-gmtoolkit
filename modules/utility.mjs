@@ -11,10 +11,10 @@ export function hasSkill (actor, targetSkill) {
     let skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
     if (skill == null) {
         let message = `${actor.name} does not have the ${targetSkill} skill. Aborting skill test. `;
-        console.log(`${GMToolkit.MODULE_NAME} | ${message}`)
+        GMToolkit.log(false, message)
         ui.notifications.error(message) 
     } else {
-        console.log(`${GMToolkit.MODULE_NAME} | ${actor.name} has the ${game.i18n.localize(targetSkill)} skill.`) 
+        GMToolkit.log(false, `${actor.name} has the ${game.i18n.localize(targetSkill)} skill.`) 
     }
     return (skill);
 }

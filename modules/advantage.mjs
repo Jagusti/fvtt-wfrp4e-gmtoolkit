@@ -17,12 +17,12 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, createActiveEffect
         }
 
         // Clear console if token. 
-        console.log(character); console.log(`${character.document.documentName} ${character.name}: ${adjustment}`)
+        GMToolkit.log(false, character); GMToolkit.log(false,`${character.document.documentName} ${character.name}: ${adjustment}`)
 
         // Find current and max Advantage for token or actor. 
         let resourceBase = []
         resourceBase = await this.getAdvantage(character, resourceBase, adjustment);
-        console.log(resourceBase)
+        GMToolkit.log(false,resourceBase)
         
         // Make the adjustment to the token actor and capture the outcome
         let updatedAdvantage = await this.adjustAdvantage(character, resourceBase, adjustment);
@@ -51,7 +51,7 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, createActiveEffect
     }
 
     static async adjustAdvantage (character, advantage, adjustment) {
-        console.log(`${GMToolkit.MODULE_NAME} | Attempting to ${adjustment} Advantage for ${character.name} from ${advantage.current}`)
+        GMToolkit.log(false, `Attempting to ${adjustment} Advantage for ${character.name} from ${advantage.current}`)
         let outcome = ""
 
         switch (adjustment) {
@@ -128,7 +128,7 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, createActiveEffect
 
         let message = uiNotice
         ui.notifications.notify(message, type, options) 
-        console.log(`${GMToolkit.MODULE_NAME} | ${uiNotice}`);
+        GMToolkit.log(true, uiNotice);
         // Force refresh the token hud if it is visible
         if (character.hasActiveHUD) {await canvas.hud.token.render(true);}
     }
@@ -215,28 +215,28 @@ Hooks.once("init", function() {
 });
 
 Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {  
-    // console.log(scriptArgs)    
+    GMToolkit.log(false, scriptArgs)    
     let automateDamageAdvantage = String(game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")) 
-    console.log(`${GMToolkit.MODULE_NAME} | Automate Damage Advantage: ${automateDamageAdvantage}`) 
+    GMToolkit.log(false, `Automate Damage Advantage: ${automateDamageAdvantage}`) 
     if (!automateDamageAdvantage) return
 
-    let uiNotice = ` ${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedDamage",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
+    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedDamage",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
     let message = uiNotice
     let type = "info"
     let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
 
     ui.notifications.notify(message, type, options) 
-    console.log(`${GMToolkit.MODULE_NAME} | ${uiNotice}`)
+    GMToolkit.log(true,uiNotice)
 
     // Clear advantage on actor that has taken damage
     var character = scriptArgs.actor.data.token
-    console.log(character.document.documentName)
+    GMToolkit.log(false, character.document.documentName)
     await Advantage.updateAdvantage(scriptArgs.actor.data.token,"clear","wfrp4e:applyDamage" );
 
     // Increase advantage on actor that dealt damage
     var character = scriptArgs.attacker.data.token
-    console.log(character.document.documentName)
+    GMToolkit.log(false, character.document.documentName)
     await Advantage.updateAdvantage(scriptArgs.attacker.data.token,"increase","wfrp4e:applyDamage");
 
-    console.log(`${GMToolkit.MODULE_NAME} | Automate Damage Advantage: Finished.`)
+    GMToolkit.log(false,`Automate Damage Advantage: Finished.`)
 });

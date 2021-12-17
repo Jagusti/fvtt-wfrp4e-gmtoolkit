@@ -43,8 +43,7 @@ Hooks.on('renderChatLog', (log, html, data) => {
 // Disable movement on landing page scene
 // TODO: Add world setting for landing page scene
 /* Hooks.on("preUpdateToken", (token, change) => {
-	// console.log(token.data.x, token.data.y)
-	// console.log(change?.x, change?.y)
+	GMToolkit.log(false, `${token.data.x} -> ${change?.x}, ${token.data.y} -> ${change?.y}`)
 	if (!(game.user.isGM) && game.canvas.scene.name == "Scene") { //TODO: replace Scene name with configured landing page scene ID
 		if (change?.x) {change.x = token.data.x}
 		if (change?.y) {change.y = token.data.y}
