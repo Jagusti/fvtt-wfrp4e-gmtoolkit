@@ -14,7 +14,7 @@ export default class GMToolkit {
         const shouldLog = force || game.modules.get("_dev-mode")?.api?.getPackageDebugValue(this.MODULE_ID);
     
         if (shouldLog) {
-          console.log(this.MODULE_ID, "|", ...args);
+          console.log("%c%s%c%s%s", "color: black; background: orange;", this.MODULE_ID, "color: unset; background: unset;" , " | ",  ...args);
         }
       }
 
