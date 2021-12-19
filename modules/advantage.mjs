@@ -1,5 +1,5 @@
-import GMToolkit from './gm-toolkit.mjs'
-import GMToolkitSettings from './gm-toolkit-settings.mjs'
+import GMToolkit from "./gm-toolkit.mjs";
+import GMToolkitSettings from "./gm-toolkit-settings.mjs";
 
 export default class Advantage {
 

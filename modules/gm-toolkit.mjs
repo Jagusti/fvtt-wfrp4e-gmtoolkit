@@ -1,8 +1,8 @@
 export default class GMToolkit {
 
-    static MODULE_ID = 'wfrp4e-gm-toolkit';
-    static MODULE_NAME = 'GM Toolkit (WFRP4e)';
-    static MODULE_ABBREV = 'GMTOOLKIT';
+    static MODULE_ID = "wfrp4e-gm-toolkit";
+    static MODULE_NAME = "GM Toolkit (WFRP4e)";
+    static MODULE_ABBREV = "GMTOOLKIT";
     
     /**
      * A small helper function which leverages developer mode flags to gate debug logs.
@@ -11,10 +11,10 @@ export default class GMToolkit {
      * @param  {...any} args - what to log
      */
     static log(force, ...args) {  
-        const shouldLog = force || game.modules.get('_dev-mode')?.api?.getPackageDebugValue(this.MODULE_ID);
+        const shouldLog = force || game.modules.get("_dev-mode")?.api?.getPackageDebugValue(this.MODULE_ID);
     
         if (shouldLog) {
-          console.log(this.MODULE_ID, '|', ...args);
+          console.log(this.MODULE_ID, "|", ...args);
         }
       }
 

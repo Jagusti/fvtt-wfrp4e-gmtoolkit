@@ -1,4 +1,4 @@
-import GMToolkit from './gm-toolkit.mjs'
+import GMToolkit from "./gm-toolkit.mjs";
 
 /** 
  * Returns whether an actor has the skill to be tested.
