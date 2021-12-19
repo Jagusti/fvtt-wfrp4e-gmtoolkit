@@ -33,20 +33,4 @@ Hooks.once("ready", function () {
     });
 
 
-// ---- Set up Hooks ----
-// Activate Dark Whisper chat listeners
-Hooks.on("renderChatLog", (log, html, data) => {
-    DarkWhispers.chatListeners(html)  
-});
-
-
-// Disable movement on landing page scene
-// TODO: Add world setting for landing page scene
-/* Hooks.on("preUpdateToken", (token, change) => {
-	GMToolkit.log(false, `${token.data.x} -> ${change?.x}, ${token.data.y} -> ${change?.y}`)
-	if (!(game.user.isGM) && game.canvas.scene.name == "Scene") { //TODO: replace Scene name with configured landing page scene ID
-		if (change?.x) {change.x = token.data.x}
-		if (change?.y) {change.y = token.data.y}
-	}
-  }); */
 

@@ -42,3 +42,10 @@ export default class DarkWhispers {
     }; // End of chatListeners    
 
 }
+
+
+// ---- Set up Hooks ----
+// Activate Dark Whisper chat listeners
+Hooks.on("renderChatLog", (log, html, data) => {
+    DarkWhispers.chatListeners(html)  
+});
