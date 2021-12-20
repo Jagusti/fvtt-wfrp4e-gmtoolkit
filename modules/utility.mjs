@@ -3,9 +3,10 @@ import GMToolkit from "./gm-toolkit.mjs";
 /** 
  * Returns whether an actor has the skill to be tested.
  * @param {Object} actor 
- * @param {String} targetSkill - Name of skill to be tested.
- * @return {Object} The skill object to be tested.
+ * @param {String} targetSkill  :   Name of skill to be tested.
+ * @return {Object} skill       :   The skill object to be tested.
 **/ 
+// TODO: Review notifications, maybe optionally pass these out to a notification handler
 export function hasSkill (actor, targetSkill) {
     // Match exact skill only
     let skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
@@ -20,89 +21,43 @@ export function hasSkill (actor, targetSkill) {
 }
 
 /** 
- * Increase or reduce the status value from the Token Hud
+ * Increase or reduce the status value. Re-render the Token Hud is shown.
  * @param {Object} actor        
- * @param {String} status - Characteristic to be adjusted
- * @param {Number} [1|-1] - increase or decrease value for status
+ * @param {String} status   :   Status characteristic to be adjusted
+ * @param {Number} change   :   Amount to increase or decrease status value. Typically 1 or-1.
+ * @return {String} result  :   Message confirming outcome of adjustment
 **/ 
+// TODO: Review notifications, maybe optionally pass these out to a notification handler, independent of Token Hud Extension
 export async function adjustStatus (actor, status, change) {
-    let originalStatus = Number();
+    let originalStatus = Number(actor.data.data.status[status.toLowerCase()].value);
     let newStatus = Number();
+    let maxStatus = getMaxStatus(actor, status);
     let result = ""
-   
-    switch (status)
+
+    switch (status.toLowerCase())
     {
-        case "Resolve":
-            originalStatus = actor.data.data.status.resolve.value
-            if (Number(change) < 0) {
-                newStatus = Math.max((originalStatus + Number(change)),0)
-            } else {
-                let item = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.StrongMinded") )
-                let advStrongMinded = Number();
-                if(item == undefined || item.data.data.advances.value < 1) {
-                    advStrongMinded = 0;
-                    } else { 
-                        for (let item of actor.items)
-                            {
-                            if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.StrongMinded"))
-                                {
-                                    advStrongMinded += item.data.data.advances.value;
-                                }
-                            }
-                    }
-                let maxStatus = actor.data.data.status.resilience.value + advStrongMinded
-                newStatus = Math.min((originalStatus + Number(change)),maxStatus)
-            }
+        case "resolve":
+            (Number(change) < 0) ? newStatus = Math.max((originalStatus + Number(change)),0) : newStatus = Math.min((originalStatus + Number(change)),maxStatus)
             await actor.update({
                 "data.status.resolve.value": newStatus
             })
             break;    
-        case "Sin":
-            originalStatus = actor.data.data.status.sin.value
-            if (Number(change) < 0) {
-                newStatus = Math.max((originalStatus + Number(change)),0);
-            } else {
-                newStatus = Number(originalStatus + Number(change));
-            }
+        case "sin":
+            newStatus = Math.max((originalStatus + Number(change)),0)
             await actor.update({
                 "data.status.sin.value": newStatus
             })
             break;
-        case "Corruption":
-            originalStatus = actor.data.data.status.corruption.value
-            if (Number(change) < 0) {
-                newStatus = Math.max((originalStatus + Number(change)),0)
-            } else {
-                    let maxStatus = actor.data.data.status.corruption.max
-                    newStatus = Number(originalStatus + Number(change))
-                    // TODO: Require Challenging Endurance Test (WFRP p183) if max Corruption threshold is exceeded
-                    // if (newStatus > maxStatus) ...
-                }
+        case "corruption":
+            newStatus = Math.max((originalStatus + Number(change)),0)
             await actor.update({
                 "data.status.corruption.value": newStatus
             })
+            // TODO: Prompt for Challenging Endurance Test (WFRP p183) if max Corruption threshold is exceeded
+            // if (newStatus > maxStatus) ...
             break;
-        case "Fortune":
-            originalStatus = actor.data.data.status.fortune.value
-            if (Number(change) < 0) {
-                newStatus = Math.max((originalStatus + Number(change)),0)
-            } else {
-                    let item = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
-                    let advLuck = Number();
-                    if(item == undefined || item.data.data.advances.value < 1) {
-                        advLuck = 0;
-                        } else { 
-                            for (let item of actor.items)
-                                {
-                                if (item.type == "talent" && item.name == game.i18n.localize("GMTOOLKIT.Talent.Luck"))
-                                    {
-                                        advLuck += item.data.data.advances.value;
-                                    }
-                                }
-                        }
-                    let maxStatus = actor.data.data.status.fate.value + advLuck
-                    newStatus = Math.min((originalStatus + Number(change)),maxStatus)
-                }
+        case "fortune":
+            (Number(change) < 0) ? newStatus = Math.max((originalStatus + Number(change)),0) : newStatus = Math.min((originalStatus + Number(change)),maxStatus)
             await actor.update({
                 "data.status.fortune.value": newStatus
             })
@@ -121,3 +76,59 @@ export async function adjustStatus (actor, status, change) {
     canvas.hud.token.render();
     return(result)
 }  
+
+
+/** 
+ * Returns the calculated maximum value for different Status values. 
+ * @param {Object} actor        
+ * @param {String} status       Resolve, Fortune, Corruption. Other status options passed will return 0. 
+ * @return {Number} maxStatus   The skill object to be tested.
+**/ 
+function getMaxStatus(actor,status) {
+    let maxStatus = 0
+    let talent = []
+
+    switch (status.toLowerCase())
+    {
+        case "resolve":
+            talent = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.StrongMinded") )
+            maxStatus = actor.data.data.status.fate.value + statusBoosts(talent);
+            break;  
+        case "corruption":
+            if (actor.data.flags.autoCalcCorruption) {
+                maxStatus = actor.data.data.status.corruption.max
+            } else {
+                talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.PS") )
+                maxStatus = actor.data.data.characteristics.t.bonus + actor.data.data.characteristics.wp.bonus + statusBoosts(talent);
+            }
+            break;
+        case "fortune":
+            talent = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
+            maxStatus = actor.data.data.status.fate.value + statusBoosts(talent);
+            break;     
+    }
+
+return(maxStatus)
+
+/** 
+ * Internal function to getMaxStatus(). 
+ * Tallies the number of advances in a talent the actor has, across all owned item instances of the talent. 
+ * @param {Object} talent        
+ * @return {Number} talentAdvances  
+**/ 
+    function statusBoosts(talent) {
+        console.log(talent)
+        let talentAdvances = Number();
+        if (talent == undefined || talent.data.data.advances.value < 1) {
+            talentAdvances = 0;
+        } else {
+            for (let item of actor.items) {
+                if (item.type == "talent" && item.name == talent.name) {
+                    talentAdvances += item.data.data.advances.value;
+                }
+            }
+        }
+        console.log(talentAdvances)
+        return talentAdvances;
+    }
+}
