@@ -74,9 +74,9 @@ export async function adjustStatus (actor, status, change) {
                 newStatus = Math.max((originalStatus + Number(change)),0)
             } else {
                     let maxStatus = actor.data.data.status.corruption.max
-                    newStatus = Math.min((originalStatus + Number(change)),maxStatus)
-                    // TODO: Post Corruption Test if max Corruption threshold is exceeded
-                    // game.wfrp4e.utility.postCorruptionTest("moderate")
+                    newStatus = Number(originalStatus + Number(change))
+                    // TODO: Require Challenging Endurance Test (WFRP p183) if max Corruption threshold is exceeded
+                    // if (newStatus > maxStatus) ...
                 }
             await actor.update({
                 "data.status.corruption.value": newStatus
