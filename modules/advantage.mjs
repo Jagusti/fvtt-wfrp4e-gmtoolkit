@@ -183,7 +183,7 @@ Hooks.once("init", function() {
 		name: "GMTOOLKIT.Settings.Advantage.Clear.name",
 		hint: "GMTOOLKIT.Settings.Advantage.Clear.hint",
 		scope: "world",
-		config: true,
+		config: false,
 		default: "always",
 		type: String,
 		choices: {
@@ -192,25 +192,28 @@ Hooks.once("init", function() {
 			"end": "GMTOOLKIT.Settings.clearAdvantage.end",
 			"never": "GMTOOLKIT.Settings.clearAdvantage.never"
 		},
-        onChange: GMToolkitSettings.debouncedReload 
+        onChange: GMToolkitSettings.debouncedReload, 
+        feature: "advantage" 
 	});
 	game.settings.register(GMToolkit.MODULE_ID, "automateDamageAdvantage", {
 		name: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name",
 		hint: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint",
 		scope: "world",
-		config: true,
+		config: false,
 		default: true,
 		type: Boolean,
-        onChange: GMToolkitSettings.debouncedReload 
+        onChange: GMToolkitSettings.debouncedReload,
+        feature: "advantage"  
 	});
 	game.settings.register(GMToolkit.MODULE_ID, "persistAdvantageNotifications", {
 		name: "GMTOOLKIT.Settings.Advantage.PersistNotices.name",
 		hint: "GMTOOLKIT.Settings.Advantage.PersistNotices.hint",
 		scope: "world",
-		config: true,
+		config: false,
 		default: false,
 		type: Boolean,
-        onChange: GMToolkitSettings.debouncedReload 
+        onChange: GMToolkitSettings.debouncedReload,
+        feature: "advantage" 
 	});
 });
 

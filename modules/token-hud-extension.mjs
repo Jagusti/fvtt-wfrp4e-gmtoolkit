@@ -441,7 +441,8 @@ Hooks.once("init", () => {
 		config: true,
 		default: true,
         type: Boolean,
-        onChange: GMToolkitSettings.debouncedReload 
+        onChange: GMToolkitSettings.debouncedReload,
+        feature: "tokenhud" 
     });
     
     game.settings.register(GMToolkit.MODULE_ID, "alwaysShowHudInitiative", {
@@ -451,7 +452,8 @@ Hooks.once("init", () => {
 		config: true,
 		default: true,
         type: Boolean,
-        onChange: GMToolkitSettings.debouncedReload 
+        onChange: GMToolkitSettings.debouncedReload,
+        feature: "tokenhud" 
 	});
 });
 

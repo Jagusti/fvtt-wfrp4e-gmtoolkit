@@ -2,6 +2,10 @@
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
     "GMTOOLKIT.Message.NoChangeMade" : "No change made.",
 
+    "GMTOOLKIT.Settings.Advantage.menu.name" : "Advantage Handling",
+    "GMTOOLKIT.Settings.Advantage.menu.label" : "Configure Advantage Handling",
+    "GMTOOLKIT.Settings.Advantage.menu.hint" : "Set options for automated, assisted and macro-based advantage handling.",
+    "GMTOOLKIT.Settings.Advantage.menu.title" : "Advantage Handling",
     "GMTOOLKIT.Settings.Advantage.Clear.name" : "Clear Advantage for all tokens",
     "GMTOOLKIT.Settings.Advantage.Clear.hint" : "Tracked combatants (who appear in the Combat Tracker) always have their Advantage reset to 0 when combat ends. Select an option to additionally reset Advantage for all tokens in the viewed scene, including non-combatants, at the start and/or end of combat.",
     "GMTOOLKIT.Settings.clearAdvantage.both" : "At both start and end of encounter (default module behaviour)",
@@ -54,6 +58,10 @@
     "GMTOOLKIT.Vision.Dark" : "Dark Vision (Trait)",
     "GMTOOLKIT.Vision.Blinded" : "Blinded (Condition)", 
 
+    "GMTOOLKIT.Settings.Vision.menu.name" : "Token Vision Settings",
+    "GMTOOLKIT.Settings.Vision.menu.label" : "Configure Token Vision Settings",
+    "GMTOOLKIT.Settings.Vision.menu.hint" : "Set default options for token vision to be used by the Set Token Vision and Light macro.",
+    "GMTOOLKIT.Settings.Vision.menu.title" : "Token Vision Settings",
     "GMTOOLKIT.Settings.Vision.NormalSight.name" : "Normal Vision range",
     "GMTOOLKIT.Settings.Vision.NormalSight.hint" : "Maximum distance (yards) that a token without enhanced vision can see without an external light source in night or dim conditions.",
     "GMTOOLKIT.Settings.Vision.DarkVision.name" : "Dark Vision range",
@@ -112,12 +120,20 @@
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "How many?",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total.",
 
+    "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Session Management Settings",
+    "GMTOOLKIT.Settings.SessionManagement.menu.label" : "Configure Session Options",
+    "GMTOOLKIT.Settings.SessionManagement.menu.hint" : "Set scene management, experience handling and session turnover options.",
+    "GMTOOLKIT.Settings.SessionManagement.menu.title" : "Session Management Settings",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Export Chat at Session End",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Prompt to save the chat log when running the End of Session Routine macro.",
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Only GMs can administer end of session rites!", 
     "GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission" : "Only GMs can make secret party tests!",
 
+    "GMTOOLKIT.Settings.DarkWhispers.menu.name" : "Dark Whispers Settings",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.hint" : "Set default options for Send Dark Whispers macro.",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.title" : "Dark Whispers Settings",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Dark Whispers Targets",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Set the default filter to select characters to receive a Dark Whisper. Override this by setting a parameter in the macro for 'all', 'present' or 'absent' party members.",
 	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "All party members (default)",

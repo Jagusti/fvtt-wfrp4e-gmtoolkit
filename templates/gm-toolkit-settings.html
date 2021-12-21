@@ -1,0 +1,43 @@
+<form autocomplete="off" onsubmit="event.preventDefault();">
+
+    {{#each settings as |setting s|}}
+    <div class="form-group">
+        <label>{{localize setting.name}}</label>
+        <div class="form-fields">
+            
+            {{#if setting.choices}}
+            <select name="{{setting.key}}">
+                {{#select setting.value}}
+                {{#each setting.choices as |name k|}}
+                <option value="{{k}}">{{localize name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+    
+            {{else if setting.boolean}}
+            <input type="checkbox" name="{{setting.key}}" data-dtype="Boolean"  value="{{value}}" {{checked setting.value}}/>
+            
+            {{else if setting.isRange}}
+            <input type="range" name="{{setting.key}}" data-dtype="Number" value="{{ setting.value }}"
+                   min="{{ setting.range.min }}" max="{{ setting.range.max }}" step="{{ setting.range.step }}"/>
+            <span class="range-value">{{setting.value}}</span>
+            
+            {{else if setting.isNumber}}
+            <input type="number" name="{{setting.key}}" data-dtype="Number" value="{{setting.value}}"/>
+    
+            {{else if setting.filePicker}}
+            {{filePicker target=setting.key type=setting.filePickerType}}
+            <input type="text" name="{{setting.key}}" value="{{setting.value}}" data-dtype="{{setting.type}}"/>
+    
+            {{else}}
+            <input type="text" name="{{setting.key}}" value="{{setting.value}}" data-dtype="{{setting.type}}"/>
+            {{/if}}
+        
+        </div>
+        <p class="notes">{{localize hint}}</p>
+    </div>
+    {{/each}}
+
+    <button type="submit" name="submit">{{localize "Submit"}}</button>
+</form>
+

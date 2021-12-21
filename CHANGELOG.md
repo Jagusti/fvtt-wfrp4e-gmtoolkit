@@ -19,6 +19,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* the automatic clearing of Advantage to happen when tokens are added or removed from a combat / encounter, rather than when a combat encounter is added or begun. This now allows for multiple combats in a scene without resetting Advantage when a new one is initiated. 
 - *Changed* existing scripts into ES modules, refactoring extensively across the application.
 - *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
+- *Added* new setting submenus to consolidate related options and declutter the module settings page.
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 

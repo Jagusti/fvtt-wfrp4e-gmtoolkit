@@ -2,6 +2,10 @@
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Un évènement inattendu est survenu. Aucun de changement effectué.",
     "GMTOOLKIT.Message.NoChangeMade" : "Aucun de changement effectué.",
 
+    "GMTOOLKIT.Settings.Advantage.menu.name" : "Advantage Handling",
+    "GMTOOLKIT.Settings.Advantage.menu.label" : "Configure Advantage Handling",
+    "GMTOOLKIT.Settings.Advantage.menu.hint" : "Set options for automated, assisted and macro-based advantage handling.",
+    "GMTOOLKIT.Settings.Advantage.menu.title" : "Advantage Handling",
     "GMTOOLKIT.Settings.Advantage.Clear.name" : "Supprimer les avantages pour tous les Pions",
     "GMTOOLKIT.Settings.Advantage.Clear.hint" : "Les points d'Avantage des combattants suivis (présents sur la \"Piste de combat') sont toujours remis à 0 à la fin du combat. Sélectionnez une option complémentaire pour mettre à 0 les points d'Avantage de tous les Pions dans la Scène, y compris les non-combattants, au début et à la fin d'un combat.",
     "GMTOOLKIT.Settings.clearAdvantage.both" : "Au début et à la fin du combat (par défaut)",
@@ -54,6 +58,10 @@
     "GMTOOLKIT.Vision.Dark" : "Infravision (Trait)",
     "GMTOOLKIT.Vision.Blinded" : "Aveuglé (État)",
     
+    "GMTOOLKIT.Settings.Vision.menu.name" : "Token Vision Settings",
+    "GMTOOLKIT.Settings.Vision.menu.label" : "Configure Token Vision Settings",
+    "GMTOOLKIT.Settings.Vision.menu.hint" : "Set default options for token vision to be used by the Set Token Vision and Light macro.",
+    "GMTOOLKIT.Settings.Vision.menu.title" : "Token Vision Settings",
     "GMTOOLKIT.Settings.Vision.NormalSight.name" : "Portée de vue normale",
     "GMTOOLKIT.Settings.Vision.NormalSight.hint" : "Distance maximale (en mètres) jusqu'à laquelle peut voir un Pion durant la nuit ou dans la pénombre en étant dépourvu de source de lumière extérieure et d'amélioration de la vue.",
     "GMTOOLKIT.Settings.Vision.DarkVision.name" : "Portée de l'Infravision",
@@ -112,12 +120,20 @@
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien ?",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront retirés du total des PX du Personnage.", 
 
+    "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Session Management Settings",
+    "GMTOOLKIT.Settings.SessionManagement.menu.label" : "Configure Session Options",
+    "GMTOOLKIT.Settings.SessionManagement.menu.hint" : "Set scene management, experience handling and session turnover options.",
+    "GMTOOLKIT.Settings.SessionManagement.menu.title" : "Session Management Settings",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "Exporter la Conversation à la Fin d'une session",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "Proposer d'enregister le journal de Conversation au lancement de la macro de Routine de Fin de session.",
 
     "GMTOOLKIT.Message.SessionEnd.NoPermission" : "Seuls les MJ peuvent administrer les rites de fin de session!", 
     "GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission" : "Only GMs can make secret party tests!",
 
+    "GMTOOLKIT.Settings.DarkWhispers.menu.name" : "Dark Whispers Settings",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.hint" : "Set default options for Send Dark Whispers macro.",
+    "GMTOOLKIT.Settings.DarkWhispers.menu.title" : "Dark Whispers Settings",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Cibles des Sombres murmures",
     "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Définit le filtre par défaut pour sélectionner les Personnages recevant un Sombre murmure. Vous pouvez écraser ce paramètre en le définissant directement dans la macro en \"all\", \"present\" ou \"absent\".",
 	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "Tous les membres du groupe (par défaut)",
