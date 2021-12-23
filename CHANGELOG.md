@@ -20,6 +20,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* existing scripts into ES modules, refactoring extensively across the application.
 - *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
 - *Added* new setting submenus to consolidate related options and declutter the module settings page.
+- *Changed* Token Hud Extension to always show Initiative tip for non-vehicles. The corresponding setting has been removed. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 

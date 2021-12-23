@@ -118,8 +118,8 @@ export default class TokenHudExtension {
     
     static async addInitiativeTokenTip(app, html, data, actor) {
         
-       // Optionally do not show initiative token tip unless this is the active scene 
-       if (game.settings.get(GMToolkit.MODULE_ID, "alwaysShowHudInitiative") === false && game.scenes.active.isView === false || actor.type == "vehicle") return;
+       // Do not show initiative token tip if vehicle
+       if (actor.type == "vehicle") return;
 
        const actorCharacteristics = actor.data.data.characteristics;
 

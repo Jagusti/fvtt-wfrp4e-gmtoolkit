@@ -216,17 +216,6 @@ export default class GMToolkitSettings {
             onChange: GMToolkitSettings.debouncedReload,
             feature: "tokenhud" 
         });
-        
-        game.settings.register(GMToolkit.MODULE_ID, "alwaysShowHudInitiative", {
-            name: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name",
-            hint: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint",
-            scope: "client",
-            config: true,
-            default: true,
-            type: Boolean,
-            onChange: GMToolkitSettings.debouncedReload,
-            feature: "tokenhud" 
-        });
  
     }
 
