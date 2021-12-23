@@ -1,4 +1,8 @@
 import GMToolkit  from "./gm-toolkit.mjs";
+import GMToolkitAdvantageSettings from "../apps/gm-toolkit-advantage-settings.js";
+import GMToolkitDarkWhispersSettings from "../apps/gm-toolkit-darkwhispers-settings.js";
+import GMToolkitSessionManagementSettings from "../apps/gm-toolkit-session-management-settings.js";
+import GMToolkitVisionSettings from "../apps/gm-toolkit-vision-settings.js";
 
 export default class GMToolkitSettings {
 
@@ -9,7 +13,7 @@ export default class GMToolkitSettings {
     static register() {
             
         // Menu for Advantage handling
-         game.settings.registerMenu(GMToolkit.MODULE_ID, "menuAdvantage", {
+        game.settings.registerMenu(GMToolkit.MODULE_ID, "menuAdvantage", {
             name: "GMTOOLKIT.Settings.Advantage.menu.name",
             label: "GMTOOLKIT.Settings.Advantage.menu.label",      
             hint: "GMTOOLKIT.Settings.Advantage.menu.hint",
@@ -17,7 +21,43 @@ export default class GMToolkitSettings {
             type: GMToolkitAdvantageSettings,   
             restricted: true                 
         });
-
+        // TODO: Adjust UI control / options to align with updated handling of when to clear advantage 
+        game.settings.register(GMToolkit.MODULE_ID, "clearAdvantage", {
+            name: "GMTOOLKIT.Settings.Advantage.Clear.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Clear.hint",
+            scope: "world",
+            config: false,
+            default: "always",
+            type: String,
+            choices: {
+                "always": "GMTOOLKIT.Settings.clearAdvantage.both",
+                "start": "GMTOOLKIT.Settings.clearAdvantage.start",
+                "end": "GMTOOLKIT.Settings.clearAdvantage.end",
+                "never": "GMTOOLKIT.Settings.clearAdvantage.never"
+            },
+            onChange: GMToolkitSettings.debouncedReload, 
+            feature: "advantage" 
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "automateDamageAdvantage", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "persistAdvantageNotifications", {
+            name: "GMTOOLKIT.Settings.Advantage.PersistNotices.name",
+            hint: "GMTOOLKIT.Settings.Advantage.PersistNotices.hint",
+            scope: "world",
+            config: false,
+            default: false,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage" 
+        });
 
         // Menu for Session Management
         game.settings.registerMenu(GMToolkit.MODULE_ID, "menuSessionManagement", {
@@ -78,7 +118,7 @@ export default class GMToolkitSettings {
         });
 
 
-        // Menu for Set Token Vision and Light Macro
+        // Menu for Vision settings used by Set Token Vision and Light Macro
         game.settings.registerMenu(GMToolkit.MODULE_ID, "menuTokenVision", {
             name: "GMTOOLKIT.Settings.Vision.menu.name",
             label: "GMTOOLKIT.Settings.Vision.menu.label",      
@@ -163,120 +203,37 @@ export default class GMToolkitSettings {
             },
             feature: "darkwhispers"
         });
+
+        
+        // Settings for Token Hud Extension
+        game.settings.register(GMToolkit.MODULE_ID, "enableTokenHudExtensions", {
+            name: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name",
+            hint: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint",
+            scope: "client",
+            config: true,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "tokenhud" 
+        });
+        
+        game.settings.register(GMToolkit.MODULE_ID, "alwaysShowHudInitiative", {
+            name: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name",
+            hint: "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint",
+            scope: "client",
+            config: true,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "tokenhud" 
+        });
  
     }
 
 }
 
 
-/*
- * Add subclasses for additional settings menus
- */
-
-
-class GMToolkitAdvantageSettings extends FormApplication {
-    static get defaultOptions() {
-        const options = super.defaultOptions;
-        options.id = "homebrew-settings";
-        options.template = "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html";
-        options.width = 560;
-        options.minimizable = true;
-        options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.Advantage.menu.title";
-        return options;
-    }
-
-    getData() {
-        let data = super.getData()
-        getDataSettings(data, "advantage");
-        return data
-    }
-
-    async _updateObject(event, formData) {
-        console.log(formData);
-        for(let setting in formData) {
-            game.settings.set(GMToolkit.MODULE_ID, setting, formData[setting])
-        }
-        this.render();
-    };
-}
-
-
-class GMToolkitVisionSettings extends FormApplication {
-    static get defaultOptions() {
-        const options = super.defaultOptions;
-        options.id = "homebrew-settings";
-        options.template = "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html";
-        options.width = 560;
-        options.minimizable = true;
-        options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.Vision.menu.title"
-        return options;
-    }
-
-    getData() {
-        let data = super.getData()
-        getDataSettings(data, "vision");
-        return data
-    }
-
-    async _updateObject(event, formData) {
-        for(let setting in formData) 
-            game.settings.set(GMToolkit.MODULE_ID, setting, formData[setting])
-    };
-} 
-
-class GMToolkitSessionManagementSettings extends FormApplication {
-    static get defaultOptions() {
-        const options = super.defaultOptions;
-        options.id = "homebrew-settings";
-        options.template = "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html";
-        options.width = 560;
-        options.minimizable = true;
-        options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.SessionManagement.menu.title"
-        return options;
-    }
-
-    getData() {
-        let data = super.getData()
-        getDataSettings(data, "session");
-        return data
-    }
-
-    async _updateObject(event, formData) {
-        for(let setting in formData) 
-            game.settings.set(GMToolkit.MODULE_ID, setting, formData[setting])
-    };
-}
-
-
-class GMToolkitDarkWhispersSettings extends FormApplication {
-    static get defaultOptions() {
-        const options = super.defaultOptions;
-        options.id = "homebrew-settings";
-        options.template = "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html";
-        options.width = 560;
-        options.minimizable = true;
-        options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.DarkWhispers.menu.title"
-        return options;
-    }
-
-    getData() {
-        let data = super.getData()
-        getDataSettings(data, "darkwhispers");
-        return data
-    }
-
-    async _updateObject(event, formData) {
-        for(let setting in formData) 
-            game.settings.set(GMToolkit.MODULE_ID, setting, formData[setting])
-    };
-
-}
-
-function getDataSettings(data, feature) {
+export function getDataSettings(data, feature) {
     data.settings = Array.from(game.settings.settings).filter(s => s[1].feature == feature).map(i => i[1]);
     data.settings.forEach(s => {
         if (s.type == Boolean) {
