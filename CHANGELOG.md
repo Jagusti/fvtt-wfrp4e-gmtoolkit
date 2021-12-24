@@ -21,6 +21,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
 - *Added* new setting submenus to consolidate related options and declutter the module settings page.
 - *Changed* Token Hud Extension to always show Initiative tip for non-vehicles. The corresponding setting has been removed. 
+- *Removed* option and functionality to clear advantage of all tokens in scene at start or end of combat. Native system functionality handles this for when specific combats end, and the revised approach to clearing advantage when a combatant is added or removed should ensure that there is no orphaned Advantage carried over outside of a combat situation. 
+- *Added* context to Advantage notifications to help make visible where automated handling has occurred. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 

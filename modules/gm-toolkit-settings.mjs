@@ -21,26 +21,31 @@ export default class GMToolkitSettings {
             type: GMToolkitAdvantageSettings,   
             restricted: true                 
         });
-        // TODO: Adjust UI control / options to align with updated handling of when to clear advantage 
-        game.settings.register(GMToolkit.MODULE_ID, "clearAdvantage", {
-            name: "GMTOOLKIT.Settings.Advantage.Clear.name",
-            hint: "GMTOOLKIT.Settings.Advantage.Clear.hint",
-            scope: "world",
-            config: false,
-            default: "always",
-            type: String,
-            choices: {
-                "always": "GMTOOLKIT.Settings.clearAdvantage.both",
-                "start": "GMTOOLKIT.Settings.clearAdvantage.start",
-                "end": "GMTOOLKIT.Settings.clearAdvantage.end",
-                "never": "GMTOOLKIT.Settings.clearAdvantage.never"
-            },
-            onChange: GMToolkitSettings.debouncedReload, 
-            feature: "advantage" 
-        });
         game.settings.register(GMToolkit.MODULE_ID, "automateDamageAdvantage", {
             name: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name",
             hint: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
+        // Clear Advantage when token is added to combat tracker
+        game.settings.register(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
+        // Clear Advantage when token is removed from combat tracker
+        game.settings.register(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint",
             scope: "world",
             config: false,
             default: true,
