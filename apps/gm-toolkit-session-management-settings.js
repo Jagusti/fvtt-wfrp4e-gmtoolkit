@@ -9,7 +9,7 @@ export default class GMToolkitSessionManagementSettings extends FormApplication 
         options.width = 560;
         options.minimizable = true;
         options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.Vision.menu.title"
+        options.title = "GMTOOLKIT.Settings.SessionManagement.menu.title"
         return options;
     }
 

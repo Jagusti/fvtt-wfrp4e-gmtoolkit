@@ -9,7 +9,7 @@ export default class GMToolkitAdvantageSettings extends FormApplication {
         options.width = 560;
         options.minimizable = true;
         options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.Vision.menu.title"
+        options.title = "GMTOOLKIT.Settings.Advantage.menu.title"
         return options;
     }
 

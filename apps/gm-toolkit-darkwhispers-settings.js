@@ -9,7 +9,7 @@ export default class GMToolkitDarkWhispersSettings extends FormApplication {
         options.width = 560;
         options.minimizable = true;
         options.resizable = true;
-        options.title = "GMTOOLKIT.Settings.Vision.menu.title"
+        options.title = "GMTOOLKIT.Settings.DarkWhispers.menu.title"
         return options;
     }
 
