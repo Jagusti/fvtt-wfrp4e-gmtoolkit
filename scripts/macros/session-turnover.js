@@ -9,6 +9,9 @@ async function endSession () {
 
     game.gmtoolkit.module.log(false, "Pausing game.")
     await game.togglePause(true);
+
+    game.gmtoolkit.module.log(false, `Switching to holding scene.`)
+    game.scenes.getName(game.settings.get("wfrp4e-gm-toolkit", "holdingScene"))?.activate(true)
     
     game.gmtoolkit.module.log(false, "Adding Experience.")
     await game.macros.getName("Add XP").execute();

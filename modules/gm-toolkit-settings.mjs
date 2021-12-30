@@ -118,6 +118,15 @@ export default class GMToolkitSettings {
             onChange: this.debouncedReload,
             feature: "session"
         });
+        game.settings.register(GMToolkit.MODULE_ID, "holdingScene", {
+            name: "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.name",
+            hint: "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint",
+            scope: "world",
+            config: false,
+            default: "",
+            type: String,
+            feature: "session"
+        });
         game.settings.register(GMToolkit.MODULE_ID, "exportChat", {
             name: "GMTOOLKIT.Settings.SessionEnd.ExportChat.name",
             hint: "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint",

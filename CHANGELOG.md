@@ -29,6 +29,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* a preview list of affected characters to the Add XP prompt.
 - *Changed* the Add XP confirmation to a single consolidated GM whisper message with starting and updated XP values. Native system functionality is used to report awards to individual characters. 
 - *Added* new Session ID option to Session Management settings. This is used in the default Add XP reason, and can be automatically incremented using the Session Turnover macro at the same time as awarding Experience Points and resetting Fortune. 
+- *Added* option to define holding scene to automatically transition to when running Session Turnover routine. This can be used for campaign hubs or landing pages between sessions. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
