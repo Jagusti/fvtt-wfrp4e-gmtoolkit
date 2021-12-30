@@ -132,3 +132,20 @@ return(maxStatus)
         return talentAdvances;
     }
 }
+
+
+/** 
+ * Get session management parameters date and time based on world settings. 
+ * @return {String} date  :   Date in yyyy-mm-dd format based on Next Session date, as set through Edit World settings. Empty if not defined.
+ * @return {String} time  :   Time in hh:mm:ss.000Z format based on Next Session date, as set through Edit World settings. Empty if not defined.
+ * @return {String} id  :   Session number or reference set through Session Management Options in module settings
+ **/ 
+export function getSession() {
+    let date = "", time = ""
+    let id = game.settings.get("wfrp4e-gm-toolkit", "sessionID")
+    if (game.world.data.nextSession != null) {
+        date = game.world.data.nextSession?.split("T")[0] 
+        time = game.world.data.nextSession?.split("T")[1]  
+    }
+    return {date, time, id}
+}

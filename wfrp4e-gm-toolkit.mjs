@@ -29,7 +29,8 @@ Hooks.once("init", function () {
     // Create namespace within game global
     game.gmtoolkit = {
         advantage : Advantage,
-        utility: GMToolkitUtility
+        utility : GMToolkitUtility, 
+        module : GMToolkit
     }
     // TODO: update advantage macros to use namespaced functions
     // game.gmtoolkit.advantage.updateAdvantage(token,`increase`);

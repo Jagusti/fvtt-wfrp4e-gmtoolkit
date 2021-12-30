@@ -74,6 +74,15 @@ export default class GMToolkitSettings {
             restricted: true                 
         });
         // Settings for Session Management
+        game.settings.register(GMToolkit.MODULE_ID, "sessionID", {
+            name: "GMTOOLKIT.Settings.SessionTurnover.SessionID.name",
+            hint: "GMTOOLKIT.Settings.SessionTurnover.SessionID.hint",
+            scope: "world",
+            config: false,
+            default: "0",
+            type: String,
+            feature: "session"
+        });
         game.settings.register(GMToolkit.MODULE_ID, "addXPPrompt", {
             name: "GMTOOLKIT.Settings.AddXP.Prompt.name",
             hint: "GMTOOLKIT.Settings.AddXP.Prompt.hint",
@@ -104,7 +113,7 @@ export default class GMToolkitSettings {
             hint: "GMTOOLKIT.Settings.AddXP.Reason.hint",
             scope: "world",
             config: false,
-            default: "End of Session ",
+            default: "Session %session% (%date%)",
             type: String,
             onChange: this.debouncedReload,
             feature: "session"

@@ -5,18 +5,26 @@ async function addXP() {
   // setup: determine group of actors to be awarded experience
   if (game.user.targets.size < 1) {
     // (1) all player characters if no tokens are selected
-    awardees = Array.from(game.actors).filter(pc => pc.hasPlayerOwner && pc.type == 'character');
+    awardees = Array.from(game.actors).filter(pc => pc.hasPlayerOwner && pc.type == "character");
   } else {
     // (2) otherwise, all targeted player character tokens
-    awardees = Array.from(game.user.targets).filter(pc => pc.actor.hasPlayerOwner && pc.actor.type == 'character');
+    awardees = Array.from(game.user.targets).filter(pc => pc.actor.hasPlayerOwner && pc.actor.type == "character");
   }
 
   // setup: exit with notice if there are no player-owned characters
   if (awardees.length < 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"), {});
 
-  // Set default XP and reason
+  // Get  session ID/date, default XP award and default reason
   let XP = Number(game.settings.get("wfrp4e-gm-toolkit", "addXPDefaultAmount"))
-  let reason = (game.settings.get("wfrp4e-gm-toolkit", "addXPDefaultReason") == "null") ? "" : (game.settings.get("wfrp4e-gm-toolkit", "addXPDefaultReason")) 
+  let reason = (game.settings.get("wfrp4e-gm-toolkit", "addXPDefaultReason"))
+  if (reason == "null") {
+    reason = ""
+  } else {
+    reason = (game.settings.get("wfrp4e-gm-toolkit", "addXPDefaultReason")) 
+    let session = game.gmtoolkit.utility.getSession()
+    reason = reason.replace("%date%", session.date)
+    if (session.id != "null" ) reason = reason.replace("%session%", session.id)
+  }
 
   // Prompt for XP if option is set
   if (game.settings.get("wfrp4e-gm-toolkit", "addXPPrompt")) {
@@ -44,7 +52,7 @@ async function addXP() {
           label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
           callback: (html) => {
             let XP = Math.round(html.find('#add-xp').val());
-            if (isNaN(XP)) return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Dialog.AddXP.InvalidXP'))
+            if (isNaN(XP)) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Dialog.AddXP.InvalidXP"))
             let reason =  html.find('#xp-reason').val();
             updateXP(awardees, XP, reason);
           }
@@ -77,7 +85,7 @@ function updateXP(awardees, XP, reason) {
     pc?.actor ? pc.actor.awardExp(XP, reason) : pc.awardExp(XP, reason)
 
     // build report message 
-    chatContent += game.i18n.format('GMTOOLKIT.AddXP.Success', {recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent} )  
+    chatContent += game.i18n.format("GMTOOLKIT.AddXP.Success", {recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent} )  
   }); // end cycle
   
 // confirm changes made in whisper to GM
