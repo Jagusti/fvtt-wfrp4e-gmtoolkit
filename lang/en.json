@@ -78,8 +78,8 @@
     "GMTOOLKIT.ResetFortune.Restored" : "Fortune has been restored",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
   
-    "GMTOOLKIT.AddXP.Success" : "<p>Adding {XP} XP to {targetName}. <hr> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}.</p>",
-    "GMTOOLKIT.AddXP.NotPC" : "<p>{targetName} is not a Player Character. No change made to Experience Points.</p>",
+    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.Flavor" : "{XP} Experience Points Awarded for {reason}",
 
     "GMTOOLKIT.Advantage.Increased" : "Advantage increased from {startingAdvantage} to {newAdvantage} for {actorName}.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} already has {startingAdvantage} of maximum {maxAdvantage} Advantage. No change made.",
@@ -111,12 +111,16 @@
     "GMTOOLKIT.Scene.NotActive" : "not active",
     "GMTOOLKIT.Scene.Active" : "active",
 
-    "GMTOOLKIT.Settings.AddXP.Default.name" : "Add XP",
-    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Default amount of XP to add.",
     "GMTOOLKIT.Settings.AddXP.Prompt.name" : "Prompt for XP amount",
-    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Always ask how many XP to add.",
+    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Always ask how many XP to add and reason for award. Otherwise use default amount and reason.",
+    "GMTOOLKIT.Settings.AddXP.Default.name" : "Default XP Award",
+    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Default amount of XP to award using the Add XP or End of Session Routine macro.",
+    "GMTOOLKIT.Settings.AddXP.Reason.name" : "Default XP Reason",
+    "GMTOOLKIT.Settings.AddXP.Reason.hint" : "Default reason for awarding experience, recorded in the Experience Log on the Notes tab of character sheet).",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Add Experience Points",
+    "GMTOOLKIT.Dialog.AddXP.Recipients" : "Experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "How many?",
+    "GMTOOLKIT.Dialog.AddXP.Reason" : "Reason",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "No change made. Add a valid number of XP. Fractions will be rounded to the nearest whole number. Negative numbers will be removed from the character's total.",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Session Management Settings",

@@ -78,8 +78,8 @@
     "GMTOOLKIT.ResetFortune.Restored" : "Fortune has been restored",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
   
-    "GMTOOLKIT.AddXP.Success" : "<p>Ajout de {XP} PX à {targetName}. <hr> PX total : {XPTotal} -> {newXPTotal} | PX actuels : {XPCurrent} -> {newXPCurrent}.</p>",
-    "GMTOOLKIT.AddXP.NotPC" : "<p>{targetName} n'est pas un PJ. Aucun changement apporté aux PX.</p>",
+    "GMTOOLKIT.AddXP.Success" : "<strong>{recipient}.</strong> PX total : {XPTotal} -> {newXPTotal} | PX actuels : {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.Flavor" : "{XP} Experience Points Awarded for {reason}",
 
     "GMTOOLKIT.Advantage.Increased" : "Points d'Avantage augmentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} possède déjà {startingAdvantage} points d'Avantage pour un maximum de {maxAdvantage}. Aucun changement.",
@@ -111,12 +111,16 @@
     "GMTOOLKIT.Scene.NotActive" : "non active",
     "GMTOOLKIT.Scene.Active" : "active",
 
-    "GMTOOLKIT.Settings.AddXP.Default.name" : "Ajouter des PX",
-    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Valeur de PX par défaut à ajouter.",
     "GMTOOLKIT.Settings.AddXP.Prompt.name" : "Demander pour le montant des PX",
-    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Toujours demander le montant des PX.",
+    "GMTOOLKIT.Settings.AddXP.Prompt.hint" : "Always ask how many XP to add and reason for award. Otherwise use default amount and reason.",
+    "GMTOOLKIT.Settings.AddXP.Default.name" : "Default XP Award",
+    "GMTOOLKIT.Settings.AddXP.Default.hint" : "Default amount of XP to award using the Add XP or End of Session Routine macro.",
+    "GMTOOLKIT.Settings.AddXP.Reason.name" : "Default XP Reason",
+    "GMTOOLKIT.Settings.AddXP.Reason.hint" : "Default reason for awarding experience, recorded in the Experience Log on the Notes tab of character sheet).",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Ajouter des PX",
+    "GMTOOLKIT.Dialog.AddXP.Recipients" : "Experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien ?",
+    "GMTOOLKIT.Dialog.AddXP.Reason" : "Reason",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront retirés du total des PX du Personnage.", 
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Session Management Settings",

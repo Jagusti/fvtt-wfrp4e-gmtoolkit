@@ -74,7 +74,17 @@ export default class GMToolkitSettings {
             restricted: true                 
         });
         // Settings for Session Management
-        game.settings.register(GMToolkit.MODULE_ID, "addXPDefault", {
+        game.settings.register(GMToolkit.MODULE_ID, "addXPPrompt", {
+            name: "GMTOOLKIT.Settings.AddXP.Prompt.name",
+            hint: "GMTOOLKIT.Settings.AddXP.Prompt.hint",
+            scope: "world",
+            config: false,
+            default: false,
+            type: Boolean,
+            onChange: this.debouncedReload,
+            feature: "session"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultAmount", {
             name: "GMTOOLKIT.Settings.AddXP.Default.name",
             hint: "GMTOOLKIT.Settings.AddXP.Default.hint",
             scope: "world",
@@ -86,15 +96,16 @@ export default class GMToolkitSettings {
                 max: 200,
                 step: 5
             },
+            onChange: this.debouncedReload,
             feature: "session"
         });
-        game.settings.register(GMToolkit.MODULE_ID, "addXPPrompt", {
-            name: "GMTOOLKIT.Settings.AddXP.Prompt.name",
-            hint: "GMTOOLKIT.Settings.AddXP.Prompt.hint",
+        game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultReason", {
+            name: "GMTOOLKIT.Settings.AddXP.Reason.name",
+            hint: "GMTOOLKIT.Settings.AddXP.Reason.hint",
             scope: "world",
             config: false,
-            default: false,
-            type: Boolean,
+            default: "End of Session ",
+            type: String,
             onChange: this.debouncedReload,
             feature: "session"
         });

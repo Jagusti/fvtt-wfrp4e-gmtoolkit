@@ -23,6 +23,11 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Token Hud Extension to always show Initiative tip for non-vehicles. The corresponding setting has been removed. 
 - *Removed* option and functionality to clear advantage of all tokens in scene at start or end of combat. Native system functionality handles this for when specific combats end, and the revised approach to clearing advantage when a combatant is added or removed should ensure that there is no orphaned Advantage carried over outside of a combat situation. 
 - *Added* context to Advantage notifications to help make visible where automated handling has occurred. 
+- *Changed* the Add XP macro to leverage the system Award Experience functionality.
+- *Changed* the Add XP macro to not require targeting tokens. If tokens are targeted, only player-assigned characters among the targets are updated. If no tokens are targeted, all player-assigned characters are targeted. 
+- *Added* a reason option for awarding XP, which is used to populate the experience log. A default can be set in Session Management settings. 
+- *Added* a preview list of affected characters to the Add XP prompt.
+- *Changed* the Add XP confirmation to a single consolidated GM whisper message with starting and updated XP values. Native system functionality is used to report awards to individual characters. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
