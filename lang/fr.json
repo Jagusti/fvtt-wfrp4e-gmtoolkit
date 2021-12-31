@@ -176,6 +176,8 @@
     "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>De Sombres murmures persistent dans vos oreilles... </strong></p><p><em>Ne révélez d'aucune manière que vous avez reçu ce message.</em></p><blockquote>{message}</blockquote><p>Si vous faites tel qu'il vous a été enjoint de faire, votre total de points de Corruption sera réduit de 1.</p>",
     "GMTOOLKIT.Notification.NoActor" : "Aucune Personnage n'est sélectionné ou n'est associé à {currentuser}.",
     "GMTOOLKIT.Notification.UserMustBePlayer" : "Seuls les Personnages Joueurs peuvent {action}.",
+    
+    "GMTOOLKIT.Dialog.GMToolbox.Title" : "GM Toolbox", 
 
     "ROLL.AstoundingSuccess" : "Réussite Stupéfiante. \"Oui, absolument !\"",
     "ROLL.ImpressiveSuccess" : "Réussite Impressionnant. \"Oui, et...\"",

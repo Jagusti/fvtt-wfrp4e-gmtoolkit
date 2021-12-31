@@ -31,6 +31,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* new Session ID option to Session Management settings. This is used in the default Add XP reason, and can be automatically incremented using the Session Turnover macro at the same time as awarding Experience Points and resetting Fortune. 
 - *Added* option to define holding scene to automatically transition to when running Session Turnover routine. This can be used for campaign hubs or landing pages between sessions. 
 - *Added* fallback for Secret Party Tests. Related characteristic will be tested for basic skills if the actor does not have the skill, and for Advanced skills if the option is selected in module settings.
+- *Added* new GM Toolbox macro, which pops up a persistent dialog for quick links to Toolkit and other macros. The Toolbox can be easily customised for a tailored GM workspace. It can be minimised to reduce space, and allows hotbar spaces to be freed up without losing quick access to useful macros. 
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
