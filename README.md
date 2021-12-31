@@ -4,9 +4,11 @@ Utility module with tweaks, enhancements and macros to help GMs manage games of 
 
 ## Compatibility
 
-Version 0.7.0 requires
-- Foundry VTT: 0.8.8+
-- WFRP4e: 4.0.6+
+Version 0.8.0 requires
+- Foundry VTT: 0.8.8 - 0.8.9
+- WFRP4e: 4.0.6 - 4.3.1
+
+This version (including new enhancements) is partially compatible with WFRP4e 5.x and Foundry 9.x. Known conflicts are described in issue #69, and will be addressed in the next release. Future versions of the Toolkit may not be compatible with earlier versions of Foundry or the WFRP4e system.
 
 If you are using earlier versions of WFRP4e (3.4.1 - 3.6.2) and Foundry (0.7.10), then you should use [v0.6.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.6.3) of the GM Toolkit.
 

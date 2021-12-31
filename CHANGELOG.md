@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
-- *Changed* Reset Fortune macro to not require tokens. All player characters have their Fortune points restored when the macro is run.
+
+## Version 0.8.0
 - *Changed* Advantage scripts to handle non-token characters. 
 - *Added* option to automate changes to Advantage when a character deals or is dealt combat damage in opposed contests. 
 - *Added* option for sticky notifications for Advantage updates. This is introduced to provide better visibility of automated changes to Advantage, so that any related amendnents are not missed. 
@@ -17,12 +18,10 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - No change is made if the selected character is not in an encounter in the viewed scene.
   - The Clear Advantage macro can still be used to reset advantage for a token if it is outside of combat.
 - *Changed* the automatic clearing of Advantage to happen when tokens are added or removed from a combat / encounter, rather than when a combat encounter is added or begun. This now allows for multiple combats in a scene without resetting Advantage when a new one is initiated. 
-- *Changed* existing scripts into ES modules, refactoring extensively across the application.
-- *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
-- *Added* new setting submenus to consolidate related options and declutter the module settings page.
-- *Changed* Token Hud Extension to always show Initiative tip for non-vehicles. The corresponding setting has been removed. 
 - *Removed* option and functionality to clear advantage of all tokens in scene at start or end of combat. Native system functionality handles this for when specific combats end, and the revised approach to clearing advantage when a combatant is added or removed should ensure that there is no orphaned Advantage carried over outside of a combat situation. 
 - *Added* context to Advantage notifications to help make visible where automated handling has occurred. 
+- *Added* new setting submenus to consolidate related options and declutter the module settings page.
+- *Changed* Reset Fortune macro to not require tokens. All player characters have their Fortune points restored when the macro is run.
 - *Changed* the Add XP macro to leverage the system Award Experience functionality.
 - *Changed* the Add XP macro to not require targeting tokens. If tokens are targeted, only player-assigned characters among the targets are updated. If no tokens are targeted, all player-assigned characters are targeted. 
 - *Added* a reason option for awarding XP, which is used to populate the experience log. A default can be set in Session Management settings. 
@@ -32,6 +31,10 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* option to define holding scene to automatically transition to when running Session Turnover routine. This can be used for campaign hubs or landing pages between sessions. 
 - *Added* fallback for Secret Party Tests. Related characteristic will be tested for basic skills if the actor does not have the skill, and for Advanced skills if the option is selected in module settings.
 - *Added* new GM Toolbox macro, which pops up a persistent dialog for quick links to Toolkit and other macros. The Toolbox can be easily customised for a tailored GM workspace. It can be minimised to reduce space, and allows hotbar spaces to be freed up without losing quick access to useful macros. 
+- *Changed* Token Hud Extension to always show Initiative tip for non-vehicles. The corresponding setting has been removed. 
+- *Changed* existing scripts into ES modules, refactoring extensively across the application.
+- *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
+
 
 ## Version 0.7.0
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
