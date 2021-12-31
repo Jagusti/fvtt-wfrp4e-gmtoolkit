@@ -4,16 +4,19 @@ import GMToolkit from "./gm-toolkit.mjs";
  * Returns whether an actor has the skill to be tested.
  * @param {Object} actor 
  * @param {String} targetSkill  :   Name of skill to be tested.
+ * @param {String} notification :   "silent" suppresses UI notification, "persist" makes notifications stick until dismissed
  * @return {Object} skill       :   The skill object to be tested.
 **/ 
 // TODO: Review notifications, maybe optionally pass these out to a notification handler
-export function hasSkill (actor, targetSkill) {
+export function hasSkill (actor, targetSkill, notification = true) {
     // Match exact skill only
     let skill = actor.items.find(i => i.type == "skill" && i.data.name === game.i18n.localize(targetSkill)) 
     if (skill == null) {
-        let message = `${actor.name} does not have the ${targetSkill} skill. Aborting skill test. `;
+        let message = `${actor.name} does not have the ${targetSkill} skill.`;
         GMToolkit.log(false, message)
-        ui.notifications.error(message) 
+        if (notification != "silent") {
+            (notification == "persist") ? ui.notifications.error(message, {permanent : true}) : ui.notifications.error(message) 
+        }
     } else {
         GMToolkit.log(false, `${actor.name} has the ${game.i18n.localize(targetSkill)} skill.`) 
     }
@@ -136,9 +139,9 @@ return(maxStatus)
 
 /** 
  * Get session management parameters date and time based on world settings. 
- * @return {String} date  :   Date in yyyy-mm-dd format based on Next Session date, as set through Edit World settings. Empty if not defined.
- * @return {String} time  :   Time in hh:mm:ss.000Z format based on Next Session date, as set through Edit World settings. Empty if not defined.
- * @return {String} id  :   Session number or reference set through Session Management Options in module settings
+ * @return {String} date    :   Date in yyyy-mm-dd format based on Next Session date, as set through Edit World settings. Empty if not defined.
+ * @return {String} time    :   Time in hh:mm:ss.000Z format based on Next Session date, as set through Edit World settings. Empty if not defined.
+ * @return {String} id      :   Session number or reference set through Session Management Options in module settings
  **/ 
 export function getSession() {
     let date = "", time = ""

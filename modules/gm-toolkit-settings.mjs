@@ -250,6 +250,17 @@ export default class GMToolkitSettings {
             onChange: GMToolkitSettings.debouncedReload,
             feature: "tokenhud" 
         });
+
+        // Settings for Make Secret Party Tests
+        game.settings.register(GMToolkit.MODULE_ID, "fallbackAdvancedSkills", {
+            name: "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.name",
+            hint: "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.hint",
+            scope: "world",
+            config: true,
+            default: false,
+            type: Boolean,
+            feature: "grouptests" 
+        });
  
     }
 
