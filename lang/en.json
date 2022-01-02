@@ -183,7 +183,7 @@
     "ROLL.AstoundingSuccess" : "Astounding Success. 'Yes, perfectly!'",
     "ROLL.ImpressiveSuccess" : "Impressive Success. 'Yes, and ...'",
     "ROLL.Success" : "Success. 'Yes.'",
-    "ROLL.MarginalSuccess" : "Marginal Success. <em>Yes, but ...</em>",
+    "ROLL.MarginalSuccess" : "Marginal Success. 'Yes, but ...'",
     "ROLL.AstoundingFailure" : "Astounding Failure. 'Not in any way!'",
     "ROLL.ImpressiveFailure" : "Impressive Failure. 'No, and ...'",
     "ROLL.Failure" : "Failure. 'No'",
