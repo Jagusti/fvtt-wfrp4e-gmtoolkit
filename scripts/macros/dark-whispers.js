@@ -1,34 +1,29 @@
-/* Open a dialog to send a Dark Whisper (WFRP p183) to selected player character(s).
- * Adapted from original macro developed by Vindico#9103. 
- */
+formDarkWhispers(); //  Set default user target filter in module settings. Override by adding parameter to "all", "absent" or "present" party members. Clear parameter to revert to default. 
 
-formDarkWhispers(); //  Set default user target filter in module settings. Override by adding parameter to 'all', 'absent' or 'present' party members. Clear parameter to revert to default. 
-
-function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", "targetDarkWhispers"))) {
-
-  // Non-GMs are not permitted to send Dark Whispers
+async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", "targetDarkWhispers"))) {
+// Non-GMs are not permitted to send Dark Whispers
   if (!game.user.isGM) {      
-    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoPermission'));
+    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoPermission"));
   }
 
   //TODO: Switch to actor based selection
   // Only users who have an assigned player character are available to whisper to. 
   let users = []
   switch (targets) { 
-    case 'all':
-      users = game.users.filter(user => (user.character?.type == 'character'));
+    case "all":
+      users = game.users.filter(user => (user.character?.type == "character"));
       break;
-  case 'absent':
-      users = game.users.filter(user => !user.active && (user.character?.type == 'character'));
+  case "absent":
+      users = game.users.filter(user => !user.active && (user.character?.type == "character"));
       break;
-  case 'present':
+  case "present":
   default:
-     users = game.users.filter(user => user.active && (user.character?.type == 'character'));
+     users = game.users.filter(user => user.active && (user.character?.type == "character"));
      break;
   }
 
   if (!users) {   
-    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
+    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
   }
   
   // Build list of player / characters to select via dialog
@@ -48,35 +43,37 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
         <div class="form-group">
         <input type="checkbox" name="${user.id}" value="${user.name}" ${canWhisperTo}>
         <label for="${user.id}"> <strong>${user.character.name}</strong> (${user.name})</label>
-        <label for="${user.id}"> ${actorCorruption.value} / ${actorCorruption.max} ${game.i18n.localize('GMTOOLKIT.Status.Corruption')} </label>
+        <label for="${user.id}"> ${actorCorruption.value} / ${actorCorruption.max} ${game.i18n.localize("GMTOOLKIT.Status.Corruption")} </label>
         </div>
       `
   });
   
   // abort if no characters have any Corruption
   if (corruptionAvailable == 0) {   
-    return ui.notifications.error(game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters'));
+    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
   };
 
- // Construct and show form to write whisper message and select target player characters
+  // Construct and show form to write whisper message and select target player characters
+  let darkwhisper = (game.tables.getName("Dark Whispers")) ? await game.wfrp4e.tables.rollTable("darkwhispers") : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
+
  let dialogContent = `
     <div class="form-group ">
-      <label for="targets">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets')} </label>
+      <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets")} </label>
     </div>
     ${checkOptions} 
     <div class="form-group message">
-      <label for="message">${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage')}</label>
+      <label for="message">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage")}</label>
     </div>
     <div class="form-group">
-      <textarea id="message" name="message" rows="4" cols="50">${game.wfrp4e.tables.rollTable('darkwhispers').description}</textarea>
+      <textarea id="message" name="message" rows="4" cols="50">${darkwhisper?.result || darkwhisper}</textarea>
     </div>
     `
  new Dialog({
-  title: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.Title'),
+  title: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title"),
   content:dialogContent,
   buttons:{
     whisper:{   
-      label: game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.SendWhisper'),
+      label: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.SendWhisper"),
       callback: (html) => sendDarkWhispers(html, users, "private")
     }
   }
@@ -85,24 +82,24 @@ function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", 
 
 function sendDarkWhispers(html, users, sendmode) {
   // check for whisper message 
-  var messageText = html.find('[name="message"]')[0].value;
+  let messageText = html.find('[name="message"]')[0].value;
   
   // build list of selected players ids for whispers target
-  var targets = [];
+  let targets = [];
   for ( let user of users ) {
-    if (html.find('[name="'+user.id+'"]')[0].checked){
+    if (html.find(`[name="${user.id}"]`)[0].checked){
       targets.push(user.id);
     }
   }
 
   // abort if no whisper or character is selected 
   if (targets.length == 0 || messageText.length == 0) {
-    return ui.notifications.error(game.i18n.format('GMTOOLKIT.Message.DarkWhispers.WhisperAborted', {currentUser: game.users.current.name}));
+    return ui.notifications.error(game.i18n.format("GMTOOLKIT.Message.DarkWhispers.WhisperAborted", {currentUser: game.users.current.name}));
   }
 
   // Construct and send message to whisper targets
   // Build the translation string based on the setting
-  let messageTemplate = "GMTOOLKIT.Settings.DarkWhispers.message" + `.${game.settings.get("wfrp4e-gm-toolkit", "messageDarkWhispers")}`
+  let messageTemplate = `GMTOOLKIT.Settings.DarkWhispers.message.${game.settings.get("wfrp4e-gm-toolkit", "messageDarkWhispers")}`
   // Parse the translated message
   let whisperMessage = `${game.i18n.format(messageTemplate, {message: messageText})}`
   
@@ -110,10 +107,10 @@ function sendDarkWhispers(html, users, sendmode) {
   // data- attributes are used by listener
   let responseObjects = `
     <span class="chat-card-button-area">
-    <a class='chat-card-button darkwhisper-button' data-button='actOnWhisper' data-ask="${game.i18n.format(messageText)}">${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.Accept')}</a>
-    <a class='chat-card-button darkwhisper-button' data-button='denyDarkGods' data-ask="${game.i18n.format(messageText)}">${game.i18n.localize('GMTOOLKIT.Message.DarkWhispers.Reject')}</a>
+    <a class="chat-card-button darkwhisper-button" data-button="actOnWhisper" data-ask="${game.i18n.format(messageText)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Accept")}</a>
+    <a class="chat-card-button darkwhisper-button" data-button="denyDarkGods" data-ask="${game.i18n.format(messageText)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Reject")}</a>
     </span>
-    `  
+    `
 
   ChatMessage.create({
     content: whisperMessage + responseObjects,
@@ -121,3 +118,14 @@ function sendDarkWhispers(html, users, sendmode) {
   });
   
 }
+
+
+/* ==========
+* MACRO: Send Dark Whispers
+* VERSION: 0.9.0
+* UPDATED: 2022-01-01
+* DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
+* TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper. 
+* TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers. 
+* TIP: The whisper can be edited in the dialog, regardless of what is pre-filled from the Dark Whispers table. 
+========== */
