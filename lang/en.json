@@ -50,7 +50,7 @@
     "GMTOOLKIT.LightSource.GlowingSkin" : "Glowing Skin (Mutation) (10yd)",
     "GMTOOLKIT.LightSource.Ablaze" : "Ablaze (Condition) (15 yds)", 
     "GMTOOLKIT.LightSource.Pha" : "Pha's Protection (WP Bonus yds)",
-    "GMTOOLKIT.LightSource.Soulfire" : "Soulfire (Miscast) (15 m)",
+    "GMTOOLKIT.LightSource.Soulfire" : "Soulfire (Miscast) (15 yds)",
 
     "GMTOOLKIT.Vision.Normal" : "Normal",
     "GMTOOLKIT.Vision.None" : "None",

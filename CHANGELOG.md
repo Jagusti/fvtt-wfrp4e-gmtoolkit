@@ -14,6 +14,13 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* RollTable compatibility to Token Hud Extensions. This fixes issues with rolling for Mental Corruption, Physical Mutation and Wrath of the Gods using Token Hud Extension shortcuts. [[#69](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/69)]. 
 - *Changed* Token Hud shortcut for Mental Corruption from `CTRL+SHIFT+double-click` to `SHIFT+double-click`.
 - *Added* message prompt to install Mental Corruption, Physical Mutation and Wrath of the Gods Rolltables if not present. 
+- *Changed* Set Token Vision and Light macro to be compatible with Foundry v9 canvas and lighting updates. This fixes issues with tokens not updating light and sight radius or animation when using the macro [[#68](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/68)].
+  - Sight changes may not be refreshed until tokens are moved or deselected and then reselected. This is due to an outstanding Foundry core bug [#6389]((https://gitlab.com/foundrynet/foundryvtt/-/issues/6389)).
+- *Changed* listed radius for Soulcast (Miscast) from 15m to 15yds, to maintain consistency with Ablaze condition lighting details. French translation retains metric units. 
+- *Changed* Storm Lantern narrowbeam angle from 60 to 90 degrees, as per WFRP p309. Token lock rotation is no longer adjusted (previously the macro would ensure it was not locked.)
+- *Changed* Night Vision to use sight angle of light source.  
+- *Fixed* issue with Night Vision multiplier being applied to Dim Sight on tokens that do not have Night Vision when multiple tokens are selected. 
+- *Removed* redundant "nochange" processing for light and sight, as this is not triggered. 
 
 ## Version 0.8.0
 - *Changed* Advantage scripts to handle non-token characters. 
