@@ -351,14 +351,6 @@ export default class TokenHudExtension {
             })            
             hudCorruption.find("i").dblclick(async (ev) => {
                 GMToolkit.log(false, `Corruption hud extension double-clicked.`)
-                if (ev.ctrlKey && ev.shiftKey && wfrp4eContent.core) {
-                    let result = game.wfrp4e.tables.formatChatRoll("mutatemental");
-                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    GMToolkit.log(false, `${actor.name} spawned a mental mutation.`) 
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                    return;
-                }
                 if (ev.ctrlKey && ev.altKey) {
                     let littlePrayer = new Roll("d100") 
                     littlePrayer.roll();
@@ -370,17 +362,28 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.shiftKey && ev.altKey && wfrp4eContent.core) {
-                    let result = game.wfrp4e.tables.formatChatRoll("wrath");
-                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    GMToolkit.log(false, `${actor.name} incurred the Wrath of the Gods.`) 
+                    let result = (game.tables.getName("Wrath of the Gods Table")) ? await game.wfrp4e.tables.rollTable("wrath") : `${game.i18n.format("GMTOOLKIT.TokenHudExtension.ImportTable", {table: "Wrath of the Gods"})}`
+                    let chatData = game.wfrp4e.utility.chatDataSetup(result?.result || result, "gmroll", true)
+                    chatData.flavor = game.i18n.format("GMTOOLKIT.TokenHudExtension.Sufferance", {actor: actor.name, plight: "the Wrath of the Gods"})
+                    ChatMessage.create(chatData, {});  
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
                 }
                 if (ev.ctrlKey && wfrp4eContent.core) {
-                    let result = game.wfrp4e.tables.formatChatRoll("mutatephys");
-                    ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result, "roll", true));
-                    GMToolkit.log(false, `${actor.name} spawned a physical mutation.`) 
+                    let result = (game.tables.getName("Physical Mutation")) ? await game.wfrp4e.tables.rollTable("mutatephys") : `${game.i18n.format("GMTOOLKIT.TokenHudExtension.ImportTable", {table: "Physical Mutation"})}`
+                    let chatData = game.wfrp4e.utility.chatDataSetup(result?.result || result, "gmroll", true)
+                    chatData.flavor = game.i18n.format("GMTOOLKIT.TokenHudExtension.Sufferance", {actor: actor.name, plight: "Physical Mutation"})
+                    ChatMessage.create(chatData, {});  
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                if (ev.shiftKey && wfrp4eContent.core) {
+                    let result = (game.tables.getName("Mental Corruption")) ? await game.wfrp4e.tables.rollTable("mutatemental") : `${game.i18n.format("GMTOOLKIT.TokenHudExtension.ImportTable", {table: "Mental Corruption"})}`
+                    let chatData = game.wfrp4e.utility.chatDataSetup(result?.result || result, "gmroll", true)
+                    chatData.flavor = game.i18n.format("GMTOOLKIT.TokenHudExtension.Sufferance", {actor: actor.name, plight: "Mental Corruption"})
+                    ChatMessage.create(chatData, {});  
                     ev.preventDefault();
                     ev.stopPropagation();
                     return;
