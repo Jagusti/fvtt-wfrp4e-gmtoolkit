@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
-- *Changed* Foundry compatibility to ###. WFRP4e system compatibility is ###. 
+- *Changed* Foundry compatibility to v9. WFRP4e system compatibility is v5. 
 - *Fixed* non-rendered html in Marginal Success roll description.
 - *Fixed* issue where module settings could not be accessed [[#70](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/70)].
 - *Added* RollTable compatibility to the Send Dark Whispers macro. This fixes issues with "undefined" Dark Whisper text in the Send Dark Whispers dialog [[#69](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/69)].

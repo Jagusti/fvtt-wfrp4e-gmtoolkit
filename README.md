@@ -4,13 +4,11 @@ Utility module with tweaks, enhancements and macros to help GMs manage games of 
 
 ## Compatibility
 
-Version 0.8.0 requires
-- Foundry VTT: 0.8.8 - 0.8.9
-- WFRP4e: 4.0.6 - 4.3.1
+Version 0.9.0 requires
+- Foundry VTT: v9 
+- WFRP4e: v5
 
-This version (including new enhancements) is partially compatible with WFRP4e 5.x and Foundry 9.x. Known conflicts are described in issue #69, and will be addressed in the next release. Future versions of the Toolkit may not be compatible with earlier versions of Foundry or the WFRP4e system.
-
-If you are using earlier versions of WFRP4e (3.4.1 - 3.6.2) and Foundry (0.7.10), then you should use [v0.6.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.6.3) of the GM Toolkit.
+If you are using earlier versions of WFRP4e (4.0.6 - 4.3.1) and Foundry (0.8.8 - 0.8.9), then you should use [v0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0) of the GM Toolkit.
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
@@ -23,7 +21,8 @@ For full details, see the [Getting Started guide](../../wiki/getting-started) on
 3. [Import macros](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your Macro Directory via `Compendiums` > `Macro` > `GM Toolkit`.
    - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
    - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
-4. Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
+   - Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
+4. [Import RolLTables](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your RollTable suite via `Compendiums` > `RollTable` > `GM Toolkit`.
 
 ## References
 
