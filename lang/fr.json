@@ -22,6 +22,8 @@
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} est passé de {originalStatus} à {newStatus} pour {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} demeure à {originalStatus} pourr {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} a offert une Modeste Prière aux Dieux ({littlePrayerResult}).</p>",
+    "GMTOOLKIT.TokenHudExtension.ImportTable" : "{table} table not found. Please import from the Compendium.",
+    "GMTOOLKIT.TokenHudExtension.Sufferance" : "{actor} suffers {plight}",
 
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",

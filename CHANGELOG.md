@@ -5,12 +5,15 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
-- *Changed* Foundry compatibility to up to ###. WFRP4e system compatibility is up to ###. 
-- *Fix* non-rendered html in Marginal Success roll description.
-- *Fixed* issue where module settings could not be accessed ([#70](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/70)).
-- *Changed* Send Dark Whispers macro to be compatible with WFRP4e v5.0.4 ([#69](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/69))
-- *Added* Dark Whispers RollTable and compendium for use by Send Dark Whispers macro. Added prompt to import table in Send Dark Whispers dialog if not present. 
-
+- *Changed* Foundry compatibility to ###. WFRP4e system compatibility is ###. 
+- *Fixed* non-rendered html in Marginal Success roll description.
+- *Fixed* issue where module settings could not be accessed [[#70](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/70)].
+- *Added* RollTable compatibility to the Send Dark Whispers macro. This fixes issues with "undefined" Dark Whisper text in the Send Dark Whispers dialog [[#69](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/69)].
+- *Added* Dark Whispers RollTable from compendium for use by Send Dark Whispers macro. 
+- *Added* prompt to import table in Send Dark Whispers dialog if not present. 
+- *Added* RollTable compatibility to Token Hud Extensions. This fixes issues with rolling for Mental Corruption, Physical Mutation and Wrath of the Gods using Token Hud Extension shortcuts. [[#69](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/69)]. 
+- *Changed* Token Hud shortcut for Mental Corruption from `CTRL+SHIFT+double-click` to `SHIFT+double-click`.
+- *Added* message prompt to install Mental Corruption, Physical Mutation and Wrath of the Gods Rolltables if not present. 
 
 ## Version 0.8.0
 - *Changed* Advantage scripts to handle non-token characters. 
