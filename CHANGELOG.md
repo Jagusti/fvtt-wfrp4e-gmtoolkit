@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+- *Fix* non-rendered html in Marginal Success roll description.
 
 ## Version 0.8.0
 - *Changed* Advantage scripts to handle non-token characters. 
