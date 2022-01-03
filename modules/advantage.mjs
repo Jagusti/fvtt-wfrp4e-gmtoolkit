@@ -138,7 +138,6 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, deleteCombatant, cre
 } // End Class
 
 Hooks.on("createCombatant", function(combatant) {
-    // TODO: add "added to combat" context to notification
     if (game.settings.get("wfrp4e-gm-toolkit", "clearAdvantageCombatJoin")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.updateAdvantage(token, "clear", "createCombatant");
@@ -146,7 +145,6 @@ Hooks.on("createCombatant", function(combatant) {
 });
 
 Hooks.on("deleteCombatant", function(combatant) {
-    // TODO: add "removed from combat" context to notification
     if (game.settings.get("wfrp4e-gm-toolkit", "clearAdvantageCombatLeave")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.updateAdvantage(token, "clear", "deleteCombatant");
