@@ -22,7 +22,7 @@ For full details, see the [Getting Started guide](../../wiki/getting-started) on
    - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
    - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
    - Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
-4. [Import RolLTables](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your RollTable suite via `Compendiums` > `RollTable` > `GM Toolkit`.
+4. Import RollTables to your RollTable suite via `Compendiums` > `RollTable` > `GM Toolkit`.
 
 ## References
 
