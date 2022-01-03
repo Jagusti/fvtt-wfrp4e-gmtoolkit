@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+- *Changed* Set Token Vision and Light macro to await token updates, to prevent a conflict or failure when multiple tokens are selected. This will need to be **manually re-imported** from the compendium. 
 
 ## Version 0.9.0
 - *Changed* Foundry compatibility to v9. WFRP4e system compatibility is v5. 
