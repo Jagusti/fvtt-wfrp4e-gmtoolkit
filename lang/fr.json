@@ -22,6 +22,8 @@
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} est passé de {originalStatus} à {newStatus} pour {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} demeure à {originalStatus} pourr {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} a offert une Modeste Prière aux Dieux ({littlePrayerResult}).</p>",
+    "GMTOOLKIT.TokenHudExtension.ImportTable" : "{table} table not found. Please import from the Compendium.",
+    "GMTOOLKIT.TokenHudExtension.Sufferance" : "{actor} suffers {plight}",
 
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
@@ -164,6 +166,7 @@
     "GMTOOLKIT.Dialog.DarkWhispers.SendWhisper" : "Murmurer",
     "GMTOOLKIT.Dialog.DarkWhispers.NoCorruption" : "No Corruption to spend on offer.", 
     "GMTOOLKIT.Dialog.DarkWhispers.HasCorruption" : "Someone to bargain with.", 
+    "GMTOOLKIT.Dialog.DarkWhispers.ImportTable" : "Import the Dark Whispers RollTable from the GM Toolkit compendium to see Dark Whisper prompts here.", 
     
     "GMTOOLKIT.Message.DarkWhispers.Accept" : "Obéir au Murmure",
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "Ignorer les Dieux Noirs",

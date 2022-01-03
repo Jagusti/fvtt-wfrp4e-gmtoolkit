@@ -282,6 +282,6 @@ export function getDataSettings(data, feature) {
             s.isNumber = true;
             s.inputType = "number"
         }
-        s.value = game.settings.get(s.module, s.key);
+        s.value = game.settings.get(s.namespace, s.key);
     });
 }

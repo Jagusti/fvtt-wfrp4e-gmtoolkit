@@ -1,9 +1,9 @@
-/* Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
- * This macro is adapted for WFRP4e from Token Vision Configuration by @Sky#9453
- * https://github.com/Sky-Captain-13/foundry/tree/master/scriptMacros
- */
-
 setTokenVisionLight();
+
+async function canvasTokensUpdate(data) {
+  const updates = canvas.tokens.controlled.map(token => mergeObject({_id: token.id}, data));
+  await canvas.scene.updateEmbeddedDocuments("Token", updates)
+}
 
 async function setTokenVisionLight() { 
   if (canvas.tokens.controlled.length < 1) 
@@ -11,7 +11,7 @@ async function setTokenVisionLight() {
 
   let applyChanges = false;
 
-  new Dialog({
+new Dialog({
     title: game.i18n.localize("GMTOOLKIT.Dialog.SetVisionLight.Title"),
     content: `
       <form> 
@@ -105,22 +105,28 @@ async function setTokenVisionLight() {
     default: "yes",
     close: html => {
       if (applyChanges) {
+
         for ( let token of canvas.tokens.controlled ) {
-          let visionType = html.find('[name="vision-type"]')[0].value || "nochange"; // TODO: default vision option based on condition -> trait -> talent. Issue Log: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/42
-          let item; // used for finding whether token has Night Vision or Dark Vision 
-          let lightSource = html.find('[name="light-source"]')[0].value || "nochange";
+          
+          // Define a set of baseline values. Light Source and Vision choices will only change the properties that differ. Not all of the options available since Foundry v9 are used.
+          // Baseline Vision Values
           let advNightVision = 0;
           let dimSight = 0;
           let brightSight = 0;
+          let sightAngle = 360;
+          // Baseline Light Source Values
           let dimLight = 0;
-          let brightLight = 0; // 
+          let brightLight = 0;  
           let lightAngle = 360;
-          let lockRotation = token.data.lockRotation;
-          let lightColor = ""; 
+          let lightColor = null; 
           let lightColorIntensity = 0;
           let animationIntensity = 1;
           let animationSpeed = 1;
           let animationType = "none";
+
+          let visionType = html.find('[name="vision-type"]')[0].value; // TODO: default vision option based on condition -> trait -> talent. Issue Log: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/42
+          let item; // used for finding whether token has Night Vision or Dark Vision 
+          let lightSource = html.find('[name="light-source"]')[0].value;
       
           // Get Light Source Values
           switch (lightSource) {
@@ -190,8 +196,7 @@ async function setTokenVisionLight() {
               animationIntensity = 1;
               animationSpeed = 1;
               animationType = "torch";
-              lockRotation = false;
-              lightAngle = 60;
+              lightAngle = 90;
               break;
             case "light":
               dimLight = 15;
@@ -247,13 +252,11 @@ async function setTokenVisionLight() {
               animationSpeed = 7;
               animationType = "fog"
               break;
-            case "nochange":
-              default:
-                dimLight = token.data.dimLight;
-                brightLight = token.data.brightLight;
-                lightAngle = token.data.lightAngle;
-                lockRotation = token.data.lockRotation;
-                lightColor = token.data.lightColor;
+            default:
+              dimLight = token.data.light.dim;
+              brightLight = token.data.light.bright;
+              lightAngle = token.data.light.angle;
+              lightColor = token.data.light.color;
           }
                            
           // Get Vision Type Values
@@ -270,16 +273,16 @@ async function setTokenVisionLight() {
           break;
         case "darkVision": 
           item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Trait.DarkVision").toLowerCase() );
-            if(item == undefined) { 
-            (game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")) ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))  : dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")) ;
-          } else {
+            if(item != undefined) {
             dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"));
+          } else { 
+            (game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")) ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))  : dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")) ;
           }
           brightSight = (dimSight / 2);
           break;
         case "nightVision":
           // Night Vision requires some minimal illumination to provide a benefit
-          if (game.scenes.viewed.data.darkness < 1 | dimLight > 0 | game.scenes.viewed.globalLight) {
+          if (game.scenes.viewed.data.darkness < 1 | dimLight > 0 | game.scenes.viewed.data.globalLight) {
             item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
               if(item == undefined) { 
                 (game.settings.get("wfrp4e-gm-toolkit", "overrideNightVision")) ? advNightVision = 1  : advNightVision = 0 ;
@@ -300,40 +303,57 @@ async function setTokenVisionLight() {
               }
             brightSight = (20 * advNightVision); 
             dimSight = Math.max(brightSight + dimLight, Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")));
+            dimSight = advNightVision == 0 ? Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")) : Math.max(brightSight + dimLight, Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")));
+            sightAngle = lightAngle;
           }
+          console.log(`Night Vision Advances ${advNightVision}`)
           break;
         case "normalVision":
           dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"));
           brightSight = 0;
           break;
-        case "nochange":
-          default:
+        default:
           dimSight = token.data.dimSight;
           brightSight = token.data.brightSight;
       }
       
           // Update Token
           token.document.update({
-            vision: true,
-            visionType: visionType,
-            lightSource: lightSource,
-            dimLight: dimLight, 
-            brightLight:  brightLight,
-            lightAngle: lightAngle,
-            lightColor: lightColor,
-            lightAlpha: lightColorIntensity,
-            lightAnimation: {
-              intensity: animationIntensity,
-              speed: animationSpeed,
-              type: animationType
+            "vision": true,
+            "light": {
+              "dim": dimLight, 
+              "bright":  brightLight,
+              "angle": lightAngle,
+              "color": lightColor,
+              "alpha": lightColorIntensity,
             },
-            dimSight: dimSight,
-            brightSight: brightSight,
-            lockRotation: lockRotation,
-            advNightVision: advNightVision
+            "light.animation": {
+              "intensity": animationIntensity,
+              "speed": animationSpeed,
+              "type": animationType
+            },
+            "dimSight": dimSight,
+            "brightSight": brightSight,
+            "sightAngle": sightAngle
+            // "visionType": visionType,
+            // "lightSource": lightSource,
+            // "advNightVision": advNightVision
           });
-        }
+          token.refresh(true)
+      }
+      
+      canvasTokensUpdate({"vision": true})
+
       }
     }
   }).render(true);
 };
+
+
+/* ==========
+ * MACRO: Set Token Vision and Light
+ * VERSION: 0.9.0
+ * UPDATED: 2022-01-02
+ * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
+ * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
+ ========== */
