@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 
+## Version 0.9.1
+- *Changed* Set Token Vision and Light macro to await token updates, to prevent a conflict or failure when multiple tokens are selected. This will need to be **manually re-imported** from the compendium. 
+- *Added* movement lock to prevent players from moving tokens on the configured holding scene. This allows tokens to be used in fixed locations with all the usual selection, targeting and hud interactions rather than just non-interactive tiles or pictures for character portraits. 
+
 ## Version 0.9.0
 - *Changed* Foundry compatibility to v9. WFRP4e system compatibility is v5. 
 - *Fixed* non-rendered html in Marginal Success roll description.

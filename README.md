@@ -4,7 +4,7 @@ Utility module with tweaks, enhancements and macros to help GMs manage games of 
 
 ## Compatibility
 
-Version 0.9.0 requires
+Version 0.9.x requires
 - Foundry VTT: v9 
 - WFRP4e: v5
 
