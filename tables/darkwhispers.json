@@ -22,16 +22,16 @@
         "range": [6, 6]
     }, {
         "description": "Exert your authority. Make an example of the weakest or most vulnerable.",
-        "range": [6, 6]
-    }, {
-        "description": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own. ",
         "range": [7, 7]
     }, {
-        "description": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
+        "description": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own. ",
         "range": [8, 8]
     }, {
-        "description": "Secrets are burdensome. Be generous and give them away.",
+        "description": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
         "range": [9, 9]
+    }, {
+        "description": "Secrets are burdensome. Be generous and give them away.",
+        "range": [10, 10]
     }    
     ]
   }
