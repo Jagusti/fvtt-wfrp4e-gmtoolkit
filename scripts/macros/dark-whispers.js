@@ -54,7 +54,7 @@ async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-tool
   };
 
   // Construct and show form to write whisper message and select target player characters
-  let darkwhisper = (game.tables.getName("Dark Whispers")) ? await game.wfrp4e.tables.rollTable("darkwhispers") : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
+  let darkwhisper = (game.tables.getName(game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title"))) ? await game.wfrp4e.tables.rollTable("darkwhispers") : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
 
  let dialogContent = `
     <div class="form-group ">
@@ -122,8 +122,8 @@ function sendDarkWhispers(html, users, sendmode) {
 
 /* ==========
 * MACRO: Send Dark Whispers
-* VERSION: 0.9.0
-* UPDATED: 2022-01-01
+* VERSION: 0.9.2
+* UPDATED: 2022-01-04
 * DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
 * TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper. 
 * TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers. 
