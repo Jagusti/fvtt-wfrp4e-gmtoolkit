@@ -153,7 +153,7 @@ Hooks.on("deleteCombatant", function(combatant) {
 
 Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {  
     GMToolkit.log(false, scriptArgs)    
-    let automateDamageAdvantage = String(game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")) 
+    let automateDamageAdvantage = game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")
     GMToolkit.log(false, `Automate Damage Advantage: ${automateDamageAdvantage}`) 
     if (!automateDamageAdvantage) return
 
