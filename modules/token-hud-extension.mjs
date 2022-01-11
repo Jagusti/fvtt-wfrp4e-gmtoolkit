@@ -1,11 +1,9 @@
 import GMToolkit from "./gm-toolkit.mjs";
-import GMToolkitSettings from "./gm-toolkit-settings.mjs";
 import { hasSkill, adjustStatus } from "./utility.mjs";
 
 export default class TokenHudExtension {
 
     static async addTokenHudExtensions(app, html, data) {
-        // let actor = canvas.tokens.get(data.id).actor;
         let actor = game.actors.get(canvas.tokens.controlled[0].actor.id)
         if (actor === undefined) return;    
 
@@ -13,9 +11,23 @@ export default class TokenHudExtension {
         wfrp4eContent.core = game.modules.get("wfrp4e-core")?.active || false;
         GMToolkit.log(false, wfrp4eContent.core)
 
-        this.addMovementTokenTip(app, html, data, actor)
+        this.addHudContainer(app,html,data)
         this.addPlayerCharacterTokenTip(app, html, data, actor, wfrp4eContent)
         this.addInitiativeTokenTip(app, html, data, actor)
+        this.addMovementTokenTip(app, html, data, actor)
+    }
+
+    static async addHudContainer(app,html,data) {
+        // Add Extension Container
+        let divTokenHudExt = '<div class="tokenHudContainer"></div>';
+        html.find(".col.left").before(divTokenHudExt);
+        
+        // Add Extension columns
+        let hudExtensionColumnInner = $(`<div class="col tokenHudColumn" id="hudLeftInner"></div>`);
+        let hudExtensionColumnOuter = $(`<div class="col tokenHudColumn" id="hudLeftOuter"></div>`);
+        
+        html.find(".tokenHudContainer").prepend(hudExtensionColumnOuter)
+        html.find(".tokenHudContainer").prepend(hudExtensionColumnInner)
     }
 
     static async addMovementTokenTip(app, html, data, actor) {
@@ -35,12 +47,8 @@ export default class TokenHudExtension {
             TooltipMovement += `; ${game.i18n.localize("Walk")}: ${walk}; ${game.i18n.localize("Run")}: ${run}; ${game.i18n.localize("Swim")}: ${swim}`;
             displayedMovement = run
         }
-        let hudMovement = $(`<div class="control-icon tokenhudicon left" title="${TooltipMovement}"><i class="fas ${movementIcon}"></i> ${displayedMovement}</div>`);
-        
-        // Create space for Hud Extensions next to elevation icon
-        let divTokenHudExt = '<div class="tokenhudext left">';
-        html.find(".attribute.elevation").wrap(divTokenHudExt);
-        html.find(".attribute.elevation").before(hudMovement);// Add Movement token tip
+        let hudMovement = $(`<div class="control-icon tokenhudicon left" id="movement" title="${TooltipMovement}"><i class="fas ${movementIcon}">&nbsp;${displayedMovement}</i></div>`);
+        html.find('[id = "hudLeftInner"]').prepend(hudMovement);// Add Movement token tip
         
         // Add interactions for Movement
         hudMovement.find("i").dblclick(async (ev) => {
@@ -119,22 +127,17 @@ export default class TokenHudExtension {
     static async addInitiativeTokenTip(app, html, data, actor) {
         
        // Do not show initiative token tip if vehicle
-       if (actor.type == "vehicle") return;
+        if (actor.type == "vehicle") return;
 
-       const actorCharacteristics = actor.data.data.characteristics;
+        const actorCharacteristics = actor.data.data.characteristics;
 
-       let initiative = actorCharacteristics.i.value;
-       let agility = actorCharacteristics.ag.value;
+        let initiative = actorCharacteristics.i.value;
+        let agility = actorCharacteristics.ag.value;
 
-       let TooltipInitiative = `${game.i18n.localize("CHAR.I")}: ${initiative}; ${game.i18n.localize("CHAR.Ag")}: ${agility}`
+        let TooltipInitiative = `${game.i18n.localize("CHAR.I")}: ${initiative}; ${game.i18n.localize("CHAR.Ag")}: ${agility}`
 
-       // Create space for Hud Extensions next to combat icon
-       let hudDataCombat =  '[data-action="combat"]' 
-       let divTokenHudExt = '<div class="tokenhudext right">';
-       html.find(`.control-icon${hudDataCombat}`).wrap(divTokenHudExt);
-       
-       let hudInitiative = $(`<div class="control-icon tokenhudicon right" title="${TooltipInitiative}"><i class="fas fa-spinner"></i> ${initiative}</div>`);
-       html.find(`.control-icon${hudDataCombat}`).after(hudInitiative); // Add Initiative and Agility token tip
+        let hudInitiative = $(`<div class="control-icon tokenhudicon left" id="initiative" title="${TooltipInitiative}"><i class="fas fa-spinner">&nbsp;${initiative}</i></div>`);
+        html.find('[id = "hudLeftInner"]').prepend(hudInitiative);// Add Initiative and Agility token tip
 
        // Add interactions for Initiative and Agility
         hudInitiative.find("i").dblclick(async (ev) => {
@@ -188,14 +191,9 @@ export default class TokenHudExtension {
 
             let divTokenHudExt = '<div class="tokenhudext left">';
             
-            // Create space for Hud Extensions next to config icon
-            // Resolve, Resilience, Fortune, Fate
-            let hudDataConfig =  '[data-action="config"]' 
-            html.find(`.control-icon${hudDataConfig}`).wrap(divTokenHudExt);
-
             // Resolve and Resilience
-            let hudResolve = $(`<div class="control-icon tokenhudicon left" title="${TooltipResolve}"><i class="fas fa-hand-rock">&nbsp;${resolve}</i></div>`);
-            html.find(`.control-icon${hudDataConfig}`).before(hudResolve); // Add Resolve token tip
+            let hudResolve = $(`<div class="control-icon tokenhudicon left" id="resolve" title="${TooltipResolve}"><i class="fas fa-hand-rock">&nbsp;${resolve}</i></div>`);
+            html.find('[id = "hudLeftOuter"]').prepend(hudResolve);// Add Resolve token tip
 
             // Add interactions for Resolve and Resilience
             hudResolve.find("i").contextmenu(async (ev) => {
@@ -247,8 +245,8 @@ export default class TokenHudExtension {
             })  
 
             // Fortune and Fate
-            let hudFortune = $(`<div class="control-icon tokenhudicon left" title="${TooltipFortune}"><i class="fas fa-dice">&nbsp;${fortune}</i></div>`);
-            html.find(`.control-icon${hudDataConfig}`).before(hudFortune); // Add Fortune token tip
+            let hudFortune = $(`<div class="control-icon tokenhudicon left" id="fortune" title="${TooltipFortune}"><i class="fas fa-dice">&nbsp;${fortune}</i></div>`);
+            html.find('[id = "hudLeftOuter"]').append(hudFortune);// Add Fortune token tip
             // Add interactions for Fortune and Fate
             hudFortune.find("i").contextmenu(async (ev) => {
                 GMToolkit.log(false, `Fortune hud extension right-clicked.`)
@@ -308,15 +306,11 @@ export default class TokenHudExtension {
             })
 
 
-            // Create space for Hud Extensions next to target icon
             // Corruption, Sin, Perception, Intuition
-            let hudDataTarget =  '[data-action="target"]' 
-            html.find(`.control-icon${hudDataTarget}`).wrap(divTokenHudExt);
-
             // Corruption and Sin
-            let hudCorruption = $(`<div class="control-icon tokenhudicon left" title="${TooltipCorruption}"><i class="fas fa-bahai">&nbsp;${corruption}</i></div>`);
-            html.find(`.control-icon${hudDataTarget}`).before(hudCorruption); // Add Corruption token tip        
-
+            let hudCorruption = $(`<div class="control-icon tokenhudicon left" id="corruption" title="${TooltipCorruption}"><i class="fas fa-bahai">&nbsp;${corruption}</i></div>`);
+            html.find('[id = "hudLeftOuter"]').prepend(hudCorruption);// Add Corruption token tip
+            
             // Add interactions for Corruption and Sin           
             hudCorruption.find("i").contextmenu(async (ev) => {
                 GMToolkit.log(false,`Corruption hud extension right-clicked.`)
@@ -400,8 +394,8 @@ export default class TokenHudExtension {
             }) 
 
             // Perception and Intuition
-            let hudPerception = $(`<div class="control-icon tokenhudicon left" title="${TooltipPerception}"><i class="fas fa-eye">&nbsp;${perception}</i></div>`);
-            html.find(`.control-icon${hudDataTarget}`).before(hudPerception);  // Add Perception token tip
+            let hudPerception = $(`<div class="control-icon tokenhudicon left" id="perception" title="${TooltipPerception}"><i class="fas fa-eye">&nbsp;${perception}</i></div>`);
+            html.find('[id = "hudLeftInner"]').append(hudPerception);// Add Perceptiontoken tip
 
             // Add interactions for Perception and Intuition
             hudPerception.find("i").dblclick(async (ev) => {

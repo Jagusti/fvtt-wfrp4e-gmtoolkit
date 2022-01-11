@@ -24,7 +24,31 @@
 /* 1. TOKEN HUD EXTENSIONS */
 /***************************/
 
-/* 1a. Extension Div */
+/* 1a. Extension Container */
+
+.tokenHudContainer {
+	display: flex;
+	align-items: self-end;
+	margin-right: 50px;
+	flex: 0 !important;
+}
+
+.col.tokenHudColumn {
+	flex-direction: column; 
+	flex-basis: 70px;
+	height: unset!important;
+	margin-top: 24px;
+}
+
+#hudLeftInner {
+	align-items: flex-end;
+	left: -160px;
+}
+
+#hudLeftOuter {
+	left: -255px;
+	align-items: flex-start;
+}
 
 .tokenhudext {
 	display: flex; 
@@ -35,11 +59,12 @@
 
 .tokenhudext.left {
 	justify-content: flex-end; 
+	display: inline-flex;
 }
 
-.tokenhudext.right {
+/* .tokenhudext.right {
 	justify-content: flex-start; 
-}
+} */
 
 /*  1b. Hud Icons */
 
@@ -48,7 +73,7 @@
 	min-width: 42px;
 	flex-basis: auto;
 	padding: 0 8px;
-    margin: 8px 0px;
+    margin: 11px 0px;
 }
 
 .control-icon.tokenhudicon.left {
@@ -56,9 +81,9 @@
 	margin-top: auto;  /* Override margin-top for first-child to maintain middle alignment */
 }
 
-.control-icon.tokenhudicon.right {
+/* .control-icon.tokenhudicon.right {
 	margin-left: 8px;
-}
+} */
 
 /* 1c. Override core hud styles to avoid misalignment */ 
 
