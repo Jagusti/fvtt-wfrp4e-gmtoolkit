@@ -43,6 +43,17 @@ export default class GMToolkitSettings {
             onChange: GMToolkitSettings.debouncedReload,
             feature: "advantage"  
         });
+        // Clear advantage when suffering a condition
+        game.settings.register(GMToolkit.MODULE_ID, "automateConditionAdvantage", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
         // Clear Advantage when token is added to combat tracker
         game.settings.register(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin", {
             name: "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name",

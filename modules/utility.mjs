@@ -155,20 +155,22 @@ export function getSession() {
 
 
 /** 
- * Get session management parameters date and time based on world settings. 
- * @return {Object} attacker    :   Actor object of the attacker
- * @return {Object} defender    :   Actor object of the defender (typically represented by targeted token)
+ * Check characters are in combat. 
+ * @param {Object} character    :   Actor object of the character
+ * @param {String} notification :   "silent" suppresses UI notification //, "persist" makes notifications stick until dismissed
  * @return {Boolean}       :   
  **/ 
-export function inActiveCombat(attacker, defender) {
+export function inActiveCombat(character, notification = true) {
     let inActiveCombat = true
-    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == attacker.id) == false) {
-        ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: attacker.name, sceneName : game.scenes.viewed.name})}`);
+
+    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == character.id) == false) {
         inActiveCombat = false
-    }
-    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == defender.id) == false) {
-        ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: defender.name, sceneName : game.scenes.viewed.name})}`);
-        inActiveCombat = false
+        let message = (`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: character.name, sceneName : game.scenes.viewed.name})}`);
+        if (notification != "silent") {
+            (notification == "persist") ? ui.notifications.error(message, {permanent : true}) : ui.notifications.error(message) 
+        } else {
+            GMToolkit.log(true, message)
+        }
     }
     return inActiveCombat
 }

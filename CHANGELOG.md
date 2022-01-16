@@ -10,13 +10,16 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - In Foundry, tests should be targeted and handled as unopposed. 
   - The advantage updates are made only when using an Apply Damage option by right-clicking the results card in the chat log (if enabled in settings). 
   - Advantage is increased for the winner and cleared for the loser. 
-- *Added* automation for winning opposed tests, regardless of applying damage. 
+- *Added* Advantage automation for winning opposed tests, regardless of applying damage. 
   - A new module setting is added to automate advantage handling when winning or losing opposed tests. This is separate to the Outmanoeuvring setting.
   - Advantage is increased for the winner of a test and cleared for the loser. 
   - No damage needs to have been applied, so this iteration covers situations where a character successfully Dodges or otherwise uses a non-damaging skill to successfully oppose. 
   - Changes are applied as soon as the defender rolls. Be aware that updates may therefore be duplicated if the roll is edited or re-rolled by using Fortune or Dark Deal.
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in combat. 
+- *Added* Advantage automation when suffering a new Condition during combat (WFRP p167).
+  - This is not applied to Foundry 'conditions' such as Dead, Grappling and Fear.
+  - Advantage is cleared when a new condition is added to a character. In the case of stackable conditions (such as Bleeding), the Advantage loss is not re-applied if the character already has an instance of the condition. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
