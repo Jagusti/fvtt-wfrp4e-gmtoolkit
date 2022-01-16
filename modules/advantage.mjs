@@ -100,7 +100,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
 
         switch (updatedAdvantage.outcome) {
             case "increased":
-                if (context == "wfrp4e:applyDamage" || context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
+                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
                 uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
                 break;
             case "reduced":
@@ -108,8 +108,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                 uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
                 break;
             case "reset":
-                // TODO: add context to notification (eg, suffer condition)
-                if (context == "wfrp4e:applyDamage" || context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
+                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
                 if (context == "createCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
                 if (context == "deleteCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
                 uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
@@ -153,9 +152,9 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     GMToolkit.log(false, scriptArgs)    
     if (!scriptArgs.opposedTest.defenderTest.context.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test). 
     if (!game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")) return 
-    if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor, scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
+    if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor) | !inActiveCombat(scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
 
-    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedDamage",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
+    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Outmanoeuvre",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
     let message = uiNotice
     let type = "info"
     let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
@@ -182,7 +181,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     
     let attacker = attackerTest.actor
     let defender = defenderTest.actor
-    if (!inActiveCombat(attacker, defender)) return // Exit if either actor is not in the active combat
+    if (!inActiveCombat(attacker) | !inActiveCombat(defender)) return // Exit if either actor is not in the active combat
 
     let winner = opposedTest.result.winner == "attacker" ? attacker : defender
     let loser = opposedTest.result.winner == "attacker" ? defender : attacker
@@ -205,3 +204,30 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
 
     GMToolkit.log(false,`Opposed Test Advantage: Finished.`)
 });
+
+
+// Intercept when an actor gets a condition during combat
+Hooks.on("createActiveEffect", async function(conditionEffect) {  
+    GMToolkit.log(false, conditionEffect)
+
+    if (!conditionEffect.isCondition) return 
+    let condId = conditionEffect.conditionId
+    if (condId == "dead" || condId == "fear" || condId == "grappling") return // Exit if not a proper condition
+
+    if (!game.settings.get("wfrp4e-gm-toolkit", "automateConditionAdvantage")) return 
+	
+    if (!inActiveCombat(conditionEffect.parent, "silent")) return
+    
+    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Condition", {character: conditionEffect.parent.name, condition: condId} )}`
+    let message = uiNotice
+    let type = "info"
+    let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+    ui.notifications.notify(message, type, options)
+    GMToolkit.log(false,uiNotice) 
+        
+    // Clear Advantage
+    await Advantage.updateAdvantage(conditionEffect.parent.data.token,"clear", "createActiveEffect");
+    
+    GMToolkit.log(false,`Condition Advantage: Finished.`)
+    
+}); 
