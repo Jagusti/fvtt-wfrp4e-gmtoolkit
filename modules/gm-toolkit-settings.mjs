@@ -21,9 +21,21 @@ export default class GMToolkitSettings {
             type: GMToolkitAdvantageSettings,   
             restricted: true                 
         });
+        // Automate advantage for winning or losing an opposed test
+        game.settings.register(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
+        // Automate advantage for outmanouvring and losing wounds from unopposed tests
         game.settings.register(GMToolkit.MODULE_ID, "automateDamageAdvantage", {
-            name: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.name",
-            hint: "GMTOOLKIT.Settings.Advantage.Automate.OpposedDamage.hint",
+            name: "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint",
             scope: "world",
             config: false,
             default: true,

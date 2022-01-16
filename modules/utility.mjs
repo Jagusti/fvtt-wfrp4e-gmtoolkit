@@ -152,3 +152,23 @@ export function getSession() {
     }
     return {date, time, id}
 }
+
+
+/** 
+ * Get session management parameters date and time based on world settings. 
+ * @return {Object} attacker    :   Actor object of the attacker
+ * @return {Object} defender    :   Actor object of the defender (typically represented by targeted token)
+ * @return {Boolean}       :   
+ **/ 
+export function inActiveCombat(attacker, defender) {
+    let inActiveCombat = true
+    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == attacker.id) == false) {
+        ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: attacker.name, sceneName : game.scenes.viewed.name})}`);
+        inActiveCombat = false
+    }
+    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == defender.id) == false) {
+        ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: defender.name, sceneName : game.scenes.viewed.name})}`);
+        inActiveCombat = false
+    }
+    return inActiveCombat
+}

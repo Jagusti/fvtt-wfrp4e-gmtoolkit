@@ -1,22 +1,20 @@
 import GMToolkit from "./gm-toolkit.mjs";
+import { inActiveCombat } from "./utility.mjs";
 
 export default class Advantage {
 
 /* 
 character   :   Token, Actor. Combatant is passed in as Token.
 adjustment  :   increase (+1), reduce (=0), clear (-1)
-context     :   macro, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect
+context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect
  */
     static async updateAdvantage(character, adjustment, context = "macro") {    
         // Guards
         if (character === undefined) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
         if (character?.document?.documentName == "Token") {
             if (context == "macro" && canvas.tokens.controlled.length != 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
-            if (!character.inCombat && (adjustment == "increase" || adjustment == "reduce")) return ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: character.name, sceneName : game.scenes.viewed.name})}`);
-        }
-
-        // Clear console if token. 
-        GMToolkit.log(false, character); GMToolkit.log(false,`${character.document.documentName} ${character.name}: ${adjustment}`)
+            if (!character.inCombat && (adjustment != "clear")) return ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: character.name, sceneName : game.scenes.viewed.name})}`);
+        } 
 
         // Find current and max Advantage for token or actor. 
         let resourceBase = []
@@ -102,7 +100,7 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, deleteCombatant, cre
 
         switch (updatedAdvantage.outcome) {
             case "increased":
-                if (context == "wfrp4e:applyDamage") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
+                if (context == "wfrp4e:applyDamage" || context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
                 uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
                 break;
             case "reduced":
@@ -111,7 +109,7 @@ context     :   macro, wfrp4e:applyDamage, createCombatant, deleteCombatant, cre
                 break;
             case "reset":
                 // TODO: add context to notification (eg, suffer condition)
-                if (context == "wfrp4e:applyDamage") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
+                if (context == "wfrp4e:applyDamage" || context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
                 if (context == "createCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
                 if (context == "deleteCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
                 uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
@@ -153,9 +151,9 @@ Hooks.on("deleteCombatant", function(combatant) {
 
 Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {  
     GMToolkit.log(false, scriptArgs)    
-    let automateDamageAdvantage = game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")
-    GMToolkit.log(false, `Automate Damage Advantage: ${automateDamageAdvantage}`) 
-    if (!automateDamageAdvantage) return
+    if (!scriptArgs.opposedTest.defenderTest.context.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test). 
+    if (!game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")) return 
+    if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor, scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
 
     let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedDamage",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
     let message = uiNotice
@@ -167,13 +165,43 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
 
     // Clear advantage on actor that has taken damage
     var character = scriptArgs.actor.data.token
-    GMToolkit.log(false, character.document.documentName)
-    await Advantage.updateAdvantage(scriptArgs.actor.data.token,"clear","wfrp4e:applyDamage" );
+    await Advantage.updateAdvantage(character,"clear","wfrp4e:applyDamage" );
 
     // Increase advantage on actor that dealt damage
     var character = scriptArgs.attacker.data.token
-    GMToolkit.log(false, character.document.documentName)
-    await Advantage.updateAdvantage(scriptArgs.attacker.data.token,"increase","wfrp4e:applyDamage");
+    await Advantage.updateAdvantage(character,"increase","wfrp4e:applyDamage");
 
-    GMToolkit.log(false,`Automate Damage Advantage: Finished.`)
+    GMToolkit.log(false,`Outmanoeuvring Advantage: Finished.`)
+});
+
+
+Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, defenderTest) {  
+    GMToolkit.log(false, opposedTest, attackerTest, defenderTest)
+    if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
+    if (!game.settings.get("wfrp4e-gm-toolkit", "automateOpposedTestAdvantage")) return 
+    
+    let attacker = attackerTest.actor
+    let defender = defenderTest.actor
+    if (!inActiveCombat(attacker, defender)) return // Exit if either actor is not in the active combat
+
+    let winner = opposedTest.result.winner == "attacker" ? attacker : defender
+    let loser = opposedTest.result.winner == "attacker" ? defender : attacker
+
+    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedTest",{winner: winner.name, loser: loser.name} )}`
+    let message = uiNotice
+    let type = "info"
+    let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+
+    ui.notifications.notify(message, type, options)
+    GMToolkit.log(false,uiNotice)
+
+    // Clear advantage on actor that has lost opposed test
+    var character = loser.data.token
+    await Advantage.updateAdvantage(character,"clear","wfrp4e:opposedTestResult" );
+
+    // Increase advantage on actor that has won opposed test
+    var character = winner.data.token
+    await Advantage.updateAdvantage(character,"increase","wfrp4e:opposedTestResult");
+
+    GMToolkit.log(false,`Opposed Test Advantage: Finished.`)
 });
