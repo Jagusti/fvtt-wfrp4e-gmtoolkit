@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
+- *Changed* Advantage automation to represent Outmanoeuvring (WFRP p164). 
+  - In Foundry, tests should be targeted and handled as unopposed. 
+  - The advantage updates are made only when using an Apply Damage option by right-clicking the results card in the chat log (if enabled in settings). 
+  - Advantage is increased for the winner and cleared for the loser. 
+- *Added* automation for winning opposed tests, regardless of applying damage. 
+  - A new module setting is added to automate advantage handling when winning or losing opposed tests. This is separate to the Outmanoeuvring setting.
+  - Advantage is increased for the winner of a test and cleared for the loser. 
+  - No damage needs to have been applied, so this iteration covers situations where a character successfully Dodges or otherwise uses a non-damaging skill to successfully oppose. 
+  - Changes are applied as soon as the defender rolls. Be aware that updates may therefore be duplicated if the roll is edited or re-rolled by using Fortune or Dark Deal.
+- *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
+  - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in combat. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
