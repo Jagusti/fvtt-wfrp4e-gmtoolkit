@@ -20,6 +20,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* Advantage automation when suffering a new Condition during combat (WFRP p167).
   - This is not applied to Foundry 'conditions' such as Dead, Grappling and Fear.
   - Advantage is cleared when a new condition is added to a character. In the case of stackable conditions (such as Bleeding), the Advantage loss is not re-applied if the character already has an instance of the condition. 
+- *Fixed* compatilibity with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
+  - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
+  - These macros will need to be manually re-imported from the compendium for changes to apply. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

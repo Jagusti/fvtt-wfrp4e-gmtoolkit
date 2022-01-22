@@ -3,8 +3,9 @@ addXP();
 async function addXP() {
 
   // setup: determine group of actors to be awarded experience
+  let awardees = []
   if (game.user.targets.size < 1) {
-    // (1) all player characters if no tokens are selected
+    // (1) all player characters if no tokens are targeted
     awardees = Array.from(game.actors).filter(pc => pc.hasPlayerOwner && pc.type == "character");
   } else {
     // (2) otherwise, all targeted player character tokens
@@ -75,11 +76,11 @@ function updateXP(awardees, XP, reason) {
 
   // cycle through player characters, gathering experience change data for report message
   awardees.forEach ( pc  => {
-    recipient = pc?.actor?.name || pc.name 
-    XPTotal = pc?.details?.experience?.total || pc.actor.data.data.details.experience.total; 
-    newXPTotal = Math.max(XPTotal + XP,0);
-    XPCurrent = pc?.details?.experience?.current  || pc.actor.data.data.details.experience.current; 
-    newXPCurrent = Math.max(XPCurrent + XP,0);
+    let recipient = pc?.actor?.name || pc.name 
+    let XPTotal = pc?.details?.experience?.total || pc.actor.data.data.details.experience.total; 
+    let newXPTotal = Math.max(XPTotal + XP,0);
+    let XPCurrent = pc?.details?.experience?.current  || pc.actor.data.data.details.experience.current; 
+    let newXPCurrent = Math.max(XPCurrent + XP,0);
 
     // update token actor or actor
     pc?.actor ? pc.actor.awardExp(XP, reason) : pc.awardExp(XP, reason)
@@ -99,8 +100,8 @@ function updateXP(awardees, XP, reason) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 0.8.0
- * UPDATED: 2021-12-30
+ * VERSION: 0.9.3
+ * UPDATED: 2022-01-22
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the Chat log.
  * TIP: Characters must have a player assigned. 
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
