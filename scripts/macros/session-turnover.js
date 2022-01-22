@@ -29,7 +29,7 @@ async function endSession () {
     } else {
         game.gmtoolkit.module.log(false, "Updating Session ID.")
         const thisSession = game.gmtoolkit.utility.getSession().id 
-        nextSession = Math.trunc(thisSession) == thisSession ? Number(thisSession) + 1 : thisSession;
+        let nextSession = Math.trunc(thisSession) == thisSession ? Number(thisSession) + 1 : thisSession;
         
         const dialog = new Dialog({
             title: (game.i18n.localize("GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title")),
@@ -64,8 +64,8 @@ async function endSession () {
 
 /* ==========
  * MACRO: Session Turnover
- * VERSION: 0.8.0
- * UPDATED: 2021-12-30
+ * VERSION: 0.9.3
+ * UPDATED: 2022-01-22
  * DESCRIPTION: Unified macro to run start and end of session admin, including awarding Experience Points, resetting Fortune, pausing the game and exporting the chat log. 
  * TIP: Various default options can be defined in Session Management Settings under Module Settings.
  ========== */
