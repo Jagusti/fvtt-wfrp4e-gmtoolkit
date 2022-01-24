@@ -6,7 +6,7 @@ async function addXP() {
   let awardees = []
   if (game.user.targets.size < 1) {
     // (1) all player characters if no tokens are targeted
-    awardees = Array.from(game.actors).filter(pc => pc.hasPlayerOwner && pc.type == "character");
+    awardees = game.actors.filter(pc => pc.hasPlayerOwner && pc.type == "character");
   } else {
     // (2) otherwise, all targeted player character tokens
     awardees = Array.from(game.user.targets).filter(pc => pc.actor.hasPlayerOwner && pc.actor.type == "character");
@@ -101,7 +101,7 @@ function updateXP(awardees, XP, reason) {
 /* ==========
  * MACRO: Add XP
  * VERSION: 0.9.3
- * UPDATED: 2022-01-22
+ * UPDATED: 2022-01-24
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the Chat log.
  * TIP: Characters must have a player assigned. 
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
