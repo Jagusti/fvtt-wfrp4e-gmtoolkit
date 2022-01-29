@@ -23,6 +23,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* compatilibity with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
   - These macros will need to be manually re-imported from the compendium for changes to apply. 
+- *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
+  - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

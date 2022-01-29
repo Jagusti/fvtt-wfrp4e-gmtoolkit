@@ -101,8 +101,8 @@
     "GMTOOLKIT.Advantage.Context.LostOpposedTest" : "{actorName} lost an opposed test. ", 
     "GMTOOLKIT.Advantage.Context.WonOpposedTest" : "{actorName} won an opposed test. ", 
 
-    "GMTOOLKIT.Scene.TokenNotGlobal" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
-    "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Pions est déssactivé et l'Illumination globale est activé dans la Scène {sceneName}.",
+    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
+    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "La vision des Pions est déssactivé et l'Illumination globale est activé dans la Scène {sceneName}.",
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Envoyer tout le monde sur la Scène",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activer la Scène actuellement visualisée lorsque tout le monde est envoyé dessus.",

@@ -101,8 +101,8 @@
     "GMTOOLKIT.Advantage.Context.LostOpposedTest" : "{actorName} lost an opposed test. ", 
     "GMTOOLKIT.Advantage.Context.WonOpposedTest" : "{actorName} won an opposed test. ", 
 
-    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination disabled in scene {sceneName}.",
-    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination enabled in scene {sceneName}.", 
+    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "Token Vision is enabled and Unrestricted Vision Range is disabled in scene {sceneName}.",
+    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "Token Vision is disabled and Unrestricted Vision Range is enabled in scene {sceneName}.", 
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Pull Everyone to Scene",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activate the currently viewed scene when pulling everyone to it.",
