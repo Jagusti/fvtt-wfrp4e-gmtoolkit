@@ -25,6 +25,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - These macros will need to be manually re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
   - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
+- *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

@@ -22,7 +22,7 @@
 			"name": "gm-toolkit-macros",
 			"label": "GM Toolkit",
 			"path": "packs/gm-toolkit-macros.db",
-			"entity": "Macro",
+			"type": "Macro",
 			"module": "wfrp4e-gm-toolkit",
 			"system": "wfrp4e"
 		},
@@ -30,7 +30,7 @@
 			"name": "gm-toolkit-tables",
 			"label": "GM Toolkit",
 			"path": "packs/gm-toolkit-tables.db",
-			"entity": "RollTable",
+			"type": "RollTable",
 			"module": "wfrp4e-gm-toolkit",
 			"system": "wfrp4e"
 		}
