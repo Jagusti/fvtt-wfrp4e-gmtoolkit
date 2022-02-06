@@ -126,7 +126,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         }
 
         let message = uiNotice
-        ui.notifications.notify(message, type, options) 
+        if (game.user.isGM) {ui.notifications.notify(message, type, options)} 
         GMToolkit.log(true, uiNotice);
         // Force refresh the token hud if it is visible
         if (character.hasActiveHUD) {await canvas.hud.token.render(true);}
@@ -159,7 +159,7 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     let type = "info"
     let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
 
-    ui.notifications.notify(message, type, options) 
+    if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(true,uiNotice)
 
     // Clear advantage on actor that has taken damage
@@ -191,7 +191,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     let type = "info"
     let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
 
-    ui.notifications.notify(message, type, options)
+    if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(false,uiNotice)
 
     // Clear advantage on actor that has lost opposed test
@@ -222,7 +222,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     let message = uiNotice
     let type = "info"
     let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
-    ui.notifications.notify(message, type, options)
+    if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(false,uiNotice) 
         
     // Clear Advantage

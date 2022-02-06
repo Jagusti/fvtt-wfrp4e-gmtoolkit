@@ -26,6 +26,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
   - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
+- *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
