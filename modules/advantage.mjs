@@ -135,98 +135,12 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
     // Clears flags set for increasing token Advantage during combat
     static unsetFlags(advantaged) {
         advantaged.filter(a => a.token.actor.unsetFlag('wfrp4e-gm-toolkit','advantage'))
-        console.log(advantaged)
-
         GMToolkit.log(false,`Advantage Flags: Unset.`)
     }
 
     
-    static async loseMomentum() {
-        let checkOptions = "";
-        let checkGained = "";
-        let noAdvantage = "";
-        let combatantLine = "";
-        
-        game.combats.active.combatants.forEach(combatant => {
-            let combatantAdvantage = combatant.token.actor.data.data.status?.advantage?.value;
-            let checkMomentum = combatant.token.actor.getFlag('wfrp4e-gm-toolkit','advantage') ? false : "checked"
-            
-            if (!combatantAdvantage) {
-                noAdvantage += `${combatant.name};&nbsp;`
-            } else {
-                combatantLine = `
-                <div class="form-group">
-                <input type="checkbox" name="${combatant.data.tokenId}" value="${combatant.name}" ${checkMomentum}> 
-                <label for="${combatant.data.tokenId}"> <strong>${combatant.name}</strong></label>
-                <label for="${combatant.data.tokenId}"> ${combatantAdvantage} </label>
-                </div>
-                `;
-                (checkMomentum) ? checkOptions += combatantLine : checkGained += combatantLine;
-            }            
-        });
-
-        if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters");
-
-        let dialogContent = `
-            <div class="form-group ">
-            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage")} </label>
-            </div>
-            ${checkOptions} 
-            <div class="form-group ">
-            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.GainedAdvantage")} </label>
-            </div>
-            ${checkGained} 
-            <div class="form-group noAdvantage">
-              <label for="noAdvantage">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NoAdvantage")}</label>
-            </div>
-            <div class="form-group">${noAdvantage}</div>
-        `;
-
-        new Dialog({
-            title: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title"),
-            content: dialogContent,
-            buttons: {
-                reduceAdvantage: {
-                    label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum"),
-                    callback: (html) => {
-                        // reduce advantage for selected combatants
-                        /* game.combats.active.combatants.forEach (combatant => {
-                            if (html.find(`[name="${combatant.data.tokenId}"]`)[0].checked){
-                            Advantage.reduceAdvantage(combatant.token)
-                            }
-                        }) */
-                        
-                        for ( let combatant of game.combats.active.combatants ) {
-                            console.log(combatant.data.tokenId)
-                            if (html.find(`[name="${combatant.data.tokenId}"]`)[0].checked){
-                                Advantage.reduceAdvantage(combatant.token)
-                            }
-                        }
-
-                        }
-                    }
-                }
-            }
-        ).render(true);
-
-    }
 } // End Class
 
-Hooks.on("createCombatant", function(combatant) {
-    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin")) {
-        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "createCombatant");
-        Advantage.unsetFlags([combatant])
-    } 
-});
-
-Hooks.on("deleteCombatant", function(combatant) {
-    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
-        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "deleteCombatant");
-        Advantage.unsetFlags([combatant])
-    } 
-});
 
 Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {  
     GMToolkit.log(false, scriptArgs)    
@@ -324,28 +238,35 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     
 }); 
 
-Hooks.on("preUpdateCombat", async function(combat, change) {
-    if (!change.round || (!game.user.isUniqueGM)) return 
-    
-    let gainedAdvantage = game.combats.active.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage') && (a.token.actor.data.data.status?.advantage?.value > 0)))
-    
-    let noMomentum = game.combats.active.combatants.filter(a => (!a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage') || !(a.token.actor.data.data.status?.advantage?.value > 0)))
-    // TODO: if (noMomentum.length) await Advantage.loseMomentum()
-    
-    console.log(gainedAdvantage)
-    if (gainedAdvantage.length) Advantage.unsetFlags(gainedAdvantage)
-    
-    let advFlagged = game.combats.active.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
-    GMToolkit.log(false, advFlagged)
-    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 
+Hooks.on("createCombatant", function(combatant) {
+    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin")) {
+        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        Advantage.updateAdvantage(token, "clear", "createCombatant");
+        Advantage.unsetFlags([combatant])
+    } 
 });
 
-/* Hooks.on("updateCombat", async function (combat, change) {
-    if (!change.turn  || (!game.user.isUniqueGM) ) return 
-    if (combat.data.round != 0 && combat.turns && combat.data.active) {
-        game.combats.active.combatants.filter(x => x.token.actor.setFlag('wfrp4e-gm-toolkit','advantage',{startOfTurn : x.token.actor.data.data.status?.advantage?.value}))
-        console.log(game.combats.active.combatants.map(x => x.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
-        console.log('Logged initial Advantage')
-    }
-}); */
+Hooks.on("deleteCombatant", function(combatant) {
+    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
+        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        Advantage.updateAdvantage(token, "clear", "deleteCombatant");
+        Advantage.unsetFlags([combatant])
+    } 
+});
+
+// TODO: Add automation setting for Advantage flagging
+Hooks.on("preUpdateCombat", async function(combat, change) {
+    if (!change.round || !combat.round || !game.user.isUniqueGM || !combat.combatants.size) return 
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
+    GMToolkit.log(false, advFlagged)
+});
+
+Hooks.on("preDeleteCombat", async function(combat) {
+    if (!game.user.isUniqueGM || !combat.combatants.size) return 
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
+    GMToolkit.log(true, advFlagged)
+});
+
