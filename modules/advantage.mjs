@@ -216,7 +216,7 @@ Hooks.on("createCombatant", function(combatant) {
     if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.updateAdvantage(token, "clear", "createCombatant");
-        // TODO: Advantage.unsetFlags(combatant)
+        Advantage.unsetFlags([combatant])
     } 
 });
 
@@ -224,7 +224,7 @@ Hooks.on("deleteCombatant", function(combatant) {
     if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.updateAdvantage(token, "clear", "deleteCombatant");
-        // TODO: Advantage.unsetFlags(combatant)
+        Advantage.unsetFlags([combatant])
     } 
 });
 
@@ -335,7 +335,9 @@ Hooks.on("preUpdateCombat", async function(combat, change) {
     console.log(gainedAdvantage)
     if (gainedAdvantage.length) Advantage.unsetFlags(gainedAdvantage)
     
-    // gainedAdvantage.push(game.combats.active.combatants.filter(a => a.token._actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    let advFlagged = game.combats.active.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    GMToolkit.log(false, advFlagged)
+    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 
 });
 
