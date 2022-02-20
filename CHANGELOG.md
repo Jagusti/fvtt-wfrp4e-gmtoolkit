@@ -16,17 +16,18 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - No damage needs to have been applied, so this iteration covers situations where a character successfully Dodges or otherwise uses a non-damaging skill to successfully oppose. 
   - Changes are applied as soon as the defender rolls. Be aware that updates may therefore be duplicated if the roll is edited or re-rolled by using Fortune or Dark Deal.
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
-  - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in combat. 
+  - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 
 - *Added* Advantage automation when suffering a new Condition during combat (WFRP p167).
   - This is not applied to Foundry 'conditions' such as Dead, Grappling and Fear.
   - Advantage is cleared when a new condition is added to a character. In the case of stackable conditions (such as Bleeding), the Advantage loss is not re-applied if the character already has an instance of the condition. 
+- *Added* flags to prevent increasing Advantage multiple times when successfully opposing or outmanouevring multiple targets. 
+- *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
 - *Fixed* compatilibity with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
   - These macros will need to be manually re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
   - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
-- *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

@@ -96,7 +96,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
     static async reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context) {
         let uiNotice = "";
         let type = "info";
-        let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+        let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
 
         switch (updatedAdvantage.outcome) {
             case "increased":
@@ -132,32 +132,26 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         if (character.hasActiveHUD) {await canvas.hud.token.render(true);}
     }
 
+    // Clears flags set for increasing token Advantage during combat
+    static unsetFlags(advantaged) {
+        advantaged.filter(a => a.token.actor.unsetFlag('wfrp4e-gm-toolkit','advantage'))
+        GMToolkit.log(false,`Advantage Flags: Unset.`)
+    }
+
+    
 } // End Class
 
-Hooks.on("createCombatant", function(combatant) {
-    if (game.settings.get("wfrp4e-gm-toolkit", "clearAdvantageCombatJoin")) {
-        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "createCombatant");
-    } 
-});
-
-Hooks.on("deleteCombatant", function(combatant) {
-    if (game.settings.get("wfrp4e-gm-toolkit", "clearAdvantageCombatLeave")) {
-        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "deleteCombatant");
-    } 
-});
 
 Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {  
     GMToolkit.log(false, scriptArgs)    
     if (!scriptArgs.opposedTest.defenderTest.context.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test). 
-    if (!game.settings.get("wfrp4e-gm-toolkit", "automateDamageAdvantage")) return 
+    if (!game.settings.get(GMToolkit.MODULE_ID, "automateDamageAdvantage")) return 
     if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor) | !inActiveCombat(scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
 
     let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Outmanoeuvre",{actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss} )}`
     let message = uiNotice
     let type = "info"
-    let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+    let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
 
     if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(true,uiNotice)
@@ -166,18 +160,29 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     var character = scriptArgs.actor.data.token
     await Advantage.updateAdvantage(character,"clear","wfrp4e:applyDamage" );
 
-    // Increase advantage on actor that dealt damage
+    // Increase advantage on actor that dealt damage, as long as it has not already been updated for this test
     var character = scriptArgs.attacker.data.token
-    await Advantage.updateAdvantage(character,"increase","wfrp4e:applyDamage");
+    if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.outmanoeuvre != scriptArgs.opposedTest.attackerTest.message.id) {
+        await Advantage.updateAdvantage(character,"increase","wfrp4e:applyDamage");
+        await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id});
+        console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
+    } else {
+        console.log(`Advantage increase already applied to ${character.name} for outmanoeuvring.`)
+    }
 
     GMToolkit.log(false,`Outmanoeuvring Advantage: Finished.`)
 });
 
 
 Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, defenderTest) {  
-    GMToolkit.log(false, opposedTest, attackerTest, defenderTest)
+    GMToolkit.log(true, opposedTest, attackerTest, defenderTest)
+
+    // Set Advantage flag if attacker and/or defender charged. Do this once before exiting for unopposed tests. 
+    if (attackerTest.data.preData?.charging || attackerTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.attacker.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+    if (defenderTest.data.preData?.charging || defenderTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.defender.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+
     if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
-    if (!game.settings.get("wfrp4e-gm-toolkit", "automateOpposedTestAdvantage")) return 
+    if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return 
     
     let attacker = attackerTest.actor
     let defender = defenderTest.actor
@@ -189,7 +194,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedTest",{winner: winner.name, loser: loser.name} )}`
     let message = uiNotice
     let type = "info"
-    let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+    let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
 
     if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(false,uiNotice)
@@ -198,9 +203,15 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     var character = loser.data.token
     await Advantage.updateAdvantage(character,"clear","wfrp4e:opposedTestResult" );
 
-    // Increase advantage on actor that has won opposed test
+    // Increase advantage on actor that has won opposed test, as long as it has not already been updated for this test
     var character = winner.data.token
-    await Advantage.updateAdvantage(character,"increase","wfrp4e:opposedTestResult");
+    if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.opposed != opposedTest.attackerTest.message.id) {
+        await Advantage.updateAdvantage(character,"increase","wfrp4e:opposedTestResult");
+        await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {opposed: opposedTest.attackerTest.message.id});
+        console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
+    } else {
+        console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
+    }
 
     GMToolkit.log(false,`Opposed Test Advantage: Finished.`)
 });
@@ -214,14 +225,14 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     let condId = conditionEffect.conditionId
     if (condId == "dead" || condId == "fear" || condId == "grappling") return // Exit if not a proper condition
 
-    if (!game.settings.get("wfrp4e-gm-toolkit", "automateConditionAdvantage")) return 
+    if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) return 
 	
     if (!inActiveCombat(conditionEffect.parent, "silent")) return
     
     let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Condition", {character: conditionEffect.parent.name, condition: condId} )}`
     let message = uiNotice
     let type = "info"
-    let options = {permanent: game.settings.get("wfrp4e-gm-toolkit", "persistAdvantageNotifications")};
+    let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
     if (game.user.isGM) {ui.notifications.notify(message, type, options)}
     GMToolkit.log(false,uiNotice) 
         
@@ -231,3 +242,36 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     GMToolkit.log(false,`Condition Advantage: Finished.`)
     
 }); 
+
+
+Hooks.on("createCombatant", function(combatant) {
+    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin")) {
+        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        Advantage.updateAdvantage(token, "clear", "createCombatant");
+        Advantage.unsetFlags([combatant])
+    } 
+});
+
+Hooks.on("deleteCombatant", function(combatant) {
+    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
+        let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+        Advantage.updateAdvantage(token, "clear", "deleteCombatant");
+        Advantage.unsetFlags([combatant])
+    } 
+});
+
+// TODO: Add automation setting for Advantage flagging
+Hooks.on("preUpdateCombat", async function(combat, change) {
+    if (!change.round || !combat.round || !game.user.isUniqueGM || !combat.combatants.size) return 
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
+    GMToolkit.log(false, advFlagged)
+});
+
+Hooks.on("preDeleteCombat", async function(combat) {
+    if (!game.user.isUniqueGM || !combat.combatants.size) return 
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
+    GMToolkit.log(true, advFlagged)
+});
+
