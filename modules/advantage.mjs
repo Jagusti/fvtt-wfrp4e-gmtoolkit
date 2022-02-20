@@ -175,7 +175,12 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
 
 
 Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, defenderTest) {  
-    GMToolkit.log(false, opposedTest, attackerTest, defenderTest)
+    GMToolkit.log(true, opposedTest, attackerTest, defenderTest)
+
+    // Set Advantage flag if attacker and/or defender charged. Do this once before exiting for unopposed tests. 
+    if (attackerTest.data.preData?.charging || attackerTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.attacker.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+    if (defenderTest.data.preData?.charging || defenderTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.defender.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+
     if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
     if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return 
     
