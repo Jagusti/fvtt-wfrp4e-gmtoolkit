@@ -164,6 +164,14 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                 (checkToLoseMomentum) ? checkNotGained += combatantLine : checkGained += combatantLine;
             }            
         });
+
+        // Exit without prompt if no combatant has Advantage to lose
+        if (checkGained == "" && checkNotGained == "") {
+            let uiNotice = game.i18n.format("GMTOOLKIT.Message.Advantage.NoCombatantsWithAdvantage", {combatRound: round}) 
+            if (game.user.isGM) {ui.notifications.notify(uiNotice, "info", {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")})} 
+            GMToolkit.log(true, uiNotice);
+            return
+        }
     
         if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.Advantage.NoExemptCharacters");
     
@@ -199,7 +207,10 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                                 }
                             }
                         }
-                    }
+                    },
+                    cancel: {
+                      label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+                    },
                 }
             }
         ).render(true);
@@ -334,7 +345,7 @@ Hooks.on("preUpdateCombat", async function(combat, change) {
     // Check for momentum (actor has more Advantage at the end of the round than at start)
     if (game.settings.get(GMToolkit.MODULE_ID, "promptMomentumLoss")) {
         GMToolkit.log(false, "preUpdateCombat: compare Advantage at start and end of round")
-        if (combat.previous.round != null) {
+        if (combat.previous.round != null || (combat.previous.round == null && combat.round > 0)) {
             let round = (change.turn) ? combat.previous.round : combat.current.round 
             if (round > 0) Advantage.loseMomentum(combat, round)
         }
