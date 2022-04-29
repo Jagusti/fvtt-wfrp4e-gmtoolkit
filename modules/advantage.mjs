@@ -172,18 +172,21 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
             GMToolkit.log(true, uiNotice);
             return
         }
-    
-        if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.Advantage.NoExemptCharacters");
+        
+        // Explain empty dialog sections
+        if (checkGained == "") checkGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsAccruedAdvantage")}</div>`;
+        if (checkNotGained == "") checkNotGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsNotAccruedAdvantage")}</div>`;
+        if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsWithoutAdvantage");
     
         let dialogContent = `
-            <div class="form-group ">
+            <div class="form-group notGainedAdvantage">
             <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage")} </label>
             </div>
-            ${checkNotGained} 
-            <div class="form-group ">
+            ${checkNotGained}
+            <div class="form-group gainedAdvantage">
             <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.GainedAdvantage")} </label>
             </div>
-            ${checkGained} 
+            ${checkGained}
             <div class="form-group noAdvantage">
               <label for="noAdvantage">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NoAdvantage")}</label>
             </div>
