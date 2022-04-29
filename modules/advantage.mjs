@@ -5,8 +5,8 @@ export default class Advantage {
 
 /* 
 character   :   Token, Actor. Combatant is passed in as Token.
-adjustment  :   increase (+1), reduce (=0), clear (-1)
-context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect
+adjustment  :   increase (+1), clear (=0), reduce (-1)
+context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect, loseMomentum
  */
     static async updateAdvantage(character, adjustment, context = "macro") {    
         // Guards
@@ -25,7 +25,12 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         let updatedAdvantage = await this.adjustAdvantage(character, resourceBase, adjustment);
         
         // Report the outcome to the user
-        await this.reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context)
+        let update = await this.reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context)
+        update.outcome = updatedAdvantage.outcome
+        update.new = updatedAdvantage.new
+        update.starting = updatedAdvantage.starting
+        GMToolkit.log(false, update)
+        return (update)
     }
 
     static async getAdvantage(character, resourceBase, adjustment) {
@@ -94,51 +99,154 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
     }
 
     static async reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context) {
-        let uiNotice = "";
+        let update = []
         let type = "info";
         let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
 
-        switch (updatedAdvantage.outcome) {
-            case "increased":
-                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+        switch (context) {
+            case "wfrp4e:opposedTestResult": 
+                if (updatedAdvantage.outcome == "increased") update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
+                if (updatedAdvantage.outcome == "reset") update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
                 break;
-            case "reduced":
-                // TODO: add context to notification (eg, not gained advantage)
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+            case "loseMomentum" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.LoseMomentum", { actorName: character.name});
                 break;
-            case "reset":
-                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
-                if (context == "createCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
-                if (context == "deleteCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+            case "createCombatant" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
                 break;
-            case "min":
-                uiNotice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
-                break;
-            case "max":
-                uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max });
-                break;
-            case "nochange":
-            default:
-                uiNotice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange");
+            case "deleteCombatant" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
                 break;
         }
 
-        let message = uiNotice
+        switch (updatedAdvantage.outcome) {
+            case "increased":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+                break;
+            case "reduced":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+                break;
+            case "reset":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+                break;
+            case "min":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+                break;
+            case "max":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max });
+                break;
+            case "nochange":
+            default:
+                update.notice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange");
+                break;
+        }
+
+        let message = (update.context ? update.context : "") + update.notice
         if (game.user.isGM) {ui.notifications.notify(message, type, options)} 
-        GMToolkit.log(true, uiNotice);
+        GMToolkit.log(true, update);
         // Force refresh the token hud if it is visible
         if (character.hasActiveHUD) {await canvas.hud.token.render(true);}
+        update.context = (update.context) ? update.context : context 
+        return(update)
     }
 
     // Clears flags set for increasing token Advantage during combat
-    static unsetFlags(advantaged) {
-        advantaged.filter(a => a.token.actor.unsetFlag('wfrp4e-gm-toolkit','advantage'))
+    static unsetFlags(advantaged, startOfRound = false) {
+        advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit","advantage"))
+        if (startOfRound) advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit","sorAdvantage"))
         GMToolkit.log(false,`Advantage Flags: Unset.`)
     }
 
+    static async loseMomentum(combat, round) {
+        let checkNotGained = ""; // list of tokens that have not accrued advantage
+        let checkGained = ""; // list of tokens that have accrued advantage
+        let noAdvantage = ""; // list of tokens that have no advantage at the end of the round
+        let combatantLine = ""; // html string for constructing dialog
+        let combatantAdvantage = [];
+        
+        combat.combatants.forEach(combatant => {
+            combatantAdvantage.startOfRound = combatant.token.actor.getFlag("wfrp4e-gm-toolkit","sorAdvantage")
+            combatantAdvantage.endOfRound = combatant.token.actor.data.data.status?.advantage?.value;
+            let checkToLoseMomentum = (combatantAdvantage.endOfRound - combatantAdvantage.startOfRound > 0) ? false : "checked"
+            
+            if (!combatantAdvantage.endOfRound) {
+                noAdvantage += `${combatant.name};&nbsp;`
+            } else {
+                combatantLine = `
+                <div class="form-group">
+                <input type="checkbox" name="${combatant.data.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
+                <label for="${combatant.data.tokenId}"> <strong>${combatant.name}</strong></label>
+                <label for="${combatant.data.tokenId}"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
+                </div>
+                `;
+                (checkToLoseMomentum) ? checkNotGained += combatantLine : checkGained += combatantLine;
+            }            
+        });
+
+        // Exit without prompt if no combatant has Advantage to lose
+        if (checkGained == "" && checkNotGained == "") {
+            let uiNotice = game.i18n.format("GMTOOLKIT.Message.Advantage.NoCombatantsWithAdvantage", {combatRound: round}) 
+            if (game.user.isGM) {ui.notifications.notify(uiNotice, "info", {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")})} 
+            GMToolkit.log(true, uiNotice);
+            return
+        }
+        
+        // Explain empty dialog sections
+        if (checkGained == "") checkGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsAccruedAdvantage")}</div>`;
+        if (checkNotGained == "") checkNotGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsNotAccruedAdvantage")}</div>`;
+        if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsWithoutAdvantage");
     
+        let dialogContent = `
+            <div class="form-group notGainedAdvantage">
+            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage")} </label>
+            </div>
+            ${checkNotGained}
+            <div class="form-group gainedAdvantage">
+            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.GainedAdvantage")} </label>
+            </div>
+            ${checkGained}
+            <div class="form-group noAdvantage">
+              <label for="noAdvantage">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NoAdvantage")}</label>
+            </div>
+            <div class="form-group">${noAdvantage}</div>
+        `;
+
+        let lostAdvantage = ""
+    
+        new Dialog({
+            title: game.i18n.format("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title", {combatRound: round}),
+            content: dialogContent,
+            buttons: {
+                reduceAdvantage: {
+                    label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button"),
+                    callback: async (html) => {
+                        // reduce advantage for selected combatants
+                        for ( let combatant of combat.combatants ) {
+                            if (html.find(`[name="${combatant.data.tokenId}"]`)[0]?.checked){
+                                let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
+                                let result = await this.updateAdvantage(token, 'reduce', 'loseMomentum')
+                                lostAdvantage += `${token.name}: ${result.starting} -> ${result.new} <br/>`
+                                }
+                            }
+                        // confirm changes made in whisper to GM
+                        if (lostAdvantage != "") {
+                            let chatData = game.wfrp4e.utility.chatDataSetup(lostAdvantage, "gmroll", false)
+                            chatData.flavor = game.i18n.format("GMTOOLKIT.Message.Advantage.LostMomentum", {combatRound: round})
+                            ChatMessage.create(chatData, {}); 
+                            }                            
+                        }
+                    },
+                    cancel: {
+                      label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+                    },
+                }
+            }
+        ).render(true);
+
+        GMToolkit.log(false,`Lose Momentum at End of Round: Finished.`)
+    
+    }
+
 } // End Class
 
 
@@ -256,22 +364,47 @@ Hooks.on("deleteCombatant", function(combatant) {
     if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.updateAdvantage(token, "clear", "deleteCombatant");
-        Advantage.unsetFlags([combatant])
+        Advantage.unsetFlags([combatant], true)
     } 
 });
 
-// TODO: Add automation setting for Advantage flagging
 Hooks.on("preUpdateCombat", async function(combat, change) {
-    if (!change.round || !combat.round || !game.user.isUniqueGM || !combat.combatants.size) return 
-    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    if (!game.user.isUniqueGM || !combat.combatants.size || !change.round) return
+    if (combat.round > change.round) return // Exit if going backwards through combat 
+
+    // Check for momentum (actor has more Advantage at the end of the round than at start)
+    if (game.settings.get(GMToolkit.MODULE_ID, "promptMomentumLoss")) {
+        GMToolkit.log(false, "preUpdateCombat: compare Advantage at start and end of round")
+        if (combat.previous.round != null || (combat.previous.round == null && combat.round > 0)) {
+            let round = (change.turn) ? combat.previous.round : combat.current.round 
+            if (round > 0) Advantage.loseMomentum(combat, round)
+        }
+    } 
+
+    // Clear Advantage flags when the combat round changes
+    console.log("preUpdateCombat: unsetting Advantage flags")
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag("wfrp4e-gm-toolkit","advantage")))
     if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
-    GMToolkit.log(false, advFlagged)
+});
+
+Hooks.on("updateCombat", async function(combat, change) {
+    if (!combat.round || !game.user.isUniqueGM || !combat.combatants.size) return     
+    if (!change.round) return // Exit if this isn't the start of a round
+
+    GMToolkit.log(false, "updateCombat: Setting startOfRound flag")
+    if (combat.turns && combat.isActive) {
+        combat.combatants.forEach (async c => {
+            await c.token.actor.setFlag("wfrp4e-gm-toolkit","sorAdvantage", c.token.actor.data.data.status?.advantage?.value ?? 0);
+            GMToolkit.log(false,`${c.name}:  ${c.token.actor.getFlag("wfrp4e-gm-toolkit","sorAdvantage") }`)
+        });
+    }    
 });
 
 Hooks.on("preDeleteCombat", async function(combat) {
+    GMToolkit.log(false, "preDeleteCombat: clear Advantage flags")
     if (!game.user.isUniqueGM || !combat.combatants.size) return 
-    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag("wfrp4e-gm-toolkit","advantage")))
     if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
-    GMToolkit.log(true, advFlagged)
+    await Advantage.unsetFlags(combat.combatants, true)
 });
 

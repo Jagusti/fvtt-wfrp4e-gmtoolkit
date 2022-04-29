@@ -54,6 +54,17 @@ export default class GMToolkitSettings {
             onChange: GMToolkitSettings.debouncedReload,
             feature: "advantage"  
         });
+        // Prompt to lose advantage when not gained in a round
+        game.settings.register(GMToolkit.MODULE_ID, "promptMomentumLoss", {
+            name: "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.name",
+            hint: "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "advantage"  
+        });
         // Clear Advantage when token is added to combat tracker
         game.settings.register(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin", {
             name: "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name",
