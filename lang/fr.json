@@ -14,9 +14,8 @@
     "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "Increase Advantage for the character who deals damage from an unopposed test. Clear Advantage from tokens who take Wounds. This is triggered when choosing an Apply Damage option from a test result card in chat.",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.name" : "Update Advantage when suffering a condition",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "Automatically clear Advantage when a character gains a new Condition during combat.",
-    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name" : "Clear token Advantage when adding to combat",
-    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint" : "Clear Advantage from tokens they are added to the combat tracker, not when a blank encounter is created or combat is begun.",
-    "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.name" : "Clear token Advantage when leaving combat",
+    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.name" : "Losing Momentum",
+    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint" : "Prompt at the end of each round to select combatants that have not accrued Advantage in the round, and to reduce their Advantage by 1.",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint" : "Clear Advantage from tokens when they are removed from the combat tracker, rather than when combat is ended.",
 
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name" : "Activer les Extensions de l'ATH de Pion",
