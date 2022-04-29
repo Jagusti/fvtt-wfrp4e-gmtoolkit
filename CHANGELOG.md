@@ -22,6 +22,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - A new module setting is added to enable or disable a dialog prompt at the end of each combat round that allows GMs to select who should lose Advantage.
   - Characters who have not increased Advantage since the start of the round are pre-selected to lose Advantage. 
   - GMs can override default selections before confirming Advantage losses. 
+  - CHanges made are confirmed in a chat whisper to the GM, which can be revealed to players.
 - *Added* flags to prevent increasing Advantage multiple times when successfully opposing or outmanouevring multiple targets. 
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 

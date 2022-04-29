@@ -192,6 +192,8 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
             </div>
             <div class="form-group">${noAdvantage}</div>
         `;
+
+        let lostAdvantage = ""
     
         new Dialog({
             title: game.i18n.format("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title", {combatRound: round}),
@@ -207,8 +209,15 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                             if (html.find(`[name="${combatant.data.tokenId}"]`)[0].checked){
                                 let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
                                 this.updateAdvantage(token, 'reduce', 'loseMomentum')
+                                lostAdvantage += `${token.name} (from ${token.actor.data.data.status?.advantage?.value})<br/>`
                                 }
                             }
+                        // confirm changes made in whisper to GM
+                        if (lostAdvantage != "") {
+                            let chatData = game.wfrp4e.utility.chatDataSetup(lostAdvantage, "gmroll", false)
+                            chatData.flavor = game.i18n.format("GMTOOLKIT.Message.Advantage.LostMomentum", {combatRound: round})
+                            ChatMessage.create(chatData, {}); 
+                            }                            
                         }
                     },
                     cancel: {
