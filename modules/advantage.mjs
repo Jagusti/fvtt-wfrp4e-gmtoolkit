@@ -139,7 +139,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         GMToolkit.log(false,`Advantage Flags: Unset.`)
     }
 
-    static async loseMomentum(combat) {
+    static async loseMomentum(combat, round) {
         let checkNotGained = ""; // list of tokens that have not accrued advantage
         let checkGained = ""; // list of tokens that have accrued advantage
         let noAdvantage = ""; // list of tokens that have no advantage at the end of the round
@@ -183,7 +183,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         `;
     
         new Dialog({
-            title: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title"),
+            title: game.i18n.format("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title", {combatRound: round}),
             content: dialogContent,
             buttons: {
                 reduceAdvantage: {
@@ -328,13 +328,16 @@ Hooks.on("deleteCombatant", function(combatant) {
 });
 
 Hooks.on("preUpdateCombat", async function(combat, change) {
-    if (!game.user.isUniqueGM || !combat.combatants.size) return     
-    if (!change.round) return // Exit if this isn't the start of a round
+    if (!game.user.isUniqueGM || !combat.combatants.size || !change.round) return
+    if (combat.round > change.round) return // Exit if going backwards through combat 
 
     // Check for momentum (actor has more Advantage at the end of the round than at start)
     if (game.settings.get(GMToolkit.MODULE_ID, "promptMomentumLoss")) {
         GMToolkit.log(false, "preUpdateCombat: compare Advantage at start and end of round")
-        Advantage.loseMomentum(combat)
+        if (combat.previous.round != null) {
+            let round = (change.turn) ? combat.previous.round : combat.current.round 
+            if (round > 0) Advantage.loseMomentum(combat, round)
+        }
     } 
 
     // Clear Advantage flags when the combat round changes

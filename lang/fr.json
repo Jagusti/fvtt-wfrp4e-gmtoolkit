@@ -107,7 +107,7 @@
     "GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage" : "No Advantage Accrued this Round",
     "GMTOOLKIT.Dialog.Advantage.GainedAdvantage" : "Advantage Accrued this Round", 
     "GMTOOLKIT.Dialog.Advantage.NoAdvantage" : "No Advantage to Lose",
-    "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Reduce Advantage at End of Round", 
+    "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Reduce Advantage at End of Round {combatRound}", 
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "Reduce Advantage by 1",
 
     "GMTOOLKIT.Scene.TokenNotUnrestricted" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
