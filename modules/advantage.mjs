@@ -25,7 +25,12 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         let updatedAdvantage = await this.adjustAdvantage(character, resourceBase, adjustment);
         
         // Report the outcome to the user
-        await this.reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context)
+        let update = await this.reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context)
+        update.outcome = updatedAdvantage.outcome
+        update.new = updatedAdvantage.new
+        update.starting = updatedAdvantage.starting
+        GMToolkit.log(false, update)
+        return (update)
     }
 
     static async getAdvantage(character, resourceBase, adjustment) {
@@ -94,42 +99,55 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
     }
 
     static async reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context) {
-        let uiNotice = "";
+        let update = []
         let type = "info";
         let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
 
-        switch (updatedAdvantage.outcome) {
-            case "increased":
-                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+        switch (context) {
+            case "wfrp4e:opposedTestResult": 
+                if (updatedAdvantage.outcome == "increased") update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.WonOpposedTest", { actorName: character.name});
+                if (updatedAdvantage.outcome == "reset") update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
                 break;
-            case "reduced":
-                if (context == "loseMomentum" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LoseMomentum", { actorName: character.name});
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+            case "loseMomentum" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.LoseMomentum", { actorName: character.name});
                 break;
-            case "reset":
-                if (context == "wfrp4e:opposedTestResult" ) uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.LostOpposedTest", { actorName: character.name});
-                if (context == "createCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
-                if (context == "deleteCombatant") uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
-                uiNotice += game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+            case "createCombatant" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
                 break;
-            case "min":
-                uiNotice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
-                break;
-            case "max":
-                uiNotice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max });
-                break;
-            case "nochange":
-            default:
-                uiNotice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange");
+            case "deleteCombatant" : 
+                update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
                 break;
         }
 
-        let message = uiNotice
+        switch (updatedAdvantage.outcome) {
+            case "increased":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Increased", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+                break;
+            case "reduced":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Reduced", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, newAdvantage: updatedAdvantage.new });
+                break;
+            case "reset":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Reset", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+                break;
+            case "min":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting });
+                break;
+            case "max":
+                update.notice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max });
+                break;
+            case "nochange":
+            default:
+                update.notice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange");
+                break;
+        }
+
+        let message = (update.context ? update.context : "") + update.notice
         if (game.user.isGM) {ui.notifications.notify(message, type, options)} 
-        GMToolkit.log(true, uiNotice);
+        GMToolkit.log(true, update);
         // Force refresh the token hud if it is visible
         if (character.hasActiveHUD) {await canvas.hud.token.render(true);}
+        update.context = (update.context) ? update.context : context 
+        return(update)
     }
 
     // Clears flags set for increasing token Advantage during combat
@@ -201,15 +219,13 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
             buttons: {
                 reduceAdvantage: {
                     label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button"),
-                    callback: (html) => {
+                    callback: async (html) => {
                         // reduce advantage for selected combatants
-                        let combatantsWithAdvantage = combat.combatants.filter(a => a.token.actor.data.data.status?.advantage?.value > 0)
-                        for ( let combatant of combatantsWithAdvantage ) {
-                            console.log(combatant.data.tokenId)
-                            if (html.find(`[name="${combatant.data.tokenId}"]`)[0].checked){
+                        for ( let combatant of combat.combatants ) {
+                            if (html.find(`[name="${combatant.data.tokenId}"]`)[0]?.checked){
                                 let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-                                this.updateAdvantage(token, 'reduce', 'loseMomentum')
-                                lostAdvantage += `${token.name} (from ${token.actor.data.data.status?.advantage?.value})<br/>`
+                                let result = await this.updateAdvantage(token, 'reduce', 'loseMomentum')
+                                lostAdvantage += `${token.name}: ${result.starting} -> ${result.new} <br/>`
                                 }
                             }
                         // confirm changes made in whisper to GM
@@ -226,6 +242,8 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                 }
             }
         ).render(true);
+
+        GMToolkit.log(false,`Lose Momentum at End of Round: Finished.`)
     
     }
 
