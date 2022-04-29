@@ -5,7 +5,7 @@ export default class Advantage {
 
 /* 
 character   :   Token, Actor. Combatant is passed in as Token.
-adjustment  :   increase (+1), reduce (=0), clear (-1)
+adjustment  :   increase (+1), clear (=0), reduce (-1)
 context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect, loseMomentum
  */
     static async updateAdvantage(character, adjustment, context = "macro") {    
@@ -134,8 +134,8 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
 
     // Clears flags set for increasing token Advantage during combat
     static unsetFlags(advantaged, startOfRound = false) {
-        advantaged.filter(a => a.token.actor.unsetFlag('wfrp4e-gm-toolkit','advantage'))
-        if (startOfRound) advantaged.filter(a => a.token.actor.unsetFlag('wfrp4e-gm-toolkit','sorAdvantage'))
+        advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit","advantage"))
+        if (startOfRound) advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit","sorAdvantage"))
         GMToolkit.log(false,`Advantage Flags: Unset.`)
     }
 
@@ -147,7 +147,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         let combatantAdvantage = [];
         
         combat.combatants.forEach(combatant => {
-            combatantAdvantage.startOfRound = combatant.token.actor.getFlag('wfrp4e-gm-toolkit','sorAdvantage')
+            combatantAdvantage.startOfRound = combatant.token.actor.getFlag("wfrp4e-gm-toolkit","sorAdvantage")
             combatantAdvantage.endOfRound = combatant.token.actor.data.data.status?.advantage?.value;
             let checkToLoseMomentum = (combatantAdvantage.endOfRound - combatantAdvantage.startOfRound > 0) ? false : "checked"
             
@@ -190,15 +190,14 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                     label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button"),
                     callback: (html) => {
                         // reduce advantage for selected combatants
-                        let possibles = combat.combatants.filter(a => a.token.actor.data.data.status?.advantage?.value > 0)
-                        for ( let combatant of possibles ) {
+                        let combatantsWithAdvantage = combat.combatants.filter(a => a.token.actor.data.data.status?.advantage?.value > 0)
+                        for ( let combatant of combatantsWithAdvantage ) {
                             console.log(combatant.data.tokenId)
                             if (html.find(`[name="${combatant.data.tokenId}"]`)[0].checked){
                                 let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
                                 this.updateAdvantage(token, 'reduce', 'loseMomentum')
+                                }
                             }
-                        }
-    
                         }
                     }
                 }
@@ -340,7 +339,7 @@ Hooks.on("preUpdateCombat", async function(combat, change) {
 
     // Clear Advantage flags when the combat round changes
     console.log("preUpdateCombat: unsetting Advantage flags")
-    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag("wfrp4e-gm-toolkit","advantage")))
     if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 });
 
@@ -351,8 +350,8 @@ Hooks.on("updateCombat", async function(combat, change) {
     GMToolkit.log(false, "updateCombat: Setting startOfRound flag")
     if (combat.turns && combat.isActive) {
         combat.combatants.forEach (async c => {
-            await c.token.actor.setFlag('wfrp4e-gm-toolkit','sorAdvantage', c.token.actor.data.data.status?.advantage?.value ?? 0);
-            console.log(`${c.name}:  ${c.token.actor.getFlag('wfrp4e-gm-toolkit','sorAdvantage') }`)
+            await c.token.actor.setFlag("wfrp4e-gm-toolkit","sorAdvantage", c.token.actor.data.data.status?.advantage?.value ?? 0);
+            GMToolkit.log(false,`${c.name}:  ${c.token.actor.getFlag("wfrp4e-gm-toolkit","sorAdvantage") }`)
         });
     }    
 });
@@ -360,7 +359,7 @@ Hooks.on("updateCombat", async function(combat, change) {
 Hooks.on("preDeleteCombat", async function(combat) {
     GMToolkit.log(false, "preDeleteCombat: clear Advantage flags")
     if (!game.user.isUniqueGM || !combat.combatants.size) return 
-    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag('wfrp4e-gm-toolkit','advantage')))
+    let advFlagged = combat.combatants.filter(a => (a.token.actor.getFlag("wfrp4e-gm-toolkit","advantage")))
     if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
     await Advantage.unsetFlags(combat.combatants, true)
 });
