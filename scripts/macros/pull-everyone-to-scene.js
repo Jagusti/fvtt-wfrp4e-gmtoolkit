@@ -22,11 +22,11 @@ async function pullEveryoneToScene() {
                     </form>`,
                 buttons: {
                     activate: {
-                        label: "Activate Scene",
+                        label: (game.i18n.localize('GMTOOLKIT.Dialog.ScenePullActivate.ActivateScene')),
                         callback: async () => pullToScene(true)
                         },
                     pull: {
-                        label: "Pull Only",
+                        label: (game.i18n.localize('GMTOOLKIT.Dialog.ScenePullActivate.PullOnly')),
                         callback: async () => pullToScene(false)
                         },
                 },

@@ -337,7 +337,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
 	
     if (!inActiveCombat(conditionEffect.parent, "silent")) return
     
-    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Condition", {character: conditionEffect.parent.name, condition: condId} )}`
+    let uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Condition", {character: conditionEffect.parent.name, condition: conditionEffect.displayLabel} )}`
     let message = uiNotice
     let type = "info"
     let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
