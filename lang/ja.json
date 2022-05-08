@@ -151,7 +151,7 @@
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.name" : "セッション終了時にチャットのエクスポート",
     "GMTOOLKIT.Settings.SessionEnd.ExportChat.hint" : "セッションターンオーバ処理時に、チャットログを保存するか確認される。",
     "GMTOOLKIT.Settings.SessionTurnover.SessionID.name" : "セッション参照",
-    "GMTOOLKIT.Settings.SessionTurnover.SessionID.hint" : "経験値追加時の理由を変数「%session%」で置き換える。セッションターンオーバー処理を実行すると、数値は自動的に増加されます。もしくは手で解り易いフレーズを入力する（例、「エピソード2.3」、「儀式のクライマックス」など）。",
+    "GMTOOLKIT.Settings.SessionTurnover.SessionID.hint" : "経験値追加時の理由を変数「%session%」で置き換える。セッションの終幕処理を実行すると、数値は自動的に増加されます。もしくは手で解り易いフレーズを入力する（例、「エピソード2.3」、「儀式のクライマックス」など）。",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.name" : "固定シーン",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint" : "セッション間で自動的に移行するシーンの名前。Session Turnover処理で起動されます。シーン変更しない場合は空白にします。ランディングページやキャンペーンのハブとして使用されます。",
 
@@ -200,6 +200,18 @@
     "GMTOOLKIT.Notification.UserMustBePlayer" : "「{action}」はプレイヤーだけが実行できる。",
 
     "GMTOOLKIT.Dialog.GMToolbox.Title" : "ＧＭツールボックス",
+    "GMTOOLKIT.Add Advantage": "優位追加",
+    "GMTOOLKIT.Clear Advantage": "優位クリア",
+    "GMTOOLKIT.Reduce Advantage": "優位消費",
+    "GMTOOLKIT.Session Turnover": "セッションの終幕",
+    "GMTOOLKIT.Add XP": "経験値獲得",
+    "GMTOOLKIT.Reset Fortune": "幸運点初期化",
+    "GMTOOLKIT.Make Secret Party Test": "秘密のパーティテスト",
+    "GMTOOLKIT.Send Dark Whispers": "「闇の囁き」送信",
+    "GMTOOLKIT.Toggle Scene Visibility and Light": "シーンの視界と光源の切替",
+    "GMTOOLKIT.Set Token Vision and Light": "トークンの視界と光源を設定",
+    "GMTOOLKIT.Pull Everyone to Scene": "全員をシーンに引き寄せる",
+    "GMTOOLKIT.Simply d100": "100面ダイス",
 
     "ROLL.AstoundingSuccess" : "超大成功。「イエス、文句なしにな！」",
     "ROLL.ImpressiveSuccess" : "大成功。「イエス。しかも……」",
