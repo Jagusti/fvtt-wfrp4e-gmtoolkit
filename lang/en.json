@@ -111,7 +111,7 @@
     "GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage" : "Has not accrued Advantage this Round",
     "GMTOOLKIT.Dialog.Advantage.GainedAdvantage" : "Has accrued Advantage this Round", 
     "GMTOOLKIT.Dialog.Advantage.NoAdvantage" : "Has no Advantage to lose",
-    "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Reduce Advantage at end of Round {combatRound}", 
+    "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Lose momentum at end of Round {combatRound}", 
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "Reduce Advantage by 1",
 
     "GMTOOLKIT.Scene.TokenNotUnrestricted" : "Token Vision is enabled and Unrestricted Vision Range is disabled in scene {sceneName}.",
