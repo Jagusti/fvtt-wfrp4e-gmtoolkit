@@ -21,7 +21,7 @@
     
     macros.forEach((name)=> {
         buttons[name] = {
-        label : name,
+        label : (game.i18n.localize("GMTOOLKIT." + name)),
         icon : `<img src = "${game.macros.getName(name).data.img}" style = "height: 2rem; vertical-align : middle; border: none;" >`,
         callback : () => {
             game.macros.getName(name).execute();
