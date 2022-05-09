@@ -169,14 +169,16 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
             combatantAdvantage.endOfRound = combatant.token.actor.data.data.status?.advantage?.value;
             let checkToLoseMomentum = (combatantAdvantage.endOfRound - combatantAdvantage.startOfRound > 0) ? false : "checked"
             
+            // TODO: Define and replace the inline styles within the stylesheet
             if (!combatantAdvantage.endOfRound) {
-                noAdvantage += `${combatant.name};&nbsp;`
+                noAdvantage += `<img src="${combatant.img}" style = "height: 2rem; border: none; padding-right: 2px; padding-left: 2px;" alt="${combatant.name}" title="${combatant.name}">&nbsp;${combatant.name}</img>`
             } else {
                 combatantLine = `
                 <div class="form-group">
-                <input type="checkbox" name="${combatant.data.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
-                <label for="${combatant.data.tokenId}"> <strong>${combatant.name}</strong></label>
-                <label for="${combatant.data.tokenId}"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
+                <input type="checkbox" id="${combatant.data.tokenId}" name="${combatant.data.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
+                <img src="${combatant.img}" style = "height: 2rem; vertical-align : middle; border: none; padding-right: 6px; padding-left: 2px;" />
+                <label for="${combatant.data.tokenId}" style = "text-align: left;  border: none;">  <strong>${combatant.name}</strong></label>
+                <label for="${combatant.data.tokenId}"  style = "text-align: left;  border: none;"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
                 </div>
                 `;
                 (checkToLoseMomentum) ? checkNotGained += combatantLine : checkGained += combatantLine;
@@ -195,22 +197,9 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         if (checkGained == "") checkGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsAccruedAdvantage")}</div>`;
         if (checkNotGained == "") checkNotGained = `<div class="form-group">${game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsNotAccruedAdvantage")}</div>`;
         if (noAdvantage == "") noAdvantage = game.i18n.localize("GMTOOLKIT.Message.Advantage.NoCombatantsWithoutAdvantage");
-    
-        let dialogContent = `
-            <div class="form-group notGainedAdvantage">
-            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NotGainedAdvantage")} </label>
-            </div>
-            ${checkNotGained}
-            <div class="form-group gainedAdvantage">
-            <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.GainedAdvantage")} </label>
-            </div>
-            ${checkGained}
-            <div class="form-group noAdvantage">
-              <label for="noAdvantage">${game.i18n.localize("GMTOOLKIT.Dialog.Advantage.NoAdvantage")}</label>
-            </div>
-            <div class="form-group">${noAdvantage}</div>
-        `;
-
+        
+        let templateData = {'gained' : checkGained, 'notgained' : checkNotGained , 'none' : noAdvantage}
+        const dialogContent = await renderTemplate("modules/wfrp4e-gm-toolkit/templates/gm-toolkit-advantage-momentum.html", templateData)
         let lostAdvantage = ""
     
         new Dialog({
