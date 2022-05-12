@@ -27,12 +27,14 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 
 - *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
-- *Fixed* compatilibity with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
+- *Fixed* compatibility with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
   - These macros will need to be manually re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
   - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
+- *Added* Japanese language support, including including localisation improvements to Pull Everyone to Scene and GM Toolbox macros. Thanks @Yasnen for contributing these!
+  - The Pull Everyone to Scene and GM Toolbox macros will need to be manually re-imported from the compendium for localization and related improvements to apply. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
