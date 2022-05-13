@@ -20,7 +20,7 @@
     let content = `<div style="width: 100%; `; // closing this bracket seems to break the form
     
     macros.forEach((name)=> {
-        label = (game.i18n.localize("GMTOOLKIT." + name.replace(/\s+/g, ''))) == (("GMTOOLKIT." + name.replace(/\s+/g, ''))) ? name : (game.i18n.localize("GMTOOLKIT." + name.replace(/\s+/g, '')))
+        label = (game.i18n.localize("GMTOOLKIT.Macro." + name.replace(/\s+/g, ''))) == (("GMTOOLKIT.Macro." + name.replace(/\s+/g, ''))) ? name : (game.i18n.localize("GMTOOLKIT.Macro." + name.replace(/\s+/g, '')))
         buttons[name] = {
         label : label,
         icon : `<img src = "${game.macros.getName(name)?.data?.img}" style = "height: 2rem; vertical-align : middle; border: none;" >`,
@@ -37,7 +37,7 @@
 /* ==========
 * MACRO: GM Toolbox
 * VERSION: 0.9.3
-* UPDATED: 2022-05-11
+* UPDATED: 2022-05-13
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
