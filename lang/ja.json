@@ -10,7 +10,7 @@
     "GMTOOLKIT.Settings.Advantage.PersistNotices.hint" : "優位関連の通知は手動で削除するまで画面に残ります。既定では、FVTTは画面上に通知を３個までしか同時表示しないため、以前の通知が消えるまで新しメッセージが表示されないことが有ります。",
     "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.name" : "対抗テストの解決",
     "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint" : "アクティブな戦闘中に対抗テストに勝利したキャラクターの優位を増やす。敗北したトークンからは優位をクリアする。防御側のロールで起動する。",
-    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.name" : "策略で勝つ",
+    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.name" : "裏をかく",
     "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "対抗テスト無しからダメージを与えたキャラクターが優位を得る。負傷を受けたトークンからは優位をクリアする。これは、チャットカードのテスト結果から「ダメージを適用」を選択すると発動します。",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.name" : "状態異常を受ける",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "戦闘中に新しい状態を受けると、自動的に優位を失う。",
