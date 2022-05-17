@@ -1,11 +1,13 @@
 # GM Toolkit (WFRP 4e)
 
-Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/). 
+Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/).
+
+### English | [日本語](./docs/ja/README.md)
 
 ## Compatibility
 
 Version 0.9.x requires
-- Foundry VTT: v9 
+- Foundry VTT: v9
 - WFRP4e: v5
 
 If you are using earlier versions of WFRP4e (4.0.6 - 4.3.1) and Foundry (0.8.8 - 0.8.9), then you should use [v0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0) of the GM Toolkit.
@@ -20,7 +22,7 @@ For full details, see the [Getting Started guide](../../wiki/getting-started) on
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
 3. [Import macros](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your Macro Directory via `Compendiums` > `Macro` > `GM Toolkit`.
    - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
-   - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
+   - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar.
    - Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
 4. Import RollTables to your RollTable suite via `Compendiums` > `RollTable` > `GM Toolkit`.
 
