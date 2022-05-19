@@ -174,3 +174,43 @@ export function inActiveCombat(character, notification = true) {
     }
     return inActiveCombat
 }
+
+/** 
+ * Delete and re-import GM Toolkit macros  
+ * @param {String} documentType    :   Actor object of the character
+ **/ 
+export async function refreshToolkitContent(documentType) {
+
+    let toolkitContent = []
+
+    switch (documentType) {
+        case "Macro" :
+            // delete macros
+            await Macro.deleteDocuments(game.macros.filter(m=>m.folder?.name==GMToolkit.MODULE_NAME).map(m=>m.id))
+            // delete Macro folder 
+            await Folder.deleteDocuments(game.folders.filter(f => f.name == GMToolkit.MODULE_NAME && f.type == "Macro").map(f => f.id)) 
+            // import macros from compendium
+            toolkitContent = await game.packs.get(`${GMToolkit.MODULE_ID}.gm-toolkit-macros`).importAll({
+                folderName:  GMToolkit.MODULE_NAME,
+                options: {keepId : true}
+            });
+            break;
+        case "RollTable" :
+            // delete tables within GM Toolkit directory
+            await RollTable.deleteDocuments(game.tables.filter(t=>t.folder?.name==GMToolkit.MODULE_NAME).map(t=>t.id))
+            // delete RollTable folder
+            await Folder.deleteDocuments(game.folders.filter(f => f.name == GMToolkit.MODULE_NAME && f.type == "RollTable").map(f => f.id)) 
+            // import tables from compendium
+            toolkitContent = await game.packs.get(`${GMToolkit.MODULE_ID}.gm-toolkit-tables`).importAll({
+                folderName:  GMToolkit.MODULE_NAME,
+                options: {keepId : true}
+            });
+            break;
+    }
+    
+    GMToolkit.log(false, toolkitContent) 
+
+}
+
+
+
