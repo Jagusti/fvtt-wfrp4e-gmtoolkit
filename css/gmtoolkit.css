@@ -132,3 +132,18 @@
 	box-shadow: 0px 0px 10px inset black;
 	background: #352516;
 }
+
+/* 3. DIALOG */
+/***************************/
+
+/* 3a. List Data */
+
+.gmtoolkit.list-metadata.id {
+	color: #cbee8b75;
+	font-family: var(--actor-input-font-family);
+}
+
+.gmtoolkit.list-thumbnail {
+	vertical-align: bottom; 
+	max-height: 1.5em;
+}
