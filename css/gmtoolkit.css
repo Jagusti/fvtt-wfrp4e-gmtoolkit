@@ -139,8 +139,13 @@
 /* 3a. List Data */
 
 .gmtoolkit.list-metadata.id {
-	color: #cbee8b75;
 	font-family: var(--actor-input-font-family);
+	color: #cbee8b75;
+}
+
+.gmtoolkit.list-metadata.version {
+	color: #006188;
+	font-weight: bold;
 }
 
 .gmtoolkit.list-thumbnail {
