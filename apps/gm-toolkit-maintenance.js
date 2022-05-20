@@ -1,6 +1,5 @@
 import GMToolkit from "../modules/gm-toolkit.mjs";
-import { getDataSettings } from "../modules/gm-toolkit-settings.mjs";
-import { refreshToolkitContent } from "../modules/utility.mjs";
+import { refreshToolkitContent, strip } from "../modules/utility.mjs";
 
 export default class GMToolkitMaintenanceWrapper extends FormApplication {
     async render() {
@@ -62,7 +61,7 @@ async function buildLocalizedContent(documentType) {
 
     // build localized array
     for (var content of toolkitContent) {
-        content.translationKey = game.gmtoolkit.utility.strip(content.name, translationKeyPrefix, ".")
+        content.translationKey = strip(content.name, translationKeyPrefix, ".")
         content.compendiumVersion = documents.filter(d => d.id == content.id).map(i => i.data.flags["wfrp4e-gm-toolkit"].version)
 
         contentArray.push(content)    
