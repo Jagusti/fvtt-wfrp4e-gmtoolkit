@@ -2,17 +2,17 @@
 
 <form autocomplete="off" onsubmit="event.preventDefault();">
 
-    <p>Remove all macros or tables in the 'GM Toolkit' Macro directory or RollTable folder, if that folder exists, and import the latest compendium versions.<br><br>Any customisations will be lost. Move these out of the GM Toolkit directory first if you want to preserve any changes you have made.</p>
+    <p>{{{ localize "GMTOOLKIT.Dialog.Maintenance.Hint"}}}</p>
 
-    <div><p>Macros</p>
+    <div><p>{{ localize "GMTOOLKIT.Dialog.Maintenance.Macros" }}</p>
         {{#each macros as |macro id|}}
-            <img src="{{ macro.thumbnail }}" title="{{ macro.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{macro.name}} <span class="gmtoolkit list-metadata id">({{macro.id}})</span><br>
+            <img src="{{ macro.thumbnail }}" title="{{ macro.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ macro.name }} <span class="gmtoolkit list-metadata id">({{ macro.id }})</span><br>
         {{/each}}
     </div>
     
-    <div><p>Tables</p>
+    <div><p>{{ localize "GMTOOLKIT.Dialog.Maintenance.Tables" }}</p>
         {{#each tables as |table id|}}
-            <img src="{{ table.thumbnail }}" title="{{ table.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{table.name}} <span class="gmtoolkit list-metadata id">({{table.id}})</span><br>
+            <img src="{{ table.thumbnail }}" title="{{ table.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ table.name }} <span class="gmtoolkit list-metadata id">({{ table.id }})</span><br>
         {{/each}}
     </div>
 
