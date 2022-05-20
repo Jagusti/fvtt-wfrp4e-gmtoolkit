@@ -29,12 +29,17 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
 - *Fixed* compatibility with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
-  - These macros will need to be manually re-imported from the compendium for changes to apply. 
+  - These macros will need to be re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
-  - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
+  - This affects the Toggle Scene Visibility and Light macro, which should be re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
 - *Added* Japanese language support, including including localisation improvements to Pull Everyone to Scene and GM Toolbox macros. Thanks @Yasnen for contributing these!
-  - The Pull Everyone to Scene and GM Toolbox macros will need to be manually re-imported from the compendium for localization and related improvements to apply. 
+  - The Pull Everyone to Scene and GM Toolbox macros will need to be re-imported from the compendium for localization and related improvements to apply. 
+- *Added* new Maintenance option in module settings to re-import GM Toolkit macros and tables.  It is **recommended** to use this option when upgrading to a new version to reset content.
+  - Content is imported from compendium packs into the GM Toolkit Macro Directory folder or RollTable folder, depending on document type being imported.
+  - Existing content in the folder is removed, so any customizations should be moved to a separate location first. 
+  - The Maintenance dialog shows version numbers for world and compendium content, so you can more easily identify if an item has been updated for a release. 
+  - The Maintenance dialog also shows the database ID of the item. This can be used to identify existing duplicate world content (such as customised table or macro in a different folder location) that prevents re-importing. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
