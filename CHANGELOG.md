@@ -27,6 +27,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 
 - *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
+- *Changed* Advantage macros to reflect refactored Advantage class. 
+  - The Advantage suite macros (Add, Reduce and Clear Advantage) will need to be re-imported from the compendium for changes to apply. 
 - *Fixed* compatibility with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
   - These macros will need to be re-imported from the compendium for changes to apply. 
@@ -40,8 +42,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Existing content in the folder is removed, so any customizations should be moved to a separate location first. 
   - The Maintenance dialog shows version numbers for world and compendium content, so you can more easily identify if an item has been updated for a release. 
   - The Maintenance dialog also shows the database ID of the item. This can be used to identify existing duplicate world content (such as customised table or macro in a different folder location) that prevents re-importing. 
-- *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros 
-  - This includes macro decsription, version number and date plus usage tips
+- *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros.
+  - This includes macro description, version number and date plus usage tips.
   - This change standardises the presentation of in-context macro documentation across the suite.
 
 ## Version 0.9.2
