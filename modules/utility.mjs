@@ -216,8 +216,9 @@ export async function refreshToolkitContent(documentType) {
  * Remove all leading, trailing and internal whitespace from a string. 
  * Typical use is in constructing localization strings from, eg, macro names
  * @param {String} originalText    :   string from which to remove all whitespace
- * @param {String} prefix    :   optional prefix for building string
- * @param {String} joiner    :   optional joining character to connect prefix and stripped string
+ * @param {String} prefix          :   optional prefix for building string
+ * @param {String} joiner          :   optional joining character to connect prefix and stripped string
+ * @return {String} 
  **/ 
  export function strip(originalText, prefix = "", joiner = "") {
     return (prefix + joiner + originalText.replace(/\s+/g, ''))
