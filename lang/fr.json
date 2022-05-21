@@ -212,6 +212,16 @@
     "GMTOOLKIT.Macro.SetTokenVisionandLight": "Set Token Vision and Light",
     "GMTOOLKIT.Macro.PullEveryonetoScene": "Pull Everyone to Scene",
     "GMTOOLKIT.Macro.Simplyd100": "Simply d100",
+    "GMTOOLKIT.Macro.GMToolbox": "GM Toolbox",
+    
+    "GMTOOLKIT.Table.DarkWhispers": "Dark Whispers",
+
+    "GMTOOLKIT.Dialog.Maintenance.Hint": "Remove all macros or tables in the 'GM Toolkit' Macro directory or RollTable folder, if that folder exists, and import the latest compendium versions.<br><br>Any customisations will be lost. Move these out of the GM Toolkit directory first if you want to preserve any changes you have made.",
+    "GMTOOLKIT.Dialog.Maintenance.Macros": "Macros",
+    "GMTOOLKIT.Dialog.Maintenance.Tables": "Tables",
+    "GMTOOLKIT.Settings.Maintenance.menu.name" : "Module Maintenance",
+    "GMTOOLKIT.Settings.Maintenance.menu.hint" : "Replace imported GM Toolkit macros and/or tables with latest compendium versions.", 
+    "GMTOOLKIT.Settings.Maintenance.menu.label" : "Update GM Toolkit Content",
 
     "ROLL.AstoundingSuccess" : "Réussite Stupéfiante. \"Oui, absolument !\"",
     "ROLL.ImpressiveSuccess" : "Réussite Impressionnant. \"Oui, et...\"",
