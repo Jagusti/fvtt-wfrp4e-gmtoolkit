@@ -32,8 +32,6 @@ Hooks.once("init", function () {
         utility : GMToolkitUtility, 
         module : GMToolkit
     }
-    // TODO: update advantage macros to use namespaced functions
-    // game.gmtoolkit.advantage.updateAdvantage(token,`increase`);
     
     // Register module settings
     GMToolkitSettings.register();
