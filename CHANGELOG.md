@@ -40,6 +40,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Existing content in the folder is removed, so any customizations should be moved to a separate location first. 
   - The Maintenance dialog shows version numbers for world and compendium content, so you can more easily identify if an item has been updated for a release. 
   - The Maintenance dialog also shows the database ID of the item. This can be used to identify existing duplicate world content (such as customised table or macro in a different folder location) that prevents re-importing. 
+- *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros 
+  - This includes macro decsription, version number and date plus usage tips
+  - This change standardises the presentation of in-context macro documentation across the suite.
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
