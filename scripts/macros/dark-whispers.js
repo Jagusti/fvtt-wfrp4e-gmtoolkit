@@ -1,15 +1,15 @@
-formDarkWhispers(); //  Set default user target filter in module settings. Override by adding parameter to "all", "absent" or "present" party members. Clear parameter to revert to default. 
+formDarkWhispers(); //  Set default user target filter in module settings. Override by adding parameter to "all", "absent" or "present" party members. Clear parameter to revert to default.
 
 async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-toolkit", "targetDarkWhispers"))) {
 // Non-GMs are not permitted to send Dark Whispers
-  if (!game.user.isGM) {      
+  if (!game.user.isGM) {
     return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoPermission"));
   }
 
   //TODO: Switch to actor based selection
-  // Only users who have an assigned player character are available to whisper to. 
+  // Only users who have an assigned player character are available to whisper to.
   let users = []
-  switch (targets) { 
+  switch (targets) {
     case "all":
       users = game.users.filter(user => (user.character?.type == "character"));
       break;
@@ -22,17 +22,17 @@ async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-tool
      break;
   }
 
-  if (!users) {   
+  if (!users) {
     return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
   }
-  
+
   // Build list of player / characters to select via dialog
   //TODO: Map individual Corruption values, rather than increment
   let corruptionAvailable = 0; // count to check there are characters with corruption to target
   let checkOptions = "";
   users.forEach(user => {
     let actorCorruption = {
-      value: game.actors.get(user.character.id).data.data.status.corruption.value, 
+      value: game.actors.get(user.character.id).data.data.status.corruption.value,
       max: game.actors.get(user.character.id).data.data.status.corruption.max
     };
     corruptionAvailable += actorCorruption.value;
@@ -47,20 +47,20 @@ async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-tool
         </div>
       `
   });
-  
+
   // abort if no characters have any Corruption
-  if (corruptionAvailable == 0) {   
+  if (corruptionAvailable == 0) {
     return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
   };
 
   // Construct and show form to write whisper message and select target player characters
-  let darkwhisper = (game.tables.getName(game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title"))) ? await game.wfrp4e.tables.rollTable("darkwhispers") : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
+  let darkwhisper = (game.tables.filter(i => i.getFlag("wfrp4e", "key" == "darkwhispers"))) ? await game.wfrp4e.tables.rollTable("darkwhispers") : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
 
  let dialogContent = `
     <div class="form-group ">
       <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets")} </label>
     </div>
-    ${checkOptions} 
+    ${checkOptions}
     <div class="form-group message">
       <label for="message">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage")}</label>
     </div>
@@ -72,7 +72,7 @@ async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-tool
   title: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title"),
   content:dialogContent,
   buttons:{
-    whisper:{   
+    whisper:{
       label: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.SendWhisper"),
       callback: (html) => sendDarkWhispers(html, users, "private")
     }
@@ -81,9 +81,9 @@ async function formDarkWhispers(targets=String(game.settings.get("wfrp4e-gm-tool
 }
 
 function sendDarkWhispers(html, users, sendmode) {
-  // check for whisper message 
+  // check for whisper message
   let messageText = html.find('[name="message"]')[0].value;
-  
+
   // build list of selected players ids for whispers target
   let targets = [];
   for ( let user of users ) {
@@ -92,7 +92,7 @@ function sendDarkWhispers(html, users, sendmode) {
     }
   }
 
-  // abort if no whisper or character is selected 
+  // abort if no whisper or character is selected
   if (targets.length == 0 || messageText.length == 0) {
     return ui.notifications.error(game.i18n.format("GMTOOLKIT.Message.DarkWhispers.WhisperAborted", {currentUser: game.users.current.name}));
   }
@@ -102,7 +102,7 @@ function sendDarkWhispers(html, users, sendmode) {
   let messageTemplate = `GMTOOLKIT.Settings.DarkWhispers.message.${game.settings.get("wfrp4e-gm-toolkit", "messageDarkWhispers")}`
   // Parse the translated message
   let whisperMessage = `${game.i18n.format(messageTemplate, {message: messageText})}`
-  
+
   // Add response buttons for chat card
   // data- attributes are used by listener
   let responseObjects = `
@@ -116,7 +116,7 @@ function sendDarkWhispers(html, users, sendmode) {
     content: whisperMessage + responseObjects,
     whisper: targets
   });
-  
+
 }
 
 
@@ -125,7 +125,7 @@ function sendDarkWhispers(html, users, sendmode) {
 * VERSION: 0.9.2
 * UPDATED: 2022-01-04
 * DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
-* TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper. 
-* TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers. 
-* TIP: The whisper can be edited in the dialog, regardless of what is pre-filled from the Dark Whispers table. 
+* TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper.
+* TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers.
+* TIP: The whisper can be edited in the dialog, regardless of what is pre-filled from the Dark Whispers table.
 ========== */
