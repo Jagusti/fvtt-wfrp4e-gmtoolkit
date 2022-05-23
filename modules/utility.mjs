@@ -223,3 +223,86 @@ export async function refreshToolkitContent(documentType) {
  export function strip(originalText, prefix = "", joiner = "") {
     return (prefix + joiner + originalText.replace(/\s+/g, ''))
 }
+
+
+/** 
+ * Return an array of users, actors, tokens or combatants that meet a certain criteria. 
+ * Typical use is in constructing localization strings from, eg, macro names
+ * @param {String} groupType :   game.users: users, gms, players, spectators, assigned, active, inactive
+ * @param {String} groupType :   game.actors: actors, characters, party, company
+ * @param {String} groupType :   game.tokens: scene, nonparty, selected, targeted, scenePCs, scneNPCs
+ * @param {String} groupType :   game.combat.combatants: combatants, allies, nonallies, adversaries
+ * @param {Boolean} active   :   user is logged in
+ * @param {Boolean} present  :   has token in viewed scene
+ * @return {Array}           :   array of objects representing filtered group members
+ **/ 
+export function getGroup(groupType, active = "", present = "") {
+    let group = []
+    switch (groupType) {
+        case ("users") :        // all users, including players and GMs
+            group = game.users
+            break;
+        case ("gms") :          // only GM users
+            group = game.users.filter(u => u.isGM)
+            break;
+        case ("players") :      // only player users
+            group = game.users.players
+            break;
+        case ("spectators") :   // only players that do not have characters assigned
+            group = game.users.players.filter(u => !u.character)
+            break;
+        case ("assigned") : // only players that have characters assigned
+            group = game.users.players.filter(u => u.character)
+            break;
+        case ("active") : // only players that have characters assigned and are currently logged in
+            group = game.users.players.filter(u => u.character && u.active)
+            break;
+        case ("inactive") : // only players that have characters assigned and are not currently logged in
+            group = game.users.players.filter(u => u.character && !u.active)
+            break;
+        case ("actors") :       // all actors in the world
+            group = game.actors
+            break;
+        case ("characters") :   // all characters in the world, including unassigned actors
+            group = game.actors.filter(a => a.type == "character")            
+            break;
+        case ("party") :          // all assigned player characters in the world
+            group = game.actors.filter(a => a.type == "character" && a.hasPlayerOwner)            
+            break;
+        case ("company") :          // all actors in the world owned by players, including characters, NPCs, vehicles and creatures
+            group = game.actors.filter(a => a.hasPlayerOwner)            
+            break;
+        case ("nonparty") :          // all tokens in the scene whose actor is not owned by players, including characters, NPCs, vehicles and creatures
+            group = game.canvas.tokens.placeables.filter(t => !t.actor.hasPlayerOwner)            
+            break;
+        case ("scene") :     // all tokens in the scene
+            group = game.canvas.tokens.placeables            
+            break;
+        case ("selected") :     // all tokens in the scene that are selected by the current user
+            group = game.canvas.tokens.controlled
+            break;
+        case ("targeted") :     // all tokens in the scene that are targeted by the current user
+            group = game.canvas.tokens.placeables.filter(t => t.isTargeted)          
+            break;
+        case ("scenePCs") :     // all player character tokens in the scene
+            group = game.canvas.tokens.placeables.filter(t => t.actor.hasPlayerOwner && t.actor.type == "character")
+            break;
+        case ("sceneNPCs") :     // all non-vehicle tokens in the scene that are not player owned
+            group = game.canvas.tokens.placeables.filter(t => !t.actor.hasPlayerOwner && (t.actor.type != "character" && t.actor.type != "vehicle"))
+            break;
+        case ("combatants") :     // all combatants in the active combat
+            group = game.combat.combatants
+            break;
+        case ("allies") :     // all player owned characters in the active combat
+            group = game.combat.combatants.filter(c => c.hasPlayerOwner && c.actor.type == "character")
+            break;
+        case ("nonallies") :     // all non-player combatants in the active combat
+            group = game.combat.combatants.filter(c => c.isNPC)
+            break;
+        case ("adversaries") :     // all hostile non-player combatants in the active combat 
+            group = game.combat.combatants.filter(c => c.token.data.disposition == -1 && c.isNPC)
+            break;
+    }
+    GMToolkit.log(false, group)
+    return group
+}
