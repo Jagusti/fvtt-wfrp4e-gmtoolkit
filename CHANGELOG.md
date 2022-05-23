@@ -45,6 +45,11 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros.
   - This includes macro description, version number and date plus usage tips.
   - This change standardises the presentation of in-context macro documentation across the suite.
+- *Added* new macro to Toggle Compendium Pack Visibilty.
+  - Use this macro to hide or show compendium packs, such as premium content scenes, journal entries and actors that may include spolier or sensitive information that you want to make sure players cannot see.
+  - The macro can be modified to toggle visibility of packs from only specific sources (such as wfrp4e-core) and/or types (eg, Actors, Items).
+  - If no specific criteria or source is set, all packs from modules declared for the wfrp4e system are included.
+  - Setting the forcePrivate variable in the macro to will force visibility to hidden, rather than toggle current state. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

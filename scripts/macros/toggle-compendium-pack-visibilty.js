@@ -6,6 +6,8 @@ let packtypes = [] // Leave empty to include all types of compendium pack
 
 let packs = []
 
+let forcePrivate = false // false: toggle current visibility setting for pack; true: force to not visible
+
 if (packsource.length == 0 && packtypes.length == 0 ) packs = game.packs.filter(p => p.metadata.system === "wfrp4e")
 
 if (packsource.length > 0 && packtypes.length == 0 ) {
@@ -38,7 +40,11 @@ if (packsource.length > 0 && packtypes.length > 0) {
 game.gmtoolkit.module.log(true, packs)
 
 for (const pack of packs) {
-  await pack.configure({private: !pack.private});
+    if (forcePrivate) {
+        await pack.configure({private: true});
+    } else {
+        await pack.configure({private: !pack.private});
+    }
 }
 
 /* ==========
