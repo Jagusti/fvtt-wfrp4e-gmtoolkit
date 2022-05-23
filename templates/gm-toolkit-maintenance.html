@@ -1,0 +1,19 @@
+{{log this}}
+
+<form autocomplete="off" onsubmit="event.preventDefault();">
+
+    <p>{{{ localize "GMTOOLKIT.Dialog.Maintenance.Hint"}}}</p>
+
+    <div><p>{{ localize "GMTOOLKIT.Dialog.Maintenance.Macros" }}</p>
+        {{#each macros as |macro id|}}
+            <img src="{{ macro.thumbnail }}" title="{{ macro.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ localize macro.translationKey }} <span class="gmtoolkit list-metadata version">{{macro.data.flags.wfrp4e-gm-toolkit.version}} -> {{macro.compendiumVersion}}</span> <span class="gmtoolkit list-metadata id">({{ macro.id }})</span><br>
+        {{/each}}
+    </div>
+    
+    <div><p>{{ localize "GMTOOLKIT.Dialog.Maintenance.Tables" }}</p>
+        {{#each tables as |table id|}}
+            <img src="{{ table.thumbnail }}" title="{{ table.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ localize table.translationKey }} <span class="gmtoolkit list-metadata version">{{table.data.flags.wfrp4e-gm-toolkit.version}} -> {{table.compendiumVersion}}</span>  <span class="gmtoolkit list-metadata id">({{ table.id }})</span><br>
+        {{/each}}
+    </div>
+
+</form>

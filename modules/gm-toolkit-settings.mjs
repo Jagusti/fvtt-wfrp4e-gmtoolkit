@@ -3,6 +3,7 @@ import GMToolkitAdvantageSettings from "../apps/gm-toolkit-advantage-settings.js
 import GMToolkitDarkWhispersSettings from "../apps/gm-toolkit-darkwhispers-settings.js";
 import GMToolkitSessionManagementSettings from "../apps/gm-toolkit-session-management-settings.js";
 import GMToolkitVisionSettings from "../apps/gm-toolkit-vision-settings.js";
+import GMToolkitMaintenanceWrapper from "../apps/gm-toolkit-maintenance.js";
 
 export default class GMToolkitSettings {
 
@@ -294,6 +295,16 @@ export default class GMToolkitSettings {
             default: false,
             type: Boolean,
             feature: "grouptests" 
+        });
+
+        // Menu for Module Content Management
+        game.settings.registerMenu(GMToolkit.MODULE_ID, "menuMaintenance", {
+            name: "GMTOOLKIT.Settings.Maintenance.menu.name",
+            label: "GMTOOLKIT.Settings.Maintenance.menu.label",      
+            hint: "GMTOOLKIT.Settings.Maintenance.menu.hint",
+            icon: "fas fa-cog",               
+            type: GMToolkitMaintenanceWrapper,   
+            restricted: true                 
         });
  
     }

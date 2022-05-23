@@ -27,14 +27,29 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 
 - *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
+- *Changed* Advantage macros to reflect refactored Advantage class. 
+  - The Advantage suite macros (Add, Reduce and Clear Advantage) will need to be re-imported from the compendium for changes to apply. 
 - *Fixed* compatibility with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
   - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
-  - These macros will need to be manually re-imported from the compendium for changes to apply. 
+  - These macros will need to be re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
-  - This affects the Toggle Scene Visibility and Light macro, which should be manually re-imported from the compendium for changes to apply. 
+  - This affects the Toggle Scene Visibility and Light macro, which should be re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
 - *Added* Japanese language support, including including localisation improvements to Pull Everyone to Scene and GM Toolbox macros. Thanks @Yasnen for contributing these!
-  - The Pull Everyone to Scene and GM Toolbox macros will need to be manually re-imported from the compendium for localization and related improvements to apply. 
+  - The Pull Everyone to Scene and GM Toolbox macros will need to be re-imported from the compendium for localization and related improvements to apply. 
+- *Added* new Maintenance option in module settings to re-import GM Toolkit macros and tables.  It is **recommended** to use this option when upgrading to a new version to reset content.
+  - Content is imported from compendium packs into the GM Toolkit Macro Directory folder or RollTable folder, depending on document type being imported.
+  - Existing content in the folder is removed, so any customizations should be moved to a separate location first. 
+  - The Maintenance dialog shows version numbers for world and compendium content, so you can more easily identify if an item has been updated for a release. 
+  - The Maintenance dialog also shows the database ID of the item. This can be used to identify existing duplicate world content (such as customised table or macro in a different folder location) that prevents re-importing. 
+- *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros.
+  - This includes macro description, version number and date plus usage tips.
+  - This change standardises the presentation of in-context macro documentation across the suite.
+- *Added* new macro to Toggle Compendium Pack Visibilty.
+  - Use this macro to hide or show compendium packs, such as premium content scenes, journal entries and actors that may include spolier or sensitive information that you want to make sure players cannot see.
+  - The macro can be modified to toggle visibility of packs from only specific sources (such as wfrp4e-core) and/or types (eg, Actors, Items).
+  - If no specific criteria or source is set, all packs from modules declared for the wfrp4e system are included.
+  - Setting the forcePrivate variable in the macro to will force visibility to hidden, rather than toggle current state. 
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).

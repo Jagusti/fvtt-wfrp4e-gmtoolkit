@@ -3,12 +3,17 @@ import { inActiveCombat } from "./utility.mjs";
 
 export default class Advantage {
 
-/* 
-character   :   Token, Actor. Combatant is passed in as Token.
-adjustment  :   increase (+1), clear (=0), reduce (-1)
-context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect, loseMomentum
- */
-    static async updateAdvantage(character, adjustment, context = "macro") {    
+    
+/** 
+ * Entry point for adjustments to Advantage through . 
+ * @param {Object} character   :   Token, Actor. Combatant is passed in as Token.
+ * @param {String} adjustment  :   increase (+1), clear (=0), reduce (-1)
+ * @param {String} context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect, loseMomentum
+ * @return {Array} update      :   outcome (String: increased, reduced, min, max, reset, no change), 
+ *                                 starting (Number: what the character's Advantage was at the start of the routine)
+ *                                 new (Number: what the character's Advantage is at the end of the routine)
+ **/ 
+    static async update(character, adjustment, context = "macro") {    
         // Guards
         if (character === undefined) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"));
         if (character?.document?.documentName == "Token") {
@@ -18,14 +23,14 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
 
         // Find current and max Advantage for token or actor. 
         let resourceBase = []
-        resourceBase = await this.getAdvantage(character, resourceBase, adjustment);
+        resourceBase = await this.get(character, resourceBase, adjustment);
         GMToolkit.log(false,resourceBase)
         
         // Make the adjustment to the token actor and capture the outcome
-        let updatedAdvantage = await this.adjustAdvantage(character, resourceBase, adjustment);
+        let updatedAdvantage = await this.adjust(character, resourceBase, adjustment);
         
         // Report the outcome to the user
-        let update = await this.reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context)
+        let update = await this.report(updatedAdvantage, character, resourceBase, context)
         update.outcome = updatedAdvantage.outcome
         update.new = updatedAdvantage.new
         update.starting = updatedAdvantage.starting
@@ -33,7 +38,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         return (update)
     }
 
-    static async getAdvantage(character, resourceBase, adjustment) {
+    static async get(character, resourceBase, adjustment) {
         switch(character.document.documentName) {
             case "Actor":
                 resourceBase = duplicate(character.document.status.advantage);
@@ -52,7 +57,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         return resourceBase;
     }
 
-    static async adjustAdvantage (character, advantage, adjustment) {
+    static async adjust (character, advantage, adjustment) {
         GMToolkit.log(false, `Attempting to ${adjustment} Advantage for ${character.name} from ${advantage.current}`)
         let outcome = ""
 
@@ -98,7 +103,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
         }
     }
 
-    static async reportAdvantageUpdate(updatedAdvantage, character, resourceBase, context) {
+    static async report(updatedAdvantage, character, resourceBase, context) {
         let update = []
         let type = "info";
         let options = {permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications")};
@@ -213,7 +218,7 @@ context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createComba
                         for ( let combatant of combat.combatants ) {
                             if (html.find(`[name="${combatant.data.tokenId}"]`)[0]?.checked){
                                 let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-                                let result = await this.updateAdvantage(token, 'reduce', 'loseMomentum')
+                                let result = await this.update(token, 'reduce', 'loseMomentum')
                                 lostAdvantage += `${token.name}: ${result.starting} -> ${result.new} <br/>`
                                 }
                             }
@@ -255,12 +260,12 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
 
     // Clear advantage on actor that has taken damage
     var character = scriptArgs.actor.data.token
-    await Advantage.updateAdvantage(character,"clear","wfrp4e:applyDamage" );
+    await Advantage.update(character,"clear","wfrp4e:applyDamage" );
 
     // Increase advantage on actor that dealt damage, as long as it has not already been updated for this test
     var character = scriptArgs.attacker.data.token
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.outmanoeuvre != scriptArgs.opposedTest.attackerTest.message.id) {
-        await Advantage.updateAdvantage(character,"increase","wfrp4e:applyDamage");
+        await Advantage.update(character,"increase","wfrp4e:applyDamage");
         await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id});
         console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
     } else {
@@ -298,12 +303,12 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
 
     // Clear advantage on actor that has lost opposed test
     var character = loser.data.token
-    await Advantage.updateAdvantage(character,"clear","wfrp4e:opposedTestResult" );
+    await Advantage.update(character,"clear","wfrp4e:opposedTestResult" );
 
     // Increase advantage on actor that has won opposed test, as long as it has not already been updated for this test
     var character = winner.data.token
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.opposed != opposedTest.attackerTest.message.id) {
-        await Advantage.updateAdvantage(character,"increase","wfrp4e:opposedTestResult");
+        await Advantage.update(character,"increase","wfrp4e:opposedTestResult");
         await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {opposed: opposedTest.attackerTest.message.id});
         console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
     } else {
@@ -334,7 +339,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     GMToolkit.log(false,uiNotice) 
         
     // Clear Advantage
-    await Advantage.updateAdvantage(conditionEffect.parent.data.token,"clear", "createActiveEffect");
+    await Advantage.update(conditionEffect.parent.data.token,"clear", "createActiveEffect");
     
     GMToolkit.log(false,`Condition Advantage: Finished.`)
     
@@ -344,7 +349,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
 Hooks.on("createCombatant", function(combatant) {
     if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "createCombatant");
+        Advantage.update(token, "clear", "createCombatant");
         Advantage.unsetFlags([combatant])
     } 
 });
@@ -352,7 +357,7 @@ Hooks.on("createCombatant", function(combatant) {
 Hooks.on("deleteCombatant", function(combatant) {
     if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
-        Advantage.updateAdvantage(token, "clear", "deleteCombatant");
+        Advantage.update(token, "clear", "deleteCombatant");
         Advantage.unsetFlags([combatant], true)
     } 
 });
