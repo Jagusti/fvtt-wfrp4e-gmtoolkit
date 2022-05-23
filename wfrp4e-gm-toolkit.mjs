@@ -45,6 +45,7 @@ Hooks.once("init", function () {
 Hooks.once("ready", function () {
   GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
 
+<<<<<<< HEAD
   // Notify any player users that do not have characters assigned
   const spectators = GMToolkitUtility.getGroup("spectators").map(i => (" " + i.name))
   if (spectators.length > 0) {
@@ -54,6 +55,14 @@ Hooks.once("ready", function () {
     } 
   }
 });
+=======
+  // Note any player users that do not have characters assigned
+  const spectators = GMToolkitUtility.getGroup("spectators")
+  if (spectators.length > 0) {
+    GMToolkit.log(true, `Spectators: ${spectators.map(i=>i.name)}`)
+    }
+  });
+>>>>>>> Add console note to flag users without characters
 
 Hooks.on("ready", async () => {
   game.socket.on(`module.${GMToolkit.MODULE_ID}`, data => {
