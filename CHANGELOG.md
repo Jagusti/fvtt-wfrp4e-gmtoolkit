@@ -5,39 +5,42 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+
+## Version 0.9.3
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
 - *Changed* Advantage automation to represent Outmanoeuvring (WFRP p164). 
   - In Foundry, tests should be targeted and handled as unopposed. 
   - The advantage updates are made only when using an Apply Damage option by right-clicking the results card in the chat log (if enabled in settings). 
   - Advantage is increased for the winner and cleared for the loser. 
-- *Added* Advantage automation for winning opposed tests, regardless of applying damage. 
-  - A new module setting is added to automate advantage handling when winning or losing opposed tests. This is separate to the Outmanoeuvring setting.
+- *Added* Advantage automation for winning Opposed Tests, regardless of applying damage.  [[#83](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/83)]
+  - A new module setting is added to automate advantage handling when winning or losing Opposed Tests. This is separate to the Outmanoeuvring setting.
   - Advantage is increased for the winner of a test and cleared for the loser. 
   - No damage needs to have been applied, so this iteration covers situations where a character successfully Dodges or otherwise uses a non-damaging skill to successfully oppose. 
   - Changes are applied as soon as the defender rolls. Be aware that updates may therefore be duplicated if the roll is edited or re-rolled by using Fortune or Dark Deal.
-- *Added* Advantage automation when suffering a new Condition during combat (WFRP p167).
+- *Added* Advantage automation when suffering a new Condition during combat (WFRP p167) [[#84](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/84)].
   - This is not applied to Foundry 'conditions' such as Dead, Grappling and Fear.
   - Advantage is cleared when a new condition is added to a character. In the case of stackable conditions (such as Bleeding), the Advantage loss is not re-applied if the character already has an instance of the condition. 
-- *Added* option to confirm reducing combatant Advantage when it has not been gained in a round (WFRP p164).
+- *Added* option to confirm reducing combatant Advantage when it has not been gained in a round (WFRP p164)  [[#91](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/91)].
   - A new module setting is added to enable or disable a dialog prompt at the end of each combat round that allows GMs to select who should lose Advantage.
   - Characters who have not increased Advantage since the start of the round are pre-selected to lose Advantage. 
   - GMs can override default selections before confirming Advantage losses. 
-  - CHanges made are confirmed in a chat whisper to the GM, which can be revealed to players.
-- *Added* flags to prevent increasing Advantage multiple times when successfully opposing or outmanouevring multiple targets. 
+  - Changes made are confirmed in a chat whisper to the GM, which can be revealed to players.
+- *Added* flags to prevent increasing Advantage multiple times when successfully opposing or outmanoeuvring multiple targets. 
 - *Added* checks to ensure automated advantage handling only applies to characters in an active combat.
   - A notification is shown if the Winning or Outmanoeuvring automation options are enabled but either character in the test is not in the active combat. 
 - *Changed* Advantage UI notifications to only present to GM users. This is introduced to prevent token or actor names being revealed to players. This will not prevent names being revealed in chat log messages, such as for opposed test results.  [[#87](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/87)]
-- *Changed* Advantage macros to reflect refactored Advantage class. 
+- *Changed* Advantage macros to reflect refactored Advantage class.    [[#98](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/98)]
   - The Advantage suite macros (Add, Reduce and Clear Advantage) will need to be re-imported from the compendium for changes to apply. 
-- *Fixed* compatibility with Advanced Macros  [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)]
-  - Add XP, Reset Fortune and Session Turnover macros no longer throw an error if the Advanced Macros module is also active. 
+- *Fixed* compatibility with Advanced Macros  [[#86](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/86)]
+  - Add XP [[#90](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/90)], Reset Fortune and Session Turnover [[#85](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/85)] macros no longer throw an error if the Advanced Macros module is also active. 
   - These macros will need to be re-imported from the compendium for changes to apply. 
 - *Changed* references to Global Illumination to Unrestricted Token Vision, to align with changes in Foundry scene configuration options.
   - This affects the Toggle Scene Visibility and Light macro, which should be re-imported from the compendium for changes to apply. 
 - *Changed* compendium pack definitions to use field 'type' instead of deprecated 'entity'.
-- *Added* Japanese language support, including including localisation improvements to Pull Everyone to Scene and GM Toolbox macros. Thanks @Yasnen for contributing these!
+- *Added* Japanese language support, including including localisation improvements to Pull Everyone to Scene and GM Toolbox macros. Thanks @Yasnen for contributing these!  [[#92](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/92)]
   - The Pull Everyone to Scene and GM Toolbox macros will need to be re-imported from the compendium for localization and related improvements to apply. 
-- *Added* new Maintenance option in module settings to re-import GM Toolkit macros and tables.  It is **recommended** to use this option when upgrading to a new version to reset content.
+- *Added* new option in module settings to `Update GM Toolkit Content`.  [[#97](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/97)]
+  - It is **recommended** to use this option when upgrading to a new version of the module to ensure you have the latest macro and table content.
   - Content is imported from compendium packs into the GM Toolkit Macro Directory folder or RollTable folder, depending on document type being imported.
   - Existing content in the folder is removed, so any customizations should be moved to a separate location first. 
   - The Maintenance dialog shows version numbers for world and compendium content, so you can more easily identify if an item has been updated for a release. 
@@ -45,11 +48,12 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* notes footer to Advantage suite and Toggle Scene Visibility and Light macros.
   - This includes macro description, version number and date plus usage tips.
   - This change standardises the presentation of in-context macro documentation across the suite.
-- *Added* new macro to Toggle Compendium Pack Visibilty.
-  - Use this macro to hide or show compendium packs, such as premium content scenes, journal entries and actors that may include spolier or sensitive information that you want to make sure players cannot see.
+- *Added* new macro to Toggle Compendium Pack Visibility.  [[#99](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/99)]
+  - Use this macro to hide or show compendium packs, such as premium content scenes, journal entries and actors that may include spoiler or sensitive information that you want to make sure players cannot see.
   - The macro can be modified to toggle visibility of packs from only specific sources (such as wfrp4e-core) and/or types (eg, Actors, Items).
   - If no specific criteria or source is set, all packs from modules declared for the wfrp4e system are included.
-  - Setting the forcePrivate variable in the macro to will force visibility to hidden, rather than toggle current state. 
+  - Setting the `forcePrivate` variable to `true` in the macro will force visibility to hidden, rather than toggle current state.  
+- *Added* development setting to ignore module lock file during.
 
 ## Version 0.9.2
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
