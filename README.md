@@ -19,7 +19,7 @@ For full details, see the [Getting Started guide](../../wiki/getting-started) on
 2. The GM needs to enable the module for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
 5. Import macros and tables through either
-   - [Toolkit Maintenance](../../wiki/Toolkit-Maintenance.md) option in `Settings` > `Module Settings` > `GM Toolkit (WFRP 4e)` > `Update GM Toolkit Content`.  Or
+   - [Toolkit Maintenance](../../wiki/toolkit-maintenance) option in `Settings` > `Module Settings` > `GM Toolkit (WFRP 4e)` > `Update GM Toolkit Content`.  Or
    - [manually importing](../../wiki/getting-started) from Compendium packs.
 
 ## References
