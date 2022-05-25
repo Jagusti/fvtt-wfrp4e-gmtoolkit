@@ -11,18 +11,16 @@ Version 0.9.x requires
 If you are using earlier versions of WFRP4e (4.0.6 - 4.3.1) and Foundry (0.8.8 - 0.8.9), then you should use [v0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0) of the GM Toolkit.
 
 ## Installation Instructions
-For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki).
+For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki). 
 
 1. Add via Add-on Modules tab of Foundry VTT setup.
    - Module Name: `GM Toolkit (WFRP4e)`
    - Manifest URL: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest/download/module.json
 2. The GM needs to enable the module for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
-3. [Import macros](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/getting-started#macros) to your Macro Directory via `Compendiums` > `Macro` > `GM Toolkit`.
-   - Any imported macros will appear in the Macro Directory, next to the Macro Hotbar.
-   - Open the Macro Directory and drag required macros onto a free space on the Marco Hotbar. 
-   - Revised macros will *not automatically* replace your existing GM Toolkit macros. You will need to manually re-import them from the Macro Compendium into your Macro Directory to take advantage of the improvements.
-4. Import RollTables to your RollTable suite via `Compendiums` > `RollTable` > `GM Toolkit`.
+5. Import macros and tables through either
+   - [Toolkit Maintenance](../../wiki/Toolkit-Maintenance.md) option in `Settings` > `Module Settings` > `GM Toolkit (WFRP 4e)` > `Update GM Toolkit Content`.  Or
+   - [manually importing](../../wiki/getting-started) from Compendium packs.
 
 ## References
 
