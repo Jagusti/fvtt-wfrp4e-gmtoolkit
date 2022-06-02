@@ -77,9 +77,9 @@ function updateXP(awardees, XP, reason) {
   // cycle through player characters, gathering experience change data for report message
   awardees.forEach ( pc  => {
     let recipient = pc?.actor?.name || pc.name 
-    let XPTotal = pc?.details?.experience?.total || pc.actor.data.data.details.experience.total; 
+    let XPTotal = (pc?.details?.experience?.total || pc?.details?.experience?.total == 0) ? pc?.details?.experience?.total : pc.actor.data.data.details.experience.total;
     let newXPTotal = Math.max(XPTotal + XP,0);
-    let XPCurrent = pc?.details?.experience?.current  || pc.actor.data.data.details.experience.current; 
+    let XPCurrent = (pc?.details?.experience?.current || pc?.details?.experience?.current == 0) ? pc?.details?.experience?.current : pc.actor.data.data.details.experience.current;
     let newXPCurrent = Math.max(XPCurrent + XP,0);
 
     // update token actor or actor
