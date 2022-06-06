@@ -46,6 +46,11 @@ Hooks.once("ready", function () {
     GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
 });
 
+Hooks.on("ready", async () => {
+  game.socket.on(`module.${GMToolkit.MODULE_ID}`, data => {
+    SocketHandlers[data.type](data)
+  })
+});
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
@@ -66,3 +71,21 @@ Hooks.on("preUpdateToken", (token, change) => {
 		if (change?.y) {change.y = token.data.y}
 	}
   }); 
+
+  
+/* -------------------------------------------- */
+/*  Socket Handlers                                 */
+/* -------------------------------------------- */
+
+export class SocketHandlers {
+
+    // Used for updating Advantage when the opposed test is resolved by a player character that does not own the opposing character
+    static async updateAdvantage(data) {
+        console.log("Socket: updateAdvantage", data)
+        if (!game.user.isUniqueGM) return
+        let updated = ""
+        let character = (data.payload.character)
+        return updated = await game.scenes.active.tokens.filter(t => t.actor.id == character)[0].actor.update(data.payload.updateData);
+    }
+
+}

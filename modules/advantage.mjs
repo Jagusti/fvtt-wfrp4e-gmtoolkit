@@ -98,8 +98,13 @@ export default class Advantage {
 
         async function updateCharacterAdvantage() {
             let updated = ""
-            if (character.document.documentName == "Token") return updated = await character.document.actor.update({ "data.status.advantage.value": advantage.new }); 
-            if (character.document.documentName == "Actor") return updated = await character.document.update({ "data.status.advantage.value": advantage.new });
+            let actorToChange = (character.document?.actor || character.document)
+            GMToolkit.log(false, actorToChange)
+            if (!actorToChange.data.permission[game.user.id]) {
+                return updated = await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { type: "updateAdvantage", payload: { character: actorToChange.id, updateData: {"data.status.advantage.value": advantage.new} } })
+            } else {
+                return updated = await actorToChange.update({"data.status.advantage.value": advantage.new});
+            }
         }
     }
 
@@ -309,6 +314,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     var character = winner.data.token
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.opposed != opposedTest.attackerTest.message.id) {
         await Advantage.update(character,"increase","wfrp4e:opposedTestResult");
+        // TODO: Update flag via socket to remove player permission console error 
         await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {opposed: opposedTest.attackerTest.message.id});
         console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
     } else {
