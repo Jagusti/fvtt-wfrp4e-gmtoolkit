@@ -271,7 +271,23 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     var character = scriptArgs.attacker.data.token
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.outmanoeuvre != scriptArgs.opposedTest.attackerTest.message.id) {
         await Advantage.update(character,"increase","wfrp4e:applyDamage");
-        await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id});
+        
+        if (!character.data.permission[game.user.id]) {
+            await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { 
+                type: "setFlag", 
+                payload: { 
+                    character: character, 
+                    updateData: {
+                        flag: 'advantage', 
+                        key: 'outmanoeuvre', 
+                        value: scriptArgs.opposedTest.attackerTest.message.id
+                    } 
+                } 
+            })
+        } else {
+            await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id});
+        }
+
         console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
     } else {
         console.log(`Advantage increase already applied to ${character.name} for outmanoeuvring.`)
@@ -285,8 +301,41 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     GMToolkit.log(true, opposedTest, attackerTest, defenderTest)
 
     // Set Advantage flag if attacker and/or defender charged. Do this once before exiting for unopposed tests. 
-    if (attackerTest.data.preData?.charging || attackerTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.attacker.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
-    if (defenderTest.data.preData?.charging || defenderTest.data.result.other == game.i18n.localize("Charging")) await opposedTest.defender.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+    if (attackerTest.data.preData?.charging || attackerTest.data.result.other == game.i18n.localize("Charging")) {
+        if (!attackerTest.actor.permission[game.userid]) {
+            await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { 
+            type: "setFlag", 
+            payload: { 
+                character: opposedTest.attacker.data.token, 
+                updateData: {
+                    flag: 'advantage', 
+                    key: 'charging', 
+                    value: opposedTest.attackerTest.message.id
+                    } 
+                } 
+            })
+        } else {
+            await opposedTest.attacker.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+        }
+    }
+    
+    if (defenderTest.data.preData?.charging || defenderTest.data.result.other == game.i18n.localize("Charging")) {
+        if (!defenderTest.actor.permission[game.userid]) {
+            await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { 
+            type: "setFlag", 
+            payload: { 
+                character: opposedTest.defender.data.token, 
+                updateData: {
+                    flag: 'advantage', 
+                    key: 'charging', 
+                    value: opposedTest.attackerTest.message.id
+                    } 
+                } 
+            })
+        } else {
+            await opposedTest.defender.setFlag(GMToolkit.MODULE_ID, 'advantage', {charging: opposedTest.attackerTest.message.id});
+        }
+    }
 
     if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
     if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return 
@@ -314,8 +363,22 @@ Hooks.on("wfrp4e:opposedTestResult", async function(opposedTest, attackerTest, d
     var character = winner.data.token
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.opposed != opposedTest.attackerTest.message.id) {
         await Advantage.update(character,"increase","wfrp4e:opposedTestResult");
-        // TODO: Update flag via socket to remove player permission console error 
-        await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {opposed: opposedTest.attackerTest.message.id});
+        
+        if (!character.document.permission[game.user.id]) {
+            await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { 
+                type: "setFlag", 
+                payload: { 
+                    character: character, 
+                    updateData: {
+                        flag: 'advantage', 
+                        key: 'opposed', 
+                        value: opposedTest.attackerTest.message.id
+                    } 
+                } 
+            })
+        } else {
+            await character.document.setFlag(GMToolkit.MODULE_ID, 'advantage', {opposed: opposedTest.attackerTest.message.id});
+        }
         console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
     } else {
         console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
