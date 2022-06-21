@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Fixed* Advantage updates when an opposed roll is resolved by a player that does not have owner permission on the opposing actor or token. [[#105](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/105)]
+- *Added* error notification on startup if there are players that do not have characters assigned. [#102](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/102)
+  - A console message identifies Specators, even if the notification message is suppressed.
+  - More details can be found by clicking on the Spectators link in the notification, which directs to the wiki.
 
 ## Version 0.9.3
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
