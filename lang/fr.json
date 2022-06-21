@@ -2,6 +2,7 @@
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Un évènement inattendu est survenu. Aucun de changement effectué.",
     "GMTOOLKIT.Message.NoChangeMade" : "Aucun de changement effectué.",
 
+    "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Spectators</a>: no character assigned to {spectators}.",
     "GMTOOLKIT.Settings.Advantage.menu.name" : "Advantage Handling",
     "GMTOOLKIT.Settings.Advantage.menu.label" : "Configure Advantage Handling",
     "GMTOOLKIT.Settings.Advantage.menu.hint" : "Set options for automated, assisted and macro-based advantage handling.",

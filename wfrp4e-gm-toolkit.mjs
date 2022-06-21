@@ -1,5 +1,5 @@
 /**
- * A utility module for Warhammer Fantasy Roleplay 4e Game Masters.+
+ * A utility module for Warhammer Fantasy Roleplay 4e Gamemasters.+
  * Author: Jagusti
  * Repository: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/
  * Issue Tracker: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues
@@ -45,12 +45,15 @@ Hooks.once("init", function () {
 Hooks.once("ready", function () {
   GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
 
-  // Note any player users that do not have characters assigned
-  const spectators = GMToolkitUtility.getGroup("spectators")
+  // Notify any player users that do not have characters assigned
+  const spectators = GMToolkitUtility.getGroup("spectators").map(i => (" " + i.name))
   if (spectators.length > 0) {
-    GMToolkit.log(true, `Spectators: ${spectators.map(i=>i.name)}`)
-    }
-  });
+    GMToolkit.log(true, `Spectators: ${spectators}`)
+    if (!game.settings.get("wfrp4e-gm-toolkit","suppressSpectatorNotice")) {
+      ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", {spectators: spectators})}`, {permanent: true})
+    } 
+  }
+});
 
 Hooks.on("ready", async () => {
   game.socket.on(`module.${GMToolkit.MODULE_ID}`, data => {
