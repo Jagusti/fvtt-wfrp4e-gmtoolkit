@@ -297,6 +297,18 @@ export default class GMToolkitSettings {
             feature: "grouptests" 
         });
 
+        // Settings for suppressing Spectator notification
+        game.settings.register(GMToolkit.MODULE_ID, "suppressSpectatorNotice", {
+            name: "GMTOOLKIT.Settings.Spectators.name",
+            hint: "GMTOOLKIT.Settings.Spectators.hint",
+            scope: "world",
+            config: true,
+            default: true,
+            type: Boolean,
+            onChange: GMToolkitSettings.debouncedReload,
+            feature: "grouptests" 
+        });
+
         // Menu for Module Content Management
         game.settings.registerMenu(GMToolkit.MODULE_ID, "menuMaintenance", {
             name: "GMTOOLKIT.Settings.Maintenance.menu.name",

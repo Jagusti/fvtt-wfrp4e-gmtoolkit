@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Fixed* Advantage updates when an opposed roll is resolved by a player that does not have owner permission on the opposing actor or token. [[#105](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/105)]
 - *Added* error notification on startup if there are players that do not have characters assigned. [#102](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/102)
+  - Notice of these 'Spectators' can be suppressed by selecting the 'Suppress Spectator Notification' option in module settings.
   - A console message identifies Specators, even if the notification message is suppressed.
   - More details can be found by clicking on the Spectators link in the notification, which directs to the wiki.
 

@@ -1,8 +1,11 @@
 {
     "GMTOOLKIT.Message.UnexpectedNoChange" : "予期せぬことが発生し、何も変更されませんでした。",
     "GMTOOLKIT.Message.NoChangeMade" : "変更なし。",
-
+    
     "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Spectators</a>: no character assigned to {spectators}.",
+    "GMTOOLKIT.Settings.Spectators.name" : "Suppress Spectator Notification",
+    "GMTOOLKIT.Settings.Spectators.hint" : "Do not show notification of players that do not have characters assigned. Details are logged in the console on startup regardless.",
+
     "GMTOOLKIT.Settings.Advantage.menu.name" : "優位操作",
     "GMTOOLKIT.Settings.Advantage.menu.label" : "優位操作の設定",
     "GMTOOLKIT.Settings.Advantage.menu.hint" : "優位操作をマクロベースで自動化支援する設定。",
