@@ -291,10 +291,10 @@ export function getGroup(groupType) {
             group = game.combat.combatants
             break;
         case ("allies") :  // all player owned characters in the active combat
-            group = game.combat.combatants.filter(c => ((c.hasPlayerOwner && c.actor.type === "character") || c.token.data.disposition === 1))
+            group = game.combat.combatants.filter(c => ((c.hasPlayerOwner) || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
             break;
         case ("adversaries") :  // all hostile non-player combatants in the active combat 
-            group =  game.combat.combatants.filter(c => !((c.hasPlayerOwner && c.actor.type === "character") || c.token.data.disposition === 1))
+            group =  game.combat.combatants.filter(c => !((c.hasPlayerOwner) || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
             break;
     }
     GMToolkit.log(false, group)
