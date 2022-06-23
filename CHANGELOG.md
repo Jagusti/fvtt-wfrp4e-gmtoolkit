@@ -10,6 +10,14 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Notice of these 'Spectators' can be suppressed by selecting the 'Suppress Spectator Notification' option in module settings.
   - A console message identifies Specators, even if the notification message is suppressed.
   - More details can be found by clicking on the Spectators link in the notification, which directs to the wiki.
+- *Added* compatibility with Group Advantage implementation. 
+  - Removed user notifications reporting individual Advantage changes. Reasons for change (such as "PC outmanoeuvred NPC") are still shown, though may linger longer than Group Advantage messages if they are set to persist.
+  - The following options are ignored, as if they are disabled, when Group Advantage is being used:
+    - Suffering a condition 
+    - Losing momentum (individual momentum is not applied if Group Advantage is used)
+    - Adding to combat (if Group Advantage is used, the system handles syncing individual advantage with the group)
+  - Only Advantage gains from Opposed Tests and Outmanouevring are applied (losers do not lose Advantage automatically when Group Advantage is used).
+  - Advantage gain is not flagged when a combatant charges. 
 
 ## Version 0.9.3
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
