@@ -23,7 +23,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - *Removed* obsolete styling overrides for macro sheet and form areas.
   - *Added* override to increase condition status icons by 50% in token hud.
 
-## Version 0.9.3
+## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
 - *Changed* Advantage automation to represent Outmanoeuvring (WFRP p164). 
   - In Foundry, tests should be targeted and handled as unopposed. 
@@ -72,15 +72,15 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Setting the `forcePrivate` variable to `true` in the macro will force visibility to hidden, rather than toggle current state.  
 - *Added* development setting to ignore module lock file during.
 
-## Version 0.9.2
+## [Version 0.9.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.2)  (2021-01-09)
 - *Fixed* duplicate results numbering in Dark Whispers table and localization omission [#79] (Thanks @Txus5012).
 - *Fixed* an issue where Advantage is always handled automatically when applying damage, even if the option is not selected. 
 
-## Version 0.9.1
+## [Version 0.9.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.1)  (2021-01-03)
 - *Changed* Set Token Vision and Light macro to await token updates, to prevent a conflict or failure when multiple tokens are selected. This will need to be **manually re-imported** from the compendium. 
 - *Added* movement lock to prevent players from moving tokens on the configured holding scene. This allows tokens to be used in fixed locations with all the usual selection, targeting and hud interactions rather than just non-interactive tiles or pictures for character portraits. 
 
-## Version 0.9.0
+## [Version 0.9.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.0)  (2021-01-03)
 - *Changed* Foundry compatibility to v9. WFRP4e system compatibility is v5. 
 - *Fixed* non-rendered html in Marginal Success roll description.
 - *Fixed* issue where module settings could not be accessed [[#70](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/70)].
@@ -98,7 +98,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* issue with Night Vision multiplier being applied to Dim Sight on tokens that do not have Night Vision when multiple tokens are selected. 
 - *Removed* redundant "nochange" processing for light and sight, as this is not triggered. 
 
-## Version 0.8.0
+## [Version 0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0)  (2021-12-31)
 - *Changed* Advantage scripts to handle non-token characters. 
 - *Added* option to automate changes to Advantage when a character deals or is dealt combat damage in opposed contests. 
 - *Added* option for sticky notifications for Advantage updates. This is introduced to provide better visibility of automated changes to Advantage, so that any related amendnents are not missed. 
@@ -128,7 +128,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* support for Developer Mode console logging (https://github.com/League-of-Foundry-Developers/foundryvtt-devMode)
 
 
-## Version 0.7.0
+## [Version 0.7.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.7.0)  (2021-08-07)
 - *Added* new template macro 'Make Secret Party Test' for GMs to silently or interactively roll tests for party members (such as Perception and Stealth). 
 - *Changed* macros to be compatible with FVTT 0.8.8 and WFRP4e 4.0.x. 
   - Add XP and Reset Fortune. No change is needed for the End of Session Routine macro that uses these.
@@ -151,7 +151,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Updated* French translations (thanks to @McGregor777).
 
 
-## Version 0.6.3
+## [Version 0.6.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.6.3) (2021-07-23)
 - *Changed* Foundry compatibility to up to 0.7.10. WFRP4e system compatibility is up to 3.6.2.  
   - This is the final release of the GM Toolkit to support FVTT 0.7.x and WFRP4e 3.x.
 - *Changed* manifest to point to latest release note for installation file and download link. 
@@ -162,7 +162,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* dramatic test outcome hints (such as "Yes, and ..." or "No, but ...") to roll results descriptions in the chat log, depending on success levels. More information can be found on p152 of the core rulebook. 
 - *Added* links to [ko-fi](https://ko-fi.com/jagusti) for those who may wish to support work on the Toolkit. The module is freeware, and there's no expectation or obligation to make a contribution, but any is welcome. 
 
-## Version 0.6.2
+## Version 0.6.2 (2021-02-28)
 
 General Module Stuff
 - *Added* compatibility updates for WFRP4e version 3 and premium content,
@@ -188,7 +188,7 @@ Dark Whispers
   - the GM rather than the system should make the decision about whether the character has met the terms of the offer.
 - *Added* a new system table with suggestions for Dark Whispers. This is available through a chat command (`/table darkwhispers`) but is also used by the Send Dark Whispers macro to prepopulate the dialog box and to give the GM a starting point for inspiration. 
 
-## Version 0.6
+## [Version 0.6](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.6) (2020-11-02)
 
 General Module Stuff
 - *Changed* minimum core Foundry compatibility to 0.7.5 and minimum WFRP4e system compatibility to 2.2.1 to support animated token light effects. 
@@ -230,10 +230,10 @@ Token Vision and Light
   -  the token itself having some kind of light source (conferring a dimLight setting > 0)
   -  global illumination being enabled on the scene. 
 
-## Version 0.5.1
+## Version 0.5.1  (2020-06-23)
 - *Fixed* typo in Add XP macro
 
-## Version 0.5
+## Version 0.5 (2020-06-09)
 - *Added* shortcut to make Track test (CTRL + SHIFT + Initiative hud extension).
 - *Added* Strong-minded advances for determining maximum Resolve when increasing through Token Hud. 
 - *Fixed* undeclared target error when adding Fortune through Token Hud.
@@ -247,7 +247,7 @@ Token Vision and Light
 - *Added* French translations for enhancements and changes (thanks to @LeRatierBretonnien).
 - *Changed* Foundry 0.6.2 compatibility.
 
-## Version 0.4
+## Version 0.4 (2020-05-22)
 - *Breaking changes* to token selection validation to make compatible with FVTT v0.6.0. All Advantage macros plus Set Token Vision and Light macro should be re-imported from the macro compendium. 
 - *Added* interactions for Token Hud Extension: various skill and characteristic tests, status value adjustments and table rolls. Full details on https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/token-hud-extensions. 
 - *Added* Perception and Intuition to Token Hud.
@@ -260,7 +260,7 @@ Token Vision and Light
 ## Version 0.3.1
 - *Fixed* Luck Talent translation in French translation file. Thanks to JDW for flagging. 
 
-## Version 0.3
+## Version 0.3 (2020-05-09)
 
 ### Changed
 - Extended and standardised localization strings.
@@ -272,7 +272,7 @@ Token Vision and Light
 ### Added
 - French translation support started. Thanks to @LeRatierBretonnien#2065!
 
-## Version 0.2.1
+## Version 0.2.1  (2020-05-08)
 
 ### Changed
 - Chat log for Add XP macro is reported from player rather than character.
@@ -288,7 +288,7 @@ Token Vision and Light
 - Typo in Set Token and Light macro dropdown options.
 - Macros relying on token selection no longer run when no token is selected. 
 
-## Version 0.2
+## Version 0.2  (2020-04-25)
 
 ### Changed
 - Added feature descriptions to changelog.
@@ -299,7 +299,7 @@ Token Vision and Light
 - Include macro pack and correct script pack for Token Hud Extensions (doh!)
 - Fixed links to wiki and issue backlog.
 
-## Version 0.1
+## Version 0.1  (2020-04-25)
 
 ### Added
 - Token Hud Extension 
