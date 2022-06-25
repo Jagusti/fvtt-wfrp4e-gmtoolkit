@@ -18,6 +18,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - Adding to combat (if Group Advantage is used, the system handles syncing individual advantage with the group)
   - Only Advantage gains from Opposed Tests and Outmanouevring are applied (losers do not lose Advantage automatically when Group Advantage is used).
   - Advantage gain is not flagged when a combatant charges. 
+- *Added* styling override for Developer Mode module to prevent chat ID obscuring unopposed test button.
 
 ## Version 0.9.3
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]

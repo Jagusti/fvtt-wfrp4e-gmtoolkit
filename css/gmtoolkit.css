@@ -1,12 +1,17 @@
 /************ CONTENTS ***************/
 /*************************************/
 /* 0. MODULE CONFLICTS
-/*  0.1. Furnace Advanced Macro fills
+/*  0.1. Furnace Advanced Macro Fill
+/*  0.2. Developer Mode
 /* 1. TOKEN HUD EXTENSIONS           
 /*  1a. Extension Div
 /*  1b. Hud Icons
 /*  1c. Override Core Hud
 /*  1d. Override Status Effects
+/* 2. COMMON CONTROLS
+/*  2a. Textarea
+/* 3. DIALOG
+/*  3a. List Data
 /*************************************/
 
 
@@ -19,7 +24,13 @@
 	-webkit-text-fill-color: unset;
 }
 
+/* 0.2. Developer Mode */
 
+.dev-mode-tag {
+	top: -6px;
+    right: -6px;
+    bottom: unset;
+}
 
 /* 1. TOKEN HUD EXTENSIONS */
 /***************************/
@@ -62,10 +73,6 @@
 	display: inline-flex;
 }
 
-/* .tokenhudext.right {
-	justify-content: flex-start; 
-} */
-
 /*  1b. Hud Icons */
 
 .control-icon.tokenhudicon {
@@ -80,10 +87,6 @@
 	margin-right: 8px;
 	margin-top: auto;  /* Override margin-top for first-child to maintain middle alignment */
 }
-
-/* .control-icon.tokenhudicon.right {
-	margin-left: 8px;
-} */
 
 /* 1c. Override core hud styles to avoid misalignment */ 
 
