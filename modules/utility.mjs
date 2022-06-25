@@ -163,7 +163,7 @@ export function getSession() {
 export function inActiveCombat(character, notification = true) {
     let inActiveCombat = true
 
-    if (game.combats.active.combatants.contents.filter(a => a.data.actorId == character.id) == false) {
+    if (game.combats?.active?.combatants?.contents.filter(a => a.data.actorId == character.id) == false) {
         inActiveCombat = false
         let message = (`${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat",{actorName: character.name, sceneName : game.scenes.viewed.name})}`);
         if (notification != "silent") {

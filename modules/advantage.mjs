@@ -8,7 +8,7 @@ export default class Advantage {
  * Entry point for adjustments to Advantage through . 
  * @param {Object} character   :   Token, Actor. Combatant is passed in as Token.
  * @param {String} adjustment  :   increase (+1), clear (=0), reduce (-1)
- * @param {String} context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, deleteCombatant, createActiveEffect, loseMomentum
+ * @param {String} context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, preDeleteCombatant, createActiveEffect, loseMomentum
  * @return {Array} update      :   outcome (String: increased, reduced, min, max, reset, no change), 
  *                                 starting (Number: what the character's Advantage was at the start of the routine)
  *                                 new (Number: what the character's Advantage is at the end of the routine)
@@ -39,21 +39,25 @@ export default class Advantage {
     }
 
     static async get(character, resourceBase, adjustment) {
-        switch(character.document.documentName) {
-            case "Actor":
-                resourceBase = duplicate(character.document.status.advantage);
-                resourceBase.current = resourceBase.value || 0;
-                break;
-            case "Token":
-                if (character.data.actorLink) { // get status from linked actor
-                    resourceBase = duplicate(character.actor.status.advantage);
-                    resourceBase.current = resourceBase.value;
-                } else { // get status from token actorData (fallback to source actor)
-                    resourceBase.current = character.data.actorData?.data?.status?.advantage?.value || 0;
-                    if (adjustment == "increase") { resourceBase.max = character.data.actorData?.data?.status?.advantage?.max || character.actor.status.advantage.max; }
-                }
-                break;
-        }    
+        if (game.settings.get("wfrp4e","useGroupAdvantage")) {
+            resourceBase.current = game.settings.get("wfrp4e", "groupAdvantageValues")[character.actor.advantageGroup]
+        } else {
+            switch(character.document.documentName) {
+                case "Actor":
+                    resourceBase = duplicate(character.document.status.advantage);
+                    resourceBase.current = resourceBase.value || 0;
+                    break;
+                case "Token":
+                    if (character.data.actorLink) { // get status from linked actor
+                        resourceBase = duplicate(character.actor.status.advantage);
+                        resourceBase.current = resourceBase.value;
+                    } else { // get status from token actorData (fallback to source actor)
+                        resourceBase.current = character.data.actorData?.data?.status?.advantage?.value || 0;
+                        if (adjustment == "increase") { resourceBase.max = character.data.actorData?.data?.status?.advantage?.max || character.actor.status.advantage.max; }
+                    }
+                    break;
+            }    
+        }
         return resourceBase;
     }
 
@@ -63,7 +67,7 @@ export default class Advantage {
 
         switch (adjustment) {
             case "increase":
-                if (advantage.current < advantage.max) {
+                if (advantage.max === undefined || advantage.current < advantage.max) {
                         advantage.new = Number(advantage.current + 1); 
                         let updated = await updateCharacterAdvantage();
                         (updated) ? outcome = "increased" : outcome = "nochange"
@@ -81,7 +85,7 @@ export default class Advantage {
                 }
                 break;
             case "clear":
-                if (advantage.current == 0) {
+                if (advantage.current === 0) {
                         outcome = "min"
                     } else {
                         advantage.new = Number(0); 
@@ -99,7 +103,7 @@ export default class Advantage {
         async function updateCharacterAdvantage() {
             let updated = ""
             let actorToChange = (character.document?.actor || character.document)
-            GMToolkit.log(false, actorToChange)
+            GMToolkit.log(false, actorToChange)            
             if (!actorToChange.data.permission[game.user.id]) {
                 return updated = await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { type: "updateAdvantage", payload: { character: actorToChange.id, updateData: {"data.status.advantage.value": advantage.new} } })
             } else {
@@ -124,8 +128,10 @@ export default class Advantage {
             case "createCombatant" : 
                 update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.AddedToCombat", { actorName: character.name});
                 break;
-            case "deleteCombatant" : 
+            case "preDeleteCombatant" : 
                 update.context = game.i18n.format("GMTOOLKIT.Advantage.Context.RemovedFromCombat", { actorName: character.name});
+                break;
+            default : 
                 break;
         }
 
