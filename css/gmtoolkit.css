@@ -1,15 +1,13 @@
 /************ CONTENTS ***************/
 /*************************************/
 /* 0. MODULE CONFLICTS
-/*  0.1. Furnace Advanced Macro Fill
-/*  0.2. Developer Mode
+/*  0.1. Developer Mode
 /* 1. TOKEN HUD EXTENSIONS           
 /*  1a. Extension Div
 /*  1b. Hud Icons
 /*  1c. Override Core Hud
 /*  1d. Override Status Effects
 /* 2. COMMON CONTROLS
-/*  2a. Textarea
 /* 3. DIALOG
 /*  3a. List Data
 /*************************************/
@@ -18,13 +16,7 @@
 /* 0. MODULE CONFLICTS */
 /***************************/
 
-/* 0.1. Furnace Advanced Macros Fill */
-
-.macro-sheet .form-group.command .furnace-macro-command textarea {
-	-webkit-text-fill-color: unset;
-}
-
-/* 0.2. Developer Mode */
+/* 0.1. Developer Mode */
 
 .dev-mode-tag {
 	top: -6px;
@@ -110,31 +102,20 @@
 /* 1d. Override Status Effects to avoid overlap */
 
 #token-hud .status-effects {
-    top: unset;
-	bottom: 0;
+    /* top: -36px;  /* Realign to avoid placement conflict wth combat hud extensions */
+	bottom: unset;
 	background: #ececec; /* Change background to improve status effect visibility */
+	width: 144px; /* Accommodate larger (wider) effect controls */
 }
 
+#token-hud .status-effects .effect-control {
+    width: 36px;  /* Accommodate larger effect controls */
+    height: 36px;  /* Accommodate larger (wider) effect controls */
+	opacity: 0.75;  /* Improve visual clarity */
+}
 
 /* 2. COMMON CONTROLS */
 /***************************/
-
-/* 2a. Textarea */
-
-.form-group textarea, 
-.dialog-content textarea { 
-	color: #d6d6d6;
-	padding: 1px 3px;
-	margin: 0;
-	font-family: var(--actor-input-font-family);
-	font-size: var(--actor-input-font-size);
-	font-weight: var(--actor-input-font-weight);
-	color: #d6d6d6;
-	border: 1px solid #736953a6;
-	border-left: none;
-	box-shadow: 0px 0px 10px inset black;
-	background: #352516;
-}
 
 /* 3. DIALOG */
 /***************************/
