@@ -238,7 +238,7 @@ export function getGroup(groupType, active = undefined) {
     let group = []
     switch (groupType) {
         case ("users") :  // all users, including players and GMs
-            group = game.users
+            group = Array.from(game.users)
             break;
         case ("gms") :  // only GM users
             group = game.users.filter(u => u.isGM)
@@ -253,7 +253,7 @@ export function getGroup(groupType, active = undefined) {
             group = game.users.players.filter(u => u.character)
             break;
         case ("actors") :  // all actors in the world
-            group = game.actors
+            group = Array.from(game.actors)
             break;
         case ("characters") :  // all characters in the world, including unassigned actors
             group = game.actors.filter(a => a.type === "character")            
@@ -268,7 +268,7 @@ export function getGroup(groupType, active = undefined) {
             group = game.canvas.tokens.placeables.filter(t => !t.actor.hasPlayerOwner)            
             break;
         case ("scene") :  // all tokens in the scene
-            group = game.canvas.tokens.placeables            
+            group = Array.from(game.canvas.tokens.placeables)
             break;
         case ("selected") :  // all tokens in the scene that are selected by the current user
             group = game.canvas.tokens.controlled
@@ -296,11 +296,11 @@ export function getGroup(groupType, active = undefined) {
     }
 
     // Filter the group depending on whether the assigned player is online or offline
-    if (active !== undefined) {
+    if (group.length > 0 && active !== undefined) {
         const worldPCs = game.users.players.filter(u => u.character && u.active === active).map(u => u.character)
-        console.log(worldPCs)
         let inActiveState = []
         switch (groupType) {
+            // game.users
             case ("users") :  // game.users
             case ("gms") :  // game.users
             case ("players") :  // game.users
@@ -308,6 +308,7 @@ export function getGroup(groupType, active = undefined) {
             case ("assigned") :  // game.users
                 inActiveState = (group.filter(g => g.active == active));
                 break;
+            // the rest
             case ("actors") : // game.actors
             case ("characters") : // game.actors
             case ("party") : // game.actors
@@ -318,20 +319,16 @@ export function getGroup(groupType, active = undefined) {
             case ("targeted") :  // game.tokens
             case ("scenePCs") :  // game.tokens
             case ("sceneNPCs") :  // game.tokens
-                // worldPCs = game.users.players.filter(u => u.character && u.active === active).map(u => u.character);
-                worldPCs.forEach(wPC => {
-                    inActiveState.push(group.filter(g => g?.actor === wPC || g === wPC)[0]);
-                })
-                break;
             case ("combatants") :  // game.combat.combatants
             case ("allies") :  // game.combat.combatants
             case ("friends") :  // game.combat.combatants
             case ("adversaries") :  // game.combat.combatants
             case ("enemies") :  // game.combat.combatants
-                // worldPCs = game.users.players.filter(u => u.character && u.active === active).map(u => u.character)
-                // group = group.filter(c => c.players).filter(g => g.active == active)  // combatant
                 worldPCs.forEach(wPC => {
-                    inActiveState.push(group.filter(g => g.actor === wPC)[0]);
+                    inActiveState.push(group.filter(g => 
+                        g?.actor === wPC ||  // combatants, tokens
+                        g === wPC)  // actors
+                    [0]);  
                 })
                 break;
             default : 
