@@ -22,6 +22,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - *Added* styling override for Developer Mode module to prevent chat ID obscuring unopposed test button.
   - *Removed* obsolete styling overrides for macro sheet and form areas.
   - *Added* override to increase condition status icons by 50% in token hud.
+- *Fixed* an issue with the **Add XP** macro, where it would fail for a character with 0 XP,  who had also never previously had XP. 
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
