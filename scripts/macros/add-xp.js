@@ -77,9 +77,9 @@ function updateXP(awardees, XP, reason) {
   // cycle through player characters, gathering experience change data for report message
   awardees.forEach ( pc  => {
     let recipient = pc?.actor?.name || pc.name 
-    let XPTotal = pc?.details?.experience?.total || pc.actor.data.data.details.experience.total; 
+    let XPTotal = pc?.details?.experience?.total; 
     let newXPTotal = Math.max(XPTotal + XP,0);
-    let XPCurrent = pc?.details?.experience?.current  || pc.actor.data.data.details.experience.current; 
+    let XPCurrent = pc?.details?.experience?.current || 0; 
     let newXPCurrent = Math.max(XPCurrent + XP,0);
 
     // update token actor or actor
@@ -100,8 +100,8 @@ function updateXP(awardees, XP, reason) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 0.9.3
- * UPDATED: 2022-01-24
+ * VERSION: 0.9.4
+ * UPDATED: 2022-06-26
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the Chat log.
  * TIP: Characters must have a player assigned. 
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
