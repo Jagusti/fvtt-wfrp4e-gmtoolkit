@@ -1,6 +1,10 @@
 {
     "GMTOOLKIT.Message.UnexpectedNoChange" : "予期せぬことが発生し、何も変更されませんでした。",
     "GMTOOLKIT.Message.NoChangeMade" : "変更なし。",
+    
+    "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Spectators</a>: no character assigned to {spectators}.",
+    "GMTOOLKIT.Settings.Spectators.name" : "Suppress Spectator Notification",
+    "GMTOOLKIT.Settings.Spectators.hint" : "Do not show notification of players that do not have characters assigned. Details are logged in the console on startup regardless.",
 
     "GMTOOLKIT.Settings.Advantage.menu.name" : "優位操作",
     "GMTOOLKIT.Settings.Advantage.menu.label" : "優位操作の設定",
@@ -9,15 +13,15 @@
     "GMTOOLKIT.Settings.Advantage.PersistNotices.name" : "優位操作通知の持続表示",
     "GMTOOLKIT.Settings.Advantage.PersistNotices.hint" : "優位関連の通知は手動で削除するまで画面に残ります。既定では、FVTTは画面上に通知を３個までしか同時表示しないため、以前の通知が消えるまで新しメッセージが表示されないことが有ります。",
     "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.name" : "対抗テストの解決",
-    "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint" : "アクティブな戦闘中に対抗テストに勝利したキャラクターの優位を増やす。敗北したトークンからは優位をクリアする。防御側のロールで起動する。",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint" : "アクティブな戦闘中に対抗テストに勝利したキャラクターの優位を増やす。敗北したトークンからは優位をクリアする (if not using Group Advantage)。防御側のロールで起動する。",
     "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.name" : "策略で勝つ",
-    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "対抗テスト無しからダメージを与えたキャラクターが優位を得る。負傷を受けたトークンからは優位をクリアする。これは、チャットカードのテスト結果から「ダメージを適用」を選択すると発動します。",
+    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "対抗テスト無しからダメージを与えたキャラクターが優位を得る。負傷を受けたトークンからは優位をクリアする (if not using Group Advantage)。これは、チャットカードのテスト結果から「ダメージを適用」を選択すると発動します。",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.name" : "状態異常を受ける",
-    "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "戦闘中に新しい状態を受けると、自動的に優位を失う。",
+    "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "戦闘中に新しい状態を受けると、自動的に優位を失う (if not using Group Advantage)。",
     "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.name" : "勢いを失う",
-    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint" : "ラウンド終了時に、ラウンド中優位を獲得していない戦闘参加者を選択し、そのアドバンテージを1減少させるプロンプトを出す。",
+    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint" : "ラウンド終了時に、ラウンド中優位を獲得していない戦闘参加者を選択し、そのアドバンテージを1減少させるプロンプトを出す (if not using Group Advantage)。",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name" : "戦闘参加",
-    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint" : "コンバットトラッカーに追加するとトークンから優位がクリアされる、空の遭遇が作成されたり戦闘が開始されたときではない。",
+    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint" : "コンバットトラッカーに追加するとトークンから優位がクリアされる (if not using Group Advantage)、空の遭遇が作成されたり戦闘が開始されたときではない。",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.name" : "戦闘離脱",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint" : "コンバットトラッカーから削除されたときにトークンの優位をクリアする、戦闘終了時ではない。",
 

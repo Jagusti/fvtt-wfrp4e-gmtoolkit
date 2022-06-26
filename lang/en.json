@@ -1,6 +1,10 @@
 {
     "GMTOOLKIT.Message.UnexpectedNoChange" : "Something unexpected happened. No change has been made.",
     "GMTOOLKIT.Message.NoChangeMade" : "No change made.",
+    
+    "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Spectators</a>: no character assigned to {spectators}.",
+    "GMTOOLKIT.Settings.Spectators.name" : "Suppress Spectator Notification",
+    "GMTOOLKIT.Settings.Spectators.hint" : "Do not show notification of players that do not have characters assigned. Details are logged in the console on startup regardless.",
 
     "GMTOOLKIT.Settings.Advantage.menu.name" : "Advantage Handling",
     "GMTOOLKIT.Settings.Advantage.menu.label" : "Configure Advantage Handling",
@@ -9,15 +13,15 @@
     "GMTOOLKIT.Settings.Advantage.PersistNotices.name" : "Persist Advantage handling notifications",
     "GMTOOLKIT.Settings.Advantage.PersistNotices.hint" : "Advantage related notices are left onscreen until manually dismissed. By default, Foundry will only show three notifications onscreen at once, so newer messages may not be seen until these are removed.",
     "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.name" : "Resolving opposed tests",
-    "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint" : "Increase Advantage for the character who wins an opposed test in an active combat. Clear Advantage from losing tokens. This is triggered when the defender rolls.",
+    "GMTOOLKIT.Settings.Advantage.Automate.OpposedTest.hint" : "Increase Advantage for the character who wins an opposed test in an active combat. Clear Advantage from losing tokens (if not using Group Advantage). This is triggered when the defender rolls.",
     "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.name" : "Outmanoeuvring",
-    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "Increase Advantage for the character who deals damage from an unopposed test. Clear Advantage from tokens who take Wounds. This is triggered when choosing an Apply Damage option from a test result card in chat.",
+    "GMTOOLKIT.Settings.Advantage.Automate.UnopposedDamage.hint" : "Increase Advantage for the character who deals damage from an unopposed test. Clear Advantage from tokens who take Wounds (if not using Group Advantage). This is triggered when choosing an Apply Damage option from a test result card in chat.",
     "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.name" : "Suffering a condition",
-    "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "Automatically clear Advantage when a character gains a new Condition during combat.",
+    "GMTOOLKIT.Settings.Advantage.Automate.SufferCondition.hint" : "Automatically clear Advantage when a character gains a new Condition during combat (if not using Group Advantage).",
     "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.name" : "Losing momentum",
-    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint" : "Prompt at the end of each round to select combatants that have not accrued Advantage in the round, and to reduce their Advantage by 1.",
+    "GMTOOLKIT.Settings.Advantage.Automate.LoseMomentum.hint" : "Prompt at the end of each round to select combatants that have not accrued Advantage in the round, and to reduce their Advantage by 1 (if not using Group Advantage).",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.name" : "Adding to combat",
-    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint" : "Clear Advantage from tokens when they are added to the combat tracker, not when a blank encounter is created or combat is begun.",
+    "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint" : "Clear Advantage from tokens when they are added to the combat tracker (if not using Group Advantage), not when a blank encounter is created or combat is begun.",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.name" : "Leaving combat",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint" : "Clear Advantage from tokens when they are removed from the combat tracker, rather than when combat is ended.",
 
