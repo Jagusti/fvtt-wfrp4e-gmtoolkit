@@ -120,7 +120,6 @@ return(maxStatus)
  * @return {Number} talentAdvances  
 **/ 
     function statusBoosts(talent) {
-        console.log(talent)
         let talentAdvances = Number();
         if (talent == undefined || talent.data.data.advances.value < 1) {
             talentAdvances = 0;
@@ -131,7 +130,6 @@ return(maxStatus)
                 }
             }
         }
-        console.log(talentAdvances)
         return talentAdvances;
     }
 }
@@ -344,6 +342,56 @@ export function getGroup(groupType, active = undefined, present = undefined) {
                 break;
         }
         group.splice(0, group.length, ...inActiveState)
+    }
+
+    // Filter the group depending on scene presence
+    // users: user viewedScene is game viewed scene
+    // actors: have token in scene
+    // token, combatants: no change to group: these only exist on a scene
+    if (group.length > 0 && present !== undefined) {
+        // const sceneTokens = Array.from(game.canvas.placeables.tokens)
+        let isPresent = []
+        switch (groupType) {
+            // game.users
+            case ("users") :  // game.users
+            case ("gms") :  // game.users
+            case ("players") :  // game.users
+            case ("spectators") :  // game.users
+            case ("assigned") :  // game.users
+                isPresent = present ? (group.filter(g => g.viewedScene === game.scenes.viewed.id)) : (group.filter(g => g.viewedScene !== game.scenes.viewed.id));
+                break;
+            // game.actors
+            case ("actors") : // game.actors
+            case ("characters") : // game.actors
+            case ("party") : // game.actors
+            case ("entourage") : // game.actors
+            case ("company") : // game.actors
+                group.forEach(a => {
+                    if ( present == (a.getActiveTokens().length > 0) ) isPresent.push(a);  
+                })
+                break;
+            // game.tokens
+            case ("tokens") :  // game.tokens
+            case ("nonparty") :  // game.tokens
+            case ("selected") :  // game.tokens
+            case ("targeted") :  // game.tokens
+            case ("pcTokens") :  // game.tokens
+            case ("npcTokens") :  // game.tokens
+            case ("friends") :  // game.tokens
+            case ("enemies") :  // game.tokens
+            // game.combat.combatants
+            case ("combatants") :  // game.combat.combatants
+            case ("allies") :  // game.combat.combatants
+            case ("adversaries") :  // game.combat.combatants
+            default : 
+                if (present) {
+                    isPresent.splice(0, group.length, ...group)
+                }
+                break;
+        }
+        
+        isPresent ? group.splice(0, group.length, ...isPresent) : group.length = 0;
+
     }
 
     GMToolkit.log(false, group)
