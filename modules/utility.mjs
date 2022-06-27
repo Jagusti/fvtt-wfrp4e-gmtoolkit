@@ -228,13 +228,13 @@ export async function refreshToolkitContent(documentType) {
 /** 
  * Return an array of users, actors, tokens or combatants that meet a certain criteria. 
  * @param {String} groupType :   game.users: users, gms, players, spectators, assigned, active, inactive
- * @param {String} groupType :   game.actors: actors, characters, party, company
- * @param {String} groupType :   game.tokens: scene, nonparty, selected, targeted, scenePCs, sceneNPCs
- * @param {String} groupType :   game.combat.combatants: combatants, allies (friends), adversaries (enemies)
+ * @param {String} groupType :   game.actors: actors, characters, party, entourage, company
+ * @param {String} groupType :   game.tokens: tokens, nonparty, selected, targeted, pcTokens, npcTokens, friends, enemies
+ * @param {String} groupType :   game.combat.combatants: combatants, allies, adversaries
  * @param {Boolean} active   :   user is logged in
  * @return {Array} group     :   array of objects representing filtered group members
  **/ 
-export function getGroup(groupType, active = undefined) {
+export function getGroup(groupType, active = undefined, present = undefined) {
     let group = []
     switch (groupType) {
         case ("users") :  // all users, including players and GMs
@@ -261,13 +261,16 @@ export function getGroup(groupType, active = undefined) {
         case ("party") :   // all player assigned characters in the world       
             group = game.users.filter(u => u.character).map(g => g.character)            
             break;
+        case ("entourage") :  // all actors in the world owned by players, including characters, NPCs and creatures, but not vehicles
+            group = game.actors.filter(a => a.hasPlayerOwner && a.type !== "vehicle")
+            break; 
         case ("company") :  // all actors in the world owned by players, including characters, NPCs, vehicles and creatures
             group = game.actors.filter(a => a.hasPlayerOwner)            
             break;
         case ("nonparty") :  // all tokens in the scene whose actor is not owned by players, including characters, NPCs, vehicles and creatures
             group = game.canvas.tokens.placeables.filter(t => !t.actor.hasPlayerOwner)            
             break;
-        case ("scene") :  // all tokens in the scene
+        case ("tokens") :  // all tokens in the scene
             group = Array.from(game.canvas.tokens.placeables)
             break;
         case ("selected") :  // all tokens in the scene that are selected by the current user
@@ -276,22 +279,27 @@ export function getGroup(groupType, active = undefined) {
         case ("targeted") :  // all tokens in the scene that are targeted by the current user
             group = game.canvas.tokens.placeables.filter(t => t.isTargeted)          
             break;
-        case ("scenePCs") :  // all player character tokens in the scene
+        case ("pcTokens") :  // all player character tokens in the scene
             group = game.canvas.tokens.placeables.filter(t => t.actor.hasPlayerOwner && t.actor.type === "character")
             break;
-        case ("sceneNPCs") :  // all non-vehicle tokens in the scene that are not player owned
+        case ("npcTokens") :  // all non-vehicle tokens in the scene that are not player owned
             group = game.canvas.tokens.placeables.filter(t => !t.actor.hasPlayerOwner && t.actor.type !== "vehicle")
+            break;
+            break;
+        case ("friends") :  // all player owned tokens or those with a friendly disposition
+            group = game.canvas.tokens.placeables.filter(t => (t.actor.hasPlayerOwner || t.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
+            break;
+        case ("enemies") :  // all non-player owned tokens or those with a neutral or hostile disposition
+            group = game.canvas.tokens.placeables.filter(t => !(t.actor.hasPlayerOwner || t.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
             break;
         case ("combatants") :  // all combatants in the active combat
             group = Array.from(game.combat.combatants)
             break;
         case ("allies") :  // all player owned characters in the active combat
-        case ("friends") :  // alias for allies, for consistency with WFRP4e FVTT system
-            group = game.combat.combatants.filter(c => ((c.hasPlayerOwner) || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
+            group = game.combat.combatants.filter(c => (c.hasPlayerOwner || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
             break;
         case ("adversaries") :  // all hostile non-player combatants in the active combat 
-        case ("enemies") :  // alias for enemies, for consistency with WFRP4e FVTT system 
-            group =  game.combat.combatants.filter(c => !((c.hasPlayerOwner) || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
+            group =  game.combat.combatants.filter(c => !(c.hasPlayerOwner || c.token.data.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
             break;
     }
 
@@ -306,24 +314,25 @@ export function getGroup(groupType, active = undefined) {
             case ("players") :  // game.users
             case ("spectators") :  // game.users
             case ("assigned") :  // game.users
-                inActiveState = (group.filter(g => g.active == active));
+                inActiveState = (group.filter(g => g.active === active));
                 break;
             // the rest
             case ("actors") : // game.actors
             case ("characters") : // game.actors
             case ("party") : // game.actors
+            case ("entourage") : // game.actors
             case ("company") : // game.actors
-            case ("scene") :  // game.tokens
+            case ("tokens") :  // game.tokens
             case ("nonparty") :  // game.tokens
             case ("selected") :  // game.tokens
             case ("targeted") :  // game.tokens
-            case ("scenePCs") :  // game.tokens
-            case ("sceneNPCs") :  // game.tokens
+            case ("pcTokens") :  // game.tokens
+            case ("npcTokens") :  // game.tokens
+            case ("friends") :  // game.tokens
+            case ("enemies") :  // game.tokens
             case ("combatants") :  // game.combat.combatants
             case ("allies") :  // game.combat.combatants
-            case ("friends") :  // game.combat.combatants
             case ("adversaries") :  // game.combat.combatants
-            case ("enemies") :  // game.combat.combatants
                 worldPCs.forEach(wPC => {
                     inActiveState.push(group.filter(g => 
                         g?.actor === wPC ||  // combatants, tokens
