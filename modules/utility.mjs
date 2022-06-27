@@ -229,7 +229,8 @@ export async function refreshToolkitContent(documentType) {
  * @param {String} groupType :   game.actors: actors, characters, party, entourage, company
  * @param {String} groupType :   game.tokens: tokens, nonparty, selected, targeted, pcTokens, npcTokens, friends, enemies
  * @param {String} groupType :   game.combat.combatants: combatants, allies, adversaries
- * @param {Boolean} active   :   user is logged in
+ * @param {Boolean} active   :   user is logged in and has character in selected group
+ * @param {Boolean} present  :   user is viewing scene or actor has token in scene
  * @return {Array} group     :   array of objects representing filtered group members
  **/ 
 export function getGroup(groupType, active = undefined, present = undefined) {
