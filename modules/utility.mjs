@@ -225,16 +225,23 @@ export async function refreshToolkitContent(documentType) {
 
 /** 
  * Return an array of users, actors, tokens or combatants that meet a certain criteria. 
- * @param {String} groupType :   game.users: users, gms, players, spectators, assigned, active, inactive
+ * @param {String} groupType :   game.users: users, gms, players, spectators, assigned
  * @param {String} groupType :   game.actors: actors, characters, party, entourage, company
- * @param {String} groupType :   game.tokens: tokens, nonparty, selected, targeted, pcTokens, npcTokens, friends, enemies
+ * @param {String} groupType :   game.tokens: tokens, nonparty, pcTokens, npcTokens, friends, enemies
  * @param {String} groupType :   game.combat.combatants: combatants, allies, adversaries
  * @param {Boolean} active   :   user is logged in and has character in selected group
  * @param {Boolean} present  :   user is viewing scene or actor has token in scene
+ * @param {String} interaction  :   token is selected or targeted
  * @return {Array} group     :   array of objects representing filtered group members
  **/ 
-export function getGroup(groupType, active = undefined, present = undefined) {
+export function getGroup(groupType, options = []) {
+    const active = options.active
+    const present = options.present
+    const interaction  = options.interaction
+
     let group = []
+    let filteredByOption = []
+
     switch (groupType) {
         case ("users") :  // all users, including players and GMs
             group = Array.from(game.users)
@@ -272,12 +279,6 @@ export function getGroup(groupType, active = undefined, present = undefined) {
         case ("tokens") :  // all tokens in the scene
             group = Array.from(game.canvas.tokens.placeables)
             break;
-        case ("selected") :  // all tokens in the scene that are selected by the current user
-            group = game.canvas.tokens.controlled
-            break;
-        case ("targeted") :  // all tokens in the scene that are targeted by the current user
-            group = game.canvas.tokens.placeables.filter(t => t.isTargeted)          
-            break;
         case ("pcTokens") :  // all player character tokens in the scene
             group = game.canvas.tokens.placeables.filter(t => t.actor.hasPlayerOwner && t.actor.type === "character")
             break;
@@ -305,7 +306,7 @@ export function getGroup(groupType, active = undefined, present = undefined) {
     // Filter the group depending on whether the assigned player is online or offline
     if (group.length > 0 && active !== undefined) {
         const worldPCs = game.users.players.filter(u => u.character && u.active === active).map(u => u.character)
-        let inActiveState = []
+        filteredByOption.length = 0
         switch (groupType) {
             // game.users
             case ("users") :  // game.users
@@ -313,9 +314,9 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("players") :  // game.users
             case ("spectators") :  // game.users
             case ("assigned") :  // game.users
-                inActiveState = (group.filter(g => g.active === active));
+                filteredByOption = (group.filter(g => g.active === active));
                 break;
-            // the rest
+            // the rest: game.actors, game.tokens, game.combat.combatants
             case ("actors") : // game.actors
             case ("characters") : // game.actors
             case ("party") : // game.actors
@@ -323,8 +324,6 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("company") : // game.actors
             case ("tokens") :  // game.tokens
             case ("nonparty") :  // game.tokens
-            case ("selected") :  // game.tokens
-            case ("targeted") :  // game.tokens
             case ("pcTokens") :  // game.tokens
             case ("npcTokens") :  // game.tokens
             case ("friends") :  // game.tokens
@@ -333,7 +332,7 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("allies") :  // game.combat.combatants
             case ("adversaries") :  // game.combat.combatants
                 worldPCs.forEach(wPC => {
-                    inActiveState.push(group.filter(g => 
+                    filteredByOption.push(group.filter(g => 
                         g?.actor === wPC ||  // combatants, tokens
                         g === wPC)  // actors
                     [0]);  
@@ -342,7 +341,7 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             default : 
                 break;
         }
-        group.splice(0, group.length, ...inActiveState)
+        group.splice(0, group.length, ...filteredByOption)
     }
 
     // Filter the group depending on scene presence
@@ -350,8 +349,7 @@ export function getGroup(groupType, active = undefined, present = undefined) {
     // actors: have token in scene
     // token, combatants: no change to group: these only exist on a scene
     if (group.length > 0 && present !== undefined) {
-        // const sceneTokens = Array.from(game.canvas.placeables.tokens)
-        let isPresent = []
+        filteredByOption.length = 0
         switch (groupType) {
             // game.users
             case ("users") :  // game.users
@@ -359,7 +357,7 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("players") :  // game.users
             case ("spectators") :  // game.users
             case ("assigned") :  // game.users
-                isPresent = present ? (group.filter(g => g.viewedScene === game.scenes.viewed.id)) : (group.filter(g => g.viewedScene !== game.scenes.viewed.id));
+                filteredByOption = present ? (group.filter(g => g.viewedScene === game.scenes.viewed.id)) : (group.filter(g => g.viewedScene !== game.scenes.viewed.id));
                 break;
             // game.actors
             case ("actors") : // game.actors
@@ -368,14 +366,14 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("entourage") : // game.actors
             case ("company") : // game.actors
                 group.forEach(a => {
-                    if ( present == (a.getActiveTokens().length > 0) ) isPresent.push(a);  
+                    if (present == (a.getActiveTokens().length > 0)) {
+                        filteredByOption.push(a);  
+                    }
                 })
                 break;
             // game.tokens
             case ("tokens") :  // game.tokens
             case ("nonparty") :  // game.tokens
-            case ("selected") :  // game.tokens
-            case ("targeted") :  // game.tokens
             case ("pcTokens") :  // game.tokens
             case ("npcTokens") :  // game.tokens
             case ("friends") :  // game.tokens
@@ -386,13 +384,54 @@ export function getGroup(groupType, active = undefined, present = undefined) {
             case ("adversaries") :  // game.combat.combatants
             default : 
                 if (present) {
-                    isPresent.splice(0, group.length, ...group)
+                    filteredByOption.splice(0, group.length, ...group)
                 }
                 break;
-        }
-        
-        isPresent ? group.splice(0, group.length, ...isPresent) : group.length = 0;
+        }        
+        filteredByOption ? group.splice(0, group.length, ...filteredByOption) : group.length = 0;
+    }
 
+    
+    if (group.length > 0 && interaction !== undefined) {
+        filteredByOption.length = 0
+        let hasInteraction = []
+        if (interaction === "selected") hasInteraction = game.canvas.tokens.controlled
+        if (interaction === "targeted") hasInteraction = game.canvas.tokens.placeables.filter(t => t.isTargeted)
+        switch (groupType) {
+            // game.users
+            case ("users") :  // game.users
+            case ("gms") :  // game.users
+            case ("players") :  // game.users
+            case ("spectators") :  // game.users
+            case ("assigned") :  // game.users
+                break;
+            // game.actors
+            case ("actors") : // game.actors
+            case ("characters") : // game.actors
+            case ("party") : // game.actors
+            case ("entourage") : // game.actors
+            case ("company") : // game.actors
+                filteredByOption = hasInteraction.filter(i => group.includes(i.actor))
+                break;
+            // game.tokens
+            case ("tokens") :  // game.tokens
+            case ("nonparty") :  // game.tokens
+            case ("pcTokens") :  // game.tokens
+            case ("npcTokens") :  // game.tokens
+            case ("friends") :  // game.tokens
+            case ("enemies") :  // game.tokens
+                filteredByOption = hasInteraction.filter(i => group.includes(i))
+                break;
+            // game.combat.combatants
+            case ("combatants") :  // game.combat.combatants
+            case ("allies") :  // game.combat.combatants
+            case ("adversaries") :  // game.combat.combatants
+                filteredByOption = hasInteraction.filter(i => group.includes(i.combatant))
+                break;
+            default : 
+                break;
+        }        
+        filteredByOption ? group.splice(0, group.length, ...filteredByOption) : group.length = 0;
     }
 
     GMToolkit.log(false, group)
