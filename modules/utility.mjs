@@ -229,9 +229,9 @@ export async function refreshToolkitContent(documentType) {
  * @param {String} groupType :   game.actors: actors, characters, party, entourage, company
  * @param {String} groupType :   game.tokens: tokens, nonparty, pcTokens, npcTokens, friends, enemies
  * @param {String} groupType :   game.combat.combatants: combatants, allies, adversaries
- * @param {Boolean} active   :   user is logged in and has character in selected group
- * @param {Boolean} present  :   user is viewing scene or actor has token in scene
- * @param {String} interaction  :   token is selected or targeted
+ * @param {Boolean} options.active   :   user is logged in and has character in selected group 
+ * @param {Boolean} options.present  :   user is viewing scene or actor has token in scene 
+ * @param {String} options.interaction  :   token is "selected" or "targeted" (ignored for game.users requests)
  * @return {Array} group     :   array of objects representing filtered group members
  **/ 
 export function getGroup(groupType, options = []) {
@@ -411,7 +411,7 @@ export function getGroup(groupType, options = []) {
             case ("party") : // game.actors
             case ("entourage") : // game.actors
             case ("company") : // game.actors
-                filteredByOption = hasInteraction.filter(i => group.includes(i.actor))
+                filteredByOption = hasInteraction.filter(i => group.includes(i.actor)).map(m => m.actor)
                 break;
             // game.tokens
             case ("tokens") :  // game.tokens
@@ -426,7 +426,7 @@ export function getGroup(groupType, options = []) {
             case ("combatants") :  // game.combat.combatants
             case ("allies") :  // game.combat.combatants
             case ("adversaries") :  // game.combat.combatants
-                filteredByOption = hasInteraction.filter(i => group.includes(i.combatant))
+                filteredByOption = hasInteraction.filter(i => group.includes(i.combatant)).map(m => m.combatant)
                 break;
             default : 
                 break;
