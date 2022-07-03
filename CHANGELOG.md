@@ -31,7 +31,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Actors that are not assigned to players (eg, NPCs) are removed from `active` filtered results, but will appear in unfiltered results if appropriate.
   - Tokens and combatants are always considered `present` on a given scene.
   - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, {options})`. 
-- *Changed* **Add XP** macro to use group selection. Default "party" selection enforces that a character must be assigned to a player
+- *Changed* **Add XP** and **Reset Fortune** macros to use group selection. Default "party" selection enforces that a character must be assigned to a player.
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
