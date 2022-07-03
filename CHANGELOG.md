@@ -25,11 +25,12 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* an issue with the **Add XP** macro, where it would fail for a character with 0 XP,  who had also never previously had XP. 
 - *Added* standard utility for group selection, to be used for setting defaults in macros and other functionality, returning an array of users, actors, tokens or combatants. [[#61](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/61)
   - Group selection can be optionally filtered by 
-    - `active` status of user (whether logged in or logged out), if assigned to an actor in the group results. 
-    - `present` status of user or actor (whether they are viewing or have a token in the current viewed scene). 
+    - `active` status of player user (whether logged in or logged out), if assigned to an actor in the group results. 
+    - `present` status of player user or actor (whether they are viewing or have a token in the current viewed scene). 
+    - `interaction` status, ie, whether token is "targeted" or "selected". 
   - Actors that are not assigned to players (eg, NPCs) are removed from `active` filtered results, but will appear in unfiltered results if appropriate.
   - Tokens and combatants are always considered `present` on a given scene.
-  - 
+  - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, {options})`. 
   - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, active = undefined)`.
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
