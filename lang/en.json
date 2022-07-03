@@ -190,6 +190,8 @@
     "GMTOOLKIT.Dialog.DarkWhispers.NoCorruption" : "No Corruption to spend on offer.", 
     "GMTOOLKIT.Dialog.DarkWhispers.HasCorruption" : "Someone to bargain with.", 
     "GMTOOLKIT.Dialog.DarkWhispers.ImportTable" : "Import the Dark Whispers RollTable from the GM Toolkit compendium to see Dark Whisper prompts here.", 
+    "GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip" : "Assigned to: {assignedUser}\nOwned by: {playerOwners}", 
+    "GMTOOLKIT.Dialog.DarkWhispers.SendToOwners" : "Send to all Player Owners (not only Assigned User).", 
     
     "GMTOOLKIT.Message.DarkWhispers.Accept" : "Heed the Whisper", 
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "Deny the Dark Gods", 

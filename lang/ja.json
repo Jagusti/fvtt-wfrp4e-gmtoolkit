@@ -190,6 +190,8 @@
     "GMTOOLKIT.Dialog.DarkWhispers.NoCorruption" : "No Corruption to spend on offer.",
     "GMTOOLKIT.Dialog.DarkWhispers.HasCorruption" : "Someone to bargain with.",
     "GMTOOLKIT.Dialog.DarkWhispers.ImportTable" : "GM Toolkitの事典から「闇の囁き表」をインポートすると、ここで「闇の囁き表」の文面を見ることが出来ます。",
+    "GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip" : "Assigned to: {assignedUser}\nOwned by: {playerOwners}", 
+    "GMTOOLKIT.Dialog.DarkWhispers.SendToOwners" : "Send to all Player Owners (not only Assigned User).",
 
     "GMTOOLKIT.Message.DarkWhispers.Accept" : "囁きを受け入れる",
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "闇の神々を拒絶する",
