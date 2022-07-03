@@ -31,7 +31,12 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Actors that are not assigned to players (eg, NPCs) are removed from `active` filtered results, but will appear in unfiltered results if appropriate.
   - Tokens and combatants are always considered `present` on a given scene.
   - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, {options})`. 
-- *Changed* **Add XP** and **Reset Fortune** macros to use group selection. Default "party" selection enforces that a character must be assigned to a player.
+- *Changed* **Add XP** and **Reset Fortune** macros to use group selection. Default "party" selection enforces that a character must be assigned to a player. 
+- *Changed* **Send Dark Whispers** macro to use group selection. 
+  - Default "party" selection enforces that a character must be assigned to a player. [[#58](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/58)].
+  - Added option to send a whisper to each player owner rather than just the assigned player. 
+  - Hovering over the character name lists all player owners as well as the assigned player. 
+  - THe option to set default targets for Dark Whispers has been removed. Instead, all party members are shown. Any that are targeted in the viewed scene are pre-checked. 
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
