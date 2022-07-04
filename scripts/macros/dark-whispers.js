@@ -7,7 +7,9 @@ async function formDarkWhispers() {
   }
 
   // setup: determine group of actors to be whispered to 
-  const group = game.user.targets.size < 1 ? game.gmtoolkit.utility.getGroup("party") : game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
+  // const group = game.user.targets.size < 1 ? game.gmtoolkit.utility.getGroup("party") : game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
+  const group =  game.gmtoolkit.utility.getGroup("party");
+  const targeted = game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
   // setup: exit with notice if there are no player-assigned characters
   if (!group) {   
     return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
@@ -29,7 +31,8 @@ async function formDarkWhispers() {
         max: g.data.data?.status?.corruption?.max
       }, 
       assignedUser: game.users.players.filter(p => p.character === g)[0],
-      owners : game.users.players.filter(p => p.id in g.data.permission)
+      owners : game.users.players.filter(p => p.id in g.data.permission),
+      targeted : targeted.includes(g)
     })
   });
 
@@ -37,10 +40,11 @@ async function formDarkWhispers() {
   let checkOptions = "";
   characterList.forEach(actor => {
     let canWhisperTo = (actor.corruption.value) ? `enabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.HasCorruption')}"` : `disabled title="${game.i18n.localize('GMTOOLKIT.Dialog.DarkWhispers.NoCorruption')}"`;
+    let checked = (actor.targeted && actor.corruption.value) ? "checked" : "";
     let playerOwners = actor.owners.map(m => m.name).join(", ")
     checkOptions +=`
       <div class="form-group">
-      <input type="checkbox" id="${actor.actorId}" name="${actor.actorId}" value="${actor.name}" ${canWhisperTo}>
+      <input type="checkbox" id="${actor.actorId}" name="${actor.actorId}" value="${actor.name}" ${canWhisperTo} ${checked}>
       <label for="${actor.actorId}" title="${game.i18n.format('GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip', {assignedUser: actor.assignedUser.name, playerOwners: playerOwners})}"> <strong>${actor.name}</strong> (${actor.assignedUser.name})</label>
       <label for="${actor.actorId}"> ${actor.corruption.value} / ${actor.corruption.max} ${game.i18n.localize("GMTOOLKIT.Status.Corruption")} </label>
       </div>
@@ -133,4 +137,5 @@ function abortWhisper() {
 * TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper. 
 * TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers. 
 * TIP: The whisper can be edited in the dialog, regardless of what is pre-filled from the Dark Whispers table. 
+* TIP: Actor tokens that are targeted in a scene are pre-selecteed in the Send Dark Whisper dialog.
 ========== */

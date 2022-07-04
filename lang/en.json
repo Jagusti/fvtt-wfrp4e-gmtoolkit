@@ -173,11 +173,6 @@
     "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",
     "GMTOOLKIT.Settings.DarkWhispers.menu.hint" : "Set default options for Send Dark Whispers macro.",
     "GMTOOLKIT.Settings.DarkWhispers.menu.title" : "Dark Whispers Settings",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Dark Whispers Targets",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Set the default filter to select characters to receive a Dark Whisper. Override this by setting a parameter in the macro for 'all', 'present' or 'absent' party members.",
-	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "All party members (default)",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "Logged out party members only",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "Logged in party members only",
 
     "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Only GMs can send Dark Whispers!",
     "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "No available characters have Corruption to exchange for a Dark Whisper.", 

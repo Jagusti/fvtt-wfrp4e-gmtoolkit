@@ -173,11 +173,6 @@
     "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "「闇の囁き」設定",
     "GMTOOLKIT.Settings.DarkWhispers.menu.hint" : "「闇の囁き」送信マクロオプションの既定値を設定する。",
     "GMTOOLKIT.Settings.DarkWhispers.menu.title" : "「闇の囁き」設定",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "「闇の囁き」の宛先",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "「闇の囁き」送信先キャラクタを選択する既定のフィルタを設定する。マクロの「all」、「present」と「absent」を設定で上書きする。",
-	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "パーティメンバー全員（既定値）",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "ログアウトしたパーティメンバーに限定",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "ログイン中のパーティメンバーに限定",
 
     "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "「闇の囁き」を送ることが出来るのはGMだけです！",
     "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "「闇の囁き」と交換できる堕落しているキャラクターは居ない。",
