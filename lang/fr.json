@@ -173,11 +173,6 @@
     "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",
     "GMTOOLKIT.Settings.DarkWhispers.menu.hint" : "Set default options for Send Dark Whispers macro.",
     "GMTOOLKIT.Settings.DarkWhispers.menu.title" : "Dark Whispers Settings",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.name" : "Cibles des Sombres murmures",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.hint" : "Définit le filtre par défaut pour sélectionner les Personnages recevant un Sombre murmure. Vous pouvez écraser ce paramètre en le définissant directement dans la macro en \"all\", \"present\" ou \"absent\".",
-	"GMTOOLKIT.Settings.DarkWhispers.Filter.All" : "Tous les membres du groupe (par défaut)",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent" : "Membres déconnectés du groupe seulement",
-    "GMTOOLKIT.Settings.DarkWhispers.Filter.Present" : "Membres connectés du groupe seulement",
 
     "GMTOOLKIT.Message.DarkWhispers.NoPermission" : "Seuls les MJ peuvent envoyer des Sombres murmures !",
     "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters" : "Aucun Personnage disponible n'a de Corruption à troquer contre un Sombre murmure.",

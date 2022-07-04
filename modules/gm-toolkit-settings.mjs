@@ -245,20 +245,6 @@ export default class GMToolkitSettings {
             restricted: true                 
         });
         // Settings for Send Dark Whispers Macro
-        game.settings.register(GMToolkit.MODULE_ID, "targetDarkWhispers", {
-            name: "GMTOOLKIT.Settings.DarkWhispers.Filter.name",
-            hint: "GMTOOLKIT.Settings.DarkWhispers.Filter.hint",
-            scope: "world",
-            config: false,
-            default: "all",
-            type: String,
-            choices: {
-                "all": "GMTOOLKIT.Settings.DarkWhispers.Filter.All",
-                "present": "GMTOOLKIT.Settings.DarkWhispers.Filter.Present",
-                "absent": "GMTOOLKIT.Settings.DarkWhispers.Filter.Absent",
-            },
-            feature: "darkwhispers"
-        });
         game.settings.register(GMToolkit.MODULE_ID, "messageDarkWhispers", {
             name: "GMTOOLKIT.Settings.DarkWhispers.message.name",
             hint: "GMTOOLKIT.Settings.DarkWhispers.message.hint",
