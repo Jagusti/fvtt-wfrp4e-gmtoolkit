@@ -94,7 +94,7 @@ function getMaxStatus(actor,status) {
     switch (status.toLowerCase())
     {
         case "resolve":
-            talent = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.StrongMinded") )
+            talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.StrongMinded") )
             maxStatus = actor.data.data.status.fate.value + statusBoosts(talent);
             break;  
         case "corruption":
@@ -106,7 +106,7 @@ function getMaxStatus(actor,status) {
             }
             break;
         case "fortune":
-            talent = actor.items.find(i => i.data.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
+            talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.Luck") )
             maxStatus = actor.data.data.status.fate.value + statusBoosts(talent);
             break;     
     }

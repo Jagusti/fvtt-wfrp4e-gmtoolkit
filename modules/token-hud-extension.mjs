@@ -55,7 +55,7 @@ export default class TokenHudExtension {
             if (actor.type == "vehicle") return;
             GMToolkit.log(false, `Movement hud extension double-clicked.`)
             if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
-                let skill = (hasSkill(actor,"Swim"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Swim")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -64,7 +64,7 @@ export default class TokenHudExtension {
                     return;
             }
             if (ev.ctrlKey && ev.altKey) {
-                let skill = (hasSkill(actor,"Climb"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Climb")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -73,7 +73,7 @@ export default class TokenHudExtension {
                 return;
             }
             if (ev.ctrlKey && ev.shiftKey) {
-                let skill = (hasSkill(actor,"Drive"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Drive")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -83,7 +83,7 @@ export default class TokenHudExtension {
             }
             if (ev.altKey && ev.shiftKey) {
                 // TODO: Interrogate actor Ride specializations and offer selection if more than one is available
-                let skill = (hasSkill(actor,"Ride"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Ride")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -92,7 +92,7 @@ export default class TokenHudExtension {
                 return;
             }
             if (ev.ctrlKey) {
-                let skill = (hasSkill(actor,"Dodge"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Dodge")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -101,7 +101,7 @@ export default class TokenHudExtension {
                 return;
             }
             if (ev.altKey) {
-                let skill = (hasSkill(actor,"Athletics"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Athletics")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -111,7 +111,7 @@ export default class TokenHudExtension {
             }
             if (ev.shiftKey) {
                 // TODO: Interrogate actor Stealth specializations and offer selection if more than one is available
-                let skill = (hasSkill(actor,"Stealth"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Stealth")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 } 
@@ -143,7 +143,7 @@ export default class TokenHudExtension {
         hudInitiative.find("i").dblclick(async (ev) => {
             GMToolkit.log(false, `Initiative hud extension double-clicked.`)
             if (ev.ctrlKey && ev.shiftKey) {
-                let skill = (hasSkill(actor,"Track"))
+                let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Track")}`));
                 if (skill != null) {
                     actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                 }
@@ -216,7 +216,7 @@ export default class TokenHudExtension {
             hudResolve.find("i").dblclick(async (ev) => {
                 GMToolkit.log(false, `Resolve hud extension double-clicked.`)
                 if (ev.ctrlKey) {
-                    let skill = (hasSkill(actor,"Cool"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Cool")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -225,7 +225,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.altKey) {
-                    let skill = (hasSkill(actor,"Endurance"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Endurance")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -234,7 +234,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.shiftKey) {
-                    let skill = (hasSkill(actor,"Consume Alcohol"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.ConsumeAlcohol")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -268,7 +268,7 @@ export default class TokenHudExtension {
             hudFortune.find("i").dblclick(async (ev) => {
                 GMToolkit.log(false, `Fortune hud extension double-clicked.`)
                 if (ev.shiftKey && ev.altKey) {
-                    let skill = (hasSkill(actor,"Charm Animal"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.CharmAnimal")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -277,7 +277,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.ctrlKey) {
-                    let skill = (hasSkill(actor,"Gamble"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Gamble")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -286,7 +286,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.shiftKey) {
-                    let skill = (hasSkill(actor,"Charm"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Charm")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -295,7 +295,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.altKey) {
-                    let skill = (hasSkill(actor,"Gossip"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Gossip")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -383,7 +383,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.altKey) {
-                    let skill = (hasSkill(actor,"Pray"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Pray")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -401,7 +401,7 @@ export default class TokenHudExtension {
             hudPerception.find("i").dblclick(async (ev) => {
                 GMToolkit.log(false, `Perception hud extension double-clicked.`) 
                 if (ev.altKey) {
-                    let skill = (hasSkill(actor,"Intuition"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Intuition")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
@@ -410,7 +410,7 @@ export default class TokenHudExtension {
                     return;
                 }
                 if (ev.ctrlKey) {
-                    let skill = (hasSkill(actor,"Perception"))
+                    let skill = (hasSkill(actor,`${game.i18n.localize("NAME.Perception")}`));
                     if (skill != null) {
                         actor.setupSkill(skill).then(setupData => {actor.basicTest(setupData)});
                     }
