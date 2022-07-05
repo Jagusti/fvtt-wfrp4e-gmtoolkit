@@ -33,12 +33,15 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, {options})`. 
 - *Changed* **Add XP** and **Reset Fortune** macros to use group selection. Default "party" selection enforces that a character must be assigned to a player. 
 - *Changed* **Send Dark Whispers** macro to use group selection, enabling selection by actor rather than player. 
-  - Default "party" selection enforces that a character must be assigned to a player. [[#58](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/58)].
+  - Default "party" selection enforces that a character must be assigned to a player. [[#58](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/58)]
   - *Added* an option to send a dark whisper to each player owner rather than just the assigned player. 
   - Hovering over the character name lists all player owners as well as the assigned player. 
-- *Removed* the module setting to define default targets for Dark Whispers has been removed. 
+- *Removed* the module setting to define default targets for Dark Whispers. 
   - Instead, all party members are listed in the Send Dark Whispers dialog.  
   - Any eligible actor tokens that are targeted in the scene are pre-checked.
+- *Changed* various references to use localization keys for skills, talents and status provided by WFRP4e system. [[#110](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/110)]
+  - Feature: Token Hud Extension
+  - Macros: Send Dark Whispers, Reset Fortune, Set Token Vision and Light
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]

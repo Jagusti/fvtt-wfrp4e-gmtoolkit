@@ -26,11 +26,11 @@ function resetFortune() {
 // Calculate the Fortune target to be restored, based on Fate and Luck talent advances
 function getMaxFortune(target) {
     let advLuck = 0;
-    let item = target.items.find(i => i.name === game.i18n.localize("GMTOOLKIT.Talent.Luck") )
+    let item = target.items.find(i => i.name === game.i18n.localize("NAME.Luck") )
 	if(!(item === undefined || item.data.data.advances.value < 1)) { 
 		for (let item of target.items)
 			{
-				if (item.type === "talent" && item.name === game.i18n.localize("GMTOOLKIT.Talent.Luck"))
+				if (item.type === "talent" && item.name === game.i18n.localize("NAME.Luck"))
 					{
 						advLuck += item.data.data.advances.value;
 					}
@@ -42,7 +42,7 @@ function getMaxFortune(target) {
 /* ==========
  * MACRO: Reset Fortune
  * VERSION: 0.9.4
- * UPDATED: 2022-06-28
+ * UPDATED: 2022-07-04
  * DESCRIPTION: Restores Fortune to the Fate level of player character(s). Applies any Luck talent bonus.
  * TIP: Characters must have a player assigned. 
  ========== */
