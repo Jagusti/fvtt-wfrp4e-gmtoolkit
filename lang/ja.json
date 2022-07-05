@@ -81,12 +81,6 @@
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.name" : "暗視を常に許可する",
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.hint" : "トークンが異能や特徴を持っていなくても、暗視の設定を適用する。",
 
-    "GMTOOLKIT.Talent.Luck" : "幸運",
-    "GMTOOLKIT.Talent.NightVision" : "夜目",
-    "GMTOOLKIT.Talent.StrongMinded" : "頑固一徹",
-    "GMTOOLKIT.Trait.DarkVision" : "暗視",
-    "GMTOOLKIT.Status.Corruption" : "堕落",
-
     "GMTOOLKIT.ResetFortune.Restored" : "幸運ポイントが回復した",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "幸運ポイントを買いう服するプレイヤーキャラクターが存在しません。",
 

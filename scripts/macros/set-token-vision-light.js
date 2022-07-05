@@ -271,7 +271,7 @@ async function setTokenVisionLight() {
             brightLight = 0;
             break;
           case "darkVision": 
-            item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Trait.DarkVision").toLowerCase() );
+            item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("NAME.DarkVision").toLowerCase() );
               if(item != undefined) {
               dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"));
             } else { 
@@ -282,13 +282,13 @@ async function setTokenVisionLight() {
           case "nightVision":
             // Night Vision requires some minimal illumination to provide a benefit
             if (game.scenes.viewed.data.darkness < 1 | dimLight > 0 | game.scenes.viewed.data.globalLight) {
-              item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() );
+              item = token.actor.items.find(i => i.data.name.toLowerCase() == game.i18n.localize("NAME.NightVision").toLowerCase() );
                 if(item == undefined) { 
                   (game.settings.get("wfrp4e-gm-toolkit", "overrideNightVision")) ? advNightVision = 1  : advNightVision = 0 ;
                 } else { 
                   for (let item of token.actor.items)
                     {
-                      if (item.name.toLowerCase() == game.i18n.localize("GMTOOLKIT.Talent.NightVision").toLowerCase() ) {
+                      if (item.name.toLowerCase() == game.i18n.localize("NAME.NightVision").toLowerCase() ) {
                         switch (item.type) {
                           case "trait" :
                             advNightVision = 1;
@@ -351,8 +351,8 @@ async function setTokenVisionLight() {
 
 /* ==========
  * MACRO: Set Token Vision and Light
- * VERSION: 0.9.1
- * UPDATED: 2022-01-02
+ * VERSION: 0.9.4
+ * UPDATED: 2022-07-04
  * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
  ========== */

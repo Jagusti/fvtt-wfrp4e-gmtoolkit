@@ -7,7 +7,6 @@ async function formDarkWhispers() {
   }
 
   // setup: determine group of actors to be whispered to 
-  // const group = game.user.targets.size < 1 ? game.gmtoolkit.utility.getGroup("party") : game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
   const group =  game.gmtoolkit.utility.getGroup("party");
   const targeted = game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
   // setup: exit with notice if there are no player-assigned characters
@@ -46,7 +45,7 @@ async function formDarkWhispers() {
       <div class="form-group">
       <input type="checkbox" id="${actor.actorId}" name="${actor.actorId}" value="${actor.name}" ${canWhisperTo} ${checked}>
       <label for="${actor.actorId}" title="${game.i18n.format('GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip', {assignedUser: actor.assignedUser.name, playerOwners: playerOwners})}"> <strong>${actor.name}</strong> (${actor.assignedUser.name})</label>
-      <label for="${actor.actorId}"> ${actor.corruption.value} / ${actor.corruption.max} ${game.i18n.localize("GMTOOLKIT.Status.Corruption")} </label>
+      <label for="${actor.actorId}"> ${actor.corruption.value} / ${actor.corruption.max} ${game.i18n.localize("NAME.Corruption")} </label>
       </div>
     `
   });

@@ -80,12 +80,6 @@
     "GMTOOLKIT.Settings.Vision.OverrideNightVision.hint" : "Applique les paramètres de la Vision nocturne même si le Pion n'a ni le Talent, ni le Trait.",
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.name" : "Toujours permettre l'Infravision",
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.hint" : "Applique les paramètres de l'Infravision même si le Pion n'a pas le Trait.",
-      
-    "GMTOOLKIT.Talent.Luck" : "Chanceux",
-    "GMTOOLKIT.Talent.NightVision" : "Vision nocturne",
-    "GMTOOLKIT.Talent.StrongMinded" : "Obstiné",
-    "GMTOOLKIT.Trait.DarkVision" : "Infravision",
-    "GMTOOLKIT.Status.Corruption" : "Corruption",
 
     "GMTOOLKIT.ResetFortune.Restored" : "Fortune has been restored",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
