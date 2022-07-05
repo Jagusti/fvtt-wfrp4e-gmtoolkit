@@ -160,8 +160,9 @@
     
     "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.name" : "Fallback on Advanced Skill Tests",
     "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.hint" : "Test against the related characteristic if a character doesn't have the right Advanced Skill. Basic skill tests always fallback.",
-    "GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission" : "Only GMs can make secret party tests!",
-    "GMTOOLKIT.Message.MakeSecretPartyTest.AbortAdvancedSkillTest" : "{character} does not have {skill}. Aborting advanced skill test.",
+    "GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission" : "Only GMs can make secret group tests!",
+    "GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup" : "No actors to make test for. Check your group selection criteria.",
+    "GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest" : "{character} does not have {skill}. Aborting advanced skill test.",
 
     "GMTOOLKIT.Settings.DarkWhispers.menu.name" : "Dark Whispers Settings",
     "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",
