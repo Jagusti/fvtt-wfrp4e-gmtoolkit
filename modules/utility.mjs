@@ -219,7 +219,7 @@ export async function refreshToolkitContent(documentType) {
  * @return {String} 
  **/ 
  export function strip(originalText, prefix = "", joiner = "") {
-    return (prefix + joiner + originalText.replace(/\s+/g, ''))
+    return [prefix, originalText.replace(/\s+/g, '')].join(joiner)
 }
 
 
