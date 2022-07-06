@@ -202,7 +202,7 @@
     "GMTOOLKIT.Macro.SessionTurnover": "セッションの終幕",
     "GMTOOLKIT.Macro.AddXP": "経験値獲得",
     "GMTOOLKIT.Macro.ResetFortune": "幸運点初期化",
-    "GMTOOLKIT.Macro.MakeSecretPartyTest": "秘密のパーティテスト",
+    "GMTOOLKIT.Macro.MakeSecretGroupTest": "秘密のパーティテスト",
     "GMTOOLKIT.Macro.SendDarkWhispers": "「闇の囁き」送信",
     "GMTOOLKIT.Macro.ToggleSceneVisibilityandLight": "シーンの視界と光源の切替",
     "GMTOOLKIT.Macro.SetTokenVisionandLight": "トークンの視界と光源を設定",

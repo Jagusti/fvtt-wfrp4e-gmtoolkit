@@ -202,7 +202,7 @@
     "GMTOOLKIT.Macro.SessionTurnover": "Session Turnover",
     "GMTOOLKIT.Macro.AddXP": "Add XP",
     "GMTOOLKIT.Macro.ResetFortune": "Reset Fortune",
-    "GMTOOLKIT.Macro.MakeSecretPartyTest": "Make Secret Party Test",
+    "GMTOOLKIT.Macro.MakeSecretGroupTest": "Make Secret Group Test",
     "GMTOOLKIT.Macro.SendDarkWhispers": "Send Dark Whispers",
     "GMTOOLKIT.Macro.ToggleSceneVisibilityandLight": "Toggle Scene Visibility and Light",
     "GMTOOLKIT.Macro.SetTokenVisionandLight": "Set Token Vision and Light",

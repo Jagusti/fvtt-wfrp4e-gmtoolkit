@@ -7,7 +7,7 @@
         "Session Turnover",
         "Add XP",
         "Reset Fortune",
-        "Make Secret Party Test",
+        "Make Secret Group Test",
         "Send Dark Whispers",
         "Toggle Scene Visibility and Light",
         "Set Token Vision and Light",
@@ -36,8 +36,8 @@
   
 /* ==========
 * MACRO: GM Toolbox
-* VERSION: 0.9.3
-* UPDATED: 2022-05-20
+* VERSION: 0.9.4
+* UPDATED: 2022-07-06
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
