@@ -45,6 +45,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Make Secret Party Test to **Make Secret Group Test**, using group selection functionality. 
   - GMs can now choose to roll tests for any non-User group type (including "party", "tokens", "adversaries", with or without active, present and interaction filters). 
   - Vehicles are filtered out of group constituents. 
+  - Updated Macro Toolbox to reflect change in macro name. 
 - *Fixed* issue where Assistant GMs could not make secret (party) group tests.
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
