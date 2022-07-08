@@ -274,8 +274,8 @@ export default class GMToolkitSettings {
 
         // Settings for Make Secret Party Tests
         game.settings.register(GMToolkit.MODULE_ID, "fallbackAdvancedSkills", {
-            name: "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.name",
-            hint: "GMTOOLKIT.Settings.MakeSecretPartyTests.FallbackAdvanced.hint",
+            name: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name",
+            hint: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint",
             scope: "world",
             config: true,
             default: false,

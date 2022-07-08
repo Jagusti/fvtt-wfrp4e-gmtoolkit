@@ -34,7 +34,7 @@ let testModifier = +20 // game.wfrp4e.config.difficultyModifiers[("average")]
 if (game.user.isGM) 
     {makeSecretGroupTest(targetSkill)} 
 else 
-    {ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretPartyTest.NoPermission"), {})
+    {ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"), {})
 };
 
 // === Where the magic happens. 
@@ -53,7 +53,7 @@ async function makeSecretGroupTest(targetSkill) {
             actorSkill = await game.wfrp4e.utility.findSkill(targetSkill)
             // TODO: optionally step-adjust the difficulty in case of fallback
             if (actorSkill.advanced.value === "adv" && !game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills")) {
-                ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretPartyTest.AbortAdvancedSkillTest", {character: actor.name, skill: targetSkill})}`)
+                ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest", {character: actor.name, skill: targetSkill})}`)
                 continue 
             }
             let skillCharacteristic = game.wfrp4e.config.characteristics[actorSkill.characteristic.value]
@@ -65,7 +65,7 @@ async function makeSecretGroupTest(targetSkill) {
 /* ==========
  * MACRO: Make Secret Group Test
  * VERSION: 0.9.4
- * UPDATED: 2022-07-06
+ * UPDATED: 2022-07-08
  * DESCRIPTION: Template for GMs to run secret skill tests for character groups. 
  * TIP: Create copies of this macro and adjust the parameters (and title and/or icon) for different skill tests. Add them to your macro bar for one-click resolution. 
  * TIP: By default, tests are rolled blind. Right-click a test result in the chat log to show the results to players.
