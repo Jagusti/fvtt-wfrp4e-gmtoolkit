@@ -437,3 +437,28 @@ export function getGroup(groupType, options = []) {
     GMToolkit.log(false, group)
     return group;
 }
+
+
+/** 
+ * Compile all items of a particular type from compendium packs. 
+ * @param {Array}  itemType  :  Name of item type, eg, "skill", "talent", "trait"
+ * @param {Boolean}  rollable  :  For traits, only include if rollable
+ * @return {Array}  Alphabetically sorted list of items
+ **/ 
+ export async function compileItems(itemType = ["skill"], rollable = undefined) {
+    let items = [];
+    for (let p of game.packs.filter(p => p.metadata.type === "Item")) {
+        await p.getDocuments().then(content => {
+            itemType.forEach(t => {
+                if (t === "trait" && rollable !== undefined ) {
+                    items.push(...content.filter(i => i.type === t && i?.rollable?.value === rollable))
+                } else {
+                    items.push(...content.filter(i => i.type === t))
+                }
+            })
+        })
+    }
+    items = items.sort((a, b) => (a.name > b.name) ? 1 : -1);
+    return items
+}
+

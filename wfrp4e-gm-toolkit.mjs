@@ -30,7 +30,8 @@ Hooks.once("init", function () {
     game.gmtoolkit = {
         advantage : Advantage,
         utility : GMToolkitUtility, 
-        module : GMToolkit
+        module : GMToolkit,
+        skills: []
     }
     
     // Register module settings
@@ -42,7 +43,7 @@ Hooks.once("init", function () {
 /*  Foundry VTT Ready                           */
 /* -------------------------------------------- */
 
-Hooks.once("ready", function () {
+Hooks.once("ready", async function () {
   GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
 
   // Notify any player users that do not have characters assigned
@@ -53,6 +54,10 @@ Hooks.once("ready", function () {
       ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", {spectators: spectators})}`, {permanent: true})
     } 
   }
+
+  // Preload skills
+  game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
+
 });
 
 Hooks.on("ready", async () => {
