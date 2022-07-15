@@ -9,6 +9,7 @@
 import GMToolkit from "./modules/gm-toolkit.mjs";
 import GMToolkitSettings from "./modules/gm-toolkit-settings.mjs";
 import Advantage from "./modules/advantage.mjs";
+import { GroupTest } from "./apps/group-test.js"
 import DarkWhispers from "./modules/dark-whispers.mjs";
 import TokenHudExtension from "./modules/token-hud-extension.mjs";
 
@@ -31,11 +32,13 @@ Hooks.once("init", function () {
         advantage : Advantage,
         utility : GMToolkitUtility, 
         module : GMToolkit,
+        grouptest: GroupTest, 
         skills: []
     }
     
     // Register module settings
     GMToolkitSettings.register();
+
 });
 
 
@@ -58,6 +61,13 @@ Hooks.once("ready", async function () {
   // Preload skills
   game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
 
+  // Register Handlebar helper to find an entry within an array
+  Handlebars.registerHelper('ifIn', function(toFind, inList) {
+    if(inList.indexOf(toFind) > -1) {
+      return true;
+    }
+  });
+  
 });
 
 Hooks.on("ready", async () => {
