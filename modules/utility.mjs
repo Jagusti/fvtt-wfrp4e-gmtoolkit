@@ -226,7 +226,7 @@ export async function refreshToolkitContent(documentType) {
 /** 
  * Return an array of users, actors, tokens or combatants that meet a certain criteria. 
  * @param {String} groupType :   game.users: users, gms, players, spectators, assigned
- * @param {String} groupType :   game.actors: actors, characters, party, entourage, company
+ * @param {String} groupType :   game.actors: actors, characters, party, company, entourage
  * @param {String} groupType :   game.tokens: tokens, nonparty, pcTokens, npcTokens, friends, enemies
  * @param {String} groupType :   game.combat.combatants: combatants, allies, adversaries
  * @param {Boolean} options.active   :   user is logged in and has character in selected group 
@@ -267,10 +267,10 @@ export function getGroup(groupType, options = []) {
         case ("party") :   // all player assigned characters in the world       
             group = game.users.filter(u => u.character).map(g => g.character)            
             break;
-        case ("entourage") :  // all actors in the world owned by players, including characters, NPCs and creatures, but not vehicles
+        case ("company") :  // all actors in the world owned by players, including characters, NPCs and creatures, but not vehicles
             group = game.actors.filter(a => a.hasPlayerOwner && a.type !== "vehicle")
             break; 
-        case ("company") :  // all actors in the world owned by players, including characters, NPCs, vehicles and creatures
+        case ("entourage") :  // all actors in the world owned by players, including characters, NPCs, vehicles and creatures
             group = game.actors.filter(a => a.hasPlayerOwner)            
             break;
         case ("nonparty") :  // all tokens in the scene whose actor is not owned by players, including characters, NPCs, vehicles and creatures
@@ -363,8 +363,8 @@ export function getGroup(groupType, options = []) {
             case ("actors") : // game.actors
             case ("characters") : // game.actors
             case ("party") : // game.actors
-            case ("entourage") : // game.actors
             case ("company") : // game.actors
+            case ("entourage") : // game.actors
                 group.forEach(a => {
                     if (present == (a.getActiveTokens().length > 0)) {
                         filteredByOption.push(a);  
@@ -409,8 +409,8 @@ export function getGroup(groupType, options = []) {
             case ("actors") : // game.actors
             case ("characters") : // game.actors
             case ("party") : // game.actors
-            case ("entourage") : // game.actors
             case ("company") : // game.actors
+            case ("entourage") : // game.actors
                 filteredByOption = hasInteraction.filter(i => group.includes(i.actor)).map(m => m.actor)
                 break;
             // game.tokens
