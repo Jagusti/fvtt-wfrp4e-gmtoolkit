@@ -37,7 +37,14 @@ class GMToolkitMaintenance extends Dialog {
         })
     }
 
-} // end class GMToolkitMainenance
+    static get defaultOptions() {
+        return mergeObject(super.defaultOptions, {
+          popOut: true,   
+          width: 560, 
+          resizable: true
+        })
+    }
+} // end class GMToolkitMaintenance
 
 async function buildLocalizedContent(documentType) {
     GMToolkit.log(false, "Starting buildLocalizedContent")
