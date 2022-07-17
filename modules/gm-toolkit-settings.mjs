@@ -3,7 +3,9 @@ import GMToolkitAdvantageSettings from "../apps/gm-toolkit-advantage-settings.js
 import GMToolkitDarkWhispersSettings from "../apps/gm-toolkit-darkwhispers-settings.js";
 import GMToolkitSessionManagementSettings from "../apps/gm-toolkit-session-management-settings.js";
 import GMToolkitVisionSettings from "../apps/gm-toolkit-vision-settings.js";
+import GMToolkitGroupTestSettings from "../apps/gm-toolkit-grouptest-settings.js";
 import GMToolkitMaintenanceWrapper from "../apps/gm-toolkit-maintenance.js";
+import { strip } from "./utility.mjs";
 
 export default class GMToolkitSettings {
 
@@ -259,6 +261,128 @@ export default class GMToolkitSettings {
             feature: "darkwhispers"
         });
 
+        const skillMap = game.gmtoolkit.skills.filter(s => s.name.slice(-2) !== "()" && s.name.slice(-3) !== "( )" ).map(m => m.name)
+        const skillList = skillMap.reduce((a, v) => ({ ...a, [v]: v}), {})
+        console.log(skillList)
+        // Menu for Group Tests
+        game.settings.registerMenu(GMToolkit.MODULE_ID, "menuGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.menu.name",
+            label: "GMTOOLKIT.Settings.GroupTest.menu.label",      
+            hint: "GMTOOLKIT.Settings.GroupTest.menu.hint",
+            icon: "fas fa-dice",               
+            type: GMToolkitGroupTestSettings,   
+            restricted: true                 
+        });
+        // TODO Settings for Group Tests application
+        game.settings.register(GMToolkit.MODULE_ID, "quicktest1GroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.quicktest1.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.quicktest.hint",
+            scope: "world",
+            config: false,
+            default: game.i18n.localize("NAME.Perception"), 
+            choices: skillList,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "quicktest2GroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.quicktest2.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.quicktest.hint",
+            scope: "world",
+            config: false,
+            default: game.i18n.localize("NAME.Cool"),
+            type: String,
+            choices: skillList,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "quicktest3GroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.quicktest3.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.quicktest.hint",
+            scope: "world",
+            config: false,
+            default: game.i18n.localize("NAME.Intuition"),
+            type: String,
+            choices: skillList,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "quicktest4GroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.quicktest4.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.quicktest.hint",
+            scope: "world",
+            config: false,
+            default: game.i18n.localize("NAME.Gossip"),
+            type: String,
+            choices: skillList,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "defaultSkillGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.defaultSkill.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.defaultSkill.hint",
+            scope: "world",
+            config: false,
+            default: "Lore (Reikland)",
+            type: String,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "bypassTestDialogGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.bypassTestDialog.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.bypassTestDialog.hint",
+            scope: "world",
+            config: false,
+            default: true,
+            type: Boolean,
+            feature: "grouptest"
+        });
+/*         game.settings.register(GMToolkit.MODULE_ID, "defaultDifficultyGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.defaultDifficulty.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.defaultDifficulty.hint",
+            scope: "world",
+            config: false,
+            type: String,
+            choices: {...game.wfrp4e.config.difficultyLabels, ...{default : ""}}, 
+            default: "average",
+            feature: "grouptest"
+        }); */
+        game.settings.register(GMToolkit.MODULE_ID, "defaultRollModeGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.defaultRollMode.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.defaultRollMode.hint",
+            scope: "world",
+            config: false,
+            type: String,
+            choices: {...CONFIG.Dice.rollModes}, 
+            default: "blindroll",
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "defaultTestModifierGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.hint",
+            scope: "world",
+            config: false,
+            default: "",
+            type: Number,
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "defaultPartyGroupTest", {
+            name: "GMTOOLKIT.Settings.GroupTest.defaultParty.name",
+            hint: "GMTOOLKIT.Settings.GroupTest.defaultParty.hint",
+            scope: "world",
+            config: false,
+            default: "party",
+            type: String,
+            choices: {
+                party: "GMTOOLKIT.Group.Type.party",
+                company: "GMTOOLKIT.Group.Type.company"
+            },
+            feature: "grouptest"
+        });
+        game.settings.register(GMToolkit.MODULE_ID, "fallbackAdvancedSkills", {
+            name: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name",
+            hint: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint",
+            scope: "world",
+            config: false,
+            default: false,
+            type: Boolean,
+            feature: "grouptest" 
+        });
+
         
         // Settings for Token Hud Extension
         game.settings.register(GMToolkit.MODULE_ID, "enableTokenHudExtensions", {
@@ -270,17 +394,6 @@ export default class GMToolkitSettings {
             type: Boolean,
             onChange: GMToolkitSettings.debouncedReload,
             feature: "tokenhud" 
-        });
-
-        // Settings for Make Secret Party Tests
-        game.settings.register(GMToolkit.MODULE_ID, "fallbackAdvancedSkills", {
-            name: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name",
-            hint: "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint",
-            scope: "world",
-            config: true,
-            default: false,
-            type: Boolean,
-            feature: "grouptests" 
         });
 
         // Settings for suppressing Spectator notification

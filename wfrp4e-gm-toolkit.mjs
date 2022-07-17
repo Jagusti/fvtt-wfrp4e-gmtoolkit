@@ -10,8 +10,8 @@ import GMToolkit from "./modules/gm-toolkit.mjs";
 import GMToolkitSettings from "./modules/gm-toolkit-settings.mjs";
 import Advantage from "./modules/advantage.mjs";
 import { GroupTest } from "./apps/group-test.js"
-import DarkWhispers from "./modules/dark-whispers.mjs";
-import TokenHudExtension from "./modules/token-hud-extension.mjs";
+// import DarkWhispers from "./modules/dark-whispers.mjs";
+// import TokenHudExtension from "./modules/token-hud-extension.mjs";
 
 // Import Helpers
 import * as GMToolkitUtility from "./modules/utility.mjs";
@@ -36,8 +36,7 @@ Hooks.once("init", function () {
         skills: []
     }
     
-    // Register module settings
-    GMToolkitSettings.register();
+
 
 });
 
@@ -47,6 +46,12 @@ Hooks.once("init", function () {
 /* -------------------------------------------- */
 
 Hooks.once("ready", async function () {
+  // Preload skills, used for Group Test settings registration
+  game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
+
+  // Register module settings
+  await GMToolkitSettings.register();
+
   GMToolkit.log(false ,`${GMToolkit.MODULE_NAME} is ready.`);
 
   // Notify any player users that do not have characters assigned
@@ -57,9 +62,6 @@ Hooks.once("ready", async function () {
       ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", {spectators: spectators})}`, {permanent: true})
     } 
   }
-
-  // Preload skills
-  game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
 
   // Register Handlebar helper to find an entry within an array
   Handlebars.registerHelper('ifIn', function(toFind, inList) {
