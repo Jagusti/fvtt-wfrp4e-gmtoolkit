@@ -1,0 +1,127 @@
+<form>
+      <div class = "form-group flexcol" id = "quicktest">{{!-- QUICK TEST BUTTONS >> --}}
+        {{#with skills}}
+      {{!-- Instant roll priority skills --}}
+        <div class = "form-group section-title">
+          <label for = "quicktest" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.QuickTest"}}</label>
+        </div>
+        <div class = "flexrow">
+          <button type = "submit" name = "quicktest" id = "quicktest1" class = "priority" title = "{{localize quickTest1}}">{{localize quickTest1}}</button>
+          <button type = "submit" name = "quicktest" id = "quicktest2" class = "priority" title = "{{localize quickTest2}}">{{localize quickTest2}}</button>
+          <button type = "submit" name = "quicktest" id = "quicktest3" class = "priority" title = "{{localize quickTest3}}">{{localize quickTest3}}</button>
+          <button type = "submit" name = "quicktest" id = "quicktest4" class = "priority" title = "{{localize quickTest4}}">{{localize quickTest4}}</button>
+        </div>
+        {{/with}}
+      </div>{{!-- << QUICK TEST BUTTONS --}}
+
+  <div class = "flexrow">{{!-- multi-column outer --}}
+    <div class = "flexcol grouptest criteria">{{!-- left column --}}
+    
+      <div class = "form-group flexcol" id = "skills">{{!-- SKILL SELECTION >> --}}
+        {{!-- Custom skill --}}
+        <div class = "form-group section-title">
+          <label for = "customise-skill" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.CustomiseSkill"}}</label>
+        </div>
+        {{!-- Select a known skill to test (drawn from compendia) ... --}}
+        <div class = "form-group">
+          <label for = "skill-list">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseSkill"}}</label> 
+          <select id = "skill-list" name = "skill-list">
+            {{#with skills}}
+              {{selectOptions list nameAttr = "name" labelAttr = "name" blank = "" selected = target}}
+            {{/with}}
+          </select>
+        </div>
+        {{!-- Or specify a custom skill / specialisation --}}
+        <div class = "form-group">
+          {{#with skills}}
+          <label for = "skill-name" id = "skill-name-label">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill"}}</label> 
+          <input type = "text" id = "skill-name" name = "skill-name" placeholder="{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkillPlaceholder"}}" value = "{{localize custom}}">
+          {{/with}}
+        </div>
+      </div>{{!-- << SKILL SELECTION --}}
+
+      <div class = "form-group flexcol" id = "test-parameters">{{!-- SELECT TEST PARAMETERS >> --}}
+        {{#with testParameters}}
+        {{!-- Set Test Parameters --}}
+        <div class = "form-group section-title">
+          <label for = "customise-skill" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SetTestParameters"}}</label>
+        </div>      
+        {{!-- roll message visibility : roll type --}}
+        <div class="flexrow parameter" id = "parameter-rollMode">
+          {{!-- <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
+          <select id = "rollmode" name = "rollmode"/>
+            {{selectOptions ../rollModeOptions blank = "" selected = rollMode }}
+          </select> --}}
+            <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
+            <select id = "rollmode" name = "rollMode" blank = "" selected = rollMode>
+              {{#select rollMode}}
+                {{#each ../rollModeOptions as |label mode|}}
+                <option value="{{mode}}">{{localize label}}</option>
+                {{/each}}
+              {{/select}}
+            </select>
+        </div>
+        {{!-- difficulty --}}
+        {{!-- <div class="flexrow parameter" id = "parameter-difficulty">
+          <label for = "difficulty">{{localize "Difficulty"}}</label>
+          <select id = "difficulty" name = "difficulty" {{disabled (not bypass)}}/>
+            {{selectOptions ../difficultyOptions blank = "" selected = difficulty }}
+          </select>
+        </div> --}}
+        {{!-- testModifier --}}
+        <div class="flexrow parameter" id = "parameter-testModifier">
+          <label for = "testModifier" title = {{localize "TooltipSkillModifier"}}>{{localize "Modifier"}}</label>
+          <input type = "number" id = "testModifier" name = "testModifier" value= "{{testModifier}}" {{disabled (not bypass)}} />
+        </div>
+        {{!-- fallback --}}
+        <div class = "flexrow parameter" id = "parameter-fallback">
+          <label for  = "fallback" title = "{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint"}}">{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name"}}</label>
+          <input type = "checkbox" id = "fallback" name = "fallback" {{checked fallback}}>
+        </div>
+        {{!-- bypass --}}
+        <div class = "flexrow parameter" id = "parameter-bypass">
+          <label for  = "bypass" title = "{{localize "GMTOOLKIT.Settings.GroupTest.bypassTestDialog.hint"}}">{{localize "GMTOOLKIT.Settings.GroupTest.bypassTestDialog.name"}}</label>
+          <input type = "checkbox" id = "bypass" name = "bypass" {{checked bypass}}>
+        </div>
+        {{/with}}
+      </div>{{!-- << SELECT TEST PARAMETERS --}}
+    </div>{{!-- left column --}}
+
+
+    <div class = "flexcol grouptest grouptargets">{{!-- right column --}}
+      <div class = "form-group flexcol" id = "group-members">{{!-- TARGET SELECTION >> --}}
+        {{!-- Specify Group Targets --}}  
+        <div class = "form-group section-title">
+          <label for = "choose-targets" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseTargets"}}</label>
+        </div>
+        {{!-- Select from player group --}}
+        <div class = "form-group flexrow">
+          {{#with group.members}}
+          <div class = "flexcol member-list">
+            {{#each playerGroup}}
+              <div class = "flexrow">
+                <input type = "checkbox" name = "targetGroup" value = {{uuid}} id = "{{concat "target." uuid}}" data-dtype = "Boolean" {{checked (or (eq ../controlled.length 0) (ifIn this ../selected))}}><label for="{{concat "target." uuid}}" class = "checkbox-label">{{name}}</label></input>
+              </div>
+            {{/each}}
+          </div>
+            {{!-- Select from NPC tokens --}}
+          <div class = "flexcol member-list">
+            {{#each npcTokens}}
+              <div class = "flexrow">
+                <input type = "checkbox" name = "targetGroup" value = {{document.uuid}} id = "{{concat "target." document.uuid}}" data-dtype = "Boolean" {{checked _controlled}}><label for="{{concat "target." document.uuid}}" class = "checkbox-label">{{name}}</label></input>
+              </div>
+            {{/each}}
+          </div>
+          {{/with}}
+        </div>
+      </div>{{!-- << TARGET SELECTION --}}
+    </div>{{!-- right column --}}
+  </div>{{!-- multi-column outer --}}
+
+  {{!-- Form Submission --}}
+  <footer class = "flexrow footer">
+    <button type = "submit" name="cancel">{{localize "GMTOOLKIT.Dialog.Cancel"}}</button>
+    <button type = "submit" name="submit">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.RunTest"}}</button>
+  </footer>
+</form>
+

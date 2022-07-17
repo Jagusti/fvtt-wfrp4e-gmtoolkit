@@ -8,8 +8,13 @@
 /*  1c. Override Core Hud
 /*  1d. Override Status Effects
 /* 2. COMMON CONTROLS
-/* 3. DIALOG
+/* 3. DIALOG / FORM
 /*  3a. List Data
+/*  3b. Select
+/*  3c. Button
+/*  3d. Flex Col
+/*  3e. Flex Row
+/*  3f. Input
 /*************************************/
 
 
@@ -117,7 +122,7 @@
 /* 2. COMMON CONTROLS */
 /***************************/
 
-/* 3. DIALOG */
+/* 3. DIALOG / FORM */
 /***************************/
 
 /* 3a. List Data */
@@ -135,4 +140,82 @@
 .gmtoolkit.list-thumbnail {
 	vertical-align: bottom; 
 	max-height: 1.5em;
+}
+
+/* 3b. Select */
+
+.app.window-app .form-group select {
+	height: calc(var(--form-field-height) + 1px);
+}
+
+/* 3c. Button */
+
+button.priority {
+	height: 72px;
+	overflow: hidden;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	background: url(../../../systems/wfrp4e/ui/sidebar_button-background_cyan.webp) repeat!important;
+}
+
+/* 3d. Flex Col */
+
+.gmtoolkit .form-group.flexcol {
+	flex-flow: column;
+	display: flow-root;
+	padding: 0px 4px;
+	align-items: stretch;
+	align-self: start;
+	width: -webkit-fill-available;
+}
+
+/* 3e. Flex Row */
+.gmtoolkit .form-group .flexrow {
+	padding-bottom: 4px;
+	padding-top: 1px;
+	/* align-items: center; */
+}
+
+.gmtoolkit .flexrow .member-list .checkbox-label {
+	border: none;
+	text-align: unset;
+}
+
+.gmtoolkit .flexrow .member-list input[type="checkbox"] {
+	position: inherit;
+}
+
+.gmtoolkit .flexrow.parameter {
+	text-align-last: center;
+	padding-top: 2px;
+}
+
+.gmtoolkit .flexrow.parameter label {
+	text-align-last: start;
+}
+
+.gmtoolkit .flexrow.footer {
+	margin-top: 12px;
+}
+
+.gmtoolkit .member-list {
+	max-height: 240px;
+	overflow-y: auto;
+  align-self: flex-start;
+}
+
+.gmtoolkit .section-title {
+	margin-bottom: 2px;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+/* 3f. Input */
+
+.gmtoolkit .form-group input[type="text"] {
+	height: calc(var(--form-field-height) + 1px);
+}
+
+.gmtoolkit input:disabled {
+	opacity: 0.7;
 }
