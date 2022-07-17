@@ -427,7 +427,7 @@ export default class TokenHudExtension {
 
 // Hooks
 
-Hooks.on("ready", () => {
+/* Hooks.on("ready", () => {
     if (game.settings.get(GMToolkit.MODULE_ID, "enableTokenHudExtensions")) {  
         Hooks.on("renderTokenHUD", (app, html, data) => { TokenHudExtension.addTokenHudExtensions(app, html, data) });
         GMToolkit.log(false, `Token Hud Extensions loaded.`);
@@ -435,4 +435,4 @@ Hooks.on("ready", () => {
         GMToolkit.log(false, `Token Hud Extensions not loaded.`);
     }
 
-});
+}); */
