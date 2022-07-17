@@ -166,7 +166,7 @@
     "GMTOOLKIT.Message.MakeSecretGroupTest.AbortGroupSkillTest" : "Aborting group skill test.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.RunningGroupSkillTest" : "Running group {skill} test.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.SkillNeedsSpecialisation" : "No Specialisation specified for grouped skill {skill}.",
-    "GMTOOLKIT.Dialog.MakeSecretGroupTest.Title" : "Set up Secret Group Test",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.Title" : "Set up Group Test",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.RunTest" : "Run Test",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.QuickTest" : "Quick Test",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.CustomiseSkill" : "Customise Skill",
@@ -195,7 +195,7 @@
     "GMTOOLKIT.Settings.GroupTest.defaultRollMode.name" : "Default Roll Mode",
     "GMTOOLKIT.Settings.GroupTest.defaultRollMode.hint" : "Set the default roll mode for group tests, which determines visibilty of chat messages reporting test results.",
     "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.name" : "Default Test Modifier",
-    "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.hint" : "Set a default modifier for tests. This is cumulative with any modifier applied with (Default) Difficulty setting. Ignored when using test dialog.",
+    "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.hint" : "Set a default modifier for tests. Ignored when using test dialog.",
     "GMTOOLKIT.Settings.GroupTest.defaultParty.name" : "Default Party Group Selection",
     "GMTOOLKIT.Settings.GroupTest.defaultParty.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to include non-player characters and creatures that are owned by players (such as hirelings and henchmen). Individual characters can be de-selected in the Group Test dialog.",
 
