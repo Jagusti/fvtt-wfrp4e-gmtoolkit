@@ -47,6 +47,20 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Vehicles are filtered out of group constituents. 
   - Updated Macro Toolbox to reflect change in macro name. 
 - *Fixed* issue where Assistant GMs could not make secret (party) group tests.
+- *Added* **Group Test** user interface, functionality and module settings [[#63](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/63)]
+  - Support for non-party targets: 
+    - non-assigned player owned characters (eg, henchmen and hirelings).
+    - non-player tokens in a scene.
+  - Support 4 Quick Test options, based on skills in active compendiums.
+  - Support additional default custom skill (with or without specialisation).
+  - Support overriding default test parameters (rollmode, fallback, modifier).
+  - Support choice of party (player-assigned characters) or company (non-vehicle player-owned actors) as default player group.
+  - Automatically pre-select targets based on tokens selected in scene.
+    - If no token is selected, all player group tokens are pre-selected for test. 
+    - Otherwise, only selected player and non-player tokens are pre-selected. 
+  - Hint prompt to add Specialisation if an undefined grouped skill is selected.
+  - Removed option to set Difficulty for tests (unsupported in system).
+  - Removed support for setting SL Bonus or Success Bonus for tests.
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
