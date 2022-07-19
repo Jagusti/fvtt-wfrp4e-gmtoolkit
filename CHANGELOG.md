@@ -54,6 +54,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Support 4 Quick Test options, based on skills in active compendiums.
   - Support additional default custom skill (with or without specialisation).
   - Support overriding default test parameters (rollmode, fallback, modifier).
+  - Support for setting group test difficulty in addition to test modifier.
   - Support choice of party (player-assigned characters) or company (non-vehicle player-owned actors) as default player group.
   - Automatically pre-select targets based on tokens selected in scene.
     - If no token is selected, all player group tokens are pre-selected for test. 

@@ -48,26 +48,22 @@
         </div>      
         {{!-- roll message visibility : roll type --}}
         <div class="flexrow parameter" id = "parameter-rollMode">
-          {{!-- <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
-          <select id = "rollmode" name = "rollmode"/>
-            {{selectOptions ../rollModeOptions blank = "" selected = rollMode }}
-          </select> --}}
-            <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
-            <select id = "rollmode" name = "rollMode" blank = "" selected = rollMode>
-              {{#select rollMode}}
-                {{#each ../rollModeOptions as |label mode|}}
-                <option value="{{mode}}">{{localize label}}</option>
-                {{/each}}
-              {{/select}}
-            </select>
+          <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
+          <select id = "rollmode" name = "rollMode" blank = "" selected = rollMode>
+            {{#select rollMode}}
+              {{#each ../rollModeOptions as |label mode|}}
+              <option value="{{mode}}">{{localize label}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
         </div>
         {{!-- difficulty --}}
-        {{!-- <div class="flexrow parameter" id = "parameter-difficulty">
+        <div class="flexrow parameter" id = "parameter-difficulty">
           <label for = "difficulty">{{localize "Difficulty"}}</label>
           <select id = "difficulty" name = "difficulty" {{disabled (not bypass)}}/>
-            {{selectOptions ../difficultyOptions blank = "" selected = difficulty }}
+            {{selectOptions ../difficultyOptions blank = "" selected = testDifficulty }}
           </select>
-        </div> --}}
+        </div>
         {{!-- testModifier --}}
         <div class="flexrow parameter" id = "parameter-testModifier">
           <label for = "testModifier" title = {{localize "TooltipSkillModifier"}}>{{localize "Modifier"}}</label>

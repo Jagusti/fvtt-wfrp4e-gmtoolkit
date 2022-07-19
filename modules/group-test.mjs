@@ -30,9 +30,11 @@ const silentTest = true;  // true: to bypass roll dialog and post results direct
 // === Set default options for silent tests (ignored for interactive tests)
 const rollMode = "blindroll" // choose from "gmroll", "blindroll", "selfroll",  "public"
 const testModifier = +20 // game.wfrp4e.config.difficultyModifiers[("average")]
-// --- testModifier can be numeric or reference built-in system difficultyModifiers 
+const difficulty = "default" // or game.wfrp4e.config.difficultyModifiers[("average")]
+// --- difficulty can be "default" or reference built-in system difficultyModifiers 
 // --- (eg, 'game.wfrp4e.config.difficultyModifiers[("average")]' for +20)
-// TODO: --- accepted difficultyModifier values are listed in the REFERENCES section below
+// --- "default" leaves the group test setup option blank, and uses the system setting for determining default difficulty
+// --- accepted difficultyModifier values are listed in the REFERENCES section below
 
 // === Carry out the test if you are a GM
 if (game.user.isGM) 
@@ -55,6 +57,7 @@ export async function runGroupTest(testSkill, testOptions) {
         bypass: testOptions.bypass, 
         testModifier: testOptions.testModifier,
         rollMode: testOptions.rollMode,
+        absolute: {difficulty: testOptions.difficulty},
         title : `${actorSkill.name} Test (${actor.name})`
       }).then(setupData => {actor.basicTest(setupData)});
     } else {
@@ -71,6 +74,7 @@ export async function runGroupTest(testSkill, testOptions) {
         bypass: testOptions.bypass, 
         testModifier: testOptions.testModifier, 
         rollMode: testOptions.rollMode,
+        absolute: {difficulty: testOptions.difficulty},
         title : `${skillCharacteristic} Test for ${actorSkill.name} (${actor.name})`
       }).then(setupData => {actor.basicTest(setupData)});
     }
