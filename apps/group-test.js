@@ -38,17 +38,17 @@ export class GroupTest extends FormApplication {
 
     data.testParameters = {
       testModifier: this.object.testParameters?.testModifier || game.settings.get("wfrp4e-gm-toolkit", "defaultTestModifierGroupTest"), 
-      rollMode:  this.object.testParameters?.rollMode || game.settings.get("wfrp4e-gm-toolkit", "defaultRollModeGroupTest") 
+      rollMode:  this.object.testParameters?.rollMode || game.settings.get("wfrp4e-gm-toolkit", "defaultRollModeGroupTest"), 
+      testDifficulty: this.object.testParameters?.difficulty || game.settings.get("wfrp4e-gm-toolkit", "defaultDifficultyGroupTest")
       // _slBonus: this.object.testParameters?.slBonus || 0,
       // _successBonus: this.object.testParameters?.successBonus || 0,
-      // _difficulty: this.object.testParameters?.difficulty || game.settings.get("wfrp4e-gm-toolkit", "defaultDifficultyGroupTest")
     } 
 
     data.testParameters.bypass = this.object.testParameters?.bypass === undefined ? game.settings.get("wfrp4e-gm-toolkit", "bypassTestDialogGroupTest") : this.object.testParameters?.bypass
     data.testParameters.fallback = this.object.testParameters?.fallback === undefined ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills") : this.object.testParameters?.fallback
 
-    // data.difficultyOptions = game.wfrp4e.config.difficultyLabels
     data.rollModeOptions = CONFIG.Dice.rollModes
+    data.difficultyOptions = game.wfrp4e.config.difficultyLabels
     
     // Set group defaults if not provided
     data.group = {
@@ -160,7 +160,7 @@ export class GroupTest extends FormApplication {
    **/
   _toggleBypassTestDialog(event) {
     document.getElementById("testModifier").disabled = !event.target.checked;
-    // document.getElementById("difficulty").disabled = !event.target.checked;    
+    document.getElementById("difficulty").disabled = !event.target.checked;    
   }
 
 }
