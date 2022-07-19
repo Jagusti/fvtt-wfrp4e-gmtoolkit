@@ -273,7 +273,7 @@ export default class GMToolkitSettings {
             type: GMToolkitGroupTestSettings,   
             restricted: true                 
         });
-        // TODO Settings for Group Tests application
+        // Settings for Group Tests application
         game.settings.register(GMToolkit.MODULE_ID, "quicktest1GroupTest", {
             name: "GMTOOLKIT.Settings.GroupTest.quicktest1.name",
             hint: "GMTOOLKIT.Settings.GroupTest.quicktest.hint",
@@ -331,7 +331,7 @@ export default class GMToolkitSettings {
             type: Boolean,
             feature: "grouptest"
         });
-/*         game.settings.register(GMToolkit.MODULE_ID, "defaultDifficultyGroupTest", {
+        game.settings.register(GMToolkit.MODULE_ID, "defaultDifficultyGroupTest", {
             name: "GMTOOLKIT.Settings.GroupTest.defaultDifficulty.name",
             hint: "GMTOOLKIT.Settings.GroupTest.defaultDifficulty.hint",
             scope: "world",
@@ -340,7 +340,7 @@ export default class GMToolkitSettings {
             choices: {...game.wfrp4e.config.difficultyLabels, ...{default : ""}}, 
             default: "average",
             feature: "grouptest"
-        }); */
+        });
         game.settings.register(GMToolkit.MODULE_ID, "defaultRollModeGroupTest", {
             name: "GMTOOLKIT.Settings.GroupTest.defaultRollMode.name",
             hint: "GMTOOLKIT.Settings.GroupTest.defaultRollMode.hint",
