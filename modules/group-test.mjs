@@ -63,20 +63,21 @@ export async function runGroupTest(testSkill, testOptions) {
     } else {
       // ... or conditionally fallback to underlying characteristic if they don't ...
       actorSkill = await game.wfrp4e.utility.findSkill(testSkill)
-      // TODO: optionally step-adjust the difficulty in case of fallback
-      if (actorSkill.advanced.value === "adv" && !testOptions.fallback) {
-        ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest", {character: actor.name, skill: testSkill})}`)
-        continue 
-      }
-      // ... rolling against the relevant characteristic instead
+    if (actorSkill.advanced.value === "bsc" || testOptions.fallback) {
       let skillCharacteristic = game.wfrp4e.config.characteristics[actorSkill.characteristic.value]
-      actor.setupCharacteristic(actorSkill.characteristic.value, {
+      
+      // optionally step-adjust the difficulty in case of fallback on advanced skills
+      const stepAdjustDifficulty = (actorSkill.advanced.value === "adv") ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdjustDifficulty") : 0
+      const difficultySetting = (actorSkill.advanced.value === "adv" && stepAdjustDifficulty !== 0) ? 
+        {modify: {difficulty: stepAdjustDifficulty}} : {absolute: {difficulty: testOptions.difficulty}}
+
+      setupData = await actor.setupCharacteristic(actorSkill.characteristic.value, mergeObject({
         bypass: testOptions.bypass, 
         testModifier: testOptions.testModifier, 
         rollMode: testOptions.rollMode,
-        absolute: {difficulty: testOptions.difficulty},
-        title : `${skillCharacteristic} Test for ${actorSkill.name} (${actor.name})`
-      }).then(setupData => {actor.basicTest(setupData)});
+        title : `${skillCharacteristic} Test for ${actorSkill.name} (${actor.name})`,
+      }, difficultySetting))
+      return actor.basicTest(setupData);
     }
   // TODO: #62 Aggregate skill check results
   }

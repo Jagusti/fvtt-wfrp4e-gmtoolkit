@@ -160,6 +160,8 @@
 
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name" : "Fallback to Characteristic Test",
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint" : "Test against the related characteristic if a character doesn't have the right Advanced Skill. Basic skill tests always fallback.",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name" : "Step Adjust Difficulty on Fallback",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint" : "When actor doesn't have Advanced skill for group test, increase the test difficulty by this number of steps (eg, 2 makes an Average (+20) test Difficult (+10). Default system difficulty is applied when bypassing the roll dialog. If 0, no fallback adjustment is made.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission" : "Only GMs can make secret group tests!",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup" : "No actors to make test for. Check your group selection criteria.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest" : "{character} does not have {skill}. Aborting advanced skill test.",

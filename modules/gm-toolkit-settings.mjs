@@ -382,7 +382,15 @@ export default class GMToolkitSettings {
             type: Boolean,
             feature: "grouptest" 
         });
-
+    game.settings.register(GMToolkit.MODULE_ID, "fallbackAdjustDifficulty", {
+      name: "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name",
+      hint: "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint",
+      scope: "world",
+      config: true,
+      default: 0,
+      type: Number,
+      feature: "grouptest"
+    });
         
         // Settings for Token Hud Extension
         game.settings.register(GMToolkit.MODULE_ID, "enableTokenHudExtensions", {

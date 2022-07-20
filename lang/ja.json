@@ -160,6 +160,8 @@
 
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name" : "Fallback to Characteristic Test",
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint" : "キャラクタが適切な上級技能を持っていない場合、関連する特性でテストを行う。基本技能の場合は常にフォールバックする。",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name" : "Step Adjust Difficulty on Fallback",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint" : "When actor doesn't have Advanced skill for group test, increase the test difficulty by this number of steps (eg, 2 makes an Average (+20) test Difficult (+10). Default system difficulty is applied when bypassing the roll dialog. If 0, no fallback adjustment is made.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission" : "Secret Party Testを実行できるのはGMだけです！",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup" : "No actors to make test for. Check your group selection criteria.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest" : "{character}は技能「{skill}」を所持していません。上級技能テストを中断します。",

@@ -61,6 +61,10 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - Otherwise, only selected player and non-player tokens are pre-selected. 
   - Hint prompt to add Specialisation if an undefined grouped skill is selected.
   - Removed support for setting SL Bonus or Success Bonus for tests.
+  - Optionally step-adjust difficulty of Advanced Skill tests where an actor does not have the required skill, and when falling back to a characteristic test.
+    - The number of Difficulty steps to apply is set in a new Group Test module setting 'Step Adjust Difficulty on Fallback'.
+    - If set to 0, no adjustment is made. 
+    - If a step-adjustment is set, then the difficulty set in the group test is ignored for those actors where a fallback characteristic test is applied. The defulat system difficulty is used as the basis for adjustment.
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
