@@ -65,6 +65,11 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - The number of Difficulty steps to apply is set in a new Group Test module setting 'Step Adjust Difficulty on Fallback'.
     - If set to 0, no adjustment is made. 
     - If a step-adjustment is set, then the difficulty set in the group test is ignored for those actors where a fallback characteristic test is applied. The defulat system difficulty is used as the basis for adjustment.
+  - Group Test results are reported in a single GM whisper message to complement individual test cards. The message summarises:
+    - Skill and test parameters (difficulty, modifier, fallback, bypass)
+    - Individual test results (actor, SL, outcome and description, roll, target)
+    - Successful actors are visually indicated with a checkmark
+    - The characteristic tested is appended to a result line if the actor does not have the Advanced Skill and the Fallback option is in play
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
