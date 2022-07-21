@@ -70,6 +70,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - Individual test results (actor, SL, outcome and description, roll, target)
     - Successful actors are visually indicated with a checkmark
     - The characteristic tested is appended to a result line if the actor does not have the Advanced Skill and the Fallback option is in play
+  - *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings. 
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
