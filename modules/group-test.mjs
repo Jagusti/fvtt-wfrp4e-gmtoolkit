@@ -1,47 +1,37 @@
-// TODO: Add support for bypassing the Set up Group Test dialog (silentTest)
-// TODO: Update Secret Group Test macro
-// TODO: Add guard for no eligible group members
-// TODO: Add guard for non-GM exectuor
+export async function launchGroupTest(groupOptions, testParameters) {
+  new game.gmtoolkit.grouptest({groupOptions, testParameters}).render(true);
+}
 
-/* 
-// === Set up group 
-const groupType = "party";  // choose from, eg, "party", "company"
-// const present = true; // choose from (to only include actors in the viewed scene): undefined, true or false 
-// const interaction = undefined;  // choose from: undefined, "selected", "targeted"
 
-const group = game.gmtoolkit.utility.getGroup(groupType).filter(
-    g => (
-        g.documentName !== "User" && 
-        g.actor?.type !== "vehicle" && 
-        g.type !== "vehicle"
-        )
-    );
-// Exit with error if no actors in group
-if (!group.length) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup"))
+export async function runSilentGroupTest(groupOptions, testParameters) {
+  const testSkill = testParameters?.testSkill || game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
+  
+  const testOptions = {
+    bypass: testParameters?.bypass === undefined ? game.settings.get("wfrp4e-gm-toolkit", "bypassTestDialogGroupTest") : testParameters?.bypass,
+    rollMode: testParameters?.rollMode || game.settings.get("wfrp4e-gm-toolkit", "defaultRollModeGroupTest"), 
+    fallback: testParameters?.fallback === undefined ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills") : testParameters?.fallback
+  }
 
-// === Set up test parameters
-const testSkill = "Perception";  // eg, basic skill
-// const testSkill = "Stealth (Rural)";  // eg, grouped skill
-// const testSkill = "Play (Lute)";  // eg, advanced skill
+  groupOptions.members = await getGroupMembers(groupOptions?.type)
+  testOptions.targetGroup = groupOptions.members.controlled.length > 0 ? groupOptions.members.controlled : groupOptions.members.playerGroup
 
-const silentTest = true;  // true: to bypass roll dialog and post results directly to chat using the following default options
-// const silentTest = false;  // false: to use the native Roll Dialog for control over talents and other modifiers/bonuses, which may vary by character; 
+  if (testOptions.targetGroup.length === 0) {
+    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup"))
+  } 
 
-// === Set default options for silent tests (ignored for interactive tests)
-const rollMode = "blindroll" // choose from "gmroll", "blindroll", "selfroll",  "public"
-const testModifier = +20 // game.wfrp4e.config.difficultyModifiers[("average")]
-const difficulty = "default" // or game.wfrp4e.config.difficultyModifiers[("average")]
-// --- difficulty can be "default" or reference built-in system difficultyModifiers 
-// --- (eg, 'game.wfrp4e.config.difficultyModifiers[("average")]' for +20)
-// --- "default" leaves the group test setup option blank, and uses the system setting for determining default difficulty
-// --- accepted difficultyModifier values are listed in the REFERENCES section below
+  runGroupTest(testSkill, testOptions);
+}
 
-// === Carry out the test if you are a GM
-if (game.user.isGM) 
-    {makeSecretGroupTest(testSkill)} 
-else 
-    {ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"), {})};
- */
+export async function getGroupMembers(groupType = game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest")) {
+  const members = {
+    playerGroup: game.gmtoolkit.utility.getGroup(groupType).map(g => g.uuid),
+    selected: game.gmtoolkit.utility.getGroup("company", {interaction : "selected", present: true}).map(g => g.uuid),
+    npcTokens: game.gmtoolkit.utility.getGroup("npcTokens").map(g => g.document.uuid),
+    controlled: canvas.tokens.placeables.filter(t => t._controlled & t.actor.type !== "vehicle").map(g => g.document.uuid)
+  }
+  return members
+}
+
 
 export async function runGroupTest(testSkill, testOptions) {
   await game.settings.set("wfrp4e-gm-toolkit", "aggregateResultGroupTest", [])
