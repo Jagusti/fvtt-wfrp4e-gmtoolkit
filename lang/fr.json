@@ -200,6 +200,8 @@
     "GMTOOLKIT.Settings.GroupTest.defaultTestModifier.hint" : "Set a default modifier for tests. Ignored when using test dialog.",
     "GMTOOLKIT.Settings.GroupTest.defaultParty.name" : "Default Party Group Selection",
     "GMTOOLKIT.Settings.GroupTest.defaultParty.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to include non-player characters and creatures that are owned by players (such as hirelings and henchmen). Individual characters can be de-selected in the Group Test dialog.",
+    "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.name" : "Summarise Group Test Results Threshold",
+    "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.hint" : "Combine test results into a single summary chatlog message. Set the minimum number of tests to combine. Set to 1 to always show a summary, or 0 to never show a summary message.",
 
     "GMTOOLKIT.Settings.DarkWhispers.menu.name" : "Dark Whispers Settings",
     "GMTOOLKIT.Settings.DarkWhispers.menu.label" : "Configure Dark Whispers",

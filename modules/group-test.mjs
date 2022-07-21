@@ -48,7 +48,13 @@ export async function runGroupTest(testSkill, testOptions) {
 
 
 async function sendAggregateGroupTestResults(testSkill, testOptions) {
+  const summaryThreshold = await game.settings.get("wfrp4e-gm-toolkit","summariseResultsThresholdGroupTest")
   const groupTestResults = await game.settings.get("wfrp4e-gm-toolkit", "aggregateResultGroupTest")
+
+  // Don't show a summary if a postive threshold isn't set or there are no test results
+  if (summaryThreshold <= 0 || groupTestResults.length === 0) return 
+  // Don't show a summary if there are test results, but fewer than the threshold
+  if (groupTestResults.length < summaryThreshold) return
 
   let testParameters = `${game.i18n.localize("Difficulty")}: ${game.wfrp4e.config.difficultyLabels[testOptions.difficulty]}\n` +
     `${game.i18n.localize("Modifier")}: ${testOptions.testModifier}\n` +

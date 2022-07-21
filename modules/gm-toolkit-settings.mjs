@@ -391,6 +391,15 @@ export default class GMToolkitSettings {
       type: Number,
       feature: "grouptest"
     });
+    game.settings.register(GMToolkit.MODULE_ID, "summariseResultsThresholdGroupTest", {
+      name: "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.name",
+      hint: "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.hint",
+      scope: "world",
+      config: true,
+      default: 2,
+      type: Number,
+      feature: "grouptest"
+    });
     game.settings.register(GMToolkit.MODULE_ID, "aggregateResultGroupTest", {
       name: "GMTOOLKIT.Settings.GroupTest.defaultSkill.name",
       scope: "world",

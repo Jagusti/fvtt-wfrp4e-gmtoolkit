@@ -67,6 +67,10 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - Individual test results (actor, SL, outcome and description, roll, target)
     - Successful actors are visually indicated with a checkmark
     - The characteristic tested is appended to a result line if the actor does not have the Advanced Skill and the Fallback option is in play
+  - The `Summarise Group Test Results Threshold` option can be set to determine whether to show summary results messages in chat: 
+    - 0-: never
+    - 1: always
+    - 2+: only if there are this many test results to combine (default = 2)
 - *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings. 
 - *Changed* Make Secret Party Test to **Make Secret Group Test**, using group selection functionality and new Group Test user interface. 
   - Updated Macro Toolbox to reflect change in macro name. 
