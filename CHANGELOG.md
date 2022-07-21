@@ -42,10 +42,6 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* various references to use localization keys for skills, talents and status provided by WFRP4e system. [[#110](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/110)]
   - Feature: Token Hud Extension
   - Macros: Send Dark Whispers, Reset Fortune, Set Token Vision and Light
-- *Changed* Make Secret Party Test to **Make Secret Group Test**, using group selection functionality. 
-  - GMs can now choose to roll tests for any non-User group type (including "party", "tokens", "adversaries", with or without active, present and interaction filters). 
-  - Vehicles are filtered out of group constituents. 
-  - Updated Macro Toolbox to reflect change in macro name. 
 - *Fixed* issue where Assistant GMs could not make secret (party) group tests.
 - *Added* **Group Test** user interface, functionality and module settings [[#63](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/63)]
   - Support for non-party targets: 
@@ -59,6 +55,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Automatically pre-select targets based on tokens selected in scene.
     - If no token is selected, all player group tokens are pre-selected for test. 
     - Otherwise, only selected player and non-player tokens are pre-selected. 
+    - Vehicles are filtered out of token selections. 
   - Hint prompt to add Specialisation if an undefined grouped skill is selected.
   - Removed support for setting SL Bonus or Success Bonus for tests.
   - Optionally step-adjust difficulty of Advanced Skill tests where an actor does not have the required skill, and when falling back to a characteristic test.
@@ -70,7 +67,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
     - Individual test results (actor, SL, outcome and description, roll, target)
     - Successful actors are visually indicated with a checkmark
     - The characteristic tested is appended to a result line if the actor does not have the Advanced Skill and the Fallback option is in play
-  - *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings. 
+- *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings. 
+- *Changed* Make Secret Party Test to **Make Secret Group Test**, using group selection functionality and new Group Test user interface. 
+  - Updated Macro Toolbox to reflect change in macro name. 
 
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
