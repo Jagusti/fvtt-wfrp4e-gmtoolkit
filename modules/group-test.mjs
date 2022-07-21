@@ -53,7 +53,9 @@ async function sendAggregateGroupTestResults(testSkill, testOptions) {
   let testParameters = `${game.i18n.localize("Difficulty")}: ${game.wfrp4e.config.difficultyLabels[testOptions.difficulty]}\n` +
     `${game.i18n.localize("Modifier")}: ${testOptions.testModifier}\n` +
     `${game.i18n.localize("GMTOOLKIT.Settings.GroupTest.bypassTestDialog.name")}: ${testOptions.bypass}\n` +
-    `${game.i18n.localize("GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name")}: ${testOptions.fallback}` 
+    `${game.i18n.localize("GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name")}: ${testOptions.fallback}\n` + 
+    `${game.i18n.localize("DIALOG.DifficultyStep")}: ${game.settings.get("wfrp4e-gm-toolkit", "fallbackAdjustDifficulty")}\n` 
+
   let groupTestResultsMessage = `<h3><abbr title="${testParameters}">Group Test:</abbr> <strong>${testSkill}</strong></h3>`
   let actorTestResultMessage = ""
 
