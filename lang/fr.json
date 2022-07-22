@@ -225,7 +225,9 @@
     "GMTOOLKIT.Message.DarkWhispers.Accept" : "Obéir au Murmure",
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "Ignorer les Dieux Noirs",
     "GMTOOLKIT.Message.DarkWhispers.Accepted" : "<p>{currentUser} succombe aux Sombres murmures.</p>",
-    "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser} rejette l'offre des Dieux Noirs.</p>",
+    "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser} spurns the offer of the Dark Gods.</p>", 
+
+    "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound" : "Wait for the end of a combat round before processing condition checks.",
     
     "GMTOOLKIT.Settings.DarkWhispers.message.name" : "Modèle de message des Sombres murmures",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "Choisissez le ton des Sombres murmures correspondant à votre partie.",
@@ -249,6 +251,7 @@
     "GMTOOLKIT.Macro.Simplyd100": "Simply d100",
     "GMTOOLKIT.Macro.GMToolbox": "GM Toolbox",
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Toggle Compendium Pack Visibility",
+    "GMTOOLKIT.Macro.CheckConditions": "Check Conditions",
     
     "GMTOOLKIT.Table.DarkWhispers": "Dark Whispers",
 

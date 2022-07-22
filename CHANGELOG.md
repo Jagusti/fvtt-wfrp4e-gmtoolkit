@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
 - *Fixed* an issue where Token Hud Extension would not display even if enabled in module settings.
 - *Added* Japanese translations for changes up to 0.9.4. (Thanks @Yasnen!)
+- *Added* new macro to **Check Conditions** at the end of a combat round for tokens in the scene. (Thanks to @Totalgit for the inspiration.)
 
 ## [Version 0.9.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4)  (2022-07-22)
 Advantage

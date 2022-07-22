@@ -226,6 +226,8 @@
     "GMTOOLKIT.Message.DarkWhispers.Reject" : "Deny the Dark Gods", 
     "GMTOOLKIT.Message.DarkWhispers.Accepted" : "<p>{currentUser} succumbs to the Dark Whispers.</p>", 
     "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser} spurns the offer of the Dark Gods.</p>", 
+
+    "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound" : "Wait for the end of a combat round before processing condition checks.",
     
     "GMTOOLKIT.Settings.DarkWhispers.message.name" : "Dark Whispers message template",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "Choose the tone of Dark Whisper to suit your game.", 
@@ -249,6 +251,7 @@
     "GMTOOLKIT.Macro.Simplyd100": "Simply d100",
     "GMTOOLKIT.Macro.GMToolbox": "GM Toolbox",
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Toggle Compendium Pack Visibility",
+    "GMTOOLKIT.Macro.CheckConditions": "Check Conditions",
     
     "GMTOOLKIT.Table.DarkWhispers": "Dark Whispers",
 

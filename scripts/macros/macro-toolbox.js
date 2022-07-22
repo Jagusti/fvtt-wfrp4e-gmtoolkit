@@ -3,7 +3,8 @@
     const macros = [
         "Add Advantage",
         "Clear Advantage",
-        "Reduce Advantage", 
+        "Reduce Advantage",
+        "Check Conditions",
         "Session Turnover",
         "Add XP",
         "Reset Fortune",
@@ -36,8 +37,8 @@
   
 /* ==========
 * MACRO: GM Toolbox
-* VERSION: 0.9.4
-* UPDATED: 2022-07-06
+* VERSION: 0.9.4-1
+* UPDATED: 2022-07-22
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
