@@ -181,13 +181,13 @@ export default class TokenHudExtension {
             let corruption = actorStatus.corruption.value
             let maxCorruption = actorStatus.corruption.max 
             let sin = actorStatus.sin.value
-            let perception = actor.items.find(i => i.data.name === game.i18n.localize("Perception")  ).data.data.advances.value + actorCharacteristics.i.value
-            let intuition = actor.items.find(i => i.data.name === game.i18n.localize("Intuition") ).data.data.advances.value + actorCharacteristics.i.value
+            let perception = actor.items.find(i => i.data.name === game.i18n.localize("NAME.Perception")  ).data.data.advances.value + actorCharacteristics.i.value
+            let intuition = actor.items.find(i => i.data.name === game.i18n.localize("NAME.Intuition") ).data.data.advances.value + actorCharacteristics.i.value
 
             let TooltipFortune = `${game.i18n.localize("Fortune")}: ${fortune}; ${game.i18n.localize("Fate")}: ${fate}`
             let TooltipResolve = `${game.i18n.localize("Resolve")}: ${resolve}; ${game.i18n.localize("Resilience")}: ${resilience}`
             let TooltipCorruption = `${game.i18n.localize("Corruption")}: ${corruption} / ${maxCorruption}; ${game.i18n.localize("Sin")}: ${sin}`
-            let TooltipPerception = `${game.i18n.localize("Perception")}: ${perception}; ${game.i18n.localize("Intuition")}: ${intuition}`
+            let TooltipPerception = `${game.i18n.localize("NAME.Perception")}: ${perception}; ${game.i18n.localize("NAME.Intuition")}: ${intuition}`
 
             let divTokenHudExt = '<div class="tokenhudext left">';
             
@@ -424,4 +424,3 @@ export default class TokenHudExtension {
     }
 
 }
-
