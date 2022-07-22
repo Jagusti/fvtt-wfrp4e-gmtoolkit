@@ -5,76 +5,36 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
-- *Fixed* Advantage updates when an opposed roll is resolved by a player that does not have owner permission on the opposing actor or token. [[#105](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/105)]
-- *Added* error notification on startup if there are players that do not have characters assigned. [#102](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/102)
-  - Notice of these 'Spectators' can be suppressed by selecting the 'Suppress Spectator Notification' option in module settings.
-  - A console message identifies Specators, even if the notification message is suppressed.
-  - More details can be found by clicking on the Spectators link in the notification, which directs to the wiki.
-- *Added* compatibility with Group Advantage implementation. 
-  - Removed user notifications reporting individual Advantage changes. Reasons for change (such as "PC outmanoeuvred NPC") are still shown, though may linger longer than Group Advantage messages if they are set to persist.
-  - The following options are ignored, as if they are disabled, when Group Advantage is being used:
-    - Suffering a condition 
-    - Losing momentum (individual momentum is not applied if Group Advantage is used)
-    - Adding to combat (if Group Advantage is used, the system handles syncing individual advantage with the group)
-  - Only Advantage gains from Opposed Tests and Outmanouevring are applied (losers do not lose Advantage automatically when Group Advantage is used).
-  - Advantage gain is not flagged when a combatant charges. 
-- Updated styles:
-  - *Added* styling override for Developer Mode module to prevent chat ID obscuring unopposed test button.
-  - *Removed* obsolete styling overrides for macro sheet and form areas.
-  - *Added* override to increase condition status icons by 50% in token hud.
-- *Fixed* an issue with the **Add XP** macro, where it would fail for a character with 0 XP, who had also never previously had XP. 
-- *Added* standard utility for group selection, to be used for setting defaults in macros and other functionality, returning an array of users, actors, tokens or combatants. [[#61](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/61)
-  - Group selection can be optionally filtered by 
-    - `active` status of player user (whether logged in or logged out), if assigned to an actor in the group results. 
-    - `present` status of player user or actor (whether they are viewing or have a token in the current viewed scene). 
-    - `interaction` status, ie, whether token is "targeted" or "selected". 
-  - Actors that are not assigned to players (eg, NPCs) are removed from `active` filtered results, but will appear in unfiltered results if appropriate.
-  - Tokens and combatants are always considered `present` on a given scene.
-  - The functionality can be accessed in macros and functions with `game.gmtoolkit.utility.getGroup(groupType, {options})`. 
-- *Changed* **Add XP** and **Reset Fortune** macros to use group selection. Default "party" selection enforces that a character must be assigned to a player. 
-- *Changed* **Send Dark Whispers** macro to use group selection, enabling selection by actor rather than player. 
-  - Default "party" selection enforces that a character must be assigned to a player. [[#58](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/58)]
-  - *Added* an option to send a dark whisper to each player owner rather than just the assigned player. 
-  - Hovering over the character name lists all player owners as well as the assigned player. 
-- *Removed* the module setting to define default targets for Dark Whispers. 
-  - Instead, all party members are listed in the Send Dark Whispers dialog.  
-  - Any eligible actor tokens that are targeted in the scene are pre-checked.
-- *Changed* various references to use localization keys for skills, talents and status provided by WFRP4e system. [[#110](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/110)]
-  - Feature: Token Hud Extension
-  - Macros: Send Dark Whispers, Reset Fortune, Set Token Vision and Light
-- *Fixed* issue where Assistant GMs could not make secret (party) group tests.
-- *Added* **Group Test** user interface, functionality and module settings [[#63](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/63)]
-  - Support for non-party targets: 
-    - non-assigned player owned characters (eg, henchmen and hirelings).
-    - non-player tokens in a scene.
-  - Support 4 Quick Test options, based on skills in active compendiums.
-  - Support additional default custom skill (with or without specialisation).
-  - Support overriding default test parameters (rollmode, fallback, modifier).
-  - Support for setting group test difficulty in addition to test modifier.
-  - Support choice of party (player-assigned characters) or company (non-vehicle player-owned actors) as default player group.
-  - Automatically pre-select targets based on tokens selected in scene.
-    - If no token is selected, all player group tokens are pre-selected for test. 
-    - Otherwise, only selected player and non-player tokens are pre-selected. 
-    - Vehicles are filtered out of token selections. 
-  - Hint prompt to add Specialisation if an undefined grouped skill is selected.
-  - Removed support for setting SL Bonus or Success Bonus for tests.
-  - Optionally step-adjust difficulty of Advanced Skill tests where an actor does not have the required skill, and when falling back to a characteristic test.
-    - The number of Difficulty steps to apply is set in a new Group Test module setting 'Step Adjust Difficulty on Fallback'.
-    - If set to 0, no adjustment is made. 
-    - If a step-adjustment is set, then the difficulty set in the group test is ignored for those actors where a fallback characteristic test is applied. The defulat system difficulty is used as the basis for adjustment.
-  - Group Test results are reported in a single GM whisper message to complement individual test cards. The message summarises:
-    - Skill and test parameters (difficulty, modifier, fallback, bypass)
-    - Individual test results (actor, SL, outcome and description, roll, target)
-    - Successful actors are visually indicated with a checkmark
-    - The characteristic tested is appended to a result line if the actor does not have the Advanced Skill and the Fallback option is in play
-  - The `Summarise Group Test Results Threshold` option can be set to determine whether to show summary results messages in chat: 
-    - 0-: never
-    - 1: always
-    - 2+: only if there are this many test results to combine (default = 2)
-- *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings. 
-- *Changed* Make Secret Party Test to **Make Secret Group Test**, using group selection functionality and new Group Test user interface. 
-  - Updated Macro Toolbox to reflect change in macro name. 
 
+## [Version 0.9.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4)  (2022-07-22)
+Advantage
+- *Fixed* Advantage updates when an opposed roll is resolved by a player that does not have owner permission on the opposing actor or token. [[#105](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/105)] [[#108](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/108)] [[#109](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/109)]
+- *Added* compatibility with Group Advantage implementation. [[#113](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/113)]
+
+Group and Player Management
+- *Added* error notification on startup if there are players that do not have characters assigned (spectators). [[#102](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/102)]
+- *Added* group selection utility for consistency when setting defaults in macros and other functionality. The utilty returns an array of users, actors, tokens or combatants, and can be filtered by user logged-in status, scene presence, and whether targeted or selected as a token.  [[#61](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/61)]
+
+Group Tests
+- *Fixed* issue where Assistant GMs could not make secret (party) group tests. [[#124](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/124)]
+- *Added* **Group Test** user interface, functionality and module settings, supporting non-player characters, storing  default test parameters and improving user experience. [[#63](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/63)] [[#125](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/125)]
+- *Added* option to step-adjust difficulty of Advanced Skill tests where an actor does not have the required skill, and when falling back to a characteristic test. [[#127](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/127)]
+- *Added* optional summary of Group Test results that are reported in a single GM whisper message to complement individual test cards. [[#128](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/128)]
+- *Changed* Make Secret Party Test macro to **Make Secret Group Test**, overhauling to use group selection functionality and new Group Test user interface. [[#129](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/129)]
+- *Added* support for silent group tests. These bypass the group test user interface and use default test parameters as defined in module settings.  [[#129](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/129)]
+- *Changed* Macro Toolbox to reflect changes to Make Secret Group Test macro name. 
+
+Macros
+- *Fixed* an issue with the **Add XP** macro, where it would fail for a character with 0 XP, who had also never previously had XP.  [[#106](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/106)] [[#114](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/114)]  [[#115](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/115)]
+- *Changed* **Add XP**, **Reset Fortune** and **Send Dark Whispers** macros to use group selection utility. Default "party" selection enforces that a character *must* be assigned to a player. [[#119](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/119)] [[#120](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/120)] [[#121](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/121)]
+- *Changed* **Send Dark Whispers** macro to enable selection by actor rather than player. [[#58](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/58)]
+- *Added* an option to send a Dark Whisper to each player owner rather than just the assigned player. Hovering over the character name lists all player owners as well as the assigned player. [[#121](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/121)]
+- *Removed* the module setting to define default targets for Dark Whispers, in favour of automatic pre-selection based on selected tokens. [[#121](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/121)]
+- *Changed* Make Secret Party Test macro to **Make Secret Group Test**, overhauling to use group selection functionality and new Group Test user interface. [[#129](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/129)]
+
+Other
+- *Added* style overrides to improve presentation for Developer Mode module , macro sheet and form areas, as well as increase condition status icons by 50% in token hud.  [[38492d4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/38492d40e8ddc9b91630d9d9387a661f8899b965)] [[4018d2b](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/38492d40e8ddc9b91630d9d9387a661f8899b965)]
+- *Changed* various references to use localization keys for skills, talents and status provided by WFRP4e system. [[#110](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/110)]
 ## [Version 0.9.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.3)  (2022-05-25)
 - *Fixed* missing Token Hud Extension options for players who don't have access to configure tokens. The layout of Token Hud Extensions has been reorganised as a result of this change. [[#67](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/67)]
 - *Changed* Advantage automation to represent Outmanoeuvring (WFRP p164). 
