@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones). 
+- *Fixed* an issue where Token Hud Extension would not display even if enabled in module settings.
 
 ## [Version 0.9.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4)  (2022-07-22)
 Advantage

@@ -13,7 +13,7 @@ import Advantage from "./modules/advantage.mjs";
 import { runSilentGroupTest, runGroupTest } from "./modules/group-test.mjs"
 import { GroupTest } from "./apps/group-test.js"
 // import DarkWhispers from "./modules/dark-whispers.mjs";
-// import TokenHudExtension from "./modules/token-hud-extension.mjs";
+import TokenHudExtension from "./modules/token-hud-extension.mjs";
 
 // Import Helpers
 import * as GMToolkitUtility from "./modules/utility.mjs";
@@ -86,12 +86,10 @@ Hooks.on("ready", async () => {
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
-/**
- * Register module debug flag with Developer Mode custom hook
- */
- Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
-    registerPackageDebugFlag(GMToolkit.MODULE_ID);
-  });
+// Register module debug flag with Developer Mode custom hook
+Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
+  registerPackageDebugFlag(GMToolkit.MODULE_ID);
+});
 
 // Disable movement on holding scene
 Hooks.on("preUpdateToken", (token, change) => {
@@ -100,8 +98,12 @@ Hooks.on("preUpdateToken", (token, change) => {
 		if (change?.x) {change.x = token.data.x}
 		if (change?.y) {change.y = token.data.y}
 	}
-  }); 
+}); 
 
+// Display Token Hud Extension if enabled
+Hooks.on("renderTokenHUD", (app, html, data) => { 
+  if (game.settings.get(GMToolkit.MODULE_ID, "enableTokenHudExtensions")) TokenHudExtension.addTokenHudExtensions(app, html, data) 
+});
   
 /* -------------------------------------------- */
 /*  Socket Handlers                                 */
