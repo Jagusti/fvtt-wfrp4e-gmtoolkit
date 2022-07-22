@@ -9,10 +9,9 @@
 import GMToolkit from "./modules/gm-toolkit.mjs";
 import GMToolkitSettings from "./modules/gm-toolkit-settings.mjs";
 import Advantage from "./modules/advantage.mjs";
-// import { GroupTest } from "./apps/group-test.js"
 import { runSilentGroupTest, runGroupTest } from "./modules/group-test.mjs"
 import { GroupTest } from "./apps/group-test.js"
-// import DarkWhispers from "./modules/dark-whispers.mjs";
+import DarkWhispers from "./modules/dark-whispers.mjs";
 import TokenHudExtension from "./modules/token-hud-extension.mjs";
 
 // Import Helpers
