@@ -227,7 +227,7 @@
     "GMTOOLKIT.Message.DarkWhispers.Accepted" : "<p>{currentUser}は「暗黒のささやき」に屈した。</p>",
     "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser}は闇の神々からの取引を拒絶した。</p>",
 
-    "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound" : "Wait for the end of a combat round before processing condition checks.",
+    "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound" : "戦闘ラウンドの終了を待って、「状態のチェック」を実施してください。",
     
     "GMTOOLKIT.Settings.DarkWhispers.message.name" : "「暗黒のささやき」雛型",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "ゲームに合わせて「暗黒のささやき」の音色を選んでください。",
@@ -251,7 +251,7 @@
     "GMTOOLKIT.Macro.Simplyd100": "100面ダイス",
     "GMTOOLKIT.Macro.GMToolbox": "GM Toolbox",
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "百科事典の表示状態切替",
-    "GMTOOLKIT.Macro.CheckConditions": "Check Conditions",
+    "GMTOOLKIT.Macro.CheckConditions": "状態のチェック",
     
     "GMTOOLKIT.Table.DarkWhispers": "暗黒のささやき",
 
