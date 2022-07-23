@@ -179,6 +179,8 @@
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisationPlaceholder" : "Specialisation",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseTargets" : "Choose Targets",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.SetTestParameters" : "Set Test Parameters",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle" : "{skill} Test ({actor})",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback" : "{characteristic} Test for {skill} ({actor})",
 
     "GMTOOLKIT.Settings.GroupTest.menu.name" : "Group Test Settings",
     "GMTOOLKIT.Settings.GroupTest.menu.label" : "Configure Group Test Options",
