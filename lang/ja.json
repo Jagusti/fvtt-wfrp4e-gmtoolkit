@@ -2,7 +2,7 @@
     "GMTOOLKIT.Message.UnexpectedNoChange" : "予期せぬことが発生し、何も変更されませんでした。",
     "GMTOOLKIT.Message.NoChangeMade" : "変更なし。",
     
-    "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Spectators</a>: no character assigned to {spectators}.",
+    "GMTOOLKIT.Message.Spectators" : "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">観戦者</a>：{spectators}にはキャラクターが割り当てられていません。",
     "GMTOOLKIT.Settings.Spectators.name" : "観戦者通知の抑制",
     "GMTOOLKIT.Settings.Spectators.hint" : "プレイヤーにキャラクターが割り当てられていない時の通知を表示しない。本設定にかかわらず、起動時にコンソールには詳細が記録されます。",
 
@@ -255,9 +255,9 @@
     
     "GMTOOLKIT.Table.DarkWhispers": "暗黒のささやき",
 
-    "GMTOOLKIT.Group.Type.party" : "party",
-    "GMTOOLKIT.Group.Type.company" : "company",
-    "GMTOOLKIT.Group.Type.entourage" : "entourage",
+    "GMTOOLKIT.Group.Type.party" : "パーティ",
+    "GMTOOLKIT.Group.Type.company" : "仲間",
+    "GMTOOLKIT.Group.Type.entourage" : "取り巻き",
 
     "GMTOOLKIT.Dialog.Maintenance.Hint": "「GM Toolkit」マクロディレクトリやロール表フォルダの全てのマクロとロール表を削除し、最新の事典版をインポートする。<br><br>カスタマイズした内容は全て失われます。残しておく必要がある場合、先にGM Toolkitフォルダからそれらを移動してください。",
     "GMTOOLKIT.Dialog.Maintenance.Macros": "マクロ",
