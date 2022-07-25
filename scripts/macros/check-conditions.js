@@ -17,7 +17,7 @@ async function checkConditions () {
   
   for await (const tokenActor of tokens) {
     if (skipPCs && party.includes(tokenActor.actor)) continue 
-    testOptions.appendTitle = ` for ${tokenActor.actor.name}`
+    testOptions.appendTitle = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.For",  {name: tokenActor.actor.name})
 
     for await (cond of tokenActor.actor.conditions) {
       await processConditionTest(tokenActor, testOptions, cond.conditionId, removedConditions)
@@ -65,11 +65,11 @@ async function checkConditions () {
         skill = game.gmtoolkit.utility.hasSkill(tokenActor.actor, game.i18n.localize("NAME.Endurance"), "silent");
         // setup test data
         if (skill !== undefined) {   // prefer Endurance test
-          testOptions.title = `${title} Test (${game.i18n.localize("NAME.Endurance")})`;
+          testOptions.title = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.Skill", {title: title, skill: game.i18n.localize("NAME.Endurance")});
           setupData = await tokenActor.actor.setupSkill(skill, testOptions)
         } 
         if (skill === undefined) {  // fallback to Toughness if no Endurance skill
-          testOptions.title = `${title} Test (${game.i18n.localize("CHAR.T")})`;
+          testOptions.title = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.Fallback", {title: title, char: game.i18n.localize("CHAR.T")});
           setupData = await tokenActor.actor.setupCharacteristic("t", testOptions) 
         }
         // process test
@@ -79,11 +79,11 @@ async function checkConditions () {
         skill = game.gmtoolkit.utility.hasSkill(tokenActor.actor, game.i18n.localize("NAME.Cool"), "silent");
         // setup test data
         if (skill !== undefined) {   // prefer Cool test
-          testOptions.title = `${title} Test (${game.i18n.localize("NAME.Cool")})`;
+          testOptions.title = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.Skill", {title: title, skill: game.i18n.localize("NAME.Cool")});
           setupData = await tokenActor.actor.setupSkill(skill, testOptions)
         } 
         if (skill === undefined) {  // fallback to Willpower if no Cool skill
-          testOptions.title = `${title} Test (${game.i18n.localize("CHAR.WP")})`;
+          testOptions.title = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.Fallback", {title: title, char: game.i18n.localize("CHAR.WP")});
           setupData = await tokenActor.actor.setupCharacteristic("t", testOptions) 
         }
         // process test
@@ -116,8 +116,8 @@ async function checkConditions () {
 
 /* ==========
 * MACRO: Check Conditions
-* VERSION: 0.9.4-1
-* UPDATED: 2022-07-22
+* VERSION: 0.9.4.2
+* UPDATED: 2022-07-25
 * DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters. 
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat. 

@@ -62,7 +62,7 @@ async function sendAggregateGroupTestResults(testSkill, testOptions) {
     `${game.i18n.localize("GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name")}: ${testOptions.fallback}\n` + 
     `${game.i18n.localize("DIALOG.DifficultyStep")}: ${game.settings.get("wfrp4e-gm-toolkit", "fallbackAdjustDifficulty")}\n` 
 
-  let groupTestResultsMessage = `<h3><abbr title="${testParameters}">Group Test:</abbr> <strong>${testSkill}</strong></h3>`
+  let groupTestResultsMessage = `<h3><abbr title="${testParameters}">${game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleSummary")}</abbr><strong>${testSkill}</strong></h3>`
   let actorTestResultMessage = ""
 
   for (let testResult of groupTestResults) {
@@ -96,7 +96,7 @@ async function runActorTest(actor, testSkill, testOptions) {
       testModifier: testOptions.testModifier,
       rollMode: testOptions.rollMode,
       absolute: {difficulty: testOptions.difficulty},
-      title : `${actorSkill.name} Test (${actor.name})`,
+      title : game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle", {skill: actorSkill.name, actor: actor.name}),
       groupTest: true
     })
     return actor.basicTest(setupData);
@@ -117,7 +117,7 @@ async function runActorTest(actor, testSkill, testOptions) {
         bypass: testOptions.bypass, 
         testModifier: testOptions.testModifier, 
         rollMode: testOptions.rollMode,
-        title : `${skillCharacteristic} Test for ${actorSkill.name} (${actor.name})`,
+        title : game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback", {characteristic: skillCharacteristic, skill: actorSkill.name, actor: actor.name}),
         groupTest: true
       }, difficultySetting))
       return actor.basicTest(setupData);
