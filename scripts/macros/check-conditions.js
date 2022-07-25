@@ -116,8 +116,8 @@ async function checkConditions () {
 
 /* ==========
 * MACRO: Check Conditions
-* VERSION: 0.9.4-1
-* UPDATED: 2022-07-22
+* VERSION: 0.9.4.2
+* UPDATED: 2022-07-25
 * DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters. 
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat. 

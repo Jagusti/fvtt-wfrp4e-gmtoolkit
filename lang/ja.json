@@ -179,6 +179,9 @@
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisationPlaceholder" : "専門分野",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseTargets" : "目標の選択",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.SetTestParameters" : "テストのオプション設定",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle" : "{skill} Test ({actor})",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback" : "{characteristic} Test for {skill} ({actor})",
+    "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleSummary" : "Group Test: ",
 
     "GMTOOLKIT.Settings.GroupTest.menu.name" : "グループテスト設定",
     "GMTOOLKIT.Settings.GroupTest.menu.label" : "グループテストのオプションを設定する",
@@ -228,6 +231,9 @@
     "GMTOOLKIT.Message.DarkWhispers.Rejected" : "<p>{currentUser}は闇の神々からの取引を拒絶した。</p>",
 
     "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound" : "戦闘ラウンドの終了を待って、「状態のチェック」を実施してください。",
+    "GMTOOLKIT.Dialog.CheckConditions.For" : " for {name}",
+    "GMTOOLKIT.Dialog.CheckConditions.Skill" : "{title} Test ({skill})",
+    "GMTOOLKIT.Dialog.CheckConditions.Fallback" : "{title} Test ({char})",
     
     "GMTOOLKIT.Settings.DarkWhispers.message.name" : "「暗黒のささやき」雛型",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "ゲームに合わせて「暗黒のささやき」の音色を選んでください。",

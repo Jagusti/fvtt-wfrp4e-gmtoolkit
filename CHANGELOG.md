@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Added* localization improvements for Condition Check and Secret Group Test macros
 
 ## [Version 0.9.4-1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4-1)  (2022-07-23)
 - *Fixed* an issue where the Token Hud Extension would not display, even if enabled in module settings. [[#132](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/132)] 
