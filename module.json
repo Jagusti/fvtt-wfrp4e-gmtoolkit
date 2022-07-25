@@ -50,6 +50,11 @@
 			"lang": "ja",
 			"name": "Japanese",
 			"path": "lang/ja.json"
+		},
+		{
+			"lang": "de",
+			"name": "German",
+			"path": "lang/de.json"
 		}
 	],
 	"socket": "true",
