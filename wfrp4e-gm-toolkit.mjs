@@ -7,7 +7,7 @@
 
 // Import Modules
 import GMToolkit from "./modules/gm-toolkit.mjs";
-import GMToolkitSettings from "./modules/gm-toolkit-settings.mjs";
+import { GMToolkitSettings, registerGroupTestSettings } from "./modules/gm-toolkit-settings.mjs";
 import Advantage from "./modules/advantage.mjs";
 import { runSilentGroupTest, runGroupTest } from "./modules/group-test.mjs"
 import { GroupTest } from "./apps/group-test.js"
@@ -50,7 +50,12 @@ Hooks.once("init", function () {
 
 Hooks.once("ready", async function () {
   // Preload skills, used for Group Test settings registration
-  game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
+  if (!game.babele || game.babele.initialized) {
+    GMToolkit.log(false, "Building skills as Babele is not active or is initialized")
+    game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
+  } else {
+    GMToolkit.log(false, "Deferring skill list build until Babele is initialized.")
+  }
 
   // Register module settings
   await GMToolkitSettings.register();
@@ -102,6 +107,16 @@ Hooks.on("preUpdateToken", (token, change) => {
 // Display Token Hud Extension if enabled
 Hooks.on("renderTokenHUD", (app, html, data) => { 
   if (game.settings.get(GMToolkit.MODULE_ID, "enableTokenHudExtensions")) TokenHudExtension.addTokenHudExtensions(app, html, data) 
+});
+
+// If Babele is installed, wait until it completed initialisation and then compile localized skills list used for Group Tests
+Hooks.once("babele.ready", async function () {
+  // Preload skills, used for Group Test settings registration
+  if (!game.babele || game.babele.initialized) {
+    console.log("Building skills now Babele is ready")
+    game.gmtoolkit.skills = await GMToolkitUtility.compileItems(["skill"])
+    registerGroupTestSettings() 
+  }
 });
   
 /* -------------------------------------------- */
