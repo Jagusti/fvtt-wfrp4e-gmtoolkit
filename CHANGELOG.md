@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-- *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!)
-- *Added* German localization. (Thanks 24Nomad!)
+
+## [Version 0.9.4.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.2)  (2022-07-29)
+- *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!) [[#141](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/141)] 
+- *Added* German localization. (Thanks 24Nomad!) [[#143](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/143)] 
+- *Fixed* compatibilty issue with Babele. [[#135](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/135)] [[#146](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/146)] 
 
 ## [Version 0.9.4-1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4-1)  (2022-07-23)
 - *Fixed* an issue where the Token Hud Extension would not display, even if enabled in module settings. [[#132](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/132)] 
@@ -14,7 +17,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* Japanese translations for changes up to 0.9.4-1. (Thanks @Yasnen!) [[#134](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/134)] [[#137](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/137)] [[0f620b0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/0f620b06daf902e0c52bcec03f968ffabed3d6a9)]
 - *Added* new macro to **Check Conditions** at the end of a combat round for tokens in the scene. (Thanks to @Totalgit for the inspiration.) [[#138](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/138)]
 
-Known Issue: The Group Test skill list entries are not translated. In some cases this appears to affect Babel translation of compendium skill items. [#135](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/135)
+~~Known Issue: The Group Test skill list entries are not translated. In some cases this appears to affect Babel translation of compendium skill items. [#135](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/135)~~ Resolved in Version 0.9.4.2. 
 
 ## [Version 0.9.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4)  (2022-07-22)
 Advantage
