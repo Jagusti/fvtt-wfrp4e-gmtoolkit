@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Fixed* issue where players would see permission errors during advantage updates on other users' actors.
 
 ## [Version 0.9.4.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.2)  (2022-07-29)
 - *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!) [[#141](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/141)] 

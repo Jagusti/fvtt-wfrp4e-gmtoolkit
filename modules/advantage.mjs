@@ -408,6 +408,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
     
     // Exit if not using condition automation, or if Group Advantage is in play
     if ((!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) || (game.settings.get("wfrp4e", "useGroupAdvantage"))) return 
+    if ((!game.user.isUniqueGM)) return 
 
     if (!conditionEffect.isCondition) return 
     let condId = conditionEffect.conditionId
@@ -434,7 +435,7 @@ Hooks.on("createActiveEffect", async function(conditionEffect) {
 Hooks.on("createCombatant", function(combatant) {    
     // ADDING TO COMBAT: clear token Advantange only if enabled, and Group Advantage is not being used. 
     // If Group Advantage is used, the system handles syncing individual advantage with the group
-    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin") && !(game.settings.get("wfrp4e", "useGroupAdvantage"))) {
+    if (game.user.isUniqueGM && game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatJoin") && !(game.settings.get("wfrp4e", "useGroupAdvantage"))) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.update(token, "clear", "createCombatant");
         Advantage.unsetFlags([combatant])
@@ -442,7 +443,7 @@ Hooks.on("createCombatant", function(combatant) {
 });
 
 Hooks.on("deleteCombatant", function(combatant) {
-    if (game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
+    if (game.user.isUniqueGM && game.settings.get(GMToolkit.MODULE_ID, "clearAdvantageCombatLeave")) {
         let token = canvas.tokens.placeables.filter(a => a.data._id == combatant.data.tokenId)[0]
         Advantage.update(token, "clear", "deleteCombatant");
         Advantage.unsetFlags([combatant], true)
