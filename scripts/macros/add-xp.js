@@ -6,10 +6,10 @@ async function addXP() {
  let awardees = []
  if (game.user.targets.size < 1) {
    // (1) all assigned player characters 
-    awardees = game.gmtoolkit.utility.getGroup("party") 
+    awardees = game.gmtoolkit.utility.getGroup(game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest")).filter(g => g.type === "character")
   } else {
     // (2) all targeted tokens of awardee selection
-    awardees = game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"})
+    awardees = game.gmtoolkit.utility.getGroup( game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest"), {interaction : "targeted"}).filter(g => g.type === "character")
   }
    
   // setup: exit with notice if there are no player-assigned characters
@@ -100,10 +100,10 @@ function updateXP(awardees, XP, reason) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 0.9.4
- * UPDATED: 2022-07-03
+ * VERSION: 0.9.4.3
+ * UPDATED: 2022-07-31
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the chat log.
- * TIP: Characters must have a player assigned. 
+ * TIP: Characters must have a player assigned (if default group is 'party') or be player-owned (if default group is 'company'). 
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
  * TIP: Non-whole numbers are rounded off. Negative numbers are subtracted. 
  ========== */
