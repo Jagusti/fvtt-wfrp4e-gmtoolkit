@@ -2,7 +2,7 @@ resetFortune();
 
 function resetFortune() {
 // setup: exit with notice if there are no player-owned characters
-	let party = game.gmtoolkit.utility.getGroup("party")
+	let party = game.gmtoolkit.utility.getGroup(game.settings.get(game.gmtoolkit.module.MODULE_ID,"defaultPartySessionTurnover")).filter(g => g.type === "character")
 	if (party.length === 0) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.ResetFortune.NoPlayerCharacters")); 
 	let chatContent = ""
 
@@ -41,8 +41,8 @@ function getMaxFortune(target) {
 
 /* ==========
  * MACRO: Reset Fortune
- * VERSION: 0.9.4
- * UPDATED: 2022-07-04
+ * VERSION: 0.9.4.3
+ * UPDATED: 2022-07-31
  * DESCRIPTION: Restores Fortune to the Fate level of player character(s). Applies any Luck talent bonus.
- * TIP: Characters must have a player assigned. 
+ * TIP: Characters must be player assigned (if group setting is 'party') or player owned (if group setting is 'company'). 
  ========== */

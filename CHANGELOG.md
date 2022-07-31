@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* issue where players would see permission errors during advantage updates on other users' actors. [#150](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/150) 
-- *Added* new option to set 'party' (player-assigned) or 'company' (player-owned) actors as default group type for Session Turnover macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
+- *Added* new option to set 'party' (player-assigned: default) or 'company' (player-owned) actors as default group type for Session Turnover macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
+  - The Reset Fortune macro uses the Session Turnover Default Group Selection option. 
+  - Actors who are not character type, but are player-owned (ie, NPC, vehicle and creature type actors) are ignored whe processing session turnover. macros
 
 ## [Version 0.9.4.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.2)  (2022-07-29)
 - *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!) [[#141](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/141)] 
