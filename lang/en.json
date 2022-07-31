@@ -152,6 +152,8 @@
     "GMTOOLKIT.Settings.SessionTurnover.SessionID.hint" : "Replaces %session% variable in Add XP default reason. Whole numbers are automatically incremented when running the Session Turnover routine. Alternatively, manually set a more descriptive phrase (eg, \"Episode 2.3\", \"Ritual Climax\", etc).",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.name" : "Holding Scene",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint" : "Name of scene to automatically transition to between sessions. Activated through Session Turnover routine. Leave blank to not change scenes. Can be used for landing pages and campaign hubs.",
+    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.name" : "Default Group Selection",
+    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to also include player-owned characters (such as hirelings, henchmen and familiars).",
     
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title" : "Update Session ID",
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.CurrentSession" : "Current session ID is {thisSession}.",
