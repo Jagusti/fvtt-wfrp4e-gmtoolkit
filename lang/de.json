@@ -152,6 +152,8 @@
     "GMTOOLKIT.Settings.SessionTurnover.SessionID.hint" : "Ersetzt die Variable %session% in Add XP default reason. Ganze Zahlen werden automatisch hochgezählt, wenn das Makro 'Ende der Sitzung' ausgeführt wird. Alternativ können Sie auch manuell eine aussagekräftigere Formulierung eingeben (eg, \"Episode 2.3\", \"Ritual Climax\", etc).",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.name" : "Startszene",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint" : "Name der Szene, zu der automatisch zwischen den Sitzungen gewechselt werden soll. Wird durch die Sitzungsübergabe-Routine aktiviert. Leer lassen, um Szenen nicht zu ändern. Kann für Informationsseiten und Kampagnen-Übersicht verwendet werden.",
+    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.name" : "Default Group Selection",
+    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to also include player-owned characters (such as hirelings, henchmen and familiars).",
     
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title" : "Sitzungs-ID aktualisieren",
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.CurrentSession" : "Die aktuelle Sitzungs-ID lautet {thisSession}.",

@@ -120,6 +120,19 @@ export class GMToolkitSettings {
       type: String,
       feature: "session"
     });
+    game.settings.register(GMToolkit.MODULE_ID, "defaultPartySessionTurnover", {
+      name: "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.name",
+      hint: "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint",
+      scope: "world",
+      config: false,
+      default: "party",
+      type: String,
+      choices: {
+        party: "GMTOOLKIT.Group.Type.party",
+        company: "GMTOOLKIT.Group.Type.company"
+      },
+      feature: "session"
+    });
     game.settings.register(GMToolkit.MODULE_ID, "addXPPrompt", {
       name: "GMTOOLKIT.Settings.AddXP.Prompt.name",
       hint: "GMTOOLKIT.Settings.AddXP.Prompt.hint",
