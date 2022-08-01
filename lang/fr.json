@@ -37,6 +37,8 @@
 
     "GMTOOLKIT.Dialog.Apply" : "Appliquer les changements",
     "GMTOOLKIT.Dialog.Cancel" : "Annuler",
+    "GMTOOLKIT.Dialog.None" : "None",
+    "GMTOOLKIT.Dialog.NotAssigned" : "Not Assigned",
 
     "GMTOOLKIT.Token.Select": "Veuillez selectionner 1 ou 2 Pions.",
     "GMTOOLKIT.Token.SingleSelect": "Veuillez sélectioner 1 Pion seulement.",
@@ -241,6 +243,8 @@
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "Choisissez le ton des Sombres murmures correspondant à votre partie.",
     "GMTOOLKIT.Settings.DarkWhispers.message.taunt" : "<p><strong>Les Dieux Noirs peuvent voir que vous êtes troublé.</strong></p><p><em>Contre une petite faveur, ils peuvent vous soulager d'1 point de Corruption.</em></p><blockquote>{message}</blockquote><p>Quel mal cela pourrait-il faire ? Acceptez cette offre et éloignez-vous de l'abîme chaotique.</p>",
     "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>De Sombres murmures persistent dans vos oreilles... </strong></p><p><em>Ne révélez d'aucune manière que vous avez reçu ce message.</em></p><blockquote>{message}</blockquote><p>Si vous faites tel qu'il vous a été enjoint de faire, votre total de points de Corruption sera réduit de 1.</p>",
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.name" : "Default Group Selection",
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to also include player-owned characters (such as hirelings, henchmen and familiars). Individual characters can be de-selected in the Group Test dialog.", 
     "GMTOOLKIT.Notification.NoActor" : "Aucune Personnage n'est sélectionné ou n'est associé à {currentuser}.",
     "GMTOOLKIT.Notification.UserMustBePlayer" : "Seuls les Personnages Joueurs peuvent {action}.",
     
