@@ -5,13 +5,15 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 0.9.4.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.3)  (2022-08-01)
 - *Fixed* issue where players would see permission errors during advantage updates on other users' actors. [#150](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/150) 
-- *Added* new option to set 'party' (player-assigned: default) or 'company' (player-owned) actors as default group type for Session Turnover macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
-  - The Reset Fortune and Add XP macros use the Session Turnover Default Group Selection option. 
+- *Added* new option to set `party` (player-assigned: default) or `company` (player-owned) actors as default group type for **Session Turnover** macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
+  - The **Reset Fortune** and **Add XP** macros use the Session Turnover Default Group Selection option. 
   - Actors who are not character type, but are player-owned (ie, NPC, vehicle and creature type actors) are ignored whe processing Session Turnover macros.
-- *Added* new option to set 'party' (player-assigned: default) or 'company' (player-owned) actors as default group type for Dark Whispers macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
-  - When using 'company' as the default group, it is possible to select unassigned players. In this case, no whisper is sent unless the 'Send to player owners' option is selected in the Send Dark Whispers dialog.
-- *Added* new localisation keys to support additional dialog and settings options for default group selections. #151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
+- *Added* new option to set `party` (player-assigned: default) or `company` (player-owned) actors as default group type for **Send Dark Whispers** macros. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
+  - When using `company` as the default group, it is possible to select unassigned players. In this case, no whisper is sent unless the 'Send to player owners' option is selected in the Send Dark Whispers dialog.
+- *Added* new localisation keys to support additional dialog and settings options for default group selections. [#151](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/151)
 
 ## [Version 0.9.4.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.2)  (2022-07-29)
 - *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!) [[#141](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/141)] 
