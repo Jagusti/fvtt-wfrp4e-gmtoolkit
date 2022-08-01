@@ -7,8 +7,8 @@ async function formDarkWhispers() {
   }
 
   // setup: determine group of actors to be whispered to 
-  const group =  game.gmtoolkit.utility.getGroup("party");
-  const targeted = game.gmtoolkit.utility.getGroup("party", {interaction : "targeted"});
+  const group =  game.gmtoolkit.utility.getGroup(game.settings.get("wfrp4e-gm-toolkit", "defaultGroupDarkWhispers")).filter(g => g.type === "character")
+  const targeted = game.gmtoolkit.utility.getGroup(game.settings.get("wfrp4e-gm-toolkit", "defaultGroupDarkWhispers"), {interaction : "targeted"}).filter(g => g.type === "character");
   // setup: exit with notice if there are no player-assigned characters
   if (!group) {   
     return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters"));
@@ -44,7 +44,7 @@ async function formDarkWhispers() {
     checkOptions +=`
       <div class="form-group">
       <input type="checkbox" id="${actor.actorId}" name="${actor.actorId}" value="${actor.name}" ${canWhisperTo} ${checked}>
-      <label for="${actor.actorId}" title="${game.i18n.format('GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip', {assignedUser: actor.assignedUser.name, playerOwners: playerOwners})}"> <strong>${actor.name}</strong> (${actor.assignedUser.name})</label>
+      <label for="${actor.actorId}" title="${game.i18n.format('GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip', {assignedUser: actor.assignedUser?.name || game.i18n.localize('GMTOOLKIT.Dialog.None'), playerOwners: playerOwners})}"> <strong>${actor.name}</strong> (${actor.assignedUser?.name || game.i18n.localize('GMTOOLKIT.Dialog.NotAssigned')})</label>
       <label for="${actor.actorId}"> ${actor.corruption.value} / ${actor.corruption.max} ${game.i18n.localize("NAME.Corruption")} </label>
       </div>
     `
@@ -94,14 +94,14 @@ function sendDarkWhispers(html, characterList, sendToOwners) {
   for ( let character of characterList ) {
     if (html.find(`[name="${character.actorId}"]`)[0].checked) {
       characterTargets.push(character.name);
-      sendToOwners ? playerRecipients.push(...character.owners.map(m => m.id)) : playerRecipients.push(character.assignedUser.id)
+      sendToOwners ? playerRecipients.push(...character.owners.map(m => m.id)) : playerRecipients.push(character.assignedUser?.id)
     }
   }
     
   // check for whisper message 
   darkwhisper = html.find('[name="message"]')[0].value   
   // abort if no whisper or character is selected 
-  if (!playerRecipients.length || !darkwhisper) return abortWhisper()
+  if (playerRecipients.filter(p => p === undefined).length === playerRecipients.length || !playerRecipients.length || !darkwhisper) return abortWhisper()
 
   // Construct and send message to whisper targets
   // Build the translation string based on the setting
@@ -130,10 +130,10 @@ function abortWhisper() {
 
 /* ==========
 * MACRO: Send Dark Whispers
-* VERSION: 0.9.4
-* UPDATED: 2022-07-04
+* VERSION: 0.9.4.3
+* UPDATED: 2022-07-31
 * DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
-* TIP: Only player-assigned characters with Corruption can be sent a Dark Whisper. 
+* TIP: Only player-assigned or player-owned characters with Corruption can be sent a Dark Whisper. 
 * TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers. 
 * TIP: The whisper can be edited in the dialog, regardless of what is pre-filled from the Dark Whispers table. 
 * TIP: Actor tokens that are targeted in a scene are pre-selecteed in the Send Dark Whisper dialog.

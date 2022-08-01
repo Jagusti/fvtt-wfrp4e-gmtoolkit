@@ -37,6 +37,8 @@
 
     "GMTOOLKIT.Dialog.Apply": "変更を適用",
     "GMTOOLKIT.Dialog.Cancel" : "取消",
+    "GMTOOLKIT.Dialog.None" : "None",
+    "GMTOOLKIT.Dialog.NotAssigned" : "Not Assigned",
 
     "GMTOOLKIT.Token.Select": "最初にトークンを一つ以上選択してください。",
     "GMTOOLKIT.Token.SingleSelect": "最初にトークンを一つ選択してください。",
@@ -241,6 +243,8 @@
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "ゲームに合わせて「暗黒のささやき」の音色を選んでください。",
     "GMTOOLKIT.Settings.DarkWhispers.message.taunt" : "<p><strong>闇の神々はあなたが悩んでいるのを見ている。</strong></p><p><em>些細な好意で、あなたの堕落を一つ解放してくれるだろう。</em></p><blockquote>{message}</blockquote><p>それにどんな害が有るのだろうか？この申し出を受けて、混沌の瀬戸際から一歩戻るのだ。</p>",
     "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>「暗黒のささやき」が耳にから離れない。。。 </strong></p><p><em>このメッセージを受け取ったことは、誰にも明かしてはいけない。</em></p><blockquote>{message}</blockquote><p>指示に従えば、君は堕落ポイントを１減らせるだろう。</p>",
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.name" : "Default Group Selection",
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to also include player-owned characters (such as hirelings, henchmen and familiars). Individual characters can be de-selected in the Group Test dialog.", 
     "GMTOOLKIT.Notification.NoActor" : "キャラクターが選択されていないか、{currentuser}に割り当てられていない。",
     "GMTOOLKIT.Notification.UserMustBePlayer" : "「{action}」はプレイヤーだけが実行できる。",
 

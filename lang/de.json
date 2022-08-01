@@ -37,6 +37,8 @@
   
     "GMTOOLKIT.Dialog.Apply": "Änderungen anwenden",    
     "GMTOOLKIT.Dialog.Cancel" : "Abbrechen",
+    "GMTOOLKIT.Dialog.None" : "None",
+    "GMTOOLKIT.Dialog.NotAssigned" : "Not Assigned",
 
     "GMTOOLKIT.Token.Select": "Bitte wählen Sie zuerst ein oder mehrere Token aus.",
     "GMTOOLKIT.Token.SingleSelect": "Bitte wählen Sie zunächst einen einzelnen Token aus.",
@@ -241,6 +243,8 @@
     "GMTOOLKIT.Settings.DarkWhispers.message.hint" : "Wählen Sie den Ton von Dunkles Geflüster, der zu Ihrem Spiel passt.", 
     "GMTOOLKIT.Settings.DarkWhispers.message.taunt" : "<p><strong>Die dunklen Götter können sehen, dass du beunruhigt bist.</strong></p><p><em>Für einen diskreten Gefallen können sie dich von 1 Verderbnis befreien.</em></p><blockquote>{message}</blockquote><p>Welchen Schaden kann es anrichten? Nehmen Sie das Angebot an und treten Sie vom Rande des Chaos zurück.</p>",
     "GMTOOLKIT.Settings.DarkWhispers.message.threat" : "<p><strong>Dunkles Flüstern in deinen Ohren ... </strong></p><p><em>Geben Sie auf keinen Fall preis, dass Du diese Nachricht erhalten hast.</em></p><blockquote>{message}</blockquote><p>Wenn du die Anweisung befolgst, wird deine Verderbnis insgesamt um 1 reduziert.</p>", 
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.name" : "Default Group Selection",
+    "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.hint" : "Choose 'party' (default) to only include characters assigned to players, or 'company' to also include player-owned characters (such as hirelings, henchmen and familiars). Individual characters can be de-selected in the Group Test dialog.", 
     "GMTOOLKIT.Notification.NoActor" : "Kein Charakter ist ausgewählt oder verbunden mit {currentuser}.",
     "GMTOOLKIT.Notification.UserMustBePlayer" : "Nur Spielercharaktere können {action}.", 
     
