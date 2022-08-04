@@ -1,38 +1,47 @@
-/* === Set Target Group === */
-const groupOptions = {
-  // type: "company" // options: "party" (default: player-assigned characters), "company" (PCs plus player-owned characters, eg henchmen)
-  }
-  
-/* === Set Test Parameters === */
-const testParameters = {
-  // testSkill: "Stealth (Rural)",  // eg, "Perception", "Evaluate", "Lore (Reikland)". 
-  // rollMode : "public",  // choose from "blindroll" (default), "gmroll", "selfroll",  "public"
-  // testModifier: -10,  // any +/- integer (0: default)
-  // difficulty: "difficult",  // options: "default" (default) or system difficultyModifiers (see reference at end)
-  // bypass: false,  // options: true (default), false
-  // fallback: false,  // options: true (default), false
+makeGroupTest()
+
+function makeGroupTest () {
+
+  /* === Set Target Group === */
+  const groupOptions = {
+    // eslint-disable-next-line capitalized-comments
+    // type: "company" // options: "party" (default: player-assigned characters), "company" (PCs plus player-owned characters, eg henchmen)
   }
 
-/* === Interactive or Silent Test === */
-const interactive = true // set false to bypass Set up Group Test user interface (must set {testParameters.testSkill})
+  /* === Set Test Parameters === */
+  const testParameters = {
+    // eslint-disable-next-line capitalized-comments
+    // testSkill: "Stealth (Rural)",  // eg, "Perception", "Evaluate", "Lore (Reikland)".
+    // rollMode : "public",  // choose from "blindroll" (default), "gmroll", "selfroll",  "public"
+    // testModifier: -10,  // any +/- integer (0: default)
+    // difficulty: "difficult",  // options: "default" (default) or system difficultyModifiers (see reference at end)
+    // bypass: false,  // options: true (default), false
+    // fallback: false,  // options: true (default), false
+  }
 
-/* === Guard === */
-// Exit with notice if no actors in group
-if (!game.user.isGM) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"))
+  /* === Interactive or Silent Test === */
+  const interactive = true // Set false to bypass Set up Group Test user interface (must set {testParameters.testSkill})
 
-/* === Run Group Test === */
-// RUN SILENT TEST
-if (!interactive) return game.gmtoolkit.grouptest.silent(groupOptions, testParameters)
-// LAUNCH USER INTERFACE
-new game.gmtoolkit.grouptest.launch({groupOptions, testParameters}).render(interactive);
+  /* === Guard === */
+  // Exit with notice if not a GM
+  if (!game.user.isGM) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"))
+
+  /* === Run Group Test === */
+  // RUN SILENT TEST
+  if (!interactive) return game.gmtoolkit.grouptest
+    .silent(groupOptions, testParameters)
+  // LAUNCH USER INTERFACE
+  new game.gmtoolkit.grouptest.launch({ groupOptions, testParameters })
+    .render(interactive)
+}
 
 
 /* ==========
  * MACRO: Make Secret Group Test
- * VERSION: 0.9.4
- * UPDATED: 2022-07-21
- * DESCRIPTION: Quckly roll and report group skill tests for player and non-player characters. 
- * TIP: Default options for Quick Test and custom skills can be set in module settings. 
+ * VERSION: 0.9.5
+ * UPDATED: 2022-08-04
+ * DESCRIPTION: Quckly roll and report group skill tests for player and non-player characters.
+ * TIP: Default options for Quick Test and custom skills can be set in module settings.
  * TIP: By default, tests are rolled blind. Right-click a test result in the chat log to show the results to players.
  * TIP: You can use the results of a secret test in an opposed test (such as secret Stealth v Perception tests) as normal. Use the double arrows in the chat log card, or roll a group test when Opposing with Targets.
  * TIP: Set interactive = false to bypass the Set up Group Test user interface and use defaults in module settings
