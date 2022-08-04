@@ -23,7 +23,7 @@ export default class Advantage {
 
         // Find current and max Advantage for token or actor. 
         let resourceBase = []
-        resourceBase = await this.get(character, resourceBase, adjustment);
+    resourceBase = await this.get(character, resourceBase, adjustment, context)
         GMToolkit.log(false,resourceBase)
         
         // Make the adjustment to the token actor and capture the outcome
@@ -38,9 +38,10 @@ export default class Advantage {
         return (update)
     }
 
-    static async get(character, resourceBase, adjustment) {
-        if (game.settings.get("wfrp4e","useGroupAdvantage")) {
-            resourceBase.current = game.settings.get("wfrp4e", "groupAdvantageValues")[character.actor.advantageGroup]
+    if (game.settings.get("wfrp4e", "useGroupAdvantage")) {
+      resourceBase.current = (context === "macro")
+        ? game.settings.get("wfrp4e", "groupAdvantageValues")[character.actor.advantageGroup]
+        : game.settings.get("wfrp4e", "groupAdvantageValues")[character.document.advantageGroup]
         } else {
             switch(character.document.documentName) {
                 case "Actor":
@@ -281,7 +282,7 @@ Hooks.on("wfrp4e:applyDamage", async function(scriptArgs) {
     if (character.document.getFlag(GMToolkit.MODULE_ID, 'advantage')?.outmanoeuvre != scriptArgs.opposedTest.attackerTest.message.id) {
         await Advantage.update(character,"increase","wfrp4e:applyDamage");
         
-        if (!character.data.permission[game.user.id]) {
+    if (!character.document.data.permission[game.user.id]) {
             await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { 
                 type: "setFlag", 
                 payload: { 
