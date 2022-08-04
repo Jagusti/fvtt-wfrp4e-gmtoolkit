@@ -23,7 +23,7 @@ export default class Advantage {
 
         // Find current and max Advantage for token or actor. 
         let resourceBase = []
-    resourceBase = await this.get(character, resourceBase, adjustment, context)
+        resourceBase = await this.get(character, resourceBase, adjustment, context)
         GMToolkit.log(false,resourceBase)
         
         // Make the adjustment to the token actor and capture the outcome
@@ -37,7 +37,8 @@ export default class Advantage {
         GMToolkit.log(false, update)
         return (update)
     }
-
+  
+  static async get(character, resourceBase, adjustment, context) {
     if (game.settings.get("wfrp4e", "useGroupAdvantage")) {
       resourceBase.current = (context === "macro")
         ? game.settings.get("wfrp4e", "groupAdvantageValues")[character.actor.advantageGroup]
