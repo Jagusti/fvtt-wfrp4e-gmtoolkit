@@ -358,6 +358,7 @@ export function getDataSettings (data, feature) {
   })
 }
 
+
 export async function registerGroupTestSettings () {
   const skillList = await game.gmtoolkit.skills.reduce((skills, skill) => ({ ...skills, [`${game.i18n.localize(skill.name)}`]: `${game.i18n.localize(skill.name)}` }), {})
   // GMToolkit.log(false, skillList)
@@ -475,7 +476,7 @@ export async function registerGroupTestSettings () {
     name: "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name",
     hint: "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint",
     scope: "world",
-    config: true,
+    config: false,
     default: 0,
     type: Number,
     feature: "grouptest"
@@ -484,7 +485,7 @@ export async function registerGroupTestSettings () {
     name: "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.name",
     hint: "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.hint",
     scope: "world",
-    config: true,
+    config: false,
     default: 2,
     type: Number,
     feature: "grouptest"
