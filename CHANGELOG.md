@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4)  (2022-08-07)
 - *Fixed* regression that prevented Group Advantage from updating in some cases. It should now update correctly whether using the Advantage macros or completing an automated process, such as outmanoeuvring or winning an opposed test.
 
 ## [Version 0.9.4.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.3)  (2022-08-01)
