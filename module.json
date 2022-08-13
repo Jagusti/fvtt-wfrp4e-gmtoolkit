@@ -1,11 +1,13 @@
 {
-	"name": "wfrp4e-gm-toolkit",
+	"id": "wfrp4e-gm-toolkit",
 	"title": "GM Toolkit (WFRP4e)",
 	"description": "Utilities for WFRP4e GMs",
-	"version": "0.9.4.4",
-	"minCoreVersion": "9",
-	"compatibleCoreVersion": "9",
-	"author": "Jagusti",
+	"version": "0.9.5",
+  "compatibility": {
+    "minimum": "10.277",
+    "verified": "10.277",
+    "maximum": 10
+  },
 	"authors" : [
 	  {
 			"name": "Jagusti",
@@ -13,7 +15,17 @@
 			"ko-fi": "jagusti"
 	  }
 	],
-	"system": ["wfrp4e"],
+  "relationships": {
+    "systems": [{
+      "id": "wfrp4e",
+      "type": "system",
+      "compatibility": {
+        "minimum": "6.0.0",
+        "verified": "6.0.0.9",
+        "maximum": "6.x"
+      }
+    }]
+  },
 	"esmodules": ["wfrp4e-gm-toolkit.mjs"],
 	"scripts": [],
 	"styles": ["/css/gmtoolkit.css"],
@@ -60,7 +72,7 @@
 	"socket": "true",
 	"url": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit",
 	"manifest": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest/download/module.json",
-	"download": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/download/v0.9.4.4/wfrp4e-gm-toolkit.zip",
+	"download": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/download/v0.9.5/wfrp4e-gm-toolkit.zip",
 	"bugs": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues", 
 	"changelog": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases",
 	"readme": "https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki",
