@@ -114,8 +114,8 @@
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "ラウンド{combatRound}、終了時の優位喪失",
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "優位を1失う",
 
-    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "{sceneName}でトークンの視界が有効になり、視界範囲の制限解除が無効になりました。",
-    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "{sceneName}でトークンの視界が無効になり、視界範囲の制限解除が有効になりました。",
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "{sceneName}でトークンの視界が有効になり、視界範囲の制限解除が無効になりました。",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "{sceneName}でトークンの視界が無効になり、視界範囲の制限解除が有効になりました。",
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "シーンに全員引き寄せる",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "現在表示しているシーンに全員を引き寄せるときは、シーンを有効にする。",
