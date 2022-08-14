@@ -7,17 +7,17 @@ import GMToolkit from "./gm-toolkit.mjs"
  * @param {string} notification :   "silent" suppresses UI notification, "persist" makes notifications stick until dismissed
  * @returns {Object} skill       :   The skill object to be tested.
  **/
-// TODO: Review notifications, maybe optionally pass these out to a notification handler
+// TODO: Optionally fallback to base characteristic if actor does not have skill
 export function hasSkill (actor, targetSkill, notification = true) {
   // Match exact skill only
-  let skill = actor.items.find(i => i.type === "skill" && i.name === game.i18n.localize(targetSkill))
-  if (skill == null) {
-    let message = `${actor.name} does not have the ${targetSkill} skill.`
+  const skill = actor.items.find(i => i.type === "skill" && i.name === game.i18n.localize(targetSkill))
+  if (!skill) {
+    const message = `${actor.name} does not have the ${targetSkill} skill.`
     GMToolkit.log(false, message)
     if (notification !== "silent") {
       notification === "persist"
-        ? ui.notifications.error(message, { permanent: true })
-        : ui.notifications.error(message)
+        ? ui.notifications.error(message, { permanent: true, console: true })
+        : ui.notifications.error(message, { permanent: false, console: true })
     }
   } else {
     GMToolkit.log(false, `${actor.name} has the ${game.i18n.localize(targetSkill)} skill.`)
@@ -34,8 +34,7 @@ export function hasSkill (actor, targetSkill, notification = true) {
  **/
 // TODO: Review notifications, maybe optionally pass these out to a notification handler, independent of Token Hud Extension
 export async function adjustStatus (actor, status, change) {
-  const originalStatus = Number(actor.data.data
-    .status[status.toLowerCase()].value
+  const originalStatus = Number(actor.system.status[status.toLowerCase()].value
   )
   let newStatus = Number()
   let maxStatus = getMaxStatus(actor, status)
@@ -47,19 +46,19 @@ export async function adjustStatus (actor, status, change) {
         ? newStatus = Math.max(originalStatus + Number(change), 0)
         : newStatus = Math.min(originalStatus + Number(change), maxStatus)
       await actor.update({
-        "data.status.resolve.value": newStatus
+        "system.status.resolve.value": newStatus
       })
       break
     case "sin":
       newStatus = Math.max(originalStatus + Number(change), 0)
       await actor.update({
-        "data.status.sin.value": newStatus
+        "system.status.sin.value": newStatus
       })
       break
     case "corruption":
       newStatus = Math.max(originalStatus + Number(change), 0)
       await actor.update({
-        "data.status.corruption.value": newStatus
+        "system.status.corruption.value": newStatus
       })
       // TODO: Prompt for Challenging Endurance Test (WFRP p183) if max Corruption threshold is exceeded
       // if (newStatus > maxStatus) ...
@@ -69,20 +68,20 @@ export async function adjustStatus (actor, status, change) {
         ? newStatus = Math.max(originalStatus + Number(change), 0)
         : newStatus = Math.min(originalStatus + Number(change), maxStatus)
       await actor.update({
-        "data.status.fortune.value": newStatus
+        "system.status.fortune.value": newStatus
       })
       break
   }
 
   if (Number(originalStatus) !== Number(newStatus)) {
-    result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusChanged", { targetStatus: game.i18n.localize(status), targetName: actor.data.name, originalStatus, newStatus } )
+    result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusChanged", { targetStatus: game.i18n.localize(status), targetName: actor.name, originalStatus, newStatus } )
   } else {
-    result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusNotChanged", { targetStatus: game.i18n.localize(status), targetName: actor.data.name, originalStatus } )
+    result = game.i18n.format("GMTOOLKIT.TokenHudExtension.StatusNotChanged", { targetStatus: game.i18n.localize(status), targetName: actor.name, originalStatus } )
   }
 
   ChatMessage.create(game.wfrp4e.utility.chatDataSetup(result))
   // UI notification to confirm outcome
-  ui.notifications.notify(result)
+  ui.notifications.notify(result, { console: true })
   canvas.hud.token.render()
   return result
 }
@@ -100,24 +99,24 @@ function getMaxStatus (actor, status) {
 
   switch (status.toLowerCase()) {
     case "resolve":
-      talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.StrongMinded") )
-      maxStatus = actor.data.data.status.fate.value + statusBoosts(talent)
+      talent = actor.items.find(i => i.name === game.i18n.localize("NAME.StrongMinded") )
+      maxStatus = actor.system.status.fate.value + statusBoosts(talent)
       break
     case "corruption":
-      if (actor.data.flags.autoCalcCorruption) {
-        maxStatus = actor.data.data.status.corruption.max
+      if (actor.flags.autoCalcCorruption) {
+        maxStatus = actor.system.status.corruption.max
       } else {
-        talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.PS") )
+        talent = actor.items.find(i => i.name === game.i18n.localize("NAME.PS") )
         maxStatus
-          = actor.data.data.characteristics.t.bonus
-          + actor.data.data.characteristics.wp.bonus
+          = actor.system.characteristics.t.bonus
+          + actor.system.characteristics.wp.bonus
           + statusBoosts(talent)
       }
       break
     case "fortune":
-      talent = actor.items.find(i => i.data.name === game.i18n.localize("NAME.Luck") )
+      talent = actor.items.find(i => i.name === game.i18n.localize("NAME.Luck") )
       maxStatus
-        = actor.data.data.status.fate.value
+        = actor.system.status.fate.value
         + statusBoosts(talent)
       break
   }
@@ -132,12 +131,12 @@ function getMaxStatus (actor, status) {
    **/
   function statusBoosts (talent) {
     let talentAdvances = Number()
-    if (talent === undefined || talent.data.data.advances.value < 1) {
+    if (talent === undefined || talent.system.advances.value < 1) {
       talentAdvances = 0
     } else {
       for (let item of actor.items) {
         if (item.type === "talent" && item.name === talent.name) {
-          talentAdvances += item.data.data.advances.value
+          talentAdvances += item.system.advances.value
         }
       }
     }
