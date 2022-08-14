@@ -135,7 +135,10 @@ function sendDarkWhispers (html, characterList, sendToOwners) {
 }
 
 function abortWhisper () {
-  return ui.notifications.error(game.i18n.format("GMTOOLKIT.Message.DarkWhispers.WhisperAborted", { currentUser: game.user.name }))
+  return ui.notifications.warn(
+    game.i18n.format("GMTOOLKIT.Message.DarkWhispers.WhisperAborted", { currentUser: game.user.name }),
+    { console: false }
+  )
 }
 
 
