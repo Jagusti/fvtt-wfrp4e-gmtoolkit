@@ -16,7 +16,6 @@ export default class GMToolkitGroupTestSettings extends FormApplication {
   getData () {
     const data = super.getData()
     getDataSettings(data, "grouptest")
-    console.log(data)
     return data
   }
 
