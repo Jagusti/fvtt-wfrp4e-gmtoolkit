@@ -67,7 +67,7 @@ Hooks.once("ready", async function () {
   if (spectators.length > 0) {
     GMToolkit.log(true, `Spectators: ${spectators}`)
     if (!game.settings.get("wfrp4e-gm-toolkit", "suppressSpectatorNotice")) {
-      ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", { spectators })}`, { permanent: true })
+      ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", { spectators })}`, { permanent: true, console: false })
     }
   }
 
