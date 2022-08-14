@@ -27,7 +27,7 @@
       : game.i18n.localize(game.gmtoolkit.utility.strip(name, "GMTOOLKIT.Macro", "."))
     buttons[name] = {
       label: label,
-      icon: `<img src = "${game.macros.getName(name)?.data?.img}" style = "height: 2rem; vertical-align : middle; border: none;" >`,
+      icon: `<img src = "${game.macros.getName(name).img}" style = "height: 2rem; vertical-align : middle; border: none;" >`,
       callback: () => {
         game.macros.getName(name).execute()
         dialog.render(true)
@@ -41,7 +41,7 @@
 /* ==========
 * MACRO: GM Toolbox
 * VERSION: 0.9.5
-* UPDATED: 2022-08-04
+* UPDATED: 2022-08-14
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
