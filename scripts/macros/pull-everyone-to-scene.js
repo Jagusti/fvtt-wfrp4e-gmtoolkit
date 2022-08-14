@@ -2,7 +2,7 @@ pullEveryoneToScene()
 
 async function pullEveryoneToScene () {
   if (!game.user.isGM) {
-    ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.ScenePullActivate.NoPermission"), {})
+    ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.ScenePullActivate.NoPermission"), { console: false })
   }
 
   switch (game.settings.get("wfrp4e-gm-toolkit", "scenePullActivate")) {
@@ -41,19 +41,19 @@ async function pullEveryoneToScene () {
     let thisScene = game.scenes.viewed
     if (activateScene) {
       thisScene.update({ active: true })
-      let sceneActiveState = thisScene.data.active
-      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Activated", { sceneName: thisScene.name }))
+      let sceneActiveState = thisScene.active
+      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Activated", { sceneName: thisScene.name }), { console: false })
     } else {
       for ( let u of game.users.players ) {
         game.socket.emit("pullToScene", thisScene.id, u.id)
       }
       let sceneActiveState = String()
-      if (thisScene.data.active === true ) {
+      if (thisScene.active === true ) {
         sceneActiveState = game.i18n.localize("GMTOOLKIT.Scene.Active")
       } else {
         sceneActiveState = game.i18n.localize("GMTOOLKIT.Scene.NotActive")
       }
-      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Pulled", { sceneName: thisScene.name, sceneActiveState }))
+      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Pulled", { sceneName: thisScene.name, sceneActiveState }), { console: false })
     }
   }
 }
@@ -61,7 +61,7 @@ async function pullEveryoneToScene () {
 /* ==========
 * MACRO: Pull Everyone to Scene
 * VERSION: 0.9.5
-* UPDATED: 2022-08-04
+* UPDATED: 2022-08-14
 * DESCRIPTION: Yanks every player into the scene that the GM is on.
 * TIP: Optionally activate (or prompt to activate) the scene through Configure Session Options in module settings.
 ========== */
