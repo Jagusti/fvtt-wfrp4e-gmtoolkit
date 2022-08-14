@@ -97,10 +97,10 @@ Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
 
 // Disable movement on holding scene
 Hooks.on("preUpdateToken", (token, change) => {
-  GMToolkit.log(false, `${token.data.x} -> ${change?.x}, ${token.data.y} -> ${change?.y}`)
+  GMToolkit.log(false, `${token.x} -> ${change?.x}, ${token.y} -> ${change?.y}`)
   if (!game.user.isGM && game.canvas.scene.name === game.settings.get("wfrp4e-gm-toolkit", "holdingScene")) {
-    if (change?.x) {change.x = token.data.x}
-    if (change?.y) {change.y = token.data.y}
+    if (change?.x) {change.x = token.x}
+    if (change?.y) {change.y = token.y}
   }
 })
 
