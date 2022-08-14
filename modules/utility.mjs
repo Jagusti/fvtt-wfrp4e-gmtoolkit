@@ -10,7 +10,7 @@ import GMToolkit from "./gm-toolkit.mjs"
 // TODO: Review notifications, maybe optionally pass these out to a notification handler
 export function hasSkill (actor, targetSkill, notification = true) {
   // Match exact skill only
-  let skill = actor.items.find(i => i.type === "skill" && i.data.name === game.i18n.localize(targetSkill))
+  let skill = actor.items.find(i => i.type === "skill" && i.name === game.i18n.localize(targetSkill))
   if (skill == null) {
     let message = `${actor.name} does not have the ${targetSkill} skill.`
     GMToolkit.log(false, message)

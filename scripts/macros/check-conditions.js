@@ -33,7 +33,7 @@ async function checkConditions () {
   function isEndOfRound () {
     const combat = game.combat
     if (!combat) return false
-    if (combat.data.round !== 0 && combat.turns && combat.data.active) {
+    if (combat.round !== 0 && combat.turns && combat.active) {
       return (
         combat.current.turn > -1
         && combat.current.turn === combat.turns.length - 1
@@ -128,7 +128,7 @@ async function checkConditions () {
 /* ==========
 * MACRO: Check Conditions
 * VERSION: 0.9.5
-* UPDATED: 2022-08-04
+* UPDATED: 2022-08-14
 * DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters.
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat.
