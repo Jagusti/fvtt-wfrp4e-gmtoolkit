@@ -73,7 +73,7 @@ async function buildLocalizedContent (documentType) {
     content.translationKey = strip(content.name, translationKeyPrefix, ".")
     content.compendiumVersion = documents
       .filter(d => d.id === content.id)
-      .map(i => i.data.flags["wfrp4e-gm-toolkit"].version)
+      .map(i => i.flags["wfrp4e-gm-toolkit"].version)
     contentArray.push(content)
   }
 
