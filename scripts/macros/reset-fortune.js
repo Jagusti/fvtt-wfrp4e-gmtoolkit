@@ -8,9 +8,9 @@ function resetFortune () {
 
   // Cycle through player characters, updating Fortune and building a report message
   party.forEach(character => {
-    let currentFortune = character.data.data.status.fortune.value
+    let currentFortune = character.system.status.fortune.value
     let maxFortune = getMaxFortune(character)
-    character.update({ "data.status.fortune.value": maxFortune })
+    character.update({ "system.status.fortune.value": maxFortune })
     chatContent += `${character.name}:  ${currentFortune} -> ${maxFortune} <br>`
   })
 
@@ -27,10 +27,10 @@ function resetFortune () {
 function getMaxFortune (target) {
   let advLuck = 0
   let item = target.items.find(i => i.name === game.i18n.localize("NAME.Luck") )
-  if (!(item === undefined || item.data.data.advances.value < 1)) {
+  if (!(item === undefined || item.system.advances.value < 1)) {
     for (let item of target.items) {
       if (item.type === "talent" && item.name === game.i18n.localize("NAME.Luck")) {
-        advLuck += item.data.data.advances.value
+        advLuck += item.system.advances.value
       }
     }
   }
@@ -40,7 +40,7 @@ function getMaxFortune (target) {
 /* ==========
  * MACRO: Reset Fortune
  * VERSION: 0.9.5
- * UPDATED: 2022-08-04
+ * UPDATED: 2022-08-15
  * DESCRIPTION: Restores Fortune to the Fate level of player character(s). Applies any Luck talent bonus.
  * TIP: Characters must be player assigned (if group setting is 'party') or player owned (if group setting is 'company').
  ========== */
