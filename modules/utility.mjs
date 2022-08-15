@@ -156,9 +156,9 @@ export function getSession () {
   let date = ""
   let time = ""
   const id = game.settings.get("wfrp4e-gm-toolkit", "sessionID")
-  if (game.world.data.nextSession != null) {
-    date = game.world.data.nextSession?.split("T")[0]
-    time = game.world.data.nextSession?.split("T")[1]
+  if (game.world.nextSession != null) {
+    date = game.world.nextSession?.split("T")[0]
+    time = game.world.nextSession?.split("T")[1]
   }
   return { date, time, id }
 }
@@ -174,7 +174,7 @@ export function inActiveCombat (character, notification = true) {
   let inActiveCombat = true
 
   if (game.combats?.active?.combatants?.contents
-    .filter(a => a.data.actorId === character.id) === false
+    .filter(a => a.actorId === character.id) === false
   ) {
     inActiveCombat = false
     let message = `${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat", { actorName: character.name, sceneName: game.scenes.viewed.name })}`
@@ -387,9 +387,9 @@ export function getGroup (groupType, options = []) {
       case "players":  // game.users
       case "spectators":  // game.users
       case "assigned":  // game.users
-        filteredByOption = present
-          ? (group.filter(g => g.viewedScene === game.scenes.viewed.id))
-          : (group.filter(g => g.viewedScene !== game.scenes.viewed.id))
+        (filteredByOption = present)
+          ? group.filter(g => g.viewedScene === game.scenes.viewed.id)
+          : group.filter(g => g.viewedScene !== game.scenes.viewed.id)
         break
       // game.actors
       case "actors": // game.actors
