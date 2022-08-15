@@ -308,12 +308,12 @@ export function getGroup (groupType, options = []) {
       break
     case "friends":  // All player owned tokens or those with a friendly disposition
       group = game.canvas.tokens.placeables
-        .filter(t => t.actor.hasPlayerOwner || t.data.disposition
+        .filter(t => t.actor.hasPlayerOwner || t.document.disposition
           === CONST.TOKEN_DISPOSITIONS.FRIENDLY)
       break
     case "enemies":  // All non-player owned tokens or those with a neutral or hostile disposition
       group = game.canvas.tokens.placeables
-        .filter(t => !(t.actor.hasPlayerOwner || t.data.disposition
+        .filter(t => !(t.actor.hasPlayerOwner || t.document.disposition
           === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
       break
     case "combatants":  // All combatants in the active combat
@@ -321,12 +321,12 @@ export function getGroup (groupType, options = []) {
       break
     case "allies":  // All player owned characters in the active combat
       group = game.combat.combatants
-        .filter(c => c.hasPlayerOwner || c.token.data.disposition
+        .filter(c => c.hasPlayerOwner || c.token.disposition
           === CONST.TOKEN_DISPOSITIONS.FRIENDLY)
       break
     case "adversaries":  // All hostile non-player combatants in the active combat
       group = game.combat.combatants
-        .filter(c => !(c.hasPlayerOwner || c.token.data.disposition
+        .filter(c => !(c.hasPlayerOwner || c.token.disposition
           === CONST.TOKEN_DISPOSITIONS.FRIENDLY))
       break
   }
@@ -387,9 +387,10 @@ export function getGroup (groupType, options = []) {
       case "players":  // game.users
       case "spectators":  // game.users
       case "assigned":  // game.users
-        (filteredByOption = present)
-          ? group.filter(g => g.viewedScene === game.scenes.viewed.id)
-          : group.filter(g => g.viewedScene !== game.scenes.viewed.id)
+        filteredByOption
+          = present
+            ? group.filter(g => g.viewedScene === game.scenes.viewed.id)
+            : group.filter(g => g.viewedScene !== game.scenes.viewed.id)
         break
       // game.actors
       case "actors": // game.actors
@@ -420,7 +421,7 @@ export function getGroup (groupType, options = []) {
         }
         break
     }
-    filteredByOption
+    (filteredByOption.length !== 0)
       ? group.splice(0, group.length, ...filteredByOption)
       : group.length = 0
   }
@@ -469,7 +470,7 @@ export function getGroup (groupType, options = []) {
       default:
         break
     }
-    filteredByOption
+    (filteredByOption !== 0)
       ? group.splice(0, group.length, ...filteredByOption)
       : group.length = 0
   }
