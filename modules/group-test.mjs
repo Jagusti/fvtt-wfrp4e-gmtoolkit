@@ -14,13 +14,15 @@ export async function runSilentGroupTest (groupOptions, testParameters) {
 
   groupOptions.members = await getGroupMembers(groupOptions?.type)
   const targetGroup
-    = (testOptions.targetGroup(groupOptions.members.controlled.length > 0))
+    = (groupOptions.members.controlled.length > 0)
       ? groupOptions.members.controlled
       : groupOptions.members.playerGroup
 
   if (targetGroup.length === 0) {
-    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup"))
+    return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup"), { console: true })
   }
+
+  testOptions.targetGroup = targetGroup
 
   runGroupTest(testSkill, testOptions)
 }
@@ -30,7 +32,8 @@ export async function getGroupMembers (groupType = game.settings.get("wfrp4e-gm-
     playerGroup: game.gmtoolkit.utility.getGroup(groupType).map(g => g.uuid),
     selected: game.gmtoolkit.utility.getGroup("company", { interaction: "selected", present: true }).map(g => g.uuid),
     npcTokens: game.gmtoolkit.utility.getGroup("npcTokens").map(g => g.document.uuid),
-    controlled: canvas.tokens.placeables.filter(t => t._controlled & t.actor.type !== "vehicle").map(g => g.document.uuid)
+    // _game.gmtoolkit.utility.getGroup("tokens", { interaction: "selected" })
+    controlled: canvas.tokens.placeables.filter(t => t.controlled & t.actor.type !== "vehicle").map(g => g.document.uuid)
   }
   return members
 }
@@ -40,7 +43,8 @@ export async function runGroupTest (testSkill, testOptions) {
   await game.settings.set("wfrp4e-gm-toolkit", "aggregateResultGroupTest", [])
   let actorTestResult = ""
 
-  for (let member of testOptions.targetGroup) {
+  for (const member of testOptions.targetGroup) {
+    if (member === null) continue
     // Make sure to get the actor rather than the token document
     let actor = await fromUuid(member)
     actor = actor?.actor ? actor.actor : actor
@@ -54,7 +58,7 @@ async function sendAggregateGroupTestResults (testSkill, testOptions) {
   const summaryThreshold = await game.settings.get("wfrp4e-gm-toolkit", "summariseResultsThresholdGroupTest")
   const groupTestResults = await game.settings.get("wfrp4e-gm-toolkit", "aggregateResultGroupTest")
 
-  // Don't show a summary if a postive threshold isn't set or there are no test results
+  // Don't show a summary if a positive threshold isn't set or there are no test results
   if (summaryThreshold <= 0 || groupTestResults.length === 0) return
   // Don't show a summary if there are test results, but fewer than the threshold
   if (groupTestResults.length < summaryThreshold) return
@@ -113,9 +117,10 @@ async function runActorTest (actor, testSkill, testOptions) {
         .characteristics[actorSkill.characteristic.value]
 
       // Optionally step-adjust the difficulty in case of fallback on advanced skills
-      const stepAdjustDifficulty = (actorSkill.advanced.value === "adv")
-        ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdjustDifficulty")
-        : 0
+      const stepAdjustDifficulty
+        = (actorSkill.advanced.value === "adv")
+          ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdjustDifficulty")
+          : 0
       const difficultySetting
         = (actorSkill.advanced.value === "adv" && stepAdjustDifficulty !== 0)
           ? { modify: { difficulty: stepAdjustDifficulty } }
