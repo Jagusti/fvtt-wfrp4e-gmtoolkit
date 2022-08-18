@@ -138,7 +138,7 @@ async function runActorTest (actor, testSkill, testOptions) {
       )
       return actor.basicTest(setupData)
     }
-    return ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest", { character: actor.name, skill: testSkill })}`)
+    return ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest", { character: actor.name, skill: testSkill })}`, { console: true } )
   }
 }
 
