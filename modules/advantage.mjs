@@ -422,29 +422,30 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 // Intercept when an actor gets a condition during combat
 Hooks.on("createActiveEffect", async function (conditionEffect) {
   GMToolkit.log(false, conditionEffect)
-
-  // Exit if not using condition automation, or if Group Advantage is in play
-  if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage") || game.settings.get("wfrp4e", "useGroupAdvantage")) return
-  if (!game.user.isUniqueGM) return
-
-  if (!conditionEffect.isCondition) return
+  // GUARDS. Exit if ...
+  if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) return // ... not using condition automation
+  if (game.settings.get("wfrp4e", "useGroupAdvantage")) return // ... Group Advantage is in play
+  if (!game.user.isUniqueGM) return // ... not a GM
+  if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
+  if (!conditionEffect.isCondition) return  // ... not a system recognised condition
   const condId = conditionEffect.conditionId
-  if (condId === "dead" || condId === "fear" || condId === "grappling") return // Exit if not a proper condition
+  if (condId === "dead" || condId === "fear" || condId === "grappling") return // ... not a core rules combat condition
 
+  // Clear Advantage
+  const token = canvas.tokens.placeables.filter(
+    t => t.actor.id === conditionEffect.parent.id
+  )[0]
+  await Advantage.update(token, "clear", "createActiveEffect")
 
-  if (!inActiveCombat(conditionEffect.parent, "silent")) return
-
+  // Notification declarations
   const uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Condition", { character: conditionEffect.parent.name, condition: conditionEffect.displayLabel } )}`
   const message = uiNotice
   const type = "info"
-  const options = { permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"), console: true }
+  const options = {
+    permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"),
+    console: true
+  }
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
-
-  // Clear Advantage
-  await Advantage.update(conditionEffect.parent.data.token, "clear", "createActiveEffect")
-
-  GMToolkit.log(false, "Condition Advantage: Finished.")
-
 })
 
 
