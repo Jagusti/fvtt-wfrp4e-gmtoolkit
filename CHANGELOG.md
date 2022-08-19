@@ -9,6 +9,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - v9 is no longer supported beyond GM Toolkit [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4).
   - v10 the minimum version required for GM Toolkit.
   - Full details can be found in [#156](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/156).
+  - Nearly all macros have been updated. These can be re-imported using the `Update GM Toolkit`  module setting.
 - *Removed* extra console logging in maintenance and group test applications. [#75d6dd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/75d6dd540a7d8dbe6a3cb9d6be940a33552dbd03)
 - *Added* initial support for vision modes, as well as sight saturation and colour to be able to leverage v10 vision changes in Set Token Vision and Light.
 - *Changed* Advantage handling to deal with Tokens primarily, and Combatants for setting flags (which is used for Lose Momentum). Actor documents are no longer supported.
