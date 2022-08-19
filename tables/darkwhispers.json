@@ -1,6 +1,6 @@
 {
     "name": "Dark Whispers",
-    "die": "1d9",
+    "die": "1d10",
     "rows": [
        {
         "description": "Let your quarry go.",

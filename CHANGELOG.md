@@ -12,6 +12,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Removed* extra console logging in maintenance and group test applications. [#75d6dd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/75d6dd540a7d8dbe6a3cb9d6be940a33552dbd03)
 - *Added* initial support for vision modes, as well as sight saturation and colour to be able to leverage v10 vision changes in Set Token Vision and Light.
 - *Changed* Advantage handling to deal with Tokens primarily, and Combatants for setting flags (which is used for Lose Momentum). Actor documents are no longer supported.
+- *Fixed* Dark Whispers table to draw from all entries when using the `/table darkwhispers` chat command. This did not affect using the Rolltable or Send Dark Whispers macro.
 
 ## [Version 0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4)  (2022-08-07)
 - *Fixed* regression that prevented Group Advantage from updating in some cases. It should now update correctly whether using the Advantage macros or completing an automated process, such as outmanoeuvring or winning an opposed test.
