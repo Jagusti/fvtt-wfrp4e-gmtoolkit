@@ -191,9 +191,9 @@ export default class Advantage {
     const combatantAdvantage = []
 
     combat.combatants.forEach(combatant => {
-      combatantAdvantage.startOfRound = combatant.token.actor.getFlag("wfrp4e-gm-toolkit", "sorAdvantage")
+      combatantAdvantage.startOfRound = combatant.getFlag("wfrp4e-gm-toolkit", "sorAdvantage")
       // eslint-disable-next-line max-len
-      combatantAdvantage.endOfRound = combatant.token.actor.data.data.status?.advantage?.value
+      combatantAdvantage.endOfRound = combatant.token.actor.system.status?.advantage?.value
       const checkToLoseMomentum
         = (combatantAdvantage.endOfRound - combatantAdvantage.startOfRound > 0)
           ? false
@@ -205,10 +205,10 @@ export default class Advantage {
       } else {
         combatantLine = `
                 <div class="form-group">
-                <input type="checkbox" id="${combatant.data.tokenId}" name="${combatant.data.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
+                <input type="checkbox" id="${combatant.tokenId}" name="${combatant.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
                 <img src="${combatant.img}" style = "height: 2rem; vertical-align : middle; border: none; padding-right: 6px; padding-left: 2px;" />
-                <label for="${combatant.data.tokenId}" style = "text-align: left;  border: none;">  <strong>${combatant.name}</strong></label>
-                <label for="${combatant.data.tokenId}"  style = "text-align: left;  border: none;"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
+                <label for="${combatant.tokenId}" style = "text-align: left;  border: none;">  <strong>${combatant.name}</strong></label>
+                <label for="${combatant.tokenId}"  style = "text-align: left;  border: none;"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
                 </div>
                 `;
         (checkToLoseMomentum)
@@ -246,9 +246,9 @@ export default class Advantage {
           callback: async html => {
             // Reduce advantage for selected combatants
             for ( const combatant of combat.combatants ) {
-              if (html.find(`[name="${combatant.data.tokenId}"]`)[0]?.checked) {
+              if (html.find(`[name="${combatant.tokenId}"]`)[0]?.checked) {
                 const token = canvas.tokens.placeables
-                  .filter(a => a.data._id === combatant.data.tokenId)[0]
+                  .filter(a => a.id === combatant.tokenId)[0]
                 const result = await this.update(token, "reduce", "loseMomentum")
                 lostAdvantage += `${token.name}: ${result.starting} -> ${result.new} <br/>`
               }
