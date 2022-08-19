@@ -7,6 +7,7 @@ export default class Advantage {
    * Entry point for adjustments to Advantage through .
    * @param {Object} character   :   Token
    * @param {string} adjustment  :   increase (+1), clear (=0), reduce (-1)
+   * // TODO: add support for numeric adjustment values
    * @param {string} context     :   macro, wfrp4e:opposedTestResult, wfrp4e:applyDamage, createCombatant, preDeleteCombatant, createActiveEffect, loseMomentum
    * @returns {Array} update     :   outcome (String: increased, reduced, min, max, reset, no change),
    *                                 starting (Number: what the character's Advantage was at the start of the routine)
@@ -18,7 +19,7 @@ export default class Advantage {
     if (adjustment === null) return  // ... no adjustment set
     if (
       (character === undefined)  // ... no character set
-      || (character?.document?.documentName !== "Token")  // ... not a Token
+      || (character?.document?.documentName !== "Token")  // ... not a Token.
       || (context === "macro" && canvas.tokens.controlled.length !== 1) // ... only one Token is not selected when using the macros
     ) {
       return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.SingleSelect"), { console: true })
@@ -29,14 +30,7 @@ export default class Advantage {
     }
 
     // Gather key character info into a single convenient object
-    const characterInfo = {
-      name: character.name,
-      linked: character.document.actorLink,
-      inCombat: character.inCombat,
-      flags: character.document.flags,
-      combatant: character.combatant,
-      combatantFlags: character.combatant?.flags
-    }
+    const characterInfo = { name: character.name }
     characterInfo.advantage = {
       personal: {
         current: character.actor.status.advantage.value,
@@ -52,7 +46,7 @@ export default class Advantage {
     // Make the adjustment to the token actor and capture the outcome
     const updatedAdvantage = await this.adjust(
       character,
-      characterInfo.advantage.personal, // _ resourceBase,
+      characterInfo.advantage.personal,
       adjustment
     )
 
@@ -60,7 +54,7 @@ export default class Advantage {
     const update = await this.report(
       updatedAdvantage,
       character,
-      characterInfo.advantage.personal, // _ resourceBase,
+      characterInfo.advantage.personal,
       context
     )
     update.outcome = updatedAdvantage.outcome
@@ -176,10 +170,14 @@ export default class Advantage {
     return update
   }
 
-  // Clears flags set for increasing token Advantage during combat
+  /**
+   * Clears combatant flags set for increasing token Advantage during combat.
+   * @param {Array} advantaged   :   Array of Combatant
+   * @param {boolean} startOfRound  :   Unset sorAdvantage flag at end of round
+   **/
   static unsetFlags (advantaged, startOfRound = false) {
-    advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit", "advantage"))
-    if (startOfRound) advantaged.filter(a => a.token.actor.unsetFlag("wfrp4e-gm-toolkit", "sorAdvantage"))
+    advantaged.filter(c => c.unsetFlag("wfrp4e-gm-toolkit", "advantage"))
+    if (startOfRound) advantaged.filter(c => c.unsetFlag("wfrp4e-gm-toolkit", "sorAdvantage"))
     GMToolkit.log(false, "Advantage Flags: Unset.")
   }
 
@@ -291,20 +289,24 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
 
   // Clear advantage on actor that has taken damage when not using Group  Advantage
   if (!game.settings.get("wfrp4e", "useGroupAdvantage")) {
-    const character = scriptArgs.actor.data.token
+    const character = Array.from(game.combats.active.combatants)
+      .filter(c => c.actor === scriptArgs.actor)[0]
+      .token.object
     await Advantage.update(character, "clear", "wfrp4e:applyDamage" )
   }
 
   // Increase advantage on actor that dealt damage, as long as it has not already been updated for this test
-  const character = scriptArgs.attacker.data.token
-  if (character.document.getFlag(GMToolkit.MODULE_ID, "advantage")?.outmanoeuvre !== scriptArgs.opposedTest.attackerTest.message.id) {
+  const character = Array.from(game.combats.active.combatants)
+    .filter(c => c.actor === scriptArgs.attacker)[0]
+    .token.object
+  if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.outmanoeuvre !== scriptArgs.opposedTest.attackerTest.message.id) {
     await Advantage.update(character, "increase", "wfrp4e:applyDamage")
 
     if (!character.actor.ownership[game.user.id]) {
       await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
         type: "setFlag",
         payload: {
-          character: character,
+          character: character.combatant,
           updateData: {
             flag: "advantage",
             key: "outmanoeuvre",
@@ -313,7 +315,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
         }
       })
     } else {
-      await character.document.setFlag(GMToolkit.MODULE_ID, "advantage", { outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id })
+      await character.combatant.setFlag(GMToolkit.MODULE_ID, "advantage", { outmanoeuvre: scriptArgs.opposedTest.attackerTest.message.id })
     }
 
   } else {
@@ -335,7 +337,8 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
           payload: {
-            character: opposedTest.attacker.data.token,
+            character: Array.from(game.combats.active.combatants)
+              .filter(c => c.actor === opposedTest.attacker)[0],
             updateData: {
               flag: "advantage",
               key: "charging",
@@ -344,7 +347,9 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
           }
         })
       } else {
-        await opposedTest.attacker.setFlag(GMToolkit.MODULE_ID, "advantage", { charging: opposedTest.attackerTest.message.id })
+        await Array.from(game.combats.active.combatants)
+          .filter(c => c.actor === opposedTest.attacker)[0]
+          .setFlag(GMToolkit.MODULE_ID, "advantage", { charging: opposedTest.attackerTest.message.id })
       }
     }
     // Flag defender charging
@@ -353,7 +358,8 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
           payload: {
-            character: opposedTest.defender.data.token,
+            character: Array.from(game.combats.active.combatants)
+              .filter(c => c.actor === opposedTest.defender)[0],
             updateData: {
               flag: "advantage",
               key: "charging",
@@ -362,11 +368,14 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
           }
         })
       } else {
-        await opposedTest.defender.setFlag(GMToolkit.MODULE_ID, "advantage", { charging: opposedTest.attackerTest.message.id })
+        await Array.from(game.combats.active.combatants)
+          .filter(c => c.actor === opposedTest.defender)[0]
+          .setFlag(GMToolkit.MODULE_ID, "advantage", { charging: opposedTest.attackerTest.message.id })
       }
     }
   } // END: Flag for CHARGING
 
+  // WINNING: Update Advantage for Opposed Tests
   if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return
 
@@ -384,22 +393,26 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
 
-  // Clear advantage on actor that has lost opposed test when not using Group  Advantage
+  // Clear advantage on actor token that has lost opposed test when not using Group Advantage
   if (!game.settings.get("wfrp4e", "useGroupAdvantage")) {
-    const character = loser.data.token
+    const character = Array.from(game.combats.active.combatants)
+      .filter(c => c.actor === loser)[0]
+      .token.object
     await Advantage.update(character, "clear", "wfrp4e:opposedTestResult" )
   }
 
-  // Increase advantage on actor that has won opposed test, as long as it has not already been updated for this test.
-  const character = winner.data.token
-  if (character.document.getFlag(GMToolkit.MODULE_ID, "advantage")?.opposed !== opposedTest.attackerTest.message.id) {
+  // Increase advantage on actor token that has won opposed test, as long as it has not already been updated for this test.
+  const character = Array.from(game.combats.active.combatants)
+    .filter(c => c.actor === winner)[0]
+    .token.object
+  if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.opposed !== opposedTest.attackerTest.message.id) {
     await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
 
-    if (!character.actor.ownership[game.user.id]) {
+    if (!winner.ownership[game.user.id]) {
       await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
         type: "setFlag",
         payload: {
-          character: character,
+          character: character.combatant,
           updateData: {
             flag: "advantage",
             key: "opposed",
@@ -408,9 +421,11 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
         }
       })
     } else {
-      await character.document.setFlag(GMToolkit.MODULE_ID, "advantage", { opposed: opposedTest.attackerTest.message.id })
+      await character.combatant
+        .setFlag(GMToolkit.MODULE_ID, "advantage",
+          { opposed: opposedTest.attackerTest.message.id }
+        )
     }
-    // Console.log(character, character.document.getFlag(GMToolkit.MODULE_ID, 'advantage'))
   } else {
     console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
   }
@@ -465,7 +480,6 @@ Hooks.on("deleteCombatant", function (combatant) {
     const token = canvas.tokens.placeables
       .filter(a => a.id === combatant.tokenId)[0]
     Advantage.update(token, "clear", "deleteCombatant")
-    Advantage.unsetFlags([combatant], true)
   }
 })
 
@@ -490,7 +504,7 @@ Hooks.on("preUpdateCombat", async function (combat, change) {
   // Clear Advantage flags when the combat round changes
   // Still required when Group Advantage is used because of Opposed Test flags
   console.log("preUpdateCombat: unsetting Advantage flags")
-  const advFlagged = combat.combatants.filter(a => a.token.actor.getFlag("wfrp4e-gm-toolkit", "advantage"))
+  const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
   if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 })
 
@@ -503,18 +517,8 @@ Hooks.on("updateCombat", async function (combat, change) {
   // Skip individual start of round Advantage tracking if Group Advantage is being used
   if (combat.turns && combat.isActive && !game.settings.get("wfrp4e", "useGroupAdvantage")) {
     combat.combatants.forEach(async c => {
-      await c.token.actor.setFlag("wfrp4e-gm-toolkit", "sorAdvantage", c.token.actor.data.data.status?.advantage?.value ?? 0)
-      GMToolkit.log(false, `${c.name}:  ${c.token.actor.getFlag("wfrp4e-gm-toolkit", "sorAdvantage")}`)
+      await c.setFlag("wfrp4e-gm-toolkit", "sorAdvantage", c.token.actor.system.status?.advantage?.value ?? 0)
+      GMToolkit.log(false, `${c.name}:  ${c.getFlag("wfrp4e-gm-toolkit", "sorAdvantage")}`)
     })
   }
 })
-
-
-Hooks.on("preDeleteCombat", async function (combat) {
-  GMToolkit.log(false, "preDeleteCombat: clear Advantage flags")
-  if (!game.user.isUniqueGM || !combat.combatants.size) return
-  const advFlagged = combat.combatants.filter(a => a.token.actor.getFlag("wfrp4e-gm-toolkit", "advantage"))
-  if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
-  await Advantage.unsetFlags(combat.combatants, true)
-})
-

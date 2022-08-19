@@ -136,19 +136,19 @@ export class SocketHandlers {
       .update(data.payload.updateData)
   }
 
-  // Used for updating Advantage flags when the opposed test is resolved by a player character that does not own the opposing character
+  // Used for updating Advantage flags on combatant when the opposed test is resolved by a player character that does not own the opposing actor
   static async setFlag (data) {
     console.log("Socket: setFlag", data)
     if (!game.user.isUniqueGM) return
-    ui.notifications.notify(`Setting flag "${data.payload.updateData.key}" on ${data.payload.character.name} as GM`, "info", { permanent: true })
+    ui.notifications.notify(`Setting flag "${data.payload.updateData.key}" on ${data.payload.character.name} as GM`, "info", { permanent: true, console: true })
 
-    const { character } = data.payload
+    const { character } = data.payload  // This should be a Combatant
 
-    const actorToChange = game.scenes.active.tokens
-      .filter(t => t.actor.id === character.actorId)[0].actor
+    // const actorToChange = game.scenes.active.tokens
+    //   .filter(t => t.actor.id === character.actorId)[0].actor
 
     let updated = ""
-    return updated = await actorToChange.setFlag(
+    return updated = await character.setFlag(
       GMToolkit.MODULE_ID,
       data.payload.updateData.flag,
       { [data.payload.updateData.key]: data.payload.updateData.value }
