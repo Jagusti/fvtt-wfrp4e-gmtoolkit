@@ -59,10 +59,10 @@
 }
 
 .tokenhudext {
-	display: flex; 
+	display: inline-flex; 
 	flex: 0 !important;
-    font-family: CaslonPro;
-    font-weight: 600;
+  font-family: CaslonPro;
+  font-weight: 600;
 }
 
 .tokenhudext.left {
@@ -73,11 +73,12 @@
 /*  1b. Hud Icons */
 
 .control-icon.tokenhudicon {
-	width: fit-content;
+	width: -webkit-fill-available;
 	min-width: 42px;
 	flex-basis: auto;
 	padding: 0 8px;
-    margin: 11px 0px;
+  font-family: CaslonPro;
+  font-weight: 600;
 }
 
 .control-icon.tokenhudicon.left {

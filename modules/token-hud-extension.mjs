@@ -45,7 +45,7 @@ export default class TokenHudExtension {
       TooltipMovement += `; ${game.i18n.localize("Walk")}: ${walk}; ${game.i18n.localize("Run")}: ${run}; ${game.i18n.localize("Swim")}: ${swim}`
       displayedMovement = run
     }
-    const hudMovement = $(`<div class="control-icon tokenhudicon left" id="movement" title="${TooltipMovement}"><i class="fas ${movementIcon}">&nbsp;${displayedMovement}</i></div>`)
+    const hudMovement = $(`<div class="control-icon tokenhudicon left" id="movement" title="${TooltipMovement}"><i class="fas ${movementIcon}"><span class="tokenhudext">&nbsp;${displayedMovement}</span></i></div>`)
     html.find('[id = "hudLeftInner"]').prepend(hudMovement)// Add Movement token tip
 
     // Add interactions for Movement
@@ -138,7 +138,7 @@ export default class TokenHudExtension {
     const initiative = actorCharacteristics.i.value
     const agility = actorCharacteristics.ag.value
     const TooltipInitiative = `${game.i18n.localize("CHAR.I")}: ${initiative}; ${game.i18n.localize("CHAR.Ag")}: ${agility}`
-    const hudInitiative = $(`<div class="control-icon tokenhudicon left" id="initiative" title="${TooltipInitiative}"><i class="fas fa-spinner">&nbsp;${initiative}</i></div>`)
+    const hudInitiative = $(`<div class="control-icon tokenhudicon left" id="initiative" title="${TooltipInitiative}"><i class="fas fa-spinner"><span class="tokenhudext">&nbsp;${initiative}</span></i></div>`)
     html.find('[id = "hudLeftInner"]').prepend(hudInitiative)  // Add Initiative and Agility token tip
 
     // Add interactions for Initiative and Agility
@@ -197,7 +197,7 @@ export default class TokenHudExtension {
       const divTokenHudExt = '<div class="tokenhudext left">'
 
       // Resolve and Resilience
-      const hudResolve = $(`<div class="control-icon tokenhudicon left" id="resolve" title="${TooltipResolve}"><i class="fas fa-hand-rock">&nbsp;${resolve}</i></div>`)
+      const hudResolve = $(`<div class="control-icon tokenhudicon left" id="resolve" title="${TooltipResolve}"><i class="fas fa-hand-rock"><span class="tokenhudext">&nbsp;${resolve}</span></i></div>`)
       html.find('[id = "hudLeftOuter"]').prepend(hudResolve)// Add Resolve token tip
 
       // Add interactions for Resolve and Resilience
@@ -253,7 +253,7 @@ export default class TokenHudExtension {
       })
 
       // Fortune and Fate
-      const hudFortune = $(`<div class="control-icon tokenhudicon left" id="fortune" title="${TooltipFortune}"><i class="fas fa-dice">&nbsp;${fortune}</i></div>`)
+      const hudFortune = $(`<div class="control-icon tokenhudicon left" id="fortune" title="${TooltipFortune}"><i class="fas fa-dice"><span class="tokenhudext">&nbsp;${fortune}</span></i></div>`)
       html.find('[id = "hudLeftOuter"]').append(hudFortune)// Add Fortune token tip
       // Add interactions for Fortune and Fate
       hudFortune.find("i").contextmenu(async ev => {
@@ -320,7 +320,7 @@ export default class TokenHudExtension {
 
       // Corruption, Sin, Perception, Intuition
       // Corruption and Sin
-      const hudCorruption = $(`<div class="control-icon tokenhudicon left" id="corruption" title="${TooltipCorruption}"><i class="fas fa-bahai">&nbsp;${corruption}</i></div>`)
+      const hudCorruption = $(`<div class="control-icon tokenhudicon left" id="corruption" title="${TooltipCorruption}"><i class="fas fa-bahai"><span class="tokenhudext">&nbsp;${corruption}</span></i></div>`)
       html.find('[id = "hudLeftOuter"]').prepend(hudCorruption)// Add Corruption token tip
 
       // Add interactions for Corruption and Sin
@@ -412,7 +412,7 @@ export default class TokenHudExtension {
       })
 
       // Perception and Intuition
-      const hudPerception = $(`<div class="control-icon tokenhudicon left" id="perception" title="${TooltipPerception}"><i class="fas fa-eye">&nbsp;${perception}</i></div>`)
+      const hudPerception = $(`<div class="control-icon tokenhudicon left" id="perception" title="${TooltipPerception}"><i class="fas fa-eye"><span class="tokenhudext">&nbsp;${perception}</span></i></div>`)
       html.find('[id = "hudLeftInner"]').append(hudPerception)// Add Perception token tip
 
       // Add interactions for Perception and Intuition
