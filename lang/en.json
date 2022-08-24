@@ -114,8 +114,8 @@
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Lose momentum at end of Round {combatRound}", 
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "Reduce Advantage by 1",
 
-    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "Token Vision is enabled and Unrestricted Vision Range is disabled in scene {sceneName}.",
-    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "Token Vision is disabled and Unrestricted Vision Range is enabled in scene {sceneName}.", 
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Vision is enabled and Global Illumination is disabled in scene {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Vision is disabled and Global Illumination is enabled in scene {sceneName}.", 
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Pull Everyone to Scene",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activate the currently viewed scene when pulling everyone to it.",

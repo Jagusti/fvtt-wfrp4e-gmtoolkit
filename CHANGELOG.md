@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Added* compatibility for Foundry VTT v10. This is a **breaking change**: 
+  - v9 is no longer supported beyond GM Toolkit [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4).
+  - v10 the minimum version required for GM Toolkit.
+  - Full details can be found in [#156](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/156).
+  - Nearly all macros have been updated. These can be re-imported using the `Update GM Toolkit`  module setting.
+- *Removed* extra console logging in maintenance and group test applications. [#75d6dd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/75d6dd540a7d8dbe6a3cb9d6be940a33552dbd03)
+- *Added* initial support for vision modes, as well as sight saturation and colour to be able to leverage v10 vision changes in Set Token Vision and Light.
+- *Changed* Advantage handling to deal with Tokens primarily, and Combatants for setting flags (which is used for Lose Momentum). Actor documents are no longer supported.
+- *Fixed* Dark Whispers table to draw from all entries when using the `/table darkwhispers` chat command. This did not affect using the Rolltable or Send Dark Whispers macro.
 
 ## [Version 0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4)  (2022-08-07)
 - *Fixed* regression that prevented Group Advantage from updating in some cases. It should now update correctly whether using the Advantage macros or completing an automated process, such as outmanoeuvring or winning an opposed test.
@@ -25,7 +34,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 ## [Version 0.9.4.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.2)  (2022-07-29)
 - *Added* localization improvements for Condition Check and Secret Group Test macros. (Thanks @Txus5012!) [[#141](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/141)] 
 - *Added* German localization. (Thanks 24Nomad!) [[#143](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/143)] 
-- *Fixed* compatibilty issue with Babele. [[#135](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/135)] [[#146](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/146)] 
+- *Fixed* compatibility issue with Babele. [[#135](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/135)] [[#146](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/146)] 
 
 ## [Version 0.9.4-1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4-1)  (2022-07-23)
 - *Fixed* an issue where the Token Hud Extension would not display, even if enabled in module settings. [[#132](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/132)] 
@@ -42,7 +51,7 @@ Advantage
 
 Group and Player Management
 - *Added* error notification on startup if there are players that do not have characters assigned (spectators). [[#102](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/102)]
-- *Added* group selection utility for consistency when setting defaults in macros and other functionality. The utilty returns an array of users, actors, tokens or combatants, and can be filtered by user logged-in status, scene presence, and whether targeted or selected as a token.  [[#61](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/61)]
+- *Added* group selection utility for consistency when setting defaults in macros and other functionality. The utility returns an array of users, actors, tokens or combatants, and can be filtered by user logged-in status, scene presence, and whether targeted or selected as a token.  [[#61](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/61)]
 
 Group Tests
 - *Fixed* issue where Assistant GMs could not make secret (party) group tests. [[#124](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/124)]
@@ -142,8 +151,8 @@ Other
 ## [Version 0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0)  (2021-12-31)
 - *Changed* Advantage scripts to handle non-token characters. 
 - *Added* option to automate changes to Advantage when a character deals or is dealt combat damage in opposed contests. 
-- *Added* option for sticky notifications for Advantage updates. This is introduced to provide better visibility of automated changes to Advantage, so that any related amendnents are not missed. 
-  - The option is disabled by default. Foundry supports a limit of 3 notification popups being displayed, so these should be cleared down each turn. Other notifications are typically queued and will appear after the on-screen popus are dismissed.
+- *Added* option for sticky notifications for Advantage updates. This is introduced to provide better visibility of automated changes to Advantage, so that any related amendments are not missed. 
+  - The option is disabled by default. Foundry supports a limit of 3 notification popups being displayed, so these should be cleared down each turn. Other notifications are typically queued and will appear after the on-screen popups are dismissed.
   - When enabled, Advantage related info popups will persist until manually dismissed. 
   - A copy of the notification is also kept in the console session. These are lost when the application or browser is refreshed or shut down, or the console log is cleared. 
 - *Added* localisation support for new Advantage messaging.

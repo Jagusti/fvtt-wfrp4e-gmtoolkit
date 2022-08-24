@@ -60,7 +60,8 @@ export class GroupTest extends FormApplication {
       playerGroup: game.gmtoolkit.utility.getGroup(data.group.options.type),
       selected: game.gmtoolkit.utility.getGroup("company", { interaction: "selected", present: true }),
       npcTokens: game.gmtoolkit.utility.getGroup("npcTokens"),
-      controlled: canvas.tokens.placeables.filter(t => t._controlled)
+      // _game.gmtoolkit.utility.getGroup("tokens", { interaction: "selected" })
+      controlled: canvas.tokens.controlled
     }
 
     return data

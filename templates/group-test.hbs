@@ -96,7 +96,7 @@
           <div class = "flexcol member-list">
             {{#each playerGroup}}
               <div class = "flexrow">
-                <input type = "checkbox" name = "targetGroup" value = {{uuid}} id = "{{concat "target." uuid}}" data-dtype = "Boolean" {{checked (or (eq ../controlled.length 0) (ifIn this ../selected))}}><label for="{{concat "target." uuid}}" class = "checkbox-label">{{name}}</label></input>
+                <input type = "checkbox" name = "targetGroup" value = {{uuid}} id = "{{concat "target." uuid}}" data-dtype = "String" {{checked (or (eq ../controlled.length 0) (ifIn this ../selected))}}><label for="{{concat "target." uuid}}" class = "checkbox-label">{{name}}</label></input>
               </div>
             {{/each}}
           </div>
@@ -104,7 +104,7 @@
           <div class = "flexcol member-list">
             {{#each npcTokens}}
               <div class = "flexrow">
-                <input type = "checkbox" name = "targetGroup" value = {{document.uuid}} id = "{{concat "target." document.uuid}}" data-dtype = "Boolean" {{checked _controlled}}><label for="{{concat "target." document.uuid}}" class = "checkbox-label">{{name}}</label></input>
+                <input type = "checkbox" name = "targetGroup" value = {{document.uuid}} id = "{{concat "target." document.uuid}}" data-dtype = "String" {{checked controlled}}><label for="{{concat "target." document.uuid}}" class = "checkbox-label">{{name}}</label></input>
               </div>
             {{/each}}
           </div>

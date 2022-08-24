@@ -24,7 +24,7 @@ function makeGroupTest () {
 
   /* === Guard === */
   // Exit with notice if not a GM
-  if (!game.user.isGM) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"))
+  if (!game.user.isGM) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission"), { console: false })
 
   /* === Run Group Test === */
   // RUN SILENT TEST
@@ -40,7 +40,7 @@ function makeGroupTest () {
  * MACRO: Make Secret Group Test
  * VERSION: 0.9.5
  * UPDATED: 2022-08-04
- * DESCRIPTION: Quckly roll and report group skill tests for player and non-player characters.
+ * DESCRIPTION: Quickly roll and report group skill tests for player and non-player characters.
  * TIP: Default options for Quick Test and custom skills can be set in module settings.
  * TIP: By default, tests are rolled blind. Right-click a test result in the chat log to show the results to players.
  * TIP: You can use the results of a secret test in an opposed test (such as secret Stealth v Perception tests) as normal. Use the double arrows in the chat log card, or roll a group test when Opposing with Targets.

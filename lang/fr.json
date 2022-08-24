@@ -114,8 +114,8 @@
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Lose Momentum at end of Round {combatRound}", 
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "Reduce Advantage by 1",
 
-    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
-    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "La vision des Pions est déssactivé et l'Illumination globale est activé dans la Scène {sceneName}.",
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "La vision des Pions est activé et l'Illumination globale est désactivé dans la Scène {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "La vision des Pions est déssactivé et l'Illumination globale est activé dans la Scène {sceneName}.",
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Envoyer tout le monde sur la Scène",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Activer la Scène actuellement visualisée lorsque tout le monde est envoyé dessus.",

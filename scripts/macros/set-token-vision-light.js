@@ -111,9 +111,12 @@ async function setTokenVisionLight () {
           // Define a set of baseline values. Light Source and Vision choices will only change the properties that differ. Not all of the options available since Foundry v9 are used.
           // Baseline Vision Values
           let advNightVision = 0
-          let dimSight = 0
-          let brightSight = 0
           let sightAngle = 360
+          let sightBrightness = 0
+          let sightColor = null
+          let sightRange = 0
+          sightSaturation = 0
+          let visionMode = "basicVision"
           // Baseline Light Source Values
           let dimLight = 0
           let brightLight = 0
@@ -235,8 +238,8 @@ async function setTokenVisionLight () {
               animationType = "torch"
               break
             case "pha":
-              dimLight = token.actor.data.data.characteristics.wp.bonus
-              brightLight = token.actor.data.data.characteristics.wp.bonus
+              dimLight = token.actor.system.characteristics.wp.bonus
+              brightLight = token.actor.system.characteristics.wp.bonus
               lightColor = "#ffddbb"
               lightColorIntensity = 0.6
               animationIntensity = 4
@@ -253,49 +256,54 @@ async function setTokenVisionLight () {
               animationType = "fog"
               break
             default:
-              dimLight = token.data.light.dim
-              brightLight = token.data.light.bright
-              lightAngle = token.data.light.angle
-              lightColor = token.data.light.color
+              dimLight = token.document.light.dim
+              brightLight = token.document.light.bright
+              lightAngle = token.document.light.angle
+              lightColor = token.document.light.color
           }
 
           // Get Vision Type Values
           switch (visionType) {
             case "blindedVision":
-              brightSight = 1
-              dimSight = 0
+              sightBrightness = 1
+              sightRange = 1
+              sightSaturation = 1
               break
             case "noVision":
-              dimSight = 0
-              brightSight = 0
+              sightRange = 0
+              sightBrightness = -1
               dimLight = 0
               brightLight = 0
               break
             case "darkVision":
               const darkvision = game.i18n.localize("NAME.DarkVision").toLowerCase()
               item = token.actor.items.find(
-                i => i.data.name.toLowerCase() === darkvision
+                i => i.name.toLowerCase() === darkvision
               )
               if (item !== undefined) {
-                dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))
+                sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))
               } else {
-                game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision") ? dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision")) : dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
+                game.settings.get("wfrp4e-gm-toolkit", "overrideDarkVision")
+                  ? sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeDarkVision"))
+                  : sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
               }
-              brightSight = dimSight / 2
+              sightBrightness = sightRange / 2
               break
             case "nightVision":
               const nightvision = game.i18n.localize("NAME.NightVision").toLowerCase()
               // Night Vision requires some minimal illumination to provide a benefit
               if (
-                game.scenes.viewed.data.darkness < 1
+                game.scenes.viewed.darkness < 1
                 | dimLight > 0
-                | game.scenes.viewed.data.globalLight
+                | game.scenes.viewed.globalLight
               ) {
                 item = token.actor.items.find(
-                  i => i.data.name.toLowerCase() === nightvision
+                  i => i.name.toLowerCase() === nightvision
                 )
                 if (item === undefined) {
-                  game.settings.get("wfrp4e-gm-toolkit", "overrideNightVision") ? advNightVision = 1 : advNightVision = 0
+                  game.settings.get("wfrp4e-gm-toolkit", "overrideNightVision")
+                    ? advNightVision = 1
+                    : advNightVision = 0
                 } else {
                   for (let item of token.actor.items) {
                     if (item.name.toLowerCase() === nightvision ) {
@@ -304,54 +312,67 @@ async function setTokenVisionLight () {
                           advNightVision = 1
                           break
                         case "talent":
-                          advNightVision += item.data.data.advances.value
+                          advNightVision += item.system.advances.value
                           break
                       }
                     }
                   }
                 }
-                brightSight = 20 * advNightVision
-                dimSight = Math.max(brightSight + dimLight, Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")))
-                dimSight = advNightVision === 0 ? Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")) : Math.max(brightSight + dimLight, Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight")))
-                sightAngle = lightAngle
+                if (advNightVision === 0) {
+                  sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
+                  break
+                }
+                sightRange = Math.max(
+                  (20 * advNightVision) + dimLight,
+                  Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
+                )
+                sightColor = "#006080"
+                visionMode = "monochromatic"
+                sightSaturation = -1
               }
               console.log(`Night Vision Advances ${advNightVision}`)
               break
             case "normalVision":
-              dimSight = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
-              brightSight = 0
+              sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
+              sightBrightness = 0
+              sightColor = null
+              visionMode = "basicVision"
               break
             default:
-              dimSight = token.data.dimSight
-              brightSight = token.data.brightSight
+              sightRange = token.document.sight.range
+              sightBrightness = token.document.sight.brightness
+              sightColor = null
+              visionMode = "basicVision"
           }
 
           // Update Token
           await token.document.update({
-            vision: true,
+            sight: {
+              angle: sightAngle,
+              brightness: sightBrightness,
+              color: sightColor,
+              enabled: true,
+              range: sightRange,
+              saturation: sightSaturation,
+              visionMode: visionMode
+            },
             light: {
-              dim: dimLight,
-              bright: brightLight,
+              alpha: lightColorIntensity,
+              animation: {
+                intensity: animationIntensity,
+                speed: animationSpeed,
+                type: animationType
+              },
               angle: lightAngle,
+              bright: brightLight,
               color: lightColor,
-              alpha: lightColorIntensity
-            },
-            "light.animation": {
-              intensity: animationIntensity,
-              speed: animationSpeed,
-              type: animationType
-            },
-            dimSight: dimSight,
-            brightSight: brightSight,
-            sightAngle: sightAngle
-            // "visionType": visionType,
-            // "lightSource": lightSource,
-            // "advNightVision": advNightVision
+              dim: dimLight
+            }
           })
           token.refresh(true)
         }
 
-        canvasTokensUpdate({ vision: true })
+        canvasTokensUpdate({ "sight.enabled": true })
 
       }
     }
@@ -362,7 +383,7 @@ async function setTokenVisionLight () {
 /* ==========
  * MACRO: Set Token Vision and Light
  * VERSION: 0.9.5
- * UPDATED: 2022-08-04
+ * UPDATED: 2022-08-15
  * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
  ========== */

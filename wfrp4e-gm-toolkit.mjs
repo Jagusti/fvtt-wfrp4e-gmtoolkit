@@ -67,7 +67,7 @@ Hooks.once("ready", async function () {
   if (spectators.length > 0) {
     GMToolkit.log(true, `Spectators: ${spectators}`)
     if (!game.settings.get("wfrp4e-gm-toolkit", "suppressSpectatorNotice")) {
-      ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", { spectators })}`, { permanent: true })
+      ui.notifications.error(`${game.i18n.format("GMTOOLKIT.Message.Spectators", { spectators })}`, { permanent: true, console: false })
     }
   }
 
@@ -97,10 +97,10 @@ Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
 
 // Disable movement on holding scene
 Hooks.on("preUpdateToken", (token, change) => {
-  GMToolkit.log(false, `${token.data.x} -> ${change?.x}, ${token.data.y} -> ${change?.y}`)
+  GMToolkit.log(false, `${token.x} -> ${change?.x}, ${token.y} -> ${change?.y}`)
   if (!game.user.isGM && game.canvas.scene.name === game.settings.get("wfrp4e-gm-toolkit", "holdingScene")) {
-    if (change?.x) {change.x = token.data.x}
-    if (change?.y) {change.y = token.data.y}
+    if (change?.x) {change.x = token.x}
+    if (change?.y) {change.y = token.y}
   }
 })
 
@@ -136,19 +136,19 @@ export class SocketHandlers {
       .update(data.payload.updateData)
   }
 
-  // Used for updating Advantage flags when the opposed test is resolved by a player character that does not own the opposing character
+  // Used for updating Advantage flags on combatant when the opposed test is resolved by a player character that does not own the opposing actor
   static async setFlag (data) {
     console.log("Socket: setFlag", data)
     if (!game.user.isUniqueGM) return
-    ui.notifications.notify(`Setting flag "${data.payload.updateData.key}" on ${data.payload.character.name} as GM`, "info", { permanent: true })
+    ui.notifications.notify(`Setting flag "${data.payload.updateData.key}" on ${data.payload.character.name} as GM`, "info", { permanent: true, console: true })
 
-    const { character } = data.payload
+    const { character } = data.payload  // This should be a Combatant
 
-    const actorToChange = game.scenes.active.tokens
-      .filter(t => t.actor.id === character.actorId)[0].actor
+    // const actorToChange = game.scenes.active.tokens
+    //   .filter(t => t.actor.id === character.actorId)[0].actor
 
     let updated = ""
-    return updated = await actorToChange.setFlag(
+    return updated = await character.setFlag(
       GMToolkit.MODULE_ID,
       data.payload.updateData.flag,
       { [data.payload.updateData.key]: data.payload.updateData.value }

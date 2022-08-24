@@ -114,8 +114,8 @@
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title" : "Verliert Momentum am Ende der Runde {combatRound}", 
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button" : "Vorteil reduziert um 1",
 
-    "GMTOOLKIT.Scene.TokenNotUnrestricted" : "Token Sicht ist aktiviert und hat uneingeschränkte Sichtweite in der Szene deaktiviert {sceneName}.",
-    "GMTOOLKIT.Scene.UnrestrictedNotToken" : "Token Sicht ist deaktiviert und uneingeschränkte Sichtweite ist in der Szene aktiviert {sceneName}.", 
+    "GMTOOLKIT.Scene.TokenNotGlobal" : "Token Sicht ist aktiviert und hat uneingeschränkte Sichtweite in der Szene deaktiviert {sceneName}.",
+    "GMTOOLKIT.Scene.GlobalNotToken" : "Token Sicht ist deaktiviert und uneingeschränkte Sichtweite ist in der Szene aktiviert {sceneName}.", 
 
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Alle zur Szene ziehen",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Aktivieren Sie die aktuell angezeigte Szene, wenn Sie alle zu ihr ziehen.",
