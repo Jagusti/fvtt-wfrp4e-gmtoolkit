@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 0.9.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.5)  (2022-08-24)
 - *Added* compatibility for Foundry VTT v10. This is a **breaking change**: 
   - v9 is no longer supported beyond GM Toolkit [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4).
   - v10 the minimum version required for GM Toolkit.
