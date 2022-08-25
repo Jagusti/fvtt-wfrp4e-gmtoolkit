@@ -7,33 +7,37 @@ assignees: ''
 
 ---
 
-**Relates to** *(mark with an x)*
-- [ ] Existing GM Toolkit macro (eg, Set Token Vision and Light, Session Turnover)
-- [ ] Existing GM Toolkit non-macro functionality (eg, Token Hud Extension, Group Tests, documentation)
+## Context
+<!-- Put an `x` in the boxes that apply. Delete any option that is not applicable. -->
+<!-- If the proposed change relates to an existing macro or feature, please specify below. -->
+- [ ] Existing GM Toolkit macro <!-- (eg, Set Token Vision and Light, Session Turnover) -->
+- [ ] Existing GM Toolkit non-macro functionality <!-- (eg, Token Hud Extension, Group Tests, documentation) -->
 - [ ] Something that the Toolkit doesn't cover already
 
-**If related** *to an existing macro or feature, please specify ...*
-[...]
+**Existing Feature:** (if applicable)
 
-**Summary**
-*A clear and concise description of the use case or scenario you want to address with a GM Toolkit enhancement.*
-[...]
+## What is the motivation or use case?
+<!-- Why is this change required? What problem does it solve? -->
+<!-- A clear and concise description of the use case or scenario you want -->
+<!-- to address with a GM Toolkit enhancement. --> 
 
+## What do you expect to happen?
+<!-- A clear and concise description of how the feature is used and behaves. -->
+<!-- This will help shape an appropriate workflow, interaction and notifications. -->
 
-**References**
-* *Are there published game rules that relate to this feature request? (eg, Core Rulebook p181 - Medical Attention)*
-[...]
-* *Is there related Foundry WFRP4e system functionality?*
-[...]
+## Describe alternatives you've considered
+<!-- A clear and concise description of any alternative solutions or features you've considered. -->
+<!-- Tell us why about alternatives you would prefer not to see. -->
 
-**How do you imagine this would behave?**
-*A clear and concise description of what you expect to happen.*
-[...]
+## Additional context
+<!-- Add any other context, including screenshots / mockups, about the feature request here. -->
 
-**Describe alternatives you've considered**
-*A clear and concise description of any alternative solutions or features you've considered.*
-[...]
+## References
+### Published rules
+<!-- Where are rules for how this feature should work? -->
+<!---eg, Core Rulebook p181 - Medical Attention -->
 
-**Additional context**
-*Add any other context or screenshots about the feature request here.*
-[...]
+### Related functionality
+<!-- Is there existing functionality that relates to this feature? -->
+<!-- Either in Foundry core, the WFRP4e system or official modules -->
+<!-- Or third party modules (which may or may not be WFRP-specific) -->
