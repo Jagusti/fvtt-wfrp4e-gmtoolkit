@@ -4,8 +4,8 @@
   "description": "Utilities for WFRP4e GMs",
   "version": "0.9.5",
   "compatibility": {
-    "minimum": "10.278",
-    "verified": "10.278",
+    "minimum": "10.279",
+    "verified": "10.279",
     "maximum": 10
   },
   "authors": [

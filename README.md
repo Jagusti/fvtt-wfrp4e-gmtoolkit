@@ -5,7 +5,7 @@ Utility module with tweaks, enhancements and macros to help GMs manage games of 
 ## Compatibility
 
 Version 0.9.5 is a pre-release candidate that requires
-- Foundry VTT: v10.278 or higher 
+- Foundry VTT: v10.279 or higher 
 - WFRP4e: v6.x
 
 For previous versions, you should use:
