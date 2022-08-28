@@ -31,7 +31,11 @@ export class GroupTest extends FormApplication {
       quickTest4: game.settings.get("wfrp4e-gm-toolkit", "quicktest4GroupTest")
     }
 
-    data.skills.custom = data.skills.list.map(m => m.name).includes(data.skills.target, name) ? "" : data.skills.target
+    data.skills.target
+      = (game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest") === "null")
+        ? ""
+        : game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
+    data.skills.custom = data.skills.list.map(m => m.name).includes(data.skills.target) ? "" : data.skills.target
 
     data.testParameters = {
       testModifier: this.object.testParameters?.testModifier || game.settings.get("wfrp4e-gm-toolkit", "defaultTestModifierGroupTest"),
@@ -135,12 +139,13 @@ export class GroupTest extends FormApplication {
 
   /**
    * Toggle form label to reflect whether a skill or specialisation is needed
-   * @param {Event} event : The originating change event
+   * @param {Event} event : The originating event: change in skill-list dropdown
    * @private
    **/
   _toggleGroupedSkill (event) {
     const label = document.getElementById("skill-name-label")
     const field = document.getElementById("skill-name")
+    // Set text field label
     if (event.target.value.slice(-2) === "()" || event.target.value.slice(-3) === "( )") {
       label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisation")
       field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisationPlaceholder")
@@ -148,11 +153,21 @@ export class GroupTest extends FormApplication {
       label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill")
       field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkillPlaceholder")
     }
+    // Set text field value
+    if (event.target.value !== "") {
+      field.value = ""
+    }
+    if (event.target.value === "") {
+      field.value
+      = (game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest") === "null")
+          ? ""
+          : game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
+    }
   }
 
   /**
    * Toggle modifiers, disabling if not bypassing roll dialog, as they are ignored in interactive tests
-   * @param {Event} event : The originating change event
+   * @param {Event} event : The originating event: change in bypass checkbox
    * @private
    **/
   _toggleBypassTestDialog (event) {

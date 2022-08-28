@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Changed* Group Test setup form to clear or restore custom skill field if a skill is chosen from the skill list dropdown. [#160](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/160)
 
 ## [Version 0.9.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.5)  (2022-08-24)
 - *Added* compatibility for Foundry VTT v10. This is a **breaking change**: 
