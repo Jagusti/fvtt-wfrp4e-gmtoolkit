@@ -406,25 +406,28 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
     .filter(c => c.actor === winner)[0]
     .token.object
   if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.opposed !== opposedTest.attackerTest.message.id) {
-    await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
-
-    if (!winner.ownership[game.user.id]) {
-      await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
-        type: "setFlag",
-        payload: {
-          character: character.combatant,
-          updateData: {
-            flag: "advantage",
-            key: "opposed",
-            value: opposedTest.attackerTest.message.id
-          }
-        }
-      })
+    if (game.settings.get("wfrp4e", "useGroupAdvantage") === true && character.actor !== attacker) {
+      console.log("No advantage gained for winning an opposed test you did not initiate.")
     } else {
-      await character.combatant
-        .setFlag(GMToolkit.MODULE_ID, "advantage",
-          { opposed: opposedTest.attackerTest.message.id }
-        )
+      await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
+      if (!winner.ownership[game.user.id]) {
+        await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
+          type: "setFlag",
+          payload: {
+            character: character.combatant,
+            updateData: {
+              flag: "advantage",
+              key: "opposed",
+              value: opposedTest.attackerTest.message.id
+            }
+          }
+        })
+      } else {
+        await character.combatant
+          .setFlag(GMToolkit.MODULE_ID, "advantage",
+            { opposed: opposedTest.attackerTest.message.id }
+          )
+      }
     }
   } else {
     console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
