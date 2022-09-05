@@ -1,0 +1,106 @@
+<form>
+  <div class = "flexrow">{{!-- multi-column outer --}}
+    <div id = "parameters">{{!-- left column --}}
+      <div class = "form-group flexcol" id = "damage-criteria">{{!-- SET DAMAGE CRITERIA >> --}}
+        <div class = "form-group section-title">
+          <label class = "section-title">{{localize "GMTOOLKIT.Damage.Dialog.SetDamageCriteria"}}</label>
+        </div>   
+
+        {{!-- TEXTBOX: Enter damage amount or dice roll amount --}}
+        <div class="form-group">
+          <label for="damageFormula" title="{{localize "GMTOOLKIT.Damage.Dialog.DamageFormula.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.DamageFormula.Label"}}</label>
+          <input type="text" id="damageFormula" name="damageFormula" value="1d10">
+        </div>
+        {{!-- Randomise damage for each character --}}
+        <div class = "flexrow parameter option" id = "option-randomDamage">
+          <label for = "randomiseDamage" title = "{{localize "GMTOOLKIT.Damage.Dialog.RandomiseDamage.Hint"}}" class = "checkbox-label">{{localize "GMTOOLKIT.Damage.Dialog.RandomiseDamage.Label"}}</label>
+          <input type="checkbox" id="randomiseDamage" name="randomiseDamage" title={{localize "GMTOOLKIT.Damage.Dialog.RandomiseDamage.Hint"}} {{checked}}>
+        </div>
+        
+        {{!-- DROPDOWN: Select Hit Location --}}
+        <div class="form-group custom-select">
+          <label for = "selectedHitLocation" title = "{{localize "GMTOOLKIT.Damage.Dialog.HitLocation.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.HitLocation.Label"}}</label>
+          <select name = "selectedHitLocation" id = "selectedHitLocation" selected = "roll">
+              <option value="roll">{{localize "Roll"}}</option>
+              <option value="none">{{localize "None"}}</option>
+              <option value="head">{{localize "Head"}}</option>
+              <option value="lArm">{{localize "Left Arm"}}</option>
+              <option value="rArm">{{localize "Right Arm"}}</option>
+              <option value="body">{{localize "Body"}}</option>
+              <option value="lLeg">{{localize "Left Leg"}}</option>
+              <option value="rLeg">{{localize "Right Leg"}}</option>
+          </select>
+        </div>
+        <div class = "flexrow parameter option" id = "option-randomHitLocation">
+          <label for = "randomiseHitLocation" title = "{{localize "GMTOOLKIT.Damage.Dialog.RandomiseHitLocation.Hint"}}" class = "checkbox-label">{{localize "GMTOOLKIT.Damage.Dialog.RandomiseHitLocation.Label"}}</label>
+          <input type = "checkbox" id = "randomiseHitLocation" name = "randomiseHitLocation" title = {{localize "GMTOOLKIT.Damage.Dialog.RandomiseHitLocation.Hint"}} {{checked}}>
+        </div>
+
+      </div>{{!-- << SET DAMAGE CRITERIA --}}
+
+      
+      <div class = "form-group flexcol" id = "damage-options">{{!-- SELECT OPTIONS >> --}}
+      {{!-- Set Options --}}
+        <div class = "form-group section-title">
+          <label class = "section-title">{{localize "Set Options"}}</label>
+        </div>   
+
+        {{!-- Ignore Toughness Bonus --}}
+        <div class="flexrow parameter" id = "option-ignoreTB">
+          <label for  = "ignoreTB" title = "{{localize "GMTOOLKIT.Damage.Dialog.IgnoreTB.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.IgnoreTB.Label"}}</label>
+          <input type = "checkbox" id = "ignoreTB" name = "ignoreTB">
+        </div>
+
+        {{!-- Ignore Armour Points --}}
+        <div class = "flexrow parameter" id = "option-ignoreAP">
+          <label for  = "ignoreAP" title = "{{localize "GMTOOLKIT.Damage.Dialog.IgnoreAP.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.IgnoreAP.Label"}}</label>
+          <input type = "checkbox" id = "ignoreAP" name = "ignoreAP" {{checked}}>
+        </div>
+
+        {{!-- Minimum 1 Damage --}}
+        <div class = "flexrow parameter" id = "option-minimumOne">
+          <label for  = "minimumOne" title = "{{localize "GMTOOLKIT.Damage.Dialog.MinimumOne.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.MinimumOne.Label"}}</label>
+          <input type = "checkbox" id = "minimumOne" name = "minimumOne" {{checked}}>
+        </div>
+        
+      </div>{{!-- << SELECT OPTIONS --}}
+    </div>{{!-- left column --}}
+
+
+    <div id = "app-targets">{{!-- right column --}}
+      <div class = "form-group flexcol" id = "group-members">{{!-- TARGET SELECTION >> --}}
+        {{!-- Specify Group Targets --}}  
+        <div class = "form-group section-title">
+          <label for = "choose-targets" class = "section-title">{{localize "GMTOOLKIT.Dialog.ChooseTargets"}}</label>
+        </div>
+        {{!-- Select from player group --}}
+        <div class = "form-group flexrow">
+          {{#with group.members}}
+          <div class = "flexcol member-list">
+            {{#each playerGroup}}
+              <div class = "flexrow">
+                <input type = "checkbox" name = "targetGroup" value = {{uuid}} id = "{{concat "target." uuid}}" data-dtype = "String" {{checked (or (eq ../targeted.length 0) (ifIn this ../targeted))}}><label for="{{concat "target." uuid}}" class = "checkbox-label">{{name}}</label></input>
+              </div>
+            {{/each}}
+          </div>
+            {{!-- Select from NPC tokens --}}
+          <div class = "flexcol member-list">
+            {{#each npcTokens}}
+              <div class = "flexrow">
+                <input type = "checkbox" name = "targetGroup" value = {{document.uuid}} id = "{{concat "target." document.uuid}}" data-dtype = "String" {{checked (ifIn this ../targeted)}}><label for="{{concat "target." document.uuid}}" class = "checkbox-label">{{name}}</label></input>
+              </div>
+            {{/each}}
+          </div>
+          {{/with}}
+        </div>
+      </div> {{!-- << TARGET SELECTION --}}
+    </div>{{!-- right column --}}
+  </div>{{!-- multi-column outer --}}
+
+  {{!-- Form Submission --}}
+  <footer class = "flexrow footer">
+    <button type = "submit" name="cancel">{{localize "GMTOOLKIT.Dialog.Cancel"}}</button>
+    <button type = "submit" name="submit">{{localize "GMTOOLKIT.Dialog.Apply"}}</button>
+  </footer>
+</form>
+

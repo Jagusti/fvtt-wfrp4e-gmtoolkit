@@ -195,6 +195,13 @@ button.priority {
 	text-align-last: start;
 }
 
+.flexrow.parameter.option label, 
+.flexrow.parameter.option input[type="checkbox"] {
+  padding-top: 0px;
+  border: none;
+  position: unset;
+}
+
 .gmtoolkit .flexrow.footer {
 	margin-top: 12px;
 }
