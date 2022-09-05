@@ -16,6 +16,7 @@ import { runSilentGroupTest, runGroupTest } from "./modules/group-test.mjs"
 import { GroupTest } from "./apps/group-test.js"
 import DarkWhispers from "./modules/dark-whispers.mjs"
 import TokenHudExtension from "./modules/token-hud-extension.mjs"
+import { DamageConsole } from "./apps/damage.js"
 
 
 /* -------------------------------------------- */
@@ -37,6 +38,9 @@ Hooks.once("init", function () {
       launch: GroupTest,
       run: runGroupTest,
       silent: runSilentGroupTest
+    },
+    damage: {
+      launch: DamageConsole
     },
     skills: []
   }
