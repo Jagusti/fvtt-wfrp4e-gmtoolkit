@@ -6,6 +6,7 @@ labels: ''
 assignees: ''
 
 ---
+<!--- Provide a general summary in the Title above -->
 
 ## Context
 <!-- Put an `x` in the boxes that apply. Delete any option that is not applicable. -->
@@ -22,7 +23,7 @@ assignees: ''
 <!-- to address with a GM Toolkit enhancement. --> 
 
 ## What do you expect to happen?
-<!-- A clear and concise description of how the feature is used and behaves. -->
+<!-- A clear and concise description of how you imagine the feature is used and behaves. -->
 <!-- This will help shape an appropriate workflow, interaction and notifications. -->
 
 ## Describe alternatives you've considered
@@ -33,6 +34,8 @@ assignees: ''
 <!-- Add any other context, including screenshots / mockups, about the feature request here. -->
 
 ## References
+- [ ] I can be reached on Discord by my handle: ___
+
 ### Published rules
 <!-- Where are rules for how this feature should work? -->
 <!---eg, Core Rulebook p181 - Medical Attention -->

@@ -17,15 +17,17 @@
 - [ ] I have commented my code, particularly in hard-to-understand areas.
 - [ ] My changes generate no new unhandled or unexpected warnings.
 - [ ] My change requires an update to the [documentation](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki).
+- [ ] I can be reached on Discord by my handle: ___
 
 ## Related Issue(s) 
 <!--- This project only accepts pull requests related to open issues -->
 <!--- If suggesting a new feature or change, please discuss it in an issue first -->
 <!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
 <!--- Please link to the issue here: -->
-Fixes or addresses #issue(s).
+Fixes or addresses #issue(s):
 
 ## Description
+
 ### Motivation and context
 <!--- Why is this change required? What problem does it solve? -->
 

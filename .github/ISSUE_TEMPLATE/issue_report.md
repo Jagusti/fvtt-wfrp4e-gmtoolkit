@@ -6,24 +6,30 @@ labels: ''
 assignees: ''
 
 ---
+<!--- Provide a general summary in the Title above -->
 
 ## Checklist
 <!-- Put an `x` in the boxes that apply. Delete any option that is not applicable. -->
 - [ ] I have disabled GM Toolkit and the issue doesn't happen.
 - [ ] I have disabled all other modules (except GM Toolkit) and the issue still happens. 
 - [ ] I go not get a [Spectator Notification](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators) related to actors affected by this issue.
+- [ ] I can be reached on Discord by my handle: ___
+
 ### Versions
  - Foundry VTT: <!-- eg, v10.278 --> 
  - WFRP4e System: <!-- eg, 6.0.0 -->
- - GM Toolkit:  <!-- eg, 0.9.5 -->
+ - GM Toolkit:  <!-- eg, 6.0.0 -->
  - Macro (if applicable): <!-- eg, Add XP 0.9.5 -->
+
 ## Description
+
 ### What should happen
 <!-- A clear and concise description of what you expected to happen. -->
+
 ### What is happening
 <!-- A clear and concise description of what the unexpected or error behaviour is. -->
 
-## Steps to reproduce
+## Steps to reproduce the issue
 <!-- Sequence of steps to reproduce the behaviour: eg, 
 1. Select / Target  '...'
 2. Execute macro '...'
@@ -34,6 +40,8 @@ assignees: ''
 3. etc
 
 ## Supporting Information 
+<!-- Attach actor or item exports as needed. -->
+
 ### Screen Capture
 <!-- If applicable, add a screen recording or screenshots --->
 <!-- to help explain your problem or illustrate the steps to reproduce. --> 
