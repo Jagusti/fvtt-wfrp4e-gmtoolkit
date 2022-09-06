@@ -41,8 +41,8 @@
 
 /* ==========
 * MACRO: GM Toolbox
-* VERSION: 0.9.6
-* UPDATED: 2022-09-05
+* VERSION: 6.0.0
+* UPDATED: 2022-09-06
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
