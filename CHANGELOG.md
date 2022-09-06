@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 6.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.0)  (2022-09-06)
 - *Changed* Group Test setup form to clear or restore custom skill field if a skill is chosen from the skill list dropdown. [#160](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/160)
 - *Fixed* an issue where you could gain advantage if you did not initiate an opposed test when Group Advantage is being used. [#159](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/159)
+- *Added* the [Damage Console](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/168), from which GMs can quickly set and apply damage to one or more actors without starting a combat, opposed or other test. [#158](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/158)
+- *Changed* GM Toolbox to include a new *Launch Damage Console* macro. This will need to be re-imported to take effect. [`a0366a9`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/168/commits/a0366a9ff5acc9217ebc44a168067f1ed10e9027)
+- *Changed* version numbering to bring in step with WFRP4e system major versioning. GM Toolkit jumps from 0.9.5 to 6.0.0 in this release, with no v1-v5 version in between. 
 
 ## [Version 0.9.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.5)  (2022-08-24)
 - *Added* compatibility for Foundry VTT v10. This is a **breaking change**: 
