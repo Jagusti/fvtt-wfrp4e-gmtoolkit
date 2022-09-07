@@ -2,15 +2,24 @@
 
 Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/). 
 
+See the [wiki](../../wiki) for details about features, including (but not only): 
+* Automating individual and group Advantage
+* Sending Dark Whispers
+* Setting token vision and light (including handling Night Vision range correctly)
+* Rolling secret group skill tests 
+* Dealing out non-combat damage to multiple actors and vehicles
+* Managing session turnover admin (including adding Experience Points and resetting Fortune)
+* Extending the Token Hud (to access key attributes and skills without opening the character sheet)
+
 ## Compatibility
 
-Version 0.9.5 is a pre-release candidate that requires
-- Foundry VTT: v10.279 or higher 
-- WFRP4e: v6.x
+Version 6.x requires
+- Foundry VTT: 10.284 or higher 
+- WFRP4e: 6.1.2 or higher
 
 For previous versions, you should use:
 
-- [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4) for  WFRP4e v5.x and Foundry v9.x
+- [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4) for  WFRP4e 5.x and Foundry 9.x
 - [v0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0) for WFRP4e 4.0.6-4.3.1 and Foundry 0.8.8-0.8.9
 
 ## Installation Instructions
