@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-* *Added* headline features to README to make it easier for users to get an overview of what's available in the Toolkit suite. 
+* *Added* headline features to README to make it easier for users to get an overview of what's available in the Toolkit suite.
+* *Fixed* issue where Launch Damage Console was not translated in Toolkit Maintenance dialog. [#177](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/177)
 
 ## [Version 6.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.0)  (2022-09-06)
 - *Changed* Group Test setup form to clear or restore custom skill field if a skill is chosen from the skill list dropdown. [#160](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/160)
