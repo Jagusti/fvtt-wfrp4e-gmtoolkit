@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Added* headline features to README to make it easier for users to get an overview of what's available in the Toolkit suite.
+* *Added* advice about replacing macro hotbar shortcuts to avoid compatibility issues.
 * *Fixed* issue where Launch Damage Console was not translated in Toolkit Maintenance dialog. [#177](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/177)
 * *Fixed* issue where Toolkit Maintenance would not show compendium versions of macros. [#176](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/176)
 
