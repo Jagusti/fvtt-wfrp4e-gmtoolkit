@@ -25,14 +25,18 @@ For previous versions, you should use:
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki). 
 
-1. Add via Add-on Modules tab of Foundry VTT setup.
+1. **Install the module** via the Add-on Modules tab of Foundry VTT setup.
    - Module Name: `GM Toolkit (WFRP4e)`
    - Manifest URL: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest/download/module.json
-2. The GM needs to enable the module for the World:
+2. The GM needs to **enable the module** for the World:
    - `Settings` > `Manage Modules` > `GM Toolkit (WFRP 4e)`
-5. Import macros and tables through either
+3. **Import macros and tables** through either
    - [Toolkit Maintenance](../../wiki/toolkit-maintenance) option in `Settings` > `Module Settings` > `GM Toolkit (WFRP 4e)` > `Update GM Toolkit Content`.  Or
    - [manually importing](../../wiki/getting-started) from Compendium packs.
+4. Finally **replace hotbar shortcuts**. 
+   - These should be deleted automatically when using Toolkit Maintenance. 
+   - Replace shortcuts by dragging and dropping from the `GM Toolkit` `Macro Directory` to ensure they point to the latest versions. 
+   - If macros or shortcuts are not deleted automatically, be sure you don't have older copies of macros with the same names outside of the GM Toolkit folder. 
 
 ## References
 
