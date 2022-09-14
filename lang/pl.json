@@ -239,6 +239,7 @@
     "GMTOOLKIT.Macro.GMToolbox": "Przybornik MG",
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Przełącz widoczność paczek kompendium",
     "GMTOOLKIT.Macro.CheckConditions": "Sprawdz Stany",
+    "GMTOOLKIT.Macro.LaunchDamageConsole": "Pokaż Okno Obrażeń",
     "GMTOOLKIT.Table.DarkWhispers": "Mroczne Podszepty",
     "GMTOOLKIT.Group.Type.party": "drużyna",
     "GMTOOLKIT.Group.Type.company": "kompania",
@@ -275,5 +276,6 @@
     "ROLL.MarginalSuccess": "Znikomy Sukces. 'Tak, ale...'",
     "ROLL.AstoundingFailure": "Zdumiewająca Porażka. 'Nie, nie ma mowy!'",
     "ROLL.ImpressiveFailure": "Krytyczna Porażka. 'Nie, i...'",
-    "ROLL.Failure": "Porażka. 'Nie.'"
+    "ROLL.Failure": "Porażka. 'Nie.'",
+    "ROLL.MarginalFailure": "Znikoma Porażka. 'Nie, ale...'"
 }
