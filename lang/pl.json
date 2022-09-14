@@ -1,5 +1,5 @@
 {
-      "GMTOOLKIT.Message.UnexpectedNoChange": "Stało się coś nieoczekiwanego. Nie dokonano żadnych zmian.",
+    "GMTOOLKIT.Message.UnexpectedNoChange": "Stało się coś nieoczekiwanego. Nie dokonano żadnych zmian.",
     "GMTOOLKIT.Message.NoChangeMade": "Nie dokonano żadnych zmian.",
     "GMTOOLKIT.Message.Spectators": "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Widzowie</a>: brak postaci przypisanej do {spectators}.",
     "GMTOOLKIT.Settings.Spectators.name": "Pomiń powiadomienie widza",
@@ -275,5 +275,5 @@
     "ROLL.MarginalSuccess": "Znikomy Sukces. 'Tak, ale...'",
     "ROLL.AstoundingFailure": "Zdumiewająca Porażka. 'Nie, nie ma mowy!'",
     "ROLL.ImpressiveFailure": "Krytyczna Porażka. 'Nie, i...'",
-    "ROLL.Failure": "Porażka. 'Nie.'",
+    "ROLL.Failure": "Porażka. 'Nie.'"
 }
