@@ -1,7 +1,3 @@
-// 20220909141342
-// https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/dev/lang/en.json
-
-
 {
       "GMTOOLKIT.Message.UnexpectedNoChange": "Stało się coś nieoczekiwanego. Nie dokonano żadnych zmian.",
     "GMTOOLKIT.Message.NoChangeMade": "Nie dokonano żadnych zmian.",
