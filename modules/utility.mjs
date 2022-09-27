@@ -171,7 +171,7 @@ export function getSession () {
  * @returns {boolean}       :
  **/
 export function inActiveCombat (character, notification = true) {
-  let inActiveCombat = true
+  let inActiveCombat = game.combats?.active != null
 
   if (game.combats?.active?.combatants?.contents
     .filter(a => a.actorId === character.id) === false
