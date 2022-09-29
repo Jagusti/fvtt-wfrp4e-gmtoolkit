@@ -10,6 +10,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Fixed* issue where Launch Damage Console was not translated in Toolkit Maintenance dialog. [#177](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/177)
 * *Fixed* issue where Toolkit Maintenance would not show compendium versions of macros. [#176](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/176)
 * *Fixed* issue where the game would not be paused for connected players when the GM ran the Session Turnover macro. [#182](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/182)
+* *Added* Polish localization. Thanks [@twisniowski](https://github.com/twisniowski) and @silentmark! [#188]
+* *Fixed* error when applying damage or making ranged attacks outside of combat when using group advantage. [#188] Thanks @silentmark!
 
 ## [Version 6.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.0)  (2022-09-06)
 - *Changed* Group Test setup form to clear or restore custom skill field if a skill is chosen from the skill list dropdown. [#160](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/160)
