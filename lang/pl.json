@@ -1,9 +1,11 @@
 {
     "GMTOOLKIT.Message.UnexpectedNoChange": "Stało się coś nieoczekiwanego. Nie dokonano żadnych zmian.",
     "GMTOOLKIT.Message.NoChangeMade": "Nie dokonano żadnych zmian.",
+
     "GMTOOLKIT.Message.Spectators": "<a href=\"https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/wiki/spectators\">Widzowie</a>: brak postaci przypisanej do {spectators}.",
     "GMTOOLKIT.Settings.Spectators.name": "Pomiń powiadomienie widza",
     "GMTOOLKIT.Settings.Spectators.hint": "Nie pokazuj powiadomień graczom, którzy nie mają przypisanych postaci. Niezależnie od tego szczegóły są rejestrowane w konsoli podczas uruchamiania.",
+
     "GMTOOLKIT.Settings.Advantage.menu.name": "Obsługa Przewagi",
     "GMTOOLKIT.Settings.Advantage.menu.label": "Skonfiguruj Obsługę Przewagi",
     "GMTOOLKIT.Settings.Advantage.menu.hint": "Ustaw opcje zautomatyzowanej, wspomaganej i opartej na makrach obsługi przewagi.",
@@ -22,6 +24,7 @@
     "GMTOOLKIT.Settings.Advantage.Automate.CombatJoin.hint": "Usuń Przewagę z tokenów po dodaniu ich do wskaźnika walki (jeśli nie korzystasz z Przewagi Grupowej), a nie po utworzeniu pustej potyczki lub rozpoczęciu walki.",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.name": "Opuszczenie Walki",
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint": "Usuń Przewagę z tokenów, gdy zostaną usunięte z walki, a nie po zakończeniu walki.",
+
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name": "Włącz rozszerzone widoki tokenów",
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint": "Udostępniaj podpowiedzi i interakcje dotyczące kluczowych atrybutów i umiejętności z poziomu kontrolowanych tokenów. Domyślnie włączone.",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name": "Zawsze pokazuj Inicjatywę przy rozszerzeniu ekranu tokenów",
@@ -31,17 +34,21 @@
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult": "<p>{actorName} ofiarował małą modlitwę bogom ({littlePrayerResult}).</p>",
     "GMTOOLKIT.TokenHudExtension.ImportTable": "Nie znaleziono tabeli {table}. Proszę zaimportować z Kompendium.",
     "GMTOOLKIT.TokenHudExtension.Sufferance": "{actor} cierpi na {plight}",
+
     "GMTOOLKIT.Dialog.Apply": "Zastosuj",
     "GMTOOLKIT.Dialog.Cancel": "Anuluj",
     "GMTOOLKIT.Dialog.None": "Brak",
     "GMTOOLKIT.Dialog.NotAssigned": "Nie przypisano",
     "GMTOOLKIT.Dialog.ChooseTargets": "Wybierz cele",
+
     "GMTOOLKIT.Token.Select": "Najpierw wybierz jeden lub więcej tokenów.",
     "GMTOOLKIT.Token.SingleSelect": "Najpierw wybierz jeden token.",
     "GMTOOLKIT.Token.TargetPCs": "Najpierw wybierz jeden lub więcej tokenów BG.",
+
     "GMTOOLKIT.Dialog.SetVisionLight.Title": "Ustaw wizję i światło tokenu",
     "GMTOOLKIT.Dialog.SetVisionLight.VisionType": "Wizja",
     "GMTOOLKIT.Dialog.SetVisionLight.LightSource": "Światło",
+
     "GMTOOLKIT.LightSource.NoLight": "Brak światła",
     "GMTOOLKIT.LightSource.Matches": "Zapałki (5m)",
     "GMTOOLKIT.LightSource.Candle": "Świeca (10m)",
@@ -57,14 +64,17 @@
     "GMTOOLKIT.LightSource.Ablaze": "Podpalenie (Stan) (15m)",
     "GMTOOLKIT.LightSource.Pha": "Ochrona Pha (Bonus z SW m)",
     "GMTOOLKIT.LightSource.Soulfire": "Ogień duszy (Manifestacja) (15m)",
+
     "GMTOOLKIT.Vision.Normal": "Normalna",
     "GMTOOLKIT.Vision.None": "Brak",
     "GMTOOLKIT.Vision.Night": "Widzenie w Ciemności (Talent, Cecha)",
     "GMTOOLKIT.Vision.Dark": "Widzenie w Mroku (Cecha)",
     "GMTOOLKIT.Vision.Blinded": "Oślepienie (Stan)",
+
     "GMTOOLKIT.Settings.Vision.menu.name": "Ustawienia Widzenia Tokenów",
     "GMTOOLKIT.Settings.Vision.menu.label": "Skonfiguruj ustawienia widzenia tokenów",
     "GMTOOLKIT.Settings.Vision.menu.hint": "Ustaw domyślne opcje widzenia tokena, które mają być używane przez makro Ustaw Widzenie i Światło.",
+
     "GMTOOLKIT.Settings.Vision.menu.title": "Ustawienia Widzenia Tokenów",
     "GMTOOLKIT.Settings.Vision.NormalSight.name": "Normalny zasięg Widzenia",
     "GMTOOLKIT.Settings.Vision.NormalSight.hint": "Maksymalna odległość (w metrach), na jaką widzi token bez ulepszonego widzenia i bez zewnętrznego źródła światła, w nocy lub przy słabym oświetleniu.",
@@ -74,10 +84,13 @@
     "GMTOOLKIT.Settings.Vision.OverrideNightVision.hint": "Zastosuj ustawienia dla Widzenia w Ciemności, nawet jeśli token nie ma tego talentu lub cechy.",
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.name": "Zawsze zezwalaj na Widzenie w Mroku",
     "GMTOOLKIT.Settings.Vision.OverrideDarkVision.hint": "Zastosuj ustawienia dla Widzenia w Mroku, nawet jeśli token nie ma tej cechy.",
+
     "GMTOOLKIT.ResetFortune.Restored": "Szczęście zostało zresetowane",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters": "Nie ma postaci graczy którym można zresetować Szczęście.",
+
     "GMTOOLKIT.AddXP.Success": "<p><strong>{recipient}.</strong> Całkowite PD: {XPTotal} -> {newXPTotal} | Obecne PD: {XPCurrent} -> {newXPCurrent}.</p>",
     "GMTOOLKIT.AddXP.Flavor": "{XP} Punktów Doświadczenia przyznano za {reason}",
+
     "GMTOOLKIT.Advantage.Increased": "Przewaga wzrosła z {startingAdvantage} do {newAdvantage} dla {actorName}.",
     "GMTOOLKIT.Advantage.Max": "{actorName} ma już maksymalną ilość Przewagi ({maxAdvantage}). Nie wprowadzono żadnych zmian.",
     "GMTOOLKIT.Advantage.Reduced": "Przewaga zmniejszona z {startingAdvantage} do {newAdvantage} dla {actorName}.",
@@ -102,8 +115,10 @@
     "GMTOOLKIT.Dialog.Advantage.NoAdvantage": "Nie ma przewagi do stracenia",
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title": "Utrata impetu na koniec rundy {combatRound}",
     "GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button": "Zmniejsz Przewagę o 1",
+
     "GMTOOLKIT.Scene.TokenNotGlobal": "Wizja tokenu jest włączona, a globalne oświetlenie jest wyłączone w scenie {sceneName}.",
     "GMTOOLKIT.Scene.GlobalNotToken": "Wizja tokenu jest wyłączona, a globalne oświetlenie jest włączone w scenie {sceneName}.",
+
     "GMTOOLKIT.Settings.ScenePullActivate.name" : "Wciągnij wszystkich na Scenę",
     "GMTOOLKIT.Settings.ScenePullActivate.hint" : "Aktywuj aktualnie oglądaną Scenę i wciągnij na nią wszystkich graczy.",
     "GMTOOLKIT.Settings.ScenePullActivate.Always" : "Zawsze aktywuj Scenę przy wciąganiu graczy.",
@@ -129,6 +144,7 @@
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Ilość PD",
     "GMTOOLKIT.Dialog.AddXP.Reason": "Powód",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP": "Nie wprowadzono żadnych zmian. Dodaj prawidłową liczbę PD. Ułamki zostaną zaokrąglone do najbliższej liczby całkowitej. Liczby ujemne spowodują odjęcie ilośći PD postaci.",
+
     "GMTOOLKIT.Settings.SessionManagement.menu.name": "Ustawienia zarządzania sesjami",
     "GMTOOLKIT.Settings.SessionManagement.menu.label": "Konfiguruj opcje sesji",
     "GMTOOLKIT.Settings.SessionManagement.menu.hint": "Ustaw opcje zarządzania scenami, obsługi doświadczenia i Zakończenia Sesja.",
@@ -141,10 +157,12 @@
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint" : "Nazwa sceny do automatycznego przejścia między sesjami. Aktywowana za pomocą procedury Zakończenie Sesji. Pozostaw puste, aby nie zmieniać scen.",
     "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.name" : "Domyślny wybór grupy",
     "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint" : "Wybierz 'drużyna' (domyślnie), aby uwzględnić tylko postacie przypisane do graczy, lub 'kompania', aby uwzględnić również postacie należące do graczy (takie jak najemnicy, poplecznicy i chowańce)." ,
+
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title" : "Aktualizuj nazwę sesji",
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.CurrentSession" : "Nazwa bieżącej sesji to {thisSession}.",
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.NextSession" : "Nadaj nazwę następnej sesji do:",
     "GMTOOLKIT.Message.SessionEnd.NoPermission": "Tylko MG może zarządzać rytuałami zakończenia sesji!",
+
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name" : "Testuj Cechę w przypadku braku Umiejętności",
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint": "Wykonaj test powiązanej cechy, jeśli postać nie ma odpowiedniej umiejętności zaawansowanej. Testy umiejętności podstawowych zawsze stosują fallback.",
     "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name": "Krok dostosowania poziomu trudności przy fallbacku.",
@@ -168,6 +186,7 @@
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle": "Test {skill} ({actor})",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback": "Test {characteristic} dla {skill} ({actor})",
     "GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleSummary": "Test grupowy: ",
+
     "GMTOOLKIT.Settings.GroupTest.menu.name": "Ustawienia testu grupowego",
     "GMTOOLKIT.Settings.GroupTest.menu.label": "Konfiguracja opcji testu grupowego",
     "GMTOOLKIT.Settings.GroupTest.menu.hint": "Wybierz umiejętności do szybkiego testu i ustaw domyślne parametry testu grupowego.",
@@ -190,10 +209,12 @@
     "GMTOOLKIT.Settings.GroupTest.defaultParty.hint": "Wybierz 'drużyna' (domyślne), aby uwzględnić tylko postacie przypisane do graczy, lub 'kompania', aby uwzględnić bohaterów niezależnych i stworzenia, które są własnością graczy (takie jak najemnicy i poplecznicy). Poszczególne postacie mogą zostać odznaczone w oknie dialogowym Testu Grupowego.",
     "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.name": "Próg podsumowania wyników testu grupowego",
     "GMTOOLKIT.Settings.GroupTest.SummariseResultsThresholdGroupTest.hint": "Połącz wyniki testów w jedną podsumowującą wiadomość chatlogu. Ustaw minimalną liczbę testów do połączenia. Ustaw na 1, aby zawsze pokazywać podsumowanie, lub 0, aby nigdy nie pokazywać wiadomości podsumowującej.",
+
     "GMTOOLKIT.Settings.DarkWhispers.menu.name": "Ustawienia Mrocznych Podszeptów",
     "GMTOOLKIT.Settings.DarkWhispers.menu.label": "Konfiguracja Mrocznych Podszeptów",
     "GMTOOLKIT.Settings.DarkWhispers.menu.hint": "Ustaw domyślne opcje dla makra Wyślij Mroczne Podszepty.",
     "GMTOOLKIT.Settings.DarkWhispers.menu.title": "Ustawienia Mrocznych Podszeptów",
+
     "GMTOOLKIT.Message.DarkWhispers.NoPermission": "Tylko MG mogą wysyłać Mroczne Podszepty!",
     "GMTOOLKIT.Message.DarkWhispers.NoEligibleCharacters": "Żadna z dostępnych postaci nie posiada Zepsucia, którą można wymienić na Mroczny Szept.",
     "GMTOOLKIT.Message.DarkWhispers.WhisperAborted": "Tak więc, nie usłyszysz teraz Mrocznych Podszeptów. Zamilknij na razie, ale nie wzywaj lekkomyślnie Mrocznych Bogów, {currentUser}.",
@@ -207,14 +228,17 @@
     "GMTOOLKIT.Dialog.DarkWhispers.ImportTable": "Zaimportuj tabelę Mroczne Podszepty z kompendium Przybornika MG, aby zobaczyć tutaj podpowiedzi Mrocznych Podszeptów.",
     "GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip": "Przypisany do: {assignedUser}\nWłaściciel: {playerOwners}",
     "GMTOOLKIT.Dialog.DarkWhispers.SendToOwners" : "Wyślij wszystkim aktywnym graczom (nie tylko do przypisanego użytkownika).",
+
     "GMTOOLKIT.Message.DarkWhispers.Accept": "Posłuchaj Szeptu",
     "GMTOOLKIT.Message.DarkWhispers.Reject": "Odrzuć Mrocznych Bogów",
     "GMTOOLKIT.Message.DarkWhispers.Accepted": "<p>{currentUser} ulega Mrocznym Szeptom.</p>",
     "GMTOOLKIT.Message.DarkWhispers.Rejected": "<p>{currentUser} odrzuca propozycję Mrocznych Bogów.</p>",
+
     "GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound": "Zaczekaj na koniec rundy walki przed przetworzeniem sprawdzianów stanów.",
     "GMTOOLKIT.Dialog.CheckConditions.For": " dla {name}",
     "GMTOOLKIT.Dialog.CheckConditions.Skill": "Test {title} ({skill})",
     "GMTOOLKIT.Dialog.CheckConditions.Fallback": "Test {title} ({char})",
+
     "GMTOOLKIT.Settings.DarkWhispers.message.name": "Szablon Wiadomości Mrocznego Szeptu",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint": "Wybierz ton Mrocznego Szeptu, który będzie pasował do Twojej gry.",
     "GMTOOLKIT.Settings.DarkWhispers.message.taunt": "<p><strong>Mroczni Bogowie widzą, że jesteś w tarapatach.</strong></p><p><em>Za dyskretną przysługę mogą uwolnić cię od 1 Zepsucia.</em></p>< blockquote >{message}</blockquote><p>Czy to doprawdy takie szkodliwe? Skorzystaj z oferty i wycofaj się z krawędzi Chaosu.</p>",
@@ -223,6 +247,7 @@
     "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.hint": "Wybierz 'drużyna' (domyślne) aby zawrzeć tylko postacie przypisane do graczy, lub 'kompania' aby zawrzeć również należące do graczy postaci (takie jak najemnicy, poplecznicy i chowańce). Indywidualne postaci mogą zośtać odznaczone w dialogu Testu Grupowago.",
     "GMTOOLKIT.Notification.NoActor": "Zadna postać nie jest wybrana lub przypisana do {currentuser}.",
     "GMTOOLKIT.Notification.UserMustBePlayer": "Tylko postacie graczy mogą {action}.",
+
     "GMTOOLKIT.Dialog.GMToolbox.Title": "Przybornik MG",
     "GMTOOLKIT.Macro.AddAdvantage": "Dodaj Przewagę",
     "GMTOOLKIT.Macro.ClearAdvantage": "Zresetuj Przewagę",
@@ -240,16 +265,20 @@
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Przełącz widoczność paczek kompendium",
     "GMTOOLKIT.Macro.CheckConditions": "Sprawdz Stany",
     "GMTOOLKIT.Macro.LaunchDamageConsole": "Pokaż Okno Obrażeń",
+
     "GMTOOLKIT.Table.DarkWhispers": "Mroczne Podszepty",
+
     "GMTOOLKIT.Group.Type.party": "drużyna",
     "GMTOOLKIT.Group.Type.company": "kompania",
     "GMTOOLKIT.Group.Type.entourage": "świta",
+
     "GMTOOLKIT.Dialog.Maintenance.Hint": "Usuń wszystkie makra i tabele w folderze makr 'Przybornik MG' folderze Tabele Rzutów, jeśli taki istnieje, i zaimportuj najnowsze wersje z Kompendium.<br><br>Wszystkie zmiany będą utracone. Przenieś je z folderu 'Przybornik MG' aby zachować jakiekolwiek wprowadzone przez siebie zmiany.",
     "GMTOOLKIT.Dialog.Maintenance.Macros": "Makra",
     "GMTOOLKIT.Dialog.Maintenance.Tables": "Tabele",
     "GMTOOLKIT.Settings.Maintenance.menu.name": "Konserwacja modułu",
     "GMTOOLKIT.Settings.Maintenance.menu.hint": "Zastąp zaimportowane makra i/lub tabele Przybornika GM najnowszymi wersjami z Kompendium.",
     "GMTOOLKIT.Settings.Maintenance.menu.label": "Zaktualizuj zawartość Przybornika MG",
+
     "GMTOOLKIT.Damage.Dialog.Title": "Konsola Obrażeń",
     "GMTOOLKIT.Damage.Message.Abort": "Zamknięto Konsole Obrażeń. Żadna krzywda nie została wyrządzona.",
     "GMTOOLKIT.Damage.Message.CannotApplyDamage": "Nie można przypisać obrażeń do ${character}.",
@@ -278,4 +307,5 @@
     "ROLL.ImpressiveFailure": "Krytyczna Porażka. 'Nie, i...'",
     "ROLL.Failure": "Porażka. 'Nie.'",
     "ROLL.MarginalFailure": "Znikoma Porażka. 'Nie, ale...'"
+    
 }
