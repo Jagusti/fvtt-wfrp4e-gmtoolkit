@@ -1,6 +1,13 @@
 # GM Toolkit (WFRP 4e)
 
-Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/). 
+[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json&label=Current+Version&query=version&color=blue)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest)
+[![Foundry Compatibility](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FJagusti%2Ffvtt-wfrp4e-gmtoolkit%2Fdev%2Fmodule.json&label=Foundry%20VTT%20Version&query=$.compatibility.minimum&colorB=orange)](https://foundryvtt.com/releases/)
+[![GitHub release](https://img.shields.io/github/release-date/Jagusti/fvtt-wfrp4e-gmtoolkit?label=Released&color=brightgreen)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases)
+[![GitHub commits](https://img.shields.io/github/commits-since/Jagusti/fvtt-wfrp4e-gmtoolkit/latest?label=Commits%20Since%20Release&color=yellowgreen)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commits/)<br>
+![the latest version zip](https://img.shields.io/github/downloads/Jagusti/fvtt-wfrp4e-gmtoolkit/latest/wfrp4e-gm-toolkit.zip?label=Downloads%20(Current%20Version)&color=blue)
+![all downloads zip](https://img.shields.io/github/downloads/Jagusti/fvtt-wfrp4e-gmtoolkit/wfrp4e-gm-toolkit.zip?label=Total%20Downloads&color=blueviolet) 
+
+Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
 See the [wiki](../../wiki) for details about features, including (but not only): 
 * Automating individual and group Advantage
