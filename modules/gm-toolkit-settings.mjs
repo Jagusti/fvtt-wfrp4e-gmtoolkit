@@ -312,10 +312,9 @@ export class GMToolkitSettings {
       hint: "GMTOOLKIT.Settings.Spectators.hint",
       scope: "world",
       config: true,
-      default: true,
+      default: false,
       type: Boolean,
-      onChange: debouncedReload,
-      feature: "grouptests"
+      onChange: debouncedReload
     })
 
     // Menu for Module Content Management
@@ -357,7 +356,6 @@ export function getDataSettings (data, feature) {
 
 export async function registerGroupTestSettings () {
   const skillList = await game.gmtoolkit.skills.reduce((skills, skill) => ({ ...skills, [`${game.i18n.localize(skill.name)}`]: `${game.i18n.localize(skill.name)}` }), {})
-  // GMToolkit.log(false, skillList)
 
   // Settings for Group Tests application
   game.settings.register(GMToolkit.MODULE_ID, "quicktest1GroupTest", {
