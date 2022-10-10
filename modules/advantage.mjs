@@ -70,7 +70,9 @@ export default class Advantage {
 
     switch (adjustment) {
       case "increase":
-        if (advantage.max === undefined || advantage.current < advantage.max) {
+        if (game.settings.get("wfrp4e", "useGroupAdvantage")
+          || advantage.max === undefined
+          || advantage.current < advantage.max) {
           advantage.new = Number(advantage.current + 1)
           const updated = await updateCharacterAdvantage()
           updated ? outcome = "increased" : outcome = "nochange"
