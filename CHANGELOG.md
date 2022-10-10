@@ -14,6 +14,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Fixed* error when applying damage or making ranged attacks outside of combat when using group advantage. Thanks [@silentmark](https://github.com/silentmark)! [`a186651`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/188/commits/a186651)
 * *Added* version and download stat shields to README, to make it easy to see key install data for users and repo owners. [#190](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/190)
 * *Fixed* module setting for Spectator notifications to *not* be suppressed by default. Unassigned characters are still being overlooked when experiencing issues with some macros that require an assigned actor. [#192](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/192)
+* *Fixed* issue where the Add Advantage macro be capped when using Group Advantage. [#194](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/194)
 
 ## [Version 6.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.0)  (2022-09-06)
 - *Changed* Group Test setup form to clear or restore custom skill field if a skill is chosen from the skill list dropdown. [#160](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/160)
