@@ -17,6 +17,7 @@ import { GroupTest } from "./apps/group-test.js"
 import DarkWhispers from "./modules/dark-whispers.mjs"
 import TokenHudExtension from "./modules/token-hud-extension.mjs"
 import { DamageConsole } from "./apps/damage.js"
+import { GMToolkitWelcome } from "./modules/welcome.mjs"
 
 
 /* -------------------------------------------- */
@@ -82,6 +83,8 @@ Hooks.once("ready", async function () {
     }
   })
 
+  GMToolkitWelcome._welcomeMessage()
+
 })
 
 Hooks.on("ready", async () => {
@@ -124,7 +127,7 @@ Hooks.once("babele.ready", async function () {
 })
 
 /* -------------------------------------------- */
-/*  Socket Handlers                                 */
+/*  Socket Handlers                             */
 /* -------------------------------------------- */
 
 export class SocketHandlers {
