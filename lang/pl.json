@@ -281,7 +281,7 @@
 
     "GMTOOLKIT.Damage.Dialog.Title": "Konsola Obrażeń",
     "GMTOOLKIT.Damage.Message.Abort": "Zamknięto Konsole Obrażeń. Żadna krzywda nie została wyrządzona.",
-    "GMTOOLKIT.Damage.Message.CannotApplyDamage": "Nie można przypisać obrażeń do ${character}.",
+    "GMTOOLKIT.Damage.Message.CannotApplyDamage": "Nie można przypisać obrażeń do {character}.",
     "GMTOOLKIT.Damage.Message.At0Wounds": "Ma 0 Żywotności",
     "GMTOOLKIT.Damage.Dialog.SetDamageCriteria": "Ustaw Kryteria Obrażeń",
     "GMTOOLKIT.Damage.Dialog.DamageFormula.Label": "Obrażenia",
@@ -306,6 +306,12 @@
     "ROLL.AstoundingFailure": "Zdumiewająca Porażka. 'Nie, nie ma mowy!'",
     "ROLL.ImpressiveFailure": "Krytyczna Porażka. 'Nie, i...'",
     "ROLL.Failure": "Porażka. 'Nie.'",
-    "ROLL.MarginalFailure": "Znikoma Porażka. 'Nie, ale...'"
+    "ROLL.MarginalFailure": "Znikoma Porażka. 'Nie, ale...'", 
+
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} is active.",
+    "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "Release Notes",
+    "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "Updating macros or tables will delete existing GM Toolkit content. Any customizations will be lost if not saved under a different name.",
+    "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",
+    "GMTOOLKIT.Message.Welcome.UpdateTables" : "Update Tables"
     
 }

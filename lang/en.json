@@ -281,7 +281,7 @@
 
     "GMTOOLKIT.Damage.Dialog.Title" : "Damage Console",
     "GMTOOLKIT.Damage.Message.Abort" : "Damage Console closed. No harm inflicted.",
-    "GMTOOLKIT.Damage.Message.CannotApplyDamage" : "Cannot apply damage to ${character}.",
+    "GMTOOLKIT.Damage.Message.CannotApplyDamage" : "Cannot apply damage to {character}.",
     "GMTOOLKIT.Damage.Message.At0Wounds" : "At 0 Wounds",
     "GMTOOLKIT.Damage.Dialog.SetDamageCriteria" : "Set Damage Criteria",
     "GMTOOLKIT.Damage.Dialog.DamageFormula.Label" : "Damage",
@@ -306,6 +306,12 @@
     "ROLL.AstoundingFailure" : "Astounding Failure. 'Not in any way!'",
     "ROLL.ImpressiveFailure" : "Impressive Failure. 'No, and ...'",
     "ROLL.Failure" : "Failure. 'No'",
-    "ROLL.MarginalFailure" : "Marginal Failure. 'No, but ...'"
+    "ROLL.MarginalFailure" : "Marginal Failure. 'No, but ...'", 
+
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} is active.",
+    "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "Release Notes",
+    "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "Updating macros or tables will delete existing GM Toolkit content. Any customizations will be lost if not saved under a different name.",
+    "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",
+    "GMTOOLKIT.Message.Welcome.UpdateTables" : "Update Tables"
 
 }
