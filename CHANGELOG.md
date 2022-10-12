@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-* *Added* headline features (with wiki links) to README to make it easier for users to get an overview of what's available in the Toolkit suite. [`2da77fa`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/2da77fa27c40ce9f93d5234ba519b25da0df5e55)
-* *Added* advice about replacing macro hotbar shortcuts to avoid compatibility issues. 
+
+## [Version 6.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.1) (2022-10-13)
+* *Changed* **minimum compatibility requirements** to Foundry VTT v10.288 and WFRP4e 6.1.4.
+* *Added* headline features (with wiki links) to README to make it easier for users to get an overview of what's available in the Toolkit suite. [`2da77fa`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/2da77fa27c40ce9f93d5234ba519b25da0df5e55) [#178](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/178) [#197](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/197) 
+* *Added* advice about replacing macro hotbar shortcuts to avoid compatibility issues. [#181](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/181)
 * *Fixed* issue where Launch Damage Console was not translated in Toolkit Maintenance dialog. [#177](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/177)
 * *Fixed* issue where Toolkit Maintenance would not show compendium versions of macros. [#176](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/176)
 * *Fixed* issue where the game would not be paused for connected players when the GM ran the Session Turnover macro. [#182](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/182)
@@ -14,7 +17,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Fixed* error when applying damage or making ranged attacks outside of combat when using group advantage. Thanks [@silentmark](https://github.com/silentmark)! [`a186651`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/188/commits/a186651)
 * *Added* version and download stat shields to README, to make it easy to see key install data for users and repo owners. [#190](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/190)
 * *Fixed* module setting for Spectator notifications to *not* be suppressed by default. Unassigned characters were still being overlooked when experiencing issues with some macros that require an assigned actor. [#192](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/192)
-* *Fixed* issue where the Add Advantage macro be capped when using Group Advantage. [#194](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/194)
+* *Fixed* issue where the Add Advantage macro would be capped when using Group Advantage. [#194](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/194)
 * *Added* welcome message and invitation to feedback that is shown to GMs when updating or first installing the module. The message is saved in the chat log and confirms the installed version, links to release notes and provides quick access buttons to update macro and table content. [#196](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/196)
 
 ## [Version 6.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.0)  (2022-09-06)

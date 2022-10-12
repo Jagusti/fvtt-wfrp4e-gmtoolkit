@@ -4,8 +4,8 @@
   "description": "Utilities for WFRP4e GMs",
   "version": "6.0.0",
   "compatibility": {
-    "minimum": "10.284",
-    "verified": "10.284",
+    "minimum": "10.288",
+    "verified": "10.288",
     "maximum": 10
   },
   "authors": [
@@ -21,8 +21,8 @@
         "id": "wfrp4e",
         "type": "system",
         "compatibility": {
-          "minimum": "6.1.2",
-          "verified": "6.1.2",
+          "minimum": "6.1.4",
+          "verified": "6.1.4",
           "maximum": "6.x"
         }
       }
