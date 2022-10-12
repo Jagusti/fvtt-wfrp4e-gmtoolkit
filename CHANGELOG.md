@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-* *Added* headline features to README to make it easier for users to get an overview of what's available in the Toolkit suite.
-* *Added* advice about replacing macro hotbar shortcuts to avoid compatibility issues.
+* *Added* headline features (with wiki links) to README to make it easier for users to get an overview of what's available in the Toolkit suite. [`2da77fa`](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/2da77fa27c40ce9f93d5234ba519b25da0df5e55)
+* *Added* advice about replacing macro hotbar shortcuts to avoid compatibility issues. 
 * *Fixed* issue where Launch Damage Console was not translated in Toolkit Maintenance dialog. [#177](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/177)
 * *Fixed* issue where Toolkit Maintenance would not show compendium versions of macros. [#176](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/176)
 * *Fixed* issue where the game would not be paused for connected players when the GM ran the Session Turnover macro. [#182](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/182)

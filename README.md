@@ -1,6 +1,6 @@
 # GM Toolkit (WFRP 4e)
 
-[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/master/module.json&label=Current+Version&query=version&color=blue)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest)
+[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/Jagusti/fvtt-wfrp4e-gmtoolkit/dev/module.json&label=Current+Version&query=version&color=blue)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/latest)
 [![Foundry Compatibility](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FJagusti%2Ffvtt-wfrp4e-gmtoolkit%2Fdev%2Fmodule.json&label=Foundry%20VTT%20Version&query=$.compatibility.minimum&colorB=orange)](https://foundryvtt.com/releases/)
 [![GitHub release](https://img.shields.io/github/release-date/Jagusti/fvtt-wfrp4e-gmtoolkit?label=Released&color=brightgreen)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases)
 [![GitHub commits](https://img.shields.io/github/commits-since/Jagusti/fvtt-wfrp4e-gmtoolkit/latest?label=Commits%20Since%20Release&color=yellowgreen)](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commits/)<br>
@@ -10,13 +10,13 @@
 Utility module with tweaks, enhancements and macros to help GMs manage games of [Warhammer Fantasy Roleplay (4e)](https://github.com/moo-man/WFRP4e-FoundryVTT) in [Foundry Virtual Tabletop](https://foundryvtt.com/).
 
 See the [wiki](../../wiki) for details about features, including (but not only): 
-* Automating individual and group Advantage
-* Sending Dark Whispers
-* Setting token vision and light (including handling Night Vision range correctly)
-* Rolling secret group skill tests 
-* Dealing out non-combat damage to multiple actors and vehicles
-* Managing session turnover admin (including adding Experience Points and resetting Fortune)
-* Extending the Token Hud (to access key attributes and skills without opening the character sheet)
+* Automating individual and group [Advantage](../../wiki/advantage-handling)
+* Sending [Dark Whispers](../../wiki/send-dark-whispers)
+* Setting [token vision and light](../../wiki/set-token-vision-and-light) (including handling Night Vision range correctly)
+* Rolling secret [group skill tests](../../wiki/group-test) 
+* Dealing out non-combat [damage](../../wiki/launch-damage-console) to multiple actors and vehicles
+* Managing [session turnover](../../wiki/session-turnover) admin (including [adding Experience Points](../../wiki/add-xp) and [resetting Fortune](../../wiki/reset-fortune))
+* Extending the [Token Hud](../../wiki/token-hud-extensions) (to access key attributes and skills without opening the character sheet)
 
 ## Compatibility
 
