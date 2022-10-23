@@ -14,7 +14,8 @@
     "Toggle Scene Visibility and Light",
     "Set Token Vision and Light",
     "Pull Everyone to Scene",
-    "Simply d100"
+    "Simply d100",
+    "GM Toolkit Settings"
   ]
 
   let buttons = {}
@@ -41,8 +42,8 @@
 
 /* ==========
 * MACRO: GM Toolbox
-* VERSION: 6.0.0
-* UPDATED: 2022-09-06
+* VERSION: 6.1.0
+* UPDATED: 2022-10-23
 * DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots
 * TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.
 * TIP: The macro dialog can be kept open for quick access and minimised to reduce space
