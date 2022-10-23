@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-* *Added* a quick launch macro to easily access GM Toolkit settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
+* *Added* a quick launch macro to easily access GM Toolkit Settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
+* *Fixed* issue where Add XP macro uses default group setting for Group Tests rather than Session Turnover. [#201](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/201)
 
 ## [Version 6.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.1) (2022-10-13)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.288 and WFRP4e 6.1.4.
