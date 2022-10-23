@@ -18,6 +18,12 @@ import DarkWhispers from "./modules/dark-whispers.mjs"
 import TokenHudExtension from "./modules/token-hud-extension.mjs"
 import { DamageConsole } from "./apps/damage.js"
 import { GMToolkitWelcome } from "./modules/welcome.mjs"
+import GMToolkitAdvantageSettings from "./apps/gm-toolkit-advantage-settings.js"
+import GMToolkitDarkWhispersSettings from "./apps/gm-toolkit-darkwhispers-settings.js"
+import GMToolkitGroupTestSettings from "./apps/gm-toolkit-grouptest-settings.js"
+import GMToolkitSessionManagementSettings from "./apps/gm-toolkit-session-management-settings.js"
+import GMToolkitVisionSettings from "./apps/gm-toolkit-vision-settings.js"
+import GMToolkitMaintenanceWrapper from "./apps/gm-toolkit-maintenance.js"
 
 
 /* -------------------------------------------- */
@@ -43,7 +49,15 @@ Hooks.once("init", function () {
     damage: {
       launch: DamageConsole
     },
-    skills: []
+    skills: [],
+    settings: {
+      advantage: GMToolkitAdvantageSettings,
+      darkwhispers: GMToolkitDarkWhispersSettings,
+      grouptest: GMToolkitGroupTestSettings,
+      session: GMToolkitSessionManagementSettings,
+      vision: GMToolkitVisionSettings,
+      maintenance: GMToolkitMaintenanceWrapper
+    }
   }
 
 })

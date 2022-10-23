@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Added* a quick launch macro to easily access GM Toolkit settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
 
 ## [Version 6.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.1) (2022-10-13)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.288 and WFRP4e 6.1.4.
