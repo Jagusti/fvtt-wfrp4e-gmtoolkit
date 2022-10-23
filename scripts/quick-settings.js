@@ -1,5 +1,4 @@
 (() => {
-  // Add and remove macros from the list as needed.
   const settings = [
     "advantage",
     "darkwhispers",
@@ -20,6 +19,7 @@
       label: label,
       callback: () => {
         settingsApp.render(true)
+        // dialog.render(true)
       }
     }
 
