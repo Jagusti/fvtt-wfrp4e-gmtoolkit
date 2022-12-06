@@ -314,6 +314,9 @@
     "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",
     "GMTOOLKIT.Message.Welcome.UpdateTables" : "Update Tables",
 
-    "GMTOOLKIT.Dialog.QuickSettings.Title" : "GM Toolkit Settings"
+    "GMTOOLKIT.Dialog.QuickSettings.Title" : "GM Toolkit Settings",
+
+    "GMTOOLKIT.ChatFlavour.Title" : "Edit Message Flavour",
+    "GMTOOLKIT.ChatFlavour.Placeholder" : "Briefly describe the message context"
     
 }

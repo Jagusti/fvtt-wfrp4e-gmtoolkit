@@ -178,3 +178,48 @@ export class SocketHandlers {
   }
 
 }
+
+/* -------------------------------------------- */
+/*  Entry Context                               */
+/* -------------------------------------------- */
+
+Hooks.on("getChatLogEntryContext", (html, options) => {
+  options.push(
+    {
+      name: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
+      icon: '<i class="fas fa-pen-fancy"></i>',
+      condition: game.user.isGM,
+      callback: li => {
+        let message = game.messages.get(li.attr("data-message-id"))
+        const flavor = new Dialog({
+          title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
+          content: `<form>
+                <div class="form-group">
+                  <input type="text"
+                    id="message-flavor"
+                    name="message-flavor"
+                    placeholder="${game.i18n.localize("GMTOOLKIT.ChatFlavour.Placeholder")}"
+                    value="${message?.flavor}"
+                  />
+                </div>
+                </form>`,
+          buttons: {
+            submit: {
+              icon: "<i class='fas fa-check'></i>",
+              label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
+              callback: async html => {
+                const messageFlavor = html.find("#message-flavor").val()
+                await message.update({ flavor: messageFlavor })
+              }
+            },
+            cancel: {
+              icon: "<i class='fas fa-times'></i>",
+              label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
+            }
+          },
+          default: "submit"
+        }).render(true)
+      }
+    }
+  )
+})
