@@ -448,12 +448,13 @@ Hooks.on("createActiveEffect", async function (conditionEffect) {
   if (!game.user.isUniqueGM) return // ... not a GM
   if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
   if (!conditionEffect.isCondition) return  // ... not a system recognised condition
+  const nonConditions = ["dead", "fear", "grappling", "engaged"]
   const condId = conditionEffect.conditionId
-  if (condId === "dead" || condId === "fear" || condId === "grappling") return // ... not a core rules combat condition
+  if (nonConditions.includes(condId)) return // ... not a core rules combat condition
 
   // Clear Advantage
   const token = canvas.tokens.placeables.filter(
-    t => t.actor.id === conditionEffect.parent.id
+    t => conditionEffect.parent.id === (t?.actor?.id || t?.document?.id)
   )[0]
   await Advantage.update(token, "clear", "createActiveEffect")
 
