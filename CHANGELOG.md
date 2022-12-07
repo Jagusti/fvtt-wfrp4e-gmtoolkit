@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Added* compatibility with `Engaged` pseudo-condition, so that when a character becomes Engaged and this condition is added, they do not lose their Advantage. [#206](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/206)
 * *Added* a new context menu option to chat messages to edit flavour text. [#207](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/207)
 * *Added* a quick launch macro to easily access GM Toolkit Settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
 * *Fixed* issue where Add XP macro uses default group setting for Group Tests rather than Session Turnover. [#201](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/201)
