@@ -278,6 +278,7 @@ export default class Advantage {
 Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
   GMToolkit.log(false, scriptArgs)
   if (!scriptArgs.opposedTest.defenderTest.context.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test).
+  if (attackerTest.preData.dualWielding) return // Exit if this is the first strike when Dual Wielding
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateDamageAdvantage")) return
   if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor)
     | !inActiveCombat(scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
@@ -379,6 +380,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   // WINNING: Update Advantage for Opposed Tests
   if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
+  if (attackerTest.preData.dualWielding) return // Exit if this is the first strike when Dual Wielding
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return
 
   const attacker = attackerTest.actor
