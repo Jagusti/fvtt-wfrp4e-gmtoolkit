@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 6.0.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.2)  (2023-04-17)
+* *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.4.0.
 * *Added* compatibility with `Engaged` pseudo-condition, so that when a character becomes Engaged and this condition is added, they do not lose their Advantage. [#206](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/206)
 * *Added* a new context menu option to chat messages to edit flavour text. [#207](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/207)
 * *Added* a quick launch macro to easily access GM Toolkit Settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
