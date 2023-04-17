@@ -9,7 +9,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Added* a new context menu option to chat messages to edit flavour text. [#207](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/207)
 * *Added* a quick launch macro to easily access GM Toolkit Settings without having to navigate Foundry configuration menus. [#203](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/203)
 * *Fixed* issue where Add XP macro uses default group setting for Group Tests rather than Session Turnover. [#201](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/201)
-*  * Fixed* issue where a character would gain an advantage boost for their first melee or ranged strike when using the Dual Wielder talent. [#205](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/205)
+*  *Fixed* issue where a character would gain an advantage boost for their first melee or ranged strike when using the Dual Wielder talent. [#205](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/205)
+*  *Fixed* issue where an actor is identified as being in combat even though they are not in the combat tracker, leading to a false notification that an Advantage update is pending for winning an opposed test. [#213](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/213)
 
 ## [Version 6.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.1) (2022-10-13)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.288 and WFRP4e 6.1.4.
