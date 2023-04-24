@@ -176,13 +176,15 @@ export function inActiveCombat (character, notification = true) {
   if (game.combats?.active?.combatants?.contents
     .filter(a => a.actorId === character.id).length === 0
   ) {
+    // character is not in combat
     let message = `${game.i18n.format("GMTOOLKIT.Advantage.NotInCombat", { actorName: character.name, sceneName: game.scenes.viewed.name })}`
     if (notification !== "silent") {
       notification === "persist" ? ui.notifications.error(message, { permanent: true }) : ui.notifications.error(message)
-    } else {
-      inActiveCombat = true
-      GMToolkit.log(true, message)
     }
+    GMToolkit.log(true, message)
+  } else {
+    // character is in combat
+    inActiveCombat = true
   }
   return inActiveCombat
 }
