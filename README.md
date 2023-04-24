@@ -21,8 +21,8 @@ See the [wiki](../../wiki) for details about features, including (but not only):
 ## Compatibility
 
 Version 6.x requires
-- Foundry VTT: 10.288 or higher 
-- WFRP4e: 6.1.4 or higher
+- Foundry VTT: 10.291 or higher 
+- WFRP4e: 6.4.0 or higher
 
 For previous versions, you should use:
 

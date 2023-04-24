@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Fixed* issue where Advantage was not applied on opposed or unopposed tests. [#217](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/217)
 
 ## [Version 6.0.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.2)  (2023-04-17)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.4.0.
