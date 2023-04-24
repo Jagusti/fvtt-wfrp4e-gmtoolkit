@@ -1,16 +1,14 @@
-const scale = 2 / canvas.scene.grid.distance;
+const scale = 2 / canvas.scene.grid.distance
 await canvas.scene.update({
-"grid.distance": 2,
-"grid.units": "yd"
-});
-const newLights = canvas.scene.lights.map(light => {
-  return {
-    _id: light.id,
-    "config.dim": light.config.dim * scale,
-    "config.bright": light.config.bright * scale
-  };
-});
-await canvas.scene.updateEmbeddedDocuments("AmbientLight", newLights);
+  "grid.distance": 2,
+  "grid.units": "yd"
+})
+const newLights = canvas.scene.lights.map(light => ({
+  _id: light.id,
+  "config.dim": light.config.dim * scale,
+  "config.bright": light.config.bright * scale
+}))
+await canvas.scene.updateEmbeddedDocuments("AmbientLight", newLights)
 
 /* ==========
 * MACRO: Change scene to yards
