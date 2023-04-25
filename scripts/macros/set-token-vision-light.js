@@ -143,8 +143,6 @@ async function setTokenVisionLight () {
           // Get Light Source Values
           switch (lightSource) {
             case "none":
-            case "storm-shut":
-              lightDim = 0
               break
             case "matches":
               lightDim = 5
