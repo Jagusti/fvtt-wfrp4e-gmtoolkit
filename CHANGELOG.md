@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Fixed* issue where Advantage was not applied on opposed or unopposed tests. [#217](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/217)
 * *Added* macro to change scene grid to 2 yards, keeping lighting at scale. Useful for maps created for other game systems that have a grid of 5ft, or any other grid size.  Thanks @AncAinu! [#189](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/189)
+* *Changed* Set Token Vision and Light Macro to improve appearance, including reducing animation intensity, speed and luminosity for various light effects and reverting tint and monochrome effect on Night Vision. [#219](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/219)
 
 ## [Version 6.0.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.2)  (2023-04-17)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.4.0.
