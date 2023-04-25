@@ -66,9 +66,6 @@ async function setTokenVisionLight () {
               <option value="storm-narrow">
               ${game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Bright")} 
               </option>
-              <option value="storm-shut"> 
-              ${game.i18n.localize("GMTOOLKIT.LightSource.StormLantern.Shut")}
-              </option>
               <option value="ablaze"> 
               ${game.i18n.localize("GMTOOLKIT.LightSource.Ablaze")} 
               </option>
@@ -109,23 +106,35 @@ async function setTokenVisionLight () {
         for ( const token of canvas.tokens.controlled ) {
 
           // Define a set of baseline values. Light Source and Vision choices will only change the properties that differ. Not all of the options available since Foundry v9 are used.
-          // Baseline Vision Values
+          // Baseline Night Vision Advances
           let advNightVision = 0
+          // Baseline Vision Values
           let sightAngle = 360
+          let sightAttenuation = 0.1
           let sightBrightness = 0
           let sightColor = null
+          let sightContrast = 0
           let sightRange = 0
-          sightSaturation = 0
-          let visionMode = "basicVision"
+          let sightSaturation = 0
+          let visionMode = "basic"
           // Baseline Light Source Values
-          let dimLight = 0
-          let brightLight = 0
+          let lightAlpha = 0.5 // Previously lightColorIntensity
           let lightAngle = 360
+          let lightAnimationType = null
+          let lightAnimationSpeed = 1
+          let lightAnimationIntensity = 1
+          let lightAnimationReverse = false
+          let lightAttenuation = 0.5
+          let lightBright = 0
           let lightColor = null
-          let lightColorIntensity = 0
-          let animationIntensity = 1
-          let animationSpeed = 1
-          let animationType = "none"
+          let lightColoration = 1 // Coloration Technique: 1=AdaptiveLuminance, 10= NaturaLLight
+          let lightContrast = 0
+          let lightDarknessMax = 1
+          let lightDarknessMin = 0
+          let lightDim = 0
+          let lightLuminosity = 0
+          let lightSaturation = 0
+          let lightShadows = 0
 
           let visionType = html.find('[name="vision-type"]')[0].value // TODO: default vision option based on condition -> trait -> talent. Issue Log: https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/42
           let item // Used for finding whether token has Night Vision or Dark Vision
@@ -135,129 +144,130 @@ async function setTokenVisionLight () {
           switch (lightSource) {
             case "none":
             case "storm-shut":
-              dimLight = 0
+              lightDim = 0
               break
             case "matches":
-              dimLight = 5
-              brightLight = 2
+              lightDim = 5
+              lightBright = 2
               lightColor = "#ffaa00"
-              lightColorIntensity = 0.3
-              animationIntensity = 8
-              animationSpeed = 8
-              animationType = "torch"
+              lightAlpha = 0.1
+              lightAnimationIntensity = 4
+              lightAnimationSpeed = 4
+              lightAnimationType = "flame"
               break
             case "candle":
-              dimLight = 10
-              brightLight = 5
+              lightDim = 10
+              lightBright = 5
               lightColor = "#ffaa00"
-              lightColorIntensity = 0.3
-              animationIntensity = 8
-              animationSpeed = 8
-              animationType = "torch"
+              lightAlpha = 0.2
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "flame"
               break
             case "davrich-lamp":
-              dimLight = 10
-              brightLight = 5
+              lightDim = 10
+              lightBright = 5
               lightColor = "#ffaa00"
-              lightColorIntensity = 0.4
-              animationIntensity = 4
-              animationSpeed = 4
-              animationType = "torch"
+              lightAlpha = 0.5
+              lightAnimationIntensity = 2
+              lightAnimationSpeed = 2
+              lightAnimationType = "torch"
               break
             case "torch":
-              dimLight = 15
-              brightLight = 7.5
+              lightDim = 15
+              lightBright = 7.5
               lightColor = "#ffaa00"
-              lightColorIntensity = 0.5
-              animationIntensity = 7
-              animationSpeed = 7
-              animationType = "torch"
+              lightAlpha = 0.3
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "flame"
               break
             case "lantern":
-              dimLight = 20
-              brightLight = 10
+              lightDim = 20
+              lightBright = 10
               lightColor = "#ffcc66"
-              lightColorIntensity = 0.7
-              animationIntensity = 3
-              animationSpeed = 3
-              animationType = "torch"
+              lightAlpha = 0.4
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "torch"
               break
             case "storm-broad":
-              dimLight = 20
-              brightLight = 10
+              lightDim = 20
+              lightBright = 10
               lightColor = "#ffcc66"
-              lightColorIntensity = 0.5
-              animationIntensity = 1
-              animationSpeed = 2
-              animationType = "torch"
+              lightAlpha = 0.4
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "torch"
               break
             case "storm-narrow":
-              dimLight = 30
-              brightLight = 20
+              lightDim = 30
+              lightBright = 20
               lightColor = "#ffcc66"
-              lightColorIntensity = 0.7
-              animationIntensity = 1
-              animationSpeed = 1
-              animationType = "torch"
+              lightAlpha = 0.6
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "torch"
               lightAngle = 90
               break
             case "light":
-              dimLight = 15
-              brightLight = 7.5
+              lightDim = 15
+              lightBright = 7.5
               lightColor = "#99ffff"
-              lightColorIntensity = 0.5
-              animationIntensity = 3
-              animationSpeed = 2
-              animationType = "pulse"
+              lightAlpha = 0.4
+              lightAnimationIntensity = 3
+              lightAnimationSpeed = 3
+              lightAnimationType = "pulse"
+              lightColoration = 10 // Natural Light
               break
             case "witchlight":
-              dimLight = 20
-              brightLight = 10
+              lightDim = 20
+              lightBright = 10
               lightColor = "#99ffff"
-              lightColorIntensity = 0.7
-              animationIntensity = 6
-              animationSpeed = 2
-              animationType = "chroma"
+              lightAlpha = 0.4
+              lightAnimationIntensity = 4
+              lightAnimationSpeed = 2
+              lightAnimationType = "chroma"
               break
             case "glowing-skin":
-              dimLight = 10
-              brightLight = 3
+              lightDim = 10
+              lightBright = 3
               lightColor = "#ffbd80"
-              lightColorIntensity = 0.3
-              animationIntensity = 2
-              animationSpeed = 2
-              animationType = "pulse"
+              lightAlpha = 0.3
+              lightAnimationIntensity = 2
+              lightAnimationSpeed = 2
+              lightAnimationType = "pulse"
               break
             case "ablaze":
-              dimLight = 15
-              brightLight = 7.5
+              lightDim = 15
+              lightBright = 7.5
               lightColor = "#ff7733"
-              lightColorIntensity = 0.5
-              animationIntensity = 7
-              animationSpeed = 7
-              animationType = "torch"
-              break
-            case "pha":
-              dimLight = token.actor.system.characteristics.wp.bonus
-              brightLight = token.actor.system.characteristics.wp.bonus
-              lightColor = "#ffddbb"
-              lightColorIntensity = 0.6
-              animationIntensity = 4
-              animationSpeed = 4
-              animationType = "sunburst"
+              lightAlpha = 0.5
+              lightAnimationIntensity = 5
+              lightAnimationSpeed = 4
+              lightAnimationType = "flame"
               break
             case "soulfire":
-              dimLight = 15
-              brightLight = 7.5
+              lightDim = 15
+              lightBright = 7.5
               lightColor = "#ff7733"
-              lightColorIntensity = 0.5
-              animationIntensity = 7
-              animationSpeed = 7
-              animationType = "fog"
+              lightAlpha = 0.5
+              lightAnimationIntensity = 4
+              lightAnimationSpeed = 4
+              lightAnimationType = "flame"
+              break
+            case "pha":
+              lightDim = token.actor.system.characteristics.wp.bonus
+              lightBright = token.actor.system.characteristics.wp.bonus
+              lightColor = "#ffddbb"
+              lightAlpha = 0.6
+              lightAnimationIntensity = 2
+              lightAnimationSpeed = 2
+              lightAnimationType = "sunburst"
               break
             default:
-              dimLight = token.document.light.dim
-              brightLight = token.document.light.bright
+              lightDim = token.document.light.dim
+              lightBright = token.document.light.bright
               lightAngle = token.document.light.angle
               lightColor = token.document.light.color
           }
@@ -272,8 +282,8 @@ async function setTokenVisionLight () {
             case "noVision":
               sightRange = 0
               sightBrightness = -1
-              dimLight = 0
-              brightLight = 0
+              lightDim = 0
+              lightBright = 0
               break
             case "darkVision":
               const darkvision = game.i18n.localize("NAME.DarkVision").toLowerCase()
@@ -294,7 +304,7 @@ async function setTokenVisionLight () {
               // Night Vision requires some minimal illumination to provide a benefit
               if (
                 game.scenes.viewed.darkness < 1
-                | dimLight > 0
+                | lightDim > 0
                 | game.scenes.viewed.globalLight
               ) {
                 item = token.actor.items.find(
@@ -323,11 +333,11 @@ async function setTokenVisionLight () {
                   break
                 }
                 sightRange = Math.max(
-                  (20 * advNightVision) + dimLight,
+                  (20 * advNightVision) + lightDim,
                   Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
                 )
-                sightColor = "#006080"
-                visionMode = "monochromatic"
+                sightColor = null
+                visionMode = "basic"
                 sightSaturation = -1
               }
               console.log(`Night Vision Advances ${advNightVision}`)
@@ -336,37 +346,50 @@ async function setTokenVisionLight () {
               sightRange = Number(game.settings.get("wfrp4e-gm-toolkit", "rangeNormalSight"))
               sightBrightness = 0
               sightColor = null
-              visionMode = "basicVision"
+              visionMode = "basic"
               break
             default:
               sightRange = token.document.sight.range
               sightBrightness = token.document.sight.brightness
               sightColor = null
-              visionMode = "basicVision"
+              visionMode = "basic"
           }
 
           // Update Token
           await token.document.update({
             sight: {
               angle: sightAngle,
+              attenuation: sightAttenuation,
               brightness: sightBrightness,
               color: sightColor,
+              contrast: sightContrast,
               enabled: true,
               range: sightRange,
               saturation: sightSaturation,
               visionMode: visionMode
             },
             light: {
-              alpha: lightColorIntensity,
-              animation: {
-                intensity: animationIntensity,
-                speed: animationSpeed,
-                type: animationType
-              },
+              alpha: lightAlpha,
               angle: lightAngle,
-              bright: brightLight,
+              animation: {
+                type: lightAnimationType,
+                speed: lightAnimationSpeed,
+                intensity: lightAnimationIntensity,
+                reverse: lightAnimationReverse
+              },
+              attenuation: lightAttenuation,
+              bright: lightBright,
               color: lightColor,
-              dim: dimLight
+              coloration: lightColoration,
+              contrast: lightContrast,
+              darkness: {
+                max: lightDarknessMax,
+                min: lightDarknessMin
+              },
+              dim: lightDim,
+              luminosity: lightLuminosity,
+              saturation: lightSaturation,
+              shadows: lightShadows
             }
           })
           token.refresh(true)
@@ -382,8 +405,8 @@ async function setTokenVisionLight () {
 
 /* ==========
  * MACRO: Set Token Vision and Light
- * VERSION: 0.9.5
- * UPDATED: 2022-08-15
+ * VERSION: 6.0.3
+ * UPDATED: 2023-04-25
  * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
  ========== */
