@@ -12,7 +12,7 @@ await canvas.scene.updateEmbeddedDocuments("AmbientLight", newLights)
 
 /* ==========
 * MACRO: Change scene to yards
-* VERSION: 1.0
+* VERSION: 6.0.3
 * UPDATED: 2023-03-08
 * DESCRIPTION: Change scene grid to 2 yards, keeping lighting at scale. Useful for maps created for DnD that have a grid of 5ft, or any other grid size.
 ========== */
