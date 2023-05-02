@@ -215,6 +215,7 @@ export class GMToolkitSettings {
       config: false,
       default: 2,
       type: Number,
+      step: "any",
       feature: "vision"
     })
     game.settings.register(GMToolkit.MODULE_ID, "rangeDarkVision", {
@@ -224,6 +225,7 @@ export class GMToolkitSettings {
       config: false,
       default: 120,
       type: Number,
+      step: "any",
       feature: "vision"
     })
     game.settings.register(GMToolkit.MODULE_ID, "overrideNightVision", {
@@ -348,6 +350,7 @@ export function getDataSettings (data, feature) {
     if (s.type === Number & !s.range) {
       s.isNumber = true
       s.inputType = "number"
+      s.step = s.step ?? 1
     }
     s.value = game.settings.get(s.namespace, s.key)
   })

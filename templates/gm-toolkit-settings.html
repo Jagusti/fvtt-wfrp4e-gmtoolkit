@@ -23,7 +23,7 @@
             <span class="range-value">{{setting.value}}</span>
             
             {{else if setting.isNumber}}
-            <input type="number" name="{{setting.key}}" data-dtype="Number" value="{{setting.value}}"/>
+            <input type="number" name="{{setting.key}}" data-dtype="Number" value="{{setting.value}}" step="{{setting.step}}"/>
     
             {{else if setting.filePicker}}
             {{filePicker target=setting.key type=setting.filePickerType}}
