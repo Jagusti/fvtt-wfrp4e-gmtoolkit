@@ -94,19 +94,19 @@ async function sendAggregateGroupTestResults (testSkill, testOptions) {
 
 async function runActorTest (actor, testSkill, testOptions) {
   let actorSkill = game.gmtoolkit.utility.hasSkill(actor, testSkill, "silent")
-  let setupData = {}
+  let setupData = {
+    bypass: testOptions.bypass,
+    testModifier: testOptions.testModifier,
+    rollMode: testOptions.rollMode,
+    absolute: { difficulty: testOptions.difficulty },
+    groupTest: true,
+    title: game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle", { skill: actorSkill?.name, actor: actor.name })
+  }
 
   // Roll against the skill if the actor has it ...
   if (actorSkill !== undefined) {
-    setupData = await actor.setupSkill(actorSkill, {
-      bypass: testOptions.bypass,
-      testModifier: testOptions.testModifier,
-      rollMode: testOptions.rollMode,
-      absolute: { difficulty: testOptions.difficulty },
-      title: game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitle", { skill: actorSkill.name, actor: actor.name }),
-      groupTest: true
-    })
-    return actor.basicTest(setupData)
+    const skillTest = await actor.setupSkill(actorSkill, setupData)
+    return skillTest.roll()
   }
 
   // ... or conditionally fallback to underlying characteristic if they don't ...
@@ -125,18 +125,19 @@ async function runActorTest (actor, testSkill, testOptions) {
         = (actorSkill.advanced.value === "adv" && stepAdjustDifficulty !== 0)
           ? { modify: { difficulty: stepAdjustDifficulty } }
           : { absolute: { difficulty: testOptions.difficulty } }
+      const dialogFallbackTitle = {
+        title: game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback",
+          { characteristic: skillCharacteristic,
+            skill: actorSkill.name,
+            actor: actor.name
+          })
+      }
 
-      setupData = await actor.setupCharacteristic(
+      const characteristicTest = await actor.setupCharacteristic(
         actorSkill.characteristic.value,
-        mergeObject({
-          bypass: testOptions.bypass,
-          testModifier: testOptions.testModifier,
-          rollMode: testOptions.rollMode,
-          title: game.i18n.format("GMTOOLKIT.Dialog.MakeSecretGroupTest.RollTitleFallback", { characteristic: skillCharacteristic, skill: actorSkill.name, actor: actor.name }),
-          groupTest: true
-        }, difficultySetting)
+        mergeObject(setupData, dialogFallbackTitle, difficultySetting)
       )
-      return actor.basicTest(setupData)
+      return characteristicTest.roll()
     }
     return ui.notifications.info(`${game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest", { character: actor.name, skill: testSkill })}`, { console: true } )
   }
