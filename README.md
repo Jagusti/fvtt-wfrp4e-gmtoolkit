@@ -22,12 +22,7 @@ See the [wiki](../../wiki) for details about features, including (but not only):
 
 Version 6.x requires
 - Foundry VTT: 10.291 or higher 
-- WFRP4e: 6.4.0 or higher
-
-For previous versions, you should use:
-
-- [v0.9.4.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.9.4.4) for  WFRP4e 5.x and Foundry 9.x
-- [v0.8.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v0.8.0) for WFRP4e 4.0.6-4.3.1 and Foundry 0.8.8-0.8.9
+- WFRP4e: 6.5.7 or higher
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki). 
@@ -54,4 +49,4 @@ For full details, see the [Getting Started guide](../../wiki/getting-started) on
 * [Wiki](../../wiki): for functionality guides
 
 ---
-<a href='https://ko-fi.com/jagusti' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5cbed8a433a3f45a772abaf5_SupportMe_blue-p-500.png' border='0' alt='Sponsor my WFRP / Foundry addiction at ko-fi.com' />
+<a href='https://ko-fi.com/jagusti' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/5cbed8a433a3f45a772abaf5_SupportMe_blue-p-500.png' border='0' alt='Support my WFRP/Foundry addiction at ko-fi.com' />
