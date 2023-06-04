@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Added* compatibility for FVTT v11. [#228](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/228)
+* *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.5.7.
 * *Added* support for setting non-integer default ranges for normal and dark vision. [#223](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/223) 
+* *Changed* Group Test actor roll test functions to avoid deprecated system roll test functions. [#226](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/226)
 * *Added* v11 support for Toggle Compendium Pack Visibility, based on ownership permissions. [#225](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/225) 
 
 ## [Version 6.0.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.3)  (2023-04-25)
