@@ -21,7 +21,9 @@ See the [wiki](../../wiki) for details about features, including (but not only):
 ## Compatibility
 
 Version 6.x requires
-- Foundry VTT: 10.291 or higher 
+- Foundry VTT: 
+  - v10.291 *or*
+  - v11.300 or higher 
 - WFRP4e: 6.5.7 or higher
 
 ## Installation Instructions
