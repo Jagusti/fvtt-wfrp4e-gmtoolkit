@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 6.0.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.4)  (2023-06-04)
 * *Added* compatibility for FVTT v11. [#228](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/228)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.5.7.
 * *Added* support for setting non-integer default ranges for normal and dark vision. [#223](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/223) 
