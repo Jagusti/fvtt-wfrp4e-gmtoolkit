@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+## [Version 6.0.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.5)  (2023-09-03)
+* *Added* compatibility for FVTT v11. [#241](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/241)
+* *Updated* word-wrap dependency version. [#238](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/238)
+
 ## [Version 6.0.4](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.4)  (2023-06-04)
 * *Added* compatibility for FVTT v11. [#228](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/228)
 * *Changed* **minimum compatibility requirements** to Foundry VTT v10.291 and WFRP4e 6.5.7.

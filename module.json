@@ -2,7 +2,7 @@
     "id": "wfrp4e-gm-toolkit",
     "title": "GM Toolkit (WFRP4e)",
     "description": "Utilities for WFRP4e GMs",
-    "version": "6.0.4",
+    "version": "6.0.5",
     "compatibility": {
         "minimum": "10.291",
         "verified": "11.300",
@@ -22,8 +22,7 @@
                 "type": "system",
                 "compatibility": {
                     "minimum": "6.5.7",
-                    "verified": "6.5.7",
-                    "maximum": "6.x"
+                    "verified": "6.5.7"
                 }
             }
         ]
