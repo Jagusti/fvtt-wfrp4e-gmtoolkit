@@ -1,0 +1,31 @@
+{
+  "_id": "iopoLXTz9kfDTfiX",
+  "name": "GM Toolbox",
+  "type": "script",
+  "author": "WpuDIfNQnefaTyuV",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/macro-chest.svg",
+  "scope": "global",
+  "command": "(() => {\n  // Add and remove macros from the list as needed.\n  const macros = [\n    \"Add Advantage\",\n    \"Clear Advantage\",\n    \"Reduce Advantage\",\n    \"Check Conditions\",\n    \"Session Turnover\",\n    \"Add XP\",\n    \"Reset Fortune\",\n    \"Launch Damage Console\",\n    \"Make Secret Group Test\",\n    \"Send Dark Whispers\",\n    \"Toggle Scene Visibility and Light\",\n    \"Set Token Vision and Light\",\n    \"Pull Everyone to Scene\",\n    \"Change Scene to Yards\",\n    \"Simply d100\",\n    \"GM Toolkit Settings\"\n  ]\n\n  let buttons = {}\n  let dialog\n  let content = \"<div style=\\\"width: 100%; \" // Closing this bracket seems to break the form\n\n  macros.forEach(name => {\n    label = (game.i18n.localize(game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n      === game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n      ? name\n      : game.i18n.localize(game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n    buttons[name] = {\n      label: label,\n      icon: `<img src = \"${game.macros.getName(name).img}\" style = \"height: 2rem; vertical-align : middle; border: none;\" >`,\n      callback: () => {\n        game.macros.getName(name).execute()\n        dialog.render(true)\n      }\n    }\n  })\n  dialog = new Dialog({ title: game.i18n.localize(\"GMTOOLKIT.Dialog.GMToolbox.Title\"), content, buttons }).render(true)\n})()\n\n\n/* ==========\n* MACRO: GM Toolbox\n* VERSION: 6.1.0\n* UPDATED: 2023-04-25\n* DESCRIPTION: Adds a customisable floating dialog for quick access to frequently used Toolkit macros, freeing up hotbar spots\n* TIP: Add / remove macros from the 'macros' list to tailor it for your game. Names must exactly match those in the Macro Directory.\n* TIP: The macro dialog can be kept open for quick access and minimised to reduce space\n========== */",
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "core": {
+      "sourceId": "Macro.bY0sF26Vj0OhXwQ5"
+    },
+    "wfrp4e-gm-toolkit": {
+      "version": "6.0.0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "wfrp4e",
+    "systemVersion": "6.4.0",
+    "coreVersion": "10.291",
+    "createdTime": null,
+    "modifiedTime": 1682380974696,
+    "lastModifiedBy": "WpuDIfNQnefaTyuV"
+  },
+  "_key": "!macros!iopoLXTz9kfDTfiX"
+}

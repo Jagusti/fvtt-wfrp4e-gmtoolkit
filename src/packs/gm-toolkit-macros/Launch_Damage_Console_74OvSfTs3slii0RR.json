@@ -1,0 +1,32 @@
+{
+  "name": "Launch Damage Console",
+  "type": "script",
+  "scope": "global",
+  "author": "Yz8naH0UqWS3uLwh",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/deal-damage.svg",
+  "command": "new game.gmtoolkit.damage.launch().render(true)\n\n/* ==========\n * MACRO: Launch Damage Console\n * VERSION: 6.0.0\n * UPDATED: 2022-09-06\n * DESCRIPTION: Quickly deal damage to multiple actors\n * TIP: Set damage as either a whole number or a valid dice roll formula\n ========== */",
+  "ownership": {
+    "default": 0,
+    "Yz8naH0UqWS3uLwh": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Macro.zS3GG60wLtsRvc0F"
+    },
+    "wfrp4e-gm-toolkit": {
+      "version": "6.0.0"
+    }
+  },
+  "_stats": {
+    "systemId": "wfrp4e",
+    "systemVersion": "6.1.2",
+    "coreVersion": "10.284",
+    "createdTime": 1662044738596,
+    "modifiedTime": 1662429198488,
+    "lastModifiedBy": "Yz8naH0UqWS3uLwh"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "74OvSfTs3slii0RR",
+  "_key": "!macros!74OvSfTs3slii0RR"
+}

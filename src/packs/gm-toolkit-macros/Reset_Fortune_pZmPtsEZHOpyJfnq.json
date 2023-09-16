@@ -1,0 +1,28 @@
+{
+  "_id": "pZmPtsEZHOpyJfnq",
+  "name": "Reset Fortune",
+  "type": "script",
+  "author": "k5y1jEYMBqd9uLUx",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/reset-fortune.svg",
+  "scope": "global",
+  "command": "resetFortune()\n\nfunction resetFortune () {\n// Setup: exit with notice if there are no player-owned characters\n  let party = game.gmtoolkit.utility.getGroup(game.settings.get(game.gmtoolkit.module.MODULE_ID, \"defaultPartySessionTurnover\")).filter(g => g.type === \"character\")\n  if (party.length === 0) return ui.notifications.error(game.i18n.localize(\"GMTOOLKIT.ResetFortune.NoPlayerCharacters\"))\n  let chatContent = \"\"\n\n  // Cycle through player characters, updating Fortune and building a report message\n  party.forEach(character => {\n    let currentFortune = character.system.status.fortune.value\n    let maxFortune = getMaxFortune(character)\n    character.update({ \"system.status.fortune.value\": maxFortune })\n    chatContent += `${character.name}:  ${currentFortune} -> ${maxFortune} <br>`\n  })\n\n  // Confirm changes made in chat\n  let chatData = {\n    user: game.user.id,\n    content: chatContent,\n    flavor: game.i18n.localize(\"GMTOOLKIT.ResetFortune.Restored\")\n  }\n  ChatMessage.create(chatData, {})\n}\n\n// Calculate the Fortune target to be restored, based on Fate and Luck talent advances\nfunction getMaxFortune (target) {\n  let advLuck = 0\n  let item = target.items.find(i => i.name === game.i18n.localize(\"NAME.Luck\") )\n  if (!(item === undefined || item.system.advances.value < 1)) {\n    for (let item of target.items) {\n      if (item.type === \"talent\" && item.name === game.i18n.localize(\"NAME.Luck\")) {\n        advLuck += item.system.advances.value\n      }\n    }\n  }\n  return target.status.fate.value + advLuck\n}\n\n/* ==========\n * MACRO: Reset Fortune\n * VERSION: 0.9.5\n * UPDATED: 2022-08-15\n * DESCRIPTION: Restores Fortune to the Fate level of player character(s). Applies any Luck talent bonus.\n * TIP: Characters must be player assigned (if group setting is 'party') or player owned (if group setting is 'company').\n ========== */",
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "wfrp4e-gm-toolkit": {
+      "version": "0.9.5"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "wfrp4e",
+    "systemVersion": "6.0.0",
+    "coreVersion": "10.279",
+    "createdTime": null,
+    "modifiedTime": 1661464634931,
+    "lastModifiedBy": "WpuDIfNQnefaTyuV"
+  },
+  "_key": "!macros!pZmPtsEZHOpyJfnq"
+}

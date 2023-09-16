@@ -1,0 +1,28 @@
+{
+  "_id": "g9Wohpie7ODdbRKX",
+  "name": "Session Turnover",
+  "type": "script",
+  "author": "BsnP0LhXXtS4iz4M",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/end-session.svg",
+  "scope": "global",
+  "command": "endSession()\n\nasync function endSession () {\n  if (!game.user.isGM) {\n    return ui.notifications.error(game.i18n.localize(\"GMTOOLKIT.Message.SessionEnd.NoPermission\"), {})\n  }\n\n  game.gmtoolkit.module.log(false, \"Processing Session Turnover.\")\n\n  game.gmtoolkit.module.log(false, \"Pausing game.\")\n  await game.togglePause(pause = true, push = true)\n\n  game.gmtoolkit.module.log(false, \"Switching to holding scene.\")\n  game.scenes.getName(game.settings.get(\"wfrp4e-gm-toolkit\", \"holdingScene\"))?.activate(true)\n\n  game.gmtoolkit.module.log(false, \"Adding Experience.\")\n  await game.macros.getName(\"Add XP\").execute()\n\n  game.gmtoolkit.module.log(false, \"Resetting Fortune.\")\n  await game.macros.getName(\"Reset Fortune\").execute()\n\n  game.gmtoolkit.module.log(false, \"Exporting Chat.\")\n  if (game.settings.get(\"wfrp4e-gm-toolkit\", \"exportChat\")) {\n    await game.messages.export()\n  }\n\n  if (game.settings.get(\"wfrp4e-gm-toolkit\", \"sessionID\") === \"null\") {\n    game.gmtoolkit.module.log(false, \"Not updating Session ID.\")\n  } else {\n    game.gmtoolkit.module.log(false, \"Updating Session ID.\")\n    const thisSession = game.gmtoolkit.utility.getSession().id\n    let nextSession = Math.trunc(thisSession) === Number(thisSession)\n      ? Number(thisSession) + 1\n      : thisSession\n\n    const dialog = new Dialog({\n      title: game.i18n.localize(\"GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title\"),\n      content: `<form>\n            <p>${game.i18n.format(\"GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.CurrentSession\", { thisSession })}</p>\n            <div class=\"form-group\">\n            <p>${game.i18n.localize(\"GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.NextSession\")}</p> \n            <input type=\"text\" id=\"next-session\" name=\"next-session\" value=\"${nextSession}\" />\n            </div>\n            </form>`,\n      buttons: {\n        yes: {\n          icon: \"<i class='fas fa-check'></i>\",\n          label: game.i18n.localize(\"GMTOOLKIT.Dialog.Apply\"),\n          callback: html => {\n            nextSession = html.find(\"#next-session\").val()\n            game.settings.set(\"wfrp4e-gm-toolkit\", \"sessionID\", nextSession)\n            game.gmtoolkit.module.log(true, `Previous Session ID was ${thisSession}. Next Session ID is ${nextSession}.`)\n          }\n        },\n        no: {\n          icon: \"<i class='fas fa-times'></i>\",\n          label: game.i18n.localize(\"GMTOOLKIT.Dialog.Cancel\")\n        }\n      },\n      default: \"yes\"\n    }).render(true)\n  } // End Session ID Update\n\n  game.gmtoolkit.module.log(false, \"Completed Session Turnover tasks.\")\n}\n\n/* ==========\n * MACRO: Session Turnover\n * VERSION: 6.0.1\n * UPDATED: 2022-09-16\n * DESCRIPTION: Unified macro to run start and end of session admin, including awarding Experience Points, resetting Fortune, pausing the game and exporting the chat log.\n * TIP: Various default options can be defined in Session Management Settings under Module Settings.\n ========== */",
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "wfrp4e-gm-toolkit": {
+      "version": "6.0.1"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "wfrp4e",
+    "systemVersion": "6.1.2",
+    "coreVersion": "10.285",
+    "createdTime": null,
+    "modifiedTime": 1663343909521,
+    "lastModifiedBy": "Yz8naH0UqWS3uLwh"
+  },
+  "_key": "!macros!g9Wohpie7ODdbRKX"
+}
