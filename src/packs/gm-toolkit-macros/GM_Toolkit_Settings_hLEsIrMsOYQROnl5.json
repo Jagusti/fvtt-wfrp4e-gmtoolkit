@@ -1,0 +1,32 @@
+{
+  "name": "GM Toolkit Settings",
+  "type": "script",
+  "scope": "global",
+  "author": "Yz8naH0UqWS3uLwh",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/quick-settings.svg",
+  "command": "(() => {\n  const settings = [\n    \"advantage\",\n    \"darkwhispers\",\n    \"grouptest\",\n    \"session\",\n    \"vision\"\n  ]\n\n  const root = \"game.gmtoolkit.settings.\"\n  let buttons = {}\n  let content = \"<div style=\\\"width: 100%; \" // Closing this bracket seems to break the form\n\n  settings.forEach(name => {\n    const path = root + name\n    let settingsApp = eval(`new ${path}()`)\n    label = game.i18n.localize(settingsApp.title)\n    buttons[name] = {\n      label: label,\n      callback: () => {\n        settingsApp.render(true)\n        // dialog.render(true)\n      }\n    }\n\n  })\n\n  const dialog = new Dialog({ title: game.i18n.localize(\"GMTOOLKIT.Dialog.QuickSettings.Title\"), content, buttons }).render(true)\n})()\n\n\n/* ==========\n* MACRO: GM Toolkit Settings Toolbox\n* VERSION: 6.1.0\n* UPDATED: 2022-02-23\n* DESCRIPTION: Adds a floating dialog for quick access to GM Toolkit settings\n========== */",
+  "ownership": {
+    "default": 0,
+    "Yz8naH0UqWS3uLwh": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Macro.aR3XyJte6cYFE1rQ"
+    },
+    "wfrp4e-gm-toolkit": {
+      "version": "6.1.0"
+    }
+  },
+  "_stats": {
+    "systemId": "wfrp4e",
+    "systemVersion": "6.1.4",
+    "coreVersion": "10.288",
+    "createdTime": 1666481515510,
+    "modifiedTime": 1666486644811,
+    "lastModifiedBy": "Yz8naH0UqWS3uLwh"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "hLEsIrMsOYQROnl5",
+  "_key": "!macros!hLEsIrMsOYQROnl5"
+}

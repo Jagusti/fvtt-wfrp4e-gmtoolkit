@@ -1,3 +1,4 @@
 wfrp4e-gm-toolkit.lock
 node_modules/*
 .vscode/*
+packs/*/*
