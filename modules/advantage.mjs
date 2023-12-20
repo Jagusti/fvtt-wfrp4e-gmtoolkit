@@ -448,7 +448,8 @@ Hooks.on("createActiveEffect", async function (conditionEffect) {
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) return // ... not using condition automation
   if (game.settings.get("wfrp4e", "useGroupAdvantage")) return // ... Group Advantage is in play
   if (!game.user.isUniqueGM) return // ... not a GM
-  if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
+  // if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
+  if (!conditionEffect.parent.inCombat) return // ... not in combat
   if (!conditionEffect.isCondition) return  // ... not a system recognised condition
   const nonConditions = ["dead", "fear", "grappling", "engaged"]
   const condId = conditionEffect.conditionId
