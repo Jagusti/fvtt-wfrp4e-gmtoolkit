@@ -1,0 +1,17 @@
+{
+  "_id": "AjUYYy7qAN55BERN",
+  "name": "Add Advantage",
+  "type": "script",
+  "author": "k5y1jEYMBqd9uLUx",
+  "img": "modules/wfrp4e-gm-toolkit/assets/icons/advantage-add.svg",
+  "scope": "global",
+  "command": "game.gmtoolkit.advantage.update(token, \"increase\")\n\n/* ==========\n* MACRO: Add Advantage\n* VERSION: 0.9.5\n* UPDATED: 2022-08-04\n* DESCRIPTION: Increases Advantage for the selected token by 1.\n* TIP: Token must be added to an encounter in the Combat Tracker.\n* TIP: Caps at character's maximum advantage.\n========== */",
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "wfrp4e-gm-toolkit": {
+      "version": "0.9.5"
+    }
+  },
+  "_key": "!macros!AjUYYy7qAN55BERN"
+}
