@@ -89,6 +89,9 @@ async function sendAggregateGroupTestResults (testSkill, testOptions) {
     content: groupTestResultsMessage,
     whisper: game.users.filter(u => u.isGM).map(u => u.id)
   })
+
+  // clean up aggregate results pseudo-setting
+  await game.settings.set("wfrp4e-gm-toolkit", "aggregateResultGroupTest", [])
 }
 
 
