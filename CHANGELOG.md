@@ -8,7 +8,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Changed* compendium packs from `nedb` to `leveldb` format.  This database format is used from Foundry v11, and this change breaks GM Toolkit compatibility with earlier versions of Foundry. [#247](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/247)
 * *Updated* package dependencies and linting rules. [#248](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/248)
 * *Updated* Japanese translations (thanks @doumoku!) [#245](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/245)
-* *Fixed* incorrect notification of Advantage change when condition is applied outside of combat. [[#249](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/249)]
+* *Fixed* incorrect notification of Advantage change when condition is applied outside of combat. [#249](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/249)
+* *Fixed* Make Secret Group Tests to clean up temporarily stored results after posting test results to chat [#255](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/255)
 
 ## [Version 6.0.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.5)  (2023-09-03)
 * *Added* compatibility for FVTT v11. [#241](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/241)
