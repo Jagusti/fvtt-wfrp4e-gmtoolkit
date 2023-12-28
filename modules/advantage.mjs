@@ -333,7 +333,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
     }
 
   } else {
-    console.log(`Advantage increase already applied to ${character.name} for outmanoeuvring.`)
+    GMToolkit.log(true, `Advantage increase already applied to ${character.name} for outmanoeuvring.`)
   }
 
   GMToolkit.log(false, "Outmanoeuvring Advantage: Finished.")
@@ -341,7 +341,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
 
 
 Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, defenderTest) {
-  GMToolkit.log(true, opposedTest, attackerTest, defenderTest)
+  GMToolkit.log(true, "wfrp4e:opposedTestResult", opposedTest, attackerTest, defenderTest)
 
   // CHARGING: Set Advantage flag if attacker and/or defender charged, and Group Advantage is not being used. Do this once before exiting for unopposed tests.
   if (!game.settings.get("wfrp4e", "useGroupAdvantage")) {
@@ -422,9 +422,9 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
     .token.object
   if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.opposed !== opposedTest.attackerTest.message.id) {
     if (game.settings.get("wfrp4e", "useGroupAdvantage") === true && character.actor !== attacker) {
-      console.log("No advantage gained for winning an opposed test you did not initiate.")
+      GMToolkit.log(true, "No advantage gained for winning an opposed test you did not initiate.")
     } else {
-      await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
+      const resolution = await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
       if (!winner.ownership[game.user.id]) {
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
@@ -437,6 +437,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
             }
           }
         })
+        GMToolkit.log(true, "Advantage: wfrp4e:OpposedTestResult. Socket update resolved.", resolution )
       } else {
         await character.combatant
           .setFlag(GMToolkit.MODULE_ID, "advantage",
@@ -445,10 +446,10 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
       }
     }
   } else {
-    console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
+    GMToolkit.log(true, `Advantage increase already applied to ${character.name} for winning opposed test.`)
   }
 
-  GMToolkit.log(false, "Opposed Test Advantage: Finished.")
+  GMToolkit.log(true, "Advantage: Opposed Test. Finished.")
 })
 
 
@@ -459,7 +460,6 @@ Hooks.on("createActiveEffect", async function (conditionEffect) {
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) return // ... not using condition automation
   if (game.settings.get("wfrp4e", "useGroupAdvantage")) return // ... Group Advantage is in play
   if (!game.user.isUniqueGM) return // ... not a GM
-  // if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
   if (!conditionEffect.parent.inCombat) return // ... not in combat
   if (!conditionEffect.isCondition) return  // ... not a system recognised condition
   const nonConditions = ["dead", "fear", "grappling", "engaged"]
@@ -523,7 +523,7 @@ Hooks.on("preUpdateCombat", async function (combat, change) {
 
   // Clear Advantage flags when the combat round changes
   // Still required when Group Advantage is used because of Opposed Test flags
-  console.log("preUpdateCombat: unsetting Advantage flags")
+  GMToolkit.log(true, "preUpdateCombat: unsetting Advantage flags")
   const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
   if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 })
