@@ -1,4 +1,5 @@
 import GMToolkit from "./gm-toolkit.mjs"
+import { runActorTest } from "./group-test.mjs"
 
 export default class SocketHandlers {
 
@@ -53,6 +54,59 @@ export default class SocketHandlers {
     )
     GMToolkit.log(true, `Socket: ${data.type}. Updated.`, updated)
     return updated
+  }
+
+
+  /**
+   * Request a roll from players which is resolved using
+   * the group test function `runActorTest()`
+   * @param {Object} data :
+   *  type (indicating socket context)
+   *  payload (with transaction specific data)
+   * @param {string} options : id of requesting user
+   * -------------------------------------------- **/
+  static async requestRoll (data, options) {
+    GMToolkit.log(true, `Socket: ${data.type}. Payload.`, data, options)
+
+    const actor = game.actors.get(data.payload.character._id)
+    const testSkill = data.payload.test.against
+    const testOptions = {
+      bypass: false
+    }
+
+    // Bypass users that are not intended recipients for the roll request
+    if (game.user.character !== actor) return GMToolkit.log(true, `Socket: ${data.type}. Not my roll.`)
+
+    const delegatedRoll = await runActorTest(actor, testSkill, testOptions)
+    return delegatedRoll
+
+  }
+
+
+  /**
+   * Update group test aggregate results when roll is delegated to player
+   * by pushing a socket request to a unique GM
+   * @param {Object} data :
+   *  type (indicating socket context)
+   *  payload (with transaction specific data)
+   * @param {string} options : id of requesting user
+   * -------------------------------------------- **/
+  static async aggregateGroupTestResults (data, options) {
+    GMToolkit.log(true, `Socket: ${data.type}. Payload.`, data, options)
+
+    if (!game.user.isUniqueGM) return GMToolkit.log(
+      true,
+      `Socket: ${data.type}. Only GMs can update aggregate Group Test results.`
+    )
+
+    const response = await game.settings.set(
+      "wfrp4e-gm-toolkit",
+      "aggregateResultGroupTest",
+      data.payload
+    )
+
+    GMToolkit.log(true, `Socket: ${data.type}. Results.`, response)
+
   }
 
 }
