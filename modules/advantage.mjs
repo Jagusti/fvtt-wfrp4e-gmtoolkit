@@ -107,8 +107,19 @@ export default class Advantage {
 
     async function updateCharacterAdvantage () {
       let updated = ""
+
       if (!character.actor.ownership[game.user.id]) {
-        return updated = await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { type: "updateAdvantage", payload: { character: character.actor.id, updateData: { "data.status.advantage.value": advantage.new } } })
+        return updated = await game.socket.emit(
+          `module.${GMToolkit.MODULE_ID}`,
+          {
+            type: "updateAdvantage",
+            payload: {
+              character: character.actor.id,
+              updateData: { "data.status.advantage.value": advantage.new }
+            }
+          }
+        )
+
       } else {
         return updated = await character.actor.update({ "data.status.advantage.value": advantage.new })
       }
