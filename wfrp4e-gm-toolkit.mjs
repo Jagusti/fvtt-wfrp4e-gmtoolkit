@@ -80,7 +80,7 @@ Hooks.once("ready", async function () {
   // Register module settings
   await GMToolkitSettings.register()
 
-  GMToolkit.log(false, `${GMToolkit.MODULE_NAME} is ready.`)
+  GMToolkit.log(true, `${GMToolkit.MODULE_NAME} is ready.`)
 
   // Notify any player users that do not have characters assigned
   const spectators = GMToolkitUtility.getGroup("spectators").map(i => ` ${i.name}`)
