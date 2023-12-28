@@ -1,3 +1,5 @@
+import GMToolkit from "./gm-toolkit.mjs"
+
 export async function launchGroupTest (groupOptions, testParameters) {
   new game.gmtoolkit.grouptest({ groupOptions, testParameters }).render(true)
 }
@@ -95,7 +97,7 @@ async function sendAggregateGroupTestResults (testSkill, testOptions) {
 }
 
 
-async function runActorTest (actor, testSkill, testOptions) {
+export async function runActorTest (actor, testSkill, testOptions) {
   let actorSkill = game.gmtoolkit.utility.hasSkill(actor, testSkill, "silent")
   let setupData = {
     bypass: testOptions.bypass,
@@ -146,12 +148,30 @@ async function runActorTest (actor, testSkill, testOptions) {
   }
 }
 
+/**
+ * Incrementally updates a world-scoped setting after each actor test
+ * @param {Object} actorTestResult
+ * @returns {Object} setting: aggregateResultGroupTest
+ */
+export async function updateGroupTestResults (actorTestResult) {
+  await game.settings.set(
+    "wfrp4e-gm-toolkit",
+    "aggregateResultGroupTest",
+    actorTestResult
+  )
+
+  return GMToolkit.log(
+    true,
+    "updateGroupTestResults",
+    game.settings.get(GMToolkit.MODULE_ID, "aggregateResultGroupTest")
+  )
+}
 
 // Intercept test result
 Hooks.on("wfrp4e:rollTest", async function (testData, chatData) {
   if (testData.options.groupTest) {
     const groupTestResult = []
-    groupTestResult.push(...game.settings.get("wfrp4e-gm-toolkit", "aggregateResultGroupTest"))
+    await groupTestResult.push(...game.settings.get("wfrp4e-gm-toolkit", "aggregateResultGroupTest"))
 
     const testResult = {
       actor: testData.token || testData.actor,
@@ -164,6 +184,16 @@ Hooks.on("wfrp4e:rollTest", async function (testData, chatData) {
       target: testData.target
     }
     await groupTestResult.push(testResult)
-    return await game.settings.set("wfrp4e-gm-toolkit", "aggregateResultGroupTest", groupTestResult)
+    // GMToolkit.log(true, "groupTestResult: this test result", testResult)
+    // GMToolkit.log(true, "groupTestResult: groupTestResult", groupTestResult)
+
+    if (game.user.isUniqueGM) {
+      return await updateGroupTestResults(groupTestResult)
+    } else {
+      return game.socket.emit(`module.${GMToolkit.MODULE_ID}`,
+        { type: "aggregateGroupTestResults", payload: groupTestResult })
+    }
+
   }
 })
+
