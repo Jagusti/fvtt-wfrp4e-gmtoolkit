@@ -99,8 +99,8 @@ Hooks.once("ready", async function () {
   })
 
   // Register socket handler
-  game.socket.on(`module.${GMToolkit.MODULE_ID}`, (data, options, response) => {
-    SocketHandlers[data.type](data, options = {}, response)
+  game.socket.on(`module.${GMToolkit.MODULE_ID}`, (data, options) => {
+    SocketHandlers[data.type](data, options)
   })
 
   GMToolkitWelcome._welcomeMessage()
