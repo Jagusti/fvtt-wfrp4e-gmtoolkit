@@ -70,9 +70,7 @@ export default class SocketHandlers {
 
     const actor = game.actors.get(data.payload.character._id)
     const testSkill = data.payload.test.against
-    const testOptions = {
-      bypass: false
-    }
+    const testOptions = data.payload.test.options
 
     // Bypass users that are not intended recipients for the roll request
     if (game.user.character !== actor) return GMToolkit.log(true, `Socket: ${data.type}. Not my roll.`)

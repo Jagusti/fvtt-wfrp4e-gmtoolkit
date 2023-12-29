@@ -10,6 +10,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Updated* Japanese translations (thanks @doumoku!) [#245](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/245)
 * *Fixed* incorrect notification of Advantage change when condition is applied outside of combat. [#249](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/249)
 * *Fixed* Make Secret Group Tests to clean up temporarily stored results after posting test results to chat [#255](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/255)
+* *Added* feature to delegate group test rolls for assigned characters to active (logged-in) players.
+  * The GM will need to select the "Bypass Roll Dialog" option when making a Group Test.
+  * Players should complete their rolls before the GM to have their roll results included in the summary group test result message.
 
 ## [Version 6.0.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.5)  (2023-09-03)
 * *Added* compatibility for FVTT v11. [#241](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/241)

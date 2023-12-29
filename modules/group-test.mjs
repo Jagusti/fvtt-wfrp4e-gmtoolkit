@@ -1,4 +1,5 @@
 import GMToolkit from "./gm-toolkit.mjs"
+import { getGroup } from "./utility.mjs"
 
 export async function launchGroupTest (groupOptions, testParameters) {
   new game.gmtoolkit.grouptest({ groupOptions, testParameters }).render(true)
@@ -44,15 +45,37 @@ export async function getGroupMembers (groupType = game.settings.get("wfrp4e-gm-
 export async function runGroupTest (testSkill, testOptions) {
   await game.settings.set("wfrp4e-gm-toolkit", "aggregateResultGroupTest", [])
   let actorTestResult = ""
+  let activePlayers = getGroup("assigned", { active: true })
+  const targetGroup = (testOptions.targetGroup.filter(member => member !== null))
 
-  for (const member of testOptions.targetGroup) {
-    if (member === null) continue
+  for (const member of targetGroup) {
     // Make sure to get the actor rather than the token document
     let actor = await fromUuid(member)
     actor = actor?.actor ? actor.actor : actor
-    actorTestResult = await runActorTest(actor, testSkill, testOptions)
+
+    // Delegate tests to active assigned players
+    if (activePlayers.map(p => p.character)[0] === actor && !testOptions.bypass) {
+      // let options = foundry.utils.duplicate.testOptions
+      // options = { bypass: false }
+      const requestData = {
+        type: "requestRoll",
+        payload: {
+          character: actor,
+          test: {
+            type: "skill",
+            against: testSkill,
+            options: testOptions
+          }
+        }
+      }
+      game.socket.emit(`module.${GMToolkit.MODULE_ID}`, requestData)
+    } else {
+      actorTestResult = await runActorTest(actor, testSkill, testOptions)
+    }
   }
+
   return sendAggregateGroupTestResults(testSkill, testOptions)
+
 }
 
 
