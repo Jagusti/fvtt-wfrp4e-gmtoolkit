@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+## [Version 7.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/7.0.1)  (2024-06-11)
+* *Added* pack compiler to release workflow to ensure compendium packs are included in module package. [[#265](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/265)]
+
 ## [Version 7.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/7.0.0)  (2024-06-11)
 * *Changed* compendium packs from `nedb` to `leveldb` format.  This database format is used from Foundry v11, and this change breaks GM Toolkit compatibility with earlier versions of Foundry. [#247](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/247)
 * Fix Group Test to work with roll dialog changes from WFRP4e 7.1.5.

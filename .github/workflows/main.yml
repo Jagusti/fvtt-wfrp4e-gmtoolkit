@@ -8,7 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      # Get Foundry CLI
+      - name: Install FVTT CLI
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Compile compendium packs
+      - run: npm i -g @foundryvtt/foundryvtt-cli
+      - run: python pack_util.py pack
       
       # Get Module ID
       - name: Get Module ID
@@ -39,8 +49,8 @@ jobs:
         with:
           allowUpdates: true # Set this to false if you want to prevent updating existing releases
           name: ${{ github.event.release.name }}
-          draft: ${{ github.event.release.unpublished }}
-          prerelease: ${{ github.event.release.prerelease }}
+          # draft: ${{ github.event.release.unpublished }}
+          # prerelease: ${{ github.event.release.prerelease }}
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "./module.json, ./${{steps.moduleID.outputs.prop}}.zip"
           tag: ${{ github.event.release.tag_name }}
