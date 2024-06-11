@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
-## [Version 7.0.2](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.2)  (2024-06-11)
+## [Version 7.0.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.3)  (2024-06-11)
 * *Added* pack compiler to release workflow to ensure compendium packs are included in module package. [[#265](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/265)]
 * *Added* max compatibility to prevent installation on FVTT v12. 
 
