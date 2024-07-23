@@ -28,7 +28,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     // Automate advantage for outmanouvring and losing wounds from unopposed tests
@@ -39,7 +39,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     // Clear advantage when suffering a condition
@@ -50,7 +50,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     // Prompt to lose advantage when not gained in a round
@@ -61,7 +61,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     // Clear Advantage when token is added to combat tracker
@@ -72,7 +72,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     // Clear Advantage when token is removed from combat tracker
@@ -83,7 +83,7 @@ export class GMToolkitSettings {
       config: false,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
     game.settings.register(GMToolkit.MODULE_ID, "persistAdvantageNotifications", {
@@ -93,7 +93,7 @@ export class GMToolkitSettings {
       config: false,
       default: false,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "advantage"
     })
 
@@ -136,7 +136,7 @@ export class GMToolkitSettings {
       config: false,
       default: false,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultAmount", {
@@ -151,7 +151,7 @@ export class GMToolkitSettings {
         max: 200,
         step: 5
       },
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultReason", {
@@ -161,7 +161,7 @@ export class GMToolkitSettings {
       config: false,
       default: "Session %session% (%date%)",
       type: String,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "holdingScene", {
@@ -304,7 +304,7 @@ export class GMToolkitSettings {
       config: true,
       default: true,
       type: Boolean,
-      onChange: debouncedReload,
+      onChange: foundry.utils.debouncedReload,
       feature: "tokenhud"
     })
 
@@ -316,7 +316,7 @@ export class GMToolkitSettings {
       config: true,
       default: false,
       type: Boolean,
-      onChange: debouncedReload
+      onChange: foundry.utils.debouncedReload
     })
 
     // Menu for Module Content Management
