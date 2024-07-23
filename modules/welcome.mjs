@@ -35,7 +35,7 @@ export class GMToolkitWelcome {
     const messageVersion = game.user.getFlag(GMToolkit.MODULE_ID, "welcomeMessageShown")
 
     if (messageVersion !== undefined
-      && !isNewerVersion(currentVersion, messageVersion)) return
+      && !foundry.utils.isNewerVersion(currentVersion, messageVersion)) return
 
     const templateData = {
       version: currentVersion,
