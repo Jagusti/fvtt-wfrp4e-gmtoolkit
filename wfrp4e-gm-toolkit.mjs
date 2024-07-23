@@ -18,6 +18,7 @@ import DarkWhispers from "./modules/dark-whispers.mjs"
 import TokenHudExtension from "./modules/token-hud-extension.mjs"
 import { DamageConsole } from "./apps/damage.js"
 import { GMToolkitWelcome } from "./modules/welcome.mjs"
+import SocketHandlers from "./modules/socket.mjs"
 import GMToolkitAdvantageSettings from "./apps/gm-toolkit-advantage-settings.js"
 import GMToolkitDarkWhispersSettings from "./apps/gm-toolkit-darkwhispers-settings.js"
 import GMToolkitGroupTestSettings from "./apps/gm-toolkit-grouptest-settings.js"
@@ -79,7 +80,7 @@ Hooks.once("ready", async function () {
   // Register module settings
   await GMToolkitSettings.register()
 
-  GMToolkit.log(false, `${GMToolkit.MODULE_NAME} is ready.`)
+  GMToolkit.log(true, `${GMToolkit.MODULE_NAME} is ready.`)
 
   // Notify any player users that do not have characters assigned
   const spectators = GMToolkitUtility.getGroup("spectators").map(i => ` ${i.name}`)
@@ -97,15 +98,15 @@ Hooks.once("ready", async function () {
     }
   })
 
+  // Register socket handler
+  game.socket.on(`module.${GMToolkit.MODULE_ID}`, (data, options) => {
+    SocketHandlers[data.type](data, options)
+  })
+
   GMToolkitWelcome._welcomeMessage()
 
 })
 
-Hooks.on("ready", async () => {
-  game.socket.on(`module.${GMToolkit.MODULE_ID}`, data => {
-    SocketHandlers[data.type](data)
-  })
-})
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
@@ -140,44 +141,6 @@ Hooks.once("babele.ready", async function () {
   }
 })
 
-/* -------------------------------------------- */
-/*  Socket Handlers                             */
-/* -------------------------------------------- */
-
-export class SocketHandlers {
-
-  // Used for updating Advantage when the opposed test is resolved by a player character that does not own the opposing character
-  static async updateAdvantage (data) {
-    console.log("Socket: updateAdvantage", data)
-    if (!game.user.isUniqueGM) return
-    let updated = ""
-    const { character } = data.payload
-    return updated = await game.scenes.active.tokens
-      .filter(t => t.actor.id === character)[0].actor
-      .update(data.payload.updateData)
-  }
-
-  // Used for updating Advantage flags on combatant when the opposed test is resolved by a player character that does not own the opposing actor
-  static async setFlag (data) {
-    console.log("Socket: setFlag", data)
-    if (!game.user.isUniqueGM) return
-    ui.notifications.notify(`Setting flag "${data.payload.updateData.key}" on ${data.payload.character.name} as GM`, "info", { permanent: true, console: true })
-
-    const { character } = data.payload  // This should be a Combatant
-
-    // const actorToChange = game.scenes.active.tokens
-    //   .filter(t => t.actor.id === character.actorId)[0].actor
-
-    let updated = ""
-    return updated = await character.setFlag(
-      GMToolkit.MODULE_ID,
-      data.payload.updateData.flag,
-      { [data.payload.updateData.key]: data.payload.updateData.value }
-    )
-
-  }
-
-}
 
 /* -------------------------------------------- */
 /*  Entry Context                               */

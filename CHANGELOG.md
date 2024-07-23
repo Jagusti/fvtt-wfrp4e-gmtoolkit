@@ -5,8 +5,25 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 7.0.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.3)  (2024-06-11)
+* *Added* pack compiler to release workflow to ensure compendium packs are included in module package. [[#265](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/265)]
+* *Added* max compatibility to prevent installation on FVTT v12. 
+
+## [Version 7.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.0)  (2024-06-11)
 * *Changed* compendium packs from `nedb` to `leveldb` format.  This database format is used from Foundry v11, and this change breaks GM Toolkit compatibility with earlier versions of Foundry. [#247](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/247)
-* *Updated* package dependencies and linting rules. [#248][#248](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/248)
+* Fix Group Test to work with roll dialog changes from WFRP4e 7.1.5.
+* *Changed* **minimum compatibility requirements** to Foundry VTT v11.315 and WFRP4e 7.1.5.
+* *Updated* package dependencies and linting rules. [#248](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/248)
+* *Updated* Japanese translations (thanks @doumoku!) [#245](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/245)
+* *Fixed* incorrect notification of Advantage change when condition is applied outside of combat. [#249](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/249)
+* *Fixed* Make Secret Group Tests to clean up temporarily stored results after posting test results to chat [#255](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/255)
+* *Added* feature to delegate group test rolls for assigned characters to active (logged-in) players.
+  * The GM will need to select the "Bypass Roll Dialog" option when making a Group Test.
+  * Players should complete their rolls before the GM to have their roll results included in the summary group test result message.
+* *Fixed* group advantage for actors where GM is not explicitly an owner. Thanks @Forien! [#237](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/237) [#250](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/250) [#262](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/262)
+* *Fixed* example in Group Test settings for fallback difficulty adjustment.
+* *Added* check to prevent advantage gain when Group Advantage is enabled and opposed test should not generate advantage when using Token Action HUD WFRP4e. Thanks @Forien! [#263](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/263)
 
 ## [Version 6.0.5](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/6.0.5)  (2023-09-03)
 * *Added* compatibility for FVTT v11. [#241](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/241)

@@ -107,8 +107,19 @@ export default class Advantage {
 
     async function updateCharacterAdvantage () {
       let updated = ""
-      if (!character.actor.ownership[game.user.id]) {
-        return updated = await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, { type: "updateAdvantage", payload: { character: character.actor.id, updateData: { "data.status.advantage.value": advantage.new } } })
+
+      if (!character.actor.isOwner) {
+        return updated = await game.socket.emit(
+          `module.${GMToolkit.MODULE_ID}`,
+          {
+            type: "updateAdvantage",
+            payload: {
+              character: character.actor.id,
+              updateData: { "data.status.advantage.value": advantage.new }
+            }
+          }
+        )
+
       } else {
         return updated = await character.actor.update({ "data.status.advantage.value": advantage.new })
       }
@@ -305,7 +316,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
   if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.outmanoeuvre !== scriptArgs.opposedTest.attackerTest.message.id) {
     await Advantage.update(character, "increase", "wfrp4e:applyDamage")
 
-    if (!character.actor.ownership[game.user.id]) {
+    if (!character.actor.isOwner) {
       await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
         type: "setFlag",
         payload: {
@@ -322,7 +333,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
     }
 
   } else {
-    console.log(`Advantage increase already applied to ${character.name} for outmanoeuvring.`)
+    GMToolkit.log(true, `Advantage increase already applied to ${character.name} for outmanoeuvring.`)
   }
 
   GMToolkit.log(false, "Outmanoeuvring Advantage: Finished.")
@@ -330,13 +341,22 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
 
 
 Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, defenderTest) {
-  GMToolkit.log(true, opposedTest, attackerTest, defenderTest)
+  GMToolkit.log(true, "wfrp4e:opposedTestResult", opposedTest, attackerTest, defenderTest)
+
+  // For Group Advantage, handle tests which should not generate advantage
+  if (
+    game.settings.get("wfrp4e", "useGroupAdvantage") &&
+    attackerTest.data?.result?.options?.preventAdvantage === true
+  ) {
+    GMToolkit.log(true, "No advantage gained for winning an opposed test that should not generate advantage.");
+    return;
+  }
 
   // CHARGING: Set Advantage flag if attacker and/or defender charged, and Group Advantage is not being used. Do this once before exiting for unopposed tests.
   if (!game.settings.get("wfrp4e", "useGroupAdvantage")) {
     // Flag attacker charging
     if (attackerTest.data.preData?.charging || attackerTest.data.result.other === game.i18n.localize("Charging")) {
-      if (!attackerTest.actor.ownership[game.user.id]) {
+      if (!attackerTest.actor.isOwner) {
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
           payload: {
@@ -357,7 +377,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
     }
     // Flag defender charging
     if (defenderTest.data.preData?.charging || defenderTest.data.result.other === game.i18n.localize("Charging")) {
-      if (!defenderTest.actor.ownership[game.user.id]) {
+      if (!defenderTest.actor.isOwner) {
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
           payload: {
@@ -411,10 +431,10 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
     .token.object
   if (character.combatant.getFlag(GMToolkit.MODULE_ID, "advantage")?.opposed !== opposedTest.attackerTest.message.id) {
     if (game.settings.get("wfrp4e", "useGroupAdvantage") === true && character.actor !== attacker) {
-      console.log("No advantage gained for winning an opposed test you did not initiate.")
+      GMToolkit.log(true, "No advantage gained for winning an opposed test you did not initiate.")
     } else {
-      await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
-      if (!winner.ownership[game.user.id]) {
+      const resolution = await Advantage.update(character, "increase", "wfrp4e:opposedTestResult")
+      if (!winner.isOwner) {
         await game.socket.emit(`module.${GMToolkit.MODULE_ID}`, {
           type: "setFlag",
           payload: {
@@ -426,6 +446,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
             }
           }
         })
+        GMToolkit.log(true, "Advantage: wfrp4e:OpposedTestResult. Socket update resolved.", resolution )
       } else {
         await character.combatant
           .setFlag(GMToolkit.MODULE_ID, "advantage",
@@ -434,10 +455,10 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
       }
     }
   } else {
-    console.log(`Advantage increase already applied to ${character.name} for winning opposed test.`)
+    GMToolkit.log(true, `Advantage increase already applied to ${character.name} for winning opposed test.`)
   }
 
-  GMToolkit.log(false, "Opposed Test Advantage: Finished.")
+  GMToolkit.log(true, "Advantage: Opposed Test. Finished.")
 })
 
 
@@ -448,7 +469,7 @@ Hooks.on("createActiveEffect", async function (conditionEffect) {
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateConditionAdvantage")) return // ... not using condition automation
   if (game.settings.get("wfrp4e", "useGroupAdvantage")) return // ... Group Advantage is in play
   if (!game.user.isUniqueGM) return // ... not a GM
-  if (!inActiveCombat(conditionEffect.parent, "silent")) return // ... not in combat
+  if (!conditionEffect.parent.inCombat) return // ... not in combat
   if (!conditionEffect.isCondition) return  // ... not a system recognised condition
   const nonConditions = ["dead", "fear", "grappling", "engaged"]
   const condId = conditionEffect.conditionId
@@ -511,7 +532,7 @@ Hooks.on("preUpdateCombat", async function (combat, change) {
 
   // Clear Advantage flags when the combat round changes
   // Still required when Group Advantage is used because of Opposed Test flags
-  console.log("preUpdateCombat: unsetting Advantage flags")
+  GMToolkit.log(true, "preUpdateCombat: unsetting Advantage flags")
   const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
   if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 })

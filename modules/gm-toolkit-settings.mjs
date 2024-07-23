@@ -488,7 +488,6 @@ export async function registerGroupTestSettings () {
     feature: "grouptest"
   })
   game.settings.register(GMToolkit.MODULE_ID, "aggregateResultGroupTest", {
-    name: "GMTOOLKIT.Settings.GroupTest.defaultSkill.name",
     scope: "world",
     config: false,
     default: []

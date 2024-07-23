@@ -166,7 +166,7 @@
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name" : "Testuj Cechę w przypadku braku Umiejętności",
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint": "Wykonaj test powiązanej cechy, jeśli postać nie ma odpowiedniej umiejętności zaawansowanej. Testy umiejętności podstawowych zawsze stosują fallback.",
     "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name": "Krok dostosowania poziomu trudności przy fallbacku.",
-    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint": "Kiedy aktor nie ma zaawansowanej umiejętności do testu grupowego, zwiększ trudność testu o tę liczbę kroków (np. 2 robi ze Średniego (+20) testu test Trudny (+10) ). Podczas pomijania okna dialogowego stosowana jest domyślna trudność systemu. Jeśli podano 0, nie jest dokonywana korekta.",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint": "Kiedy aktor nie ma zaawansowanej umiejętności do testu grupowego, zwiększ trudność testu o tę liczbę kroków (np. 2 robi ze Średniego (+20) testu test Trudny (-10) ). Podczas pomijania okna dialogowego stosowana jest domyślna trudność systemu. Jeśli podano 0, nie jest dokonywana korekta.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission": "Tylko GM mogą wykonywać tajne testy grupowe!",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup": "Brak aktorów do testowania. Sprawdź kryteria wyboru grupy.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest": "{character} nie ma {skill}. Przerywam zaawansowany test umiejętności.",
@@ -310,7 +310,7 @@
     "ROLL.Failure": "Porażka. 'Nie.'",
     "ROLL.MarginalFailure": "Znikoma Porażka. 'Nie, ale...'", 
 
-    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} is active.",
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit {version} is active.",
     "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "Release Notes",
     "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "Updating macros or tables will delete existing GM Toolkit content. Any customizations will be lost if not saved under a different name.",
     "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",

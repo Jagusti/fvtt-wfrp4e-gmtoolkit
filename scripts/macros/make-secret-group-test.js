@@ -38,8 +38,8 @@ function makeGroupTest () {
 
 /* ==========
  * MACRO: Make Secret Group Test
- * VERSION: 0.9.5
- * UPDATED: 2022-08-04
+ * VERSION: 7.0.0
+ * UPDATED: 2023-12-20
  * DESCRIPTION: Quickly roll and report group skill tests for player and non-player characters.
  * TIP: Default options for Quick Test and custom skills can be set in module settings.
  * TIP: By default, tests are rolled blind. Right-click a test result in the chat log to show the results to players.

@@ -17,7 +17,11 @@ export default class GMToolkit {
     const shouldLog = force || game.modules.get("_dev-mode")?.api?.getPackageDebugValue(this.MODULE_ID)
 
     if (shouldLog) {
-      console.log("%c%s%c%s", "color: black; background: orange;", this.MODULE_ID, "color: unset; background: unset;", " | ", ...args)
+      // console.groupCollapsed("%s%c%s%c%s", "🛠️ ", "color: black; background: orange;", this.MODULE_ID, "color: unset; background: unset;", " | ", ...args)
+      console.groupCollapsed("%s%c%s%c%s", "🛠️ ", "color: black; background: orange;", this.MODULE_ID, "color: unset; background: unset;", " | ", args[0])
+      console.log(...args.slice(1))
+      console.trace()
+      console.groupEnd()
     }
   }
 

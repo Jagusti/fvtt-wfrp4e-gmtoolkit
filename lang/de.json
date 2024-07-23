@@ -166,7 +166,7 @@
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name" : "Fallback zu Characteristic Test",
     "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint" : "Teste gegen das entsprechende Merkmal, wenn ein Charakter nicht die richtige Fortgeschrittenen-Fertigkeit hat. Grundfertigkeitstests greifen immer zurück.",
     "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.name" : "Schwierigkeitsgrad bei Fallback anpassen",
-    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint" : "Wenn der Charakter keine fortgeschrittene Fähigkeit für den Gruppentest hat, erhöht sich die Schwierigkeit des Tests um diese Anzahl von Stufen (z.B. 2 macht einen durchschnittlichen (+20) Test schwierig (+10)). Die Standard-Systemschwierigkeit wird angewendet, wenn der Rollendialog umgangen wird. Wenn 0, wird keine Anpassung vorgenommen.",
+    "GMTOOLKIT.Settings.GroupTest.FallbackAdjustDifficulty.hint" : "Wenn der Charakter keine fortgeschrittene Fähigkeit für den Gruppentest hat, erhöht sich die Schwierigkeit des Tests um diese Anzahl von Stufen (z.B. 2 macht einen durchschnittlichen (+20) Test schwierig (-10)). Die Standard-Systemschwierigkeit wird angewendet, wenn der Rollendialog umgangen wird. Wenn 0, wird keine Anpassung vorgenommen.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoPermission" : "Nur GMs können geheime Gruppentests durchführen!",
     "GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup" : "Keine Charakter, für den ein Test gemacht werden muss. Überprüfen Sie Ihre Gruppenauswahlkriterien.",
     "GMTOOLKIT.Message.MakeSecretGroupTest.AbortAdvancedSkillTest" : "{character} hat kein {skill}. Abbruch des Tests für fortgeschrittene Fähigkeiten.",
@@ -310,7 +310,7 @@
     "ROLL.Failure" : "Failure. 'Nein'",
     "ROLL.MarginalFailure" : "Knappes Scheitern. 'Nein, aber ...'", 
 
-    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} is active.",
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit {version} is active.",
     "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "Release Notes",
     "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "Updating macros or tables will delete existing GM Toolkit content. Any customizations will be lost if not saved under a different name.",
     "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",
