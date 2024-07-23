@@ -2,7 +2,7 @@ setTokenVisionLight()
 
 async function canvasTokensUpdate (data) {
   const updates = canvas.tokens.controlled
-    .map(token => mergeObject({ _id: token.id }, data))
+    .map(token => foundry.utils.mergeObject({ _id: token.id }, data))
   await canvas.scene.updateEmbeddedDocuments("Token", updates)
 }
 
@@ -301,9 +301,9 @@ async function setTokenVisionLight () {
               const nightvision = game.i18n.localize("NAME.NightVision").toLowerCase()
               // Night Vision requires some minimal illumination to provide a benefit
               if (
-                game.scenes.viewed.darkness < 1
+                game.scenes.viewed.environment.darknessLevel < 1
                 | lightDim > 0
-                | game.scenes.viewed.globalLight
+                | game.scenes.viewed.environment.globalLight.enabled
               ) {
                 item = token.actor.items.find(
                   i => i.name.toLowerCase() === nightvision
@@ -403,8 +403,8 @@ async function setTokenVisionLight () {
 
 /* ==========
  * MACRO: Set Token Vision and Light
- * VERSION: 6.0.3
- * UPDATED: 2023-04-25
+ * VERSION: 7.0.0
+ * UPDATED: 2024-07-23
  * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
  ========== */
