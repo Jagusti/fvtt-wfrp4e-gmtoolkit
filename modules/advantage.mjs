@@ -115,13 +115,13 @@ export default class Advantage {
             type: "updateAdvantage",
             payload: {
               character: character.actor.id,
-              updateData: { "data.status.advantage.value": advantage.new }
+              updateData: { "system.status.advantage.value": advantage.new }
             }
           }
         )
 
       } else {
-        return updated = await character.actor.update({ "data.status.advantage.value": advantage.new })
+        return updated = await character.actor.update({ "system.status.advantage.value": advantage.new })
       }
     }
   }
@@ -348,8 +348,8 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
     game.settings.get("wfrp4e", "useGroupAdvantage") &&
     attackerTest.data?.result?.options?.preventAdvantage === true
   ) {
-    GMToolkit.log(true, "No advantage gained for winning an opposed test that should not generate advantage.");
-    return;
+    GMToolkit.log(true, "No advantage gained for winning an opposed test that should not generate advantage.")
+    return
   }
 
   // CHARGING: Set Advantage flag if attacker and/or defender charged, and Group Advantage is not being used. Do this once before exiting for unopposed tests.
