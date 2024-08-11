@@ -3,7 +3,7 @@ import { runGroupTest } from "../modules/group-test.mjs"
 export class GroupTest extends FormApplication {
 
   static get defaultOptions () {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["gmtoolkit"],
       popOut: true,
       id: "group-test",

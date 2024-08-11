@@ -180,7 +180,7 @@ export async function runActorTest (actor, testSkill, testOptions) {
 
       const characteristicTest = await actor.setupCharacteristic(
         actorSkill.characteristic.value,
-        mergeObject(setupData, dialogFallbackTitle, difficultySetting)
+        foundry.utils.mergeObject(setupData, dialogFallbackTitle, difficultySetting)
       )
       return characteristicTest.roll()
     }

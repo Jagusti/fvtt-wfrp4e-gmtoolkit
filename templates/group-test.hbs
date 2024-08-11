@@ -1,7 +1,7 @@
 <form>
       <div class = "form-group flexcol" id = "quicktest">{{!-- QUICK TEST BUTTONS >> --}}
         {{#with skills}}
-      {{!-- Instant roll priority skills --}}
+        {{!-- Instant roll priority skills --}}
         <div class = "form-group section-title">
           <label for = "quicktest" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.QuickTest"}}</label>
         </div>
@@ -24,10 +24,12 @@
         </div>
         {{!-- Select a known skill to test (drawn from compendia) ... --}}
         <div class = "form-group">
-          <label for = "skill-list">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseSkill"}}</label> 
+          <label for = "skill-list">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseSkill"}}</label>
           <select id = "skill-list" name = "skill-list">
             {{#with skills}}
-              {{selectOptions list nameAttr = "name" labelAttr = "name" blank = "" selected = target}}
+            {{log this}}
+              {{#selectOptions list valueAttr = "name" labelAttr = "name" localize = true blank = "" selected = target }}
+              {{/selectOptions}}
             {{/with}}
           </select>
         </div>
@@ -50,11 +52,8 @@
         <div class="flexrow parameter" id = "parameter-rollMode">
           <label for = "rollmode">{{localize "DIALOG.RollMode"}}</label>
           <select id = "rollmode" name = "rollMode" blank = "" selected = rollMode>
-            {{#select rollMode}}
-              {{#each ../rollModeOptions as |label mode|}}
-              <option value="{{mode}}">{{localize label}}</option>
-              {{/each}}
-            {{/select}}
+            {{#selectOptions ../rollModeOptions selected = rollMode localize=true}}
+            {{/selectOptions}}
           </select>
         </div>
         {{!-- difficulty --}}
@@ -86,7 +85,7 @@
 
     <div class = "flexcol grouptest grouptargets">{{!-- right column --}}
       <div class = "form-group flexcol" id = "group-members">{{!-- TARGET SELECTION >> --}}
-        {{!-- Specify Group Targets --}}  
+        {{!-- Specify Group Targets   --}}
         <div class = "form-group section-title">
           <label for = "choose-targets" class = "section-title">{{localize "GMTOOLKIT.Dialog.ChooseTargets"}}</label>
         </div>
