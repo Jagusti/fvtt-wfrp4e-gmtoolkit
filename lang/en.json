@@ -310,7 +310,7 @@
     "ROLL.Failure" : "Failure. 'No'",
     "ROLL.MarginalFailure" : "Marginal Failure. 'No, but ...'", 
 
-    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} is active.",
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit {version} is active.",
     "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "Release Notes",
     "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "Updating macros or tables will delete existing GM Toolkit content. Any customizations will be lost if not saved under a different name.",
     "GMTOOLKIT.Message.Welcome.UpdateMacros" : "Update Macros",

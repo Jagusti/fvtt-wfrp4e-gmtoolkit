@@ -38,7 +38,7 @@ class GMToolkitMaintenance extends Dialog {
   }
 
   static get defaultOptions () {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       popOut: true,
       width: 560,
       resizable: true

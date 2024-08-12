@@ -20,10 +20,12 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.1.2",
-    "coreVersion": "10.284",
+    "coreVersion": "12.329",
     "createdTime": 1662044738596,
     "modifiedTime": 1662429198488,
-    "lastModifiedBy": "Yz8naH0UqWS3uLwh"
+    "lastModifiedBy": "Yz8naH0UqWS3uLwh",
+    "compendiumSource": "Macro.zS3GG60wLtsRvc0F",
+    "duplicateSource": null
   },
   "folder": null,
   "sort": 0,

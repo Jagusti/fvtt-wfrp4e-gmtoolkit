@@ -26,7 +26,7 @@
     "GMTOOLKIT.Settings.Advantage.Automate.CombatLeave.hint" : "コンバットトラッカーから削除されたときにトークンの優位をクリアする、戦闘終了時ではない。",
 
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name" : "トークンHUD拡張の許可",
-    "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "操作中のトークンHUDに、主要な属性値や技能をツールチップとインタラクションを作成。既定値は許可。",
+    "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "操作中のトークンHUDに、主要な能力値や技能をツールチップとインタラクションを作成。既定値は許可。",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name" : "トークンのHUD拡張で、常に機転を表示する",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "無効にすると、機転と敏捷のツールチップとショートカットは有効なシーンでのみ使用できる。既定値は有効。",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetName}の{targetStatus}が、{originalStatus}から{newStatus}に変更された",
@@ -156,7 +156,7 @@
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.name" : "固定シーン",
     "GMTOOLKIT.Settings.SessionTurnover.HoldingScene.hint" : "セッション間で自動的に移行するシーンの名前。Session Turnover処理で起動されます。シーン変更しない場合は空白にします。ランディングページやキャンペーンのハブとして使用されます。",
     "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.name" : "デフォルトのグループ選択",
-    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint" : "プレイヤーに割り当てられているキャラクターのみを対象とする場合は「party」を選択、プレイヤーに所有権があるノンプレイヤーキャラクターやクリーチャー（雇用、ヘンチマン、使い魔など）も含める場合は「company」を選択する。",
+    "GMTOOLKIT.Settings.SessionTurnover.DefaultParty.hint" : "プレイヤーに割り当てられているキャラクターのみを対象とする場合は「パーティ」を選択、プレイヤーに所有権があるノンプレイヤーキャラクターやクリーチャー（雇用、ヘンチマン、使い魔など）も含める場合は「仲間」を選択する。",
 
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.Title" : "セッションIDの更新",
     "GMTOOLKIT.Dialog.SessionTurnover.UpdateSessionID.CurrentSession" : "現在のセッションIDは「{thisSession}」です。",
@@ -310,7 +310,7 @@
     "ROLL.Failure" : "大失敗。「ノー。しくじったな……」",
     "ROLL.MarginalFailure" : "超大失敗。「ノー。かすりもしねえ！」", 
 
-    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit v{version} は動作中です。",
+    "GMTOOLKIT.Message.Welcome.VersionIsActive" : "GM Toolkit {version} は動作中です。",
     "GMTOOLKIT.Message.Welcome.ReleaseNotes" : "リリースノート",
     "GMTOOLKIT.Message.Welcome.ContentUpdateWarning" : "マクロやロール表をアップデートすると現在存在しているGM Toolkitのコンテンツを削除します。別名で保存されていなければカスタマイズした内容は全て失われます。",
     "GMTOOLKIT.Message.Welcome.UpdateMacros" : "マクロをアップデート",

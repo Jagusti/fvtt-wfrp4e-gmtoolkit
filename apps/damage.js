@@ -1,7 +1,7 @@
 export class DamageConsole extends FormApplication {
 
   static get defaultOptions () {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["gmtoolkit"],
       popOut: true,
       id: "damage-console",
@@ -88,7 +88,7 @@ export class DamageConsole extends FormApplication {
    **/
   _toggleRandomiseDamage (event) {
     try {
-      const roll = new Roll(event.target.value).evaluate({ async: false })
+      const roll = new Roll(event.target.value).evaluate()
       document.getElementById("randomiseDamage").disabled = roll.isDeterministic
     } catch(err) {
       document.getElementById("randomiseDamage").disabled = true
@@ -201,7 +201,7 @@ async function evaluateDamageFormula (damageFormula) {
   let damage
   await new Promise((resolve, reject) => {
     resolve(
-      new Roll(damageFormula).evaluate({ async: true })
+      new Roll(damageFormula).evaluate()
         .then(r => damage = r)
     )
   })

@@ -1,17 +1,18 @@
 <form autocomplete="off" onsubmit="event.preventDefault();">
 
     {{#each settings as |setting s|}}
+    {{log setting}}
     <div class="form-group">
         <label>{{localize setting.name}}</label>
         <div class="form-fields">
             
             {{#if setting.choices}}
             <select name="{{setting.key}}">
-                {{#select setting.value}}
-                {{#each setting.choices as |name k|}}
-                <option value="{{k}}">{{localize name}}</option>
-                {{/each}}
-                {{/select}}
+                {{#selectOptions choices selected=value localize=true}}
+                  {{#each setting.choices as |name k|}}
+                  <option value="{{k}}">{{localize name}}</option>
+                  {{/each}}
+                {{/selectOptions}}
             </select>
     
             {{else if setting.boolean}}

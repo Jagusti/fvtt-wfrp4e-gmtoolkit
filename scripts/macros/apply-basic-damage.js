@@ -143,7 +143,7 @@ async function evaluateDamageFormula (damageFormula) {
   let damage
   await new Promise((resolve, reject) => {
     resolve(
-      new Roll(damageFormula).evaluate({ async: true })
+      new Roll(damageFormula).evaluate()
         .then(r => damage = r)
     )
   })
@@ -155,6 +155,6 @@ async function evaluateDamageFormula (damageFormula) {
 /* ==========
 * MACRO: Apply Basic Damage
 * VERSION: ...
-* UPDATED: 2022-08-31
-* DESCRIPTION: Increases Advantage for the selected token by 1.
+* UPDATED: 2024-08-11
+* DESCRIPTION: --
 ========== */

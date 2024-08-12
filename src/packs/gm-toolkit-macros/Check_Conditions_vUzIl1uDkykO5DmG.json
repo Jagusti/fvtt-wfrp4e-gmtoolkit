@@ -22,10 +22,12 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.0.0",
-    "coreVersion": "10.279",
+    "coreVersion": "12.329",
     "createdTime": null,
     "modifiedTime": 1661498020084,
-    "lastModifiedBy": "WpuDIfNQnefaTyuV"
+    "lastModifiedBy": "WpuDIfNQnefaTyuV",
+    "compendiumSource": "Macro.YSvf5jsBKPTkkULa",
+    "duplicateSource": null
   },
   "_key": "!macros!vUzIl1uDkykO5DmG"
 }
