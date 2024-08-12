@@ -6,7 +6,7 @@
   "results": [
     {
       "_id": "g9rsj2kp26oh6r3z",
-      "type": 0,
+      "type": "text",
       "text": "Let your quarry go.",
       "range": [
         1,
@@ -15,13 +15,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 1,
-      "rangeH": 1,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.g9rsj2kp26oh6r3z"
     },
     {
       "_id": "h3hvuahahukmiklq",
-      "type": 0,
+      "type": "text",
       "text": "'Accidentally' strike an ally.",
       "range": [
         2,
@@ -30,13 +30,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 2,
-      "rangeH": 2,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.h3hvuahahukmiklq"
     },
     {
       "_id": "9ltv15jz9n4pkc7m",
-      "type": 0,
+      "type": "text",
       "text": "Fall asleep on watch.",
       "range": [
         3,
@@ -45,13 +45,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 3,
-      "rangeH": 3,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.9ltv15jz9n4pkc7m"
     },
     {
       "_id": "j1z9hqs65ife4pqx",
-      "type": 0,
+      "type": "text",
       "text": "Kneel before the Magister. Show your allegiance.",
       "range": [
         4,
@@ -60,13 +60,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 4,
-      "rangeH": 4,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.j1z9hqs65ife4pqx"
     },
     {
       "_id": "ds7tn3xsonqyquvo",
-      "type": 0,
+      "type": "text",
       "text": "Nobody's that good or lucky. However popular or powerful they are. Call out the cheat!",
       "range": [
         5,
@@ -75,13 +75,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 5,
-      "rangeH": 5,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.ds7tn3xsonqyquvo"
     },
     {
       "_id": "3cx7xfwzxscq40p2",
-      "type": 0,
+      "type": "text",
       "text": "You're not as prepared as you thought you were.",
       "range": [
         6,
@@ -90,13 +90,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 6,
-      "rangeH": 6,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.3cx7xfwzxscq40p2"
     },
     {
       "_id": "2rq045im6k1pft53",
-      "type": 0,
+      "type": "text",
       "text": "Exert your authority. Make an example of the weakest or most vulnerable.",
       "range": [
         7,
@@ -105,13 +105,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 7,
-      "rangeH": 7,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.2rq045im6k1pft53"
     },
     {
       "_id": "5iq16gdx32qx83yv",
-      "type": 0,
+      "type": "text",
       "text": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own.",
       "range": [
         8,
@@ -120,13 +120,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 8,
-      "rangeH": 8,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.5iq16gdx32qx83yv"
     },
     {
       "_id": "azxfuejsd1v28wym",
-      "type": 0,
+      "type": "text",
       "text": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
       "range": [
         9,
@@ -135,13 +135,13 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 9,
-      "rangeH": 9,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.azxfuejsd1v28wym"
     },
     {
       "_id": "gmfs74ty8wbm8eoy",
-      "type": 0,
+      "type": "text",
       "text": "Secrets are burdensome. Be generous and give them away.",
       "range": [
         10,
@@ -150,8 +150,8 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "rangeL": 10,
-      "rangeH": 10,
+      "documentId": null,
+      "weight": 1,
       "_key": "!tables.results!9rXQv4uJcQoLBitt.gmfs74ty8wbm8eoy"
     }
   ],
@@ -174,6 +174,16 @@
     "core": {
       "sourceId": "RollTable.9rXQv4uJcQoLBitt"
     }
+  },
+  "_stats": {
+    "coreVersion": "12.329",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!tables!9rXQv4uJcQoLBitt"
 }
