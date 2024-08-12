@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+* *Added* compatibility for Foundry VTT v12. This is a breaking change:
+  * v11 is no longer supported beyond GM Toolkit v7.0.3.
+  * v12 the minimum version required for GM Toolkit.
+  * Full details can be found in [[#270](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/270)]
+
 ## [Version 7.0.3](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.3)  (2024-06-11)
 * *Added* pack compiler to release workflow to ensure compendium packs are included in module package. [[#265](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/265)]
 * *Added* max compatibility to prevent installation on FVTT v12. 
