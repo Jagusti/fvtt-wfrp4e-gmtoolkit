@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Fixed* end of round operations happening at the end every combat turn. Lose Momentum is no longer triggered after each character turn. [[#275](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/275)]
 
 ## [Version 7.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.1.1)  (2024-08-12)
 * *Fixed* Maintenance utility not loading when (RollTable) content version flag is missing
