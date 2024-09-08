@@ -91,7 +91,7 @@ function updateXP (awardees, XP, reason) {
     const newXPCurrent = Math.max(XPCurrent + XP, 0)
 
     // Update token actor or actor
-    pc?.actor ? pc.actor.awardExp(XP, reason) : pc.awardExp(XP, reason)
+    pc?.actor ? pc.actor.system.awardExp(XP, reason) : pc.system.awardExp(XP, reason)
 
     // Build report message
     chatContent += game.i18n.format("GMTOOLKIT.AddXP.Success", { recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent } )
@@ -108,8 +108,8 @@ function updateXP (awardees, XP, reason) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 6.1.0
- * UPDATED: 2022-10-23
+ * VERSION: 8.0.0
+ * UPDATED: 2024-09-08
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the chat log.
  * TIP: Characters must have a player assigned (if default group is 'party') or be player-owned (if default group is 'company').
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
