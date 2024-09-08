@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 8.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.0)  (2024-09-08)
 * *Fixed* end of round operations happening at the end every combat turn. Lose Momentum is no longer triggered after each character turn. [[#275](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/275)]
 * *Added* WFRP4e v8 compatibility for Add XP macro. This is a **breaking** change.
   * v7.x is no longer supported beyond GM Toolkit v7.2.4.
