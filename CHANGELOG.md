@@ -9,6 +9,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 * *Added* WFRP4e v8 compatibility for Add XP macro. This is a **breaking** change.
   * v7.x is no longer supported beyond GM Toolkit v7.2.4.
   * v8.0.2 is the minimum version required for GM Toolkit.
+* *Removed* unnecessary reload when changing Add XP settings.
 
 ## [Version 7.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.1.1)  (2024-08-12)
 * *Fixed* Maintenance utility not loading when (RollTable) content version flag is missing

@@ -136,7 +136,6 @@ export class GMToolkitSettings {
       config: false,
       default: false,
       type: Boolean,
-      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultAmount", {
@@ -151,7 +150,6 @@ export class GMToolkitSettings {
         max: 200,
         step: 5
       },
-      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "addXPDefaultReason", {
@@ -161,7 +159,6 @@ export class GMToolkitSettings {
       config: false,
       default: "Session %session% (%date%)",
       type: String,
-      onChange: foundry.utils.debouncedReload,
       feature: "session"
     })
     game.settings.register(GMToolkit.MODULE_ID, "holdingScene", {
