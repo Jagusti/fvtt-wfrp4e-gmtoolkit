@@ -10,6 +10,10 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   * v7.x is no longer supported beyond GM Toolkit v7.2.4.
   * v8.0.2 is the minimum version required for GM Toolkit.
 * *Removed* unnecessary reload when changing Add XP settings.
+* *Added* new option for `getGroup` utility to return "henchmen" - all player-owned, non-vehicle characters that are not assigned to users. 
+* *Changed* Add XP macro to only give half XP to henchmen characters. 
+  * This applies only when default group in Session Manangement settings is "company". 
+  * If default group is "party", henchmen are still not considered for Add XP macro. 
 
 ## [Version 7.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.1.1)  (2024-08-12)
 * *Fixed* Maintenance utility not loading when (RollTable) content version flag is missing

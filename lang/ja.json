@@ -88,7 +88,7 @@
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "幸運ポイントを買いう服するプレイヤーキャラクターが存在しません。",
 
     "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}</strong>＝合計経験点：{XPTotal}⇒{newXPTotal}｜現在の経験点{XPCurrent}⇒{newXPCurrent}。</p>",
-    "GMTOOLKIT.AddXP.Flavor" : "{reason}に{XP}経験点の報酬",
+    "GMTOOLKIT.AddXP.Flavor" : "{reason}に経験点の報酬",
 
     "GMTOOLKIT.Advantage.Increased" : "{actorName}の優位が{startingAdvantage}から{newAdvantage}に増えました。",
     "GMTOOLKIT.Advantage.Max" : "{actorName} already has {startingAdvantage} of maximum {maxAdvantage} Advantage. No change made.",
@@ -140,10 +140,12 @@
     "GMTOOLKIT.Settings.AddXP.Reason.name" : "XP獲得理由の規定値",
     "GMTOOLKIT.Settings.AddXP.Reason.hint" : "経験点を獲得に対する理由の規定値（キャラクターシートの注記タブの経験点ログに記録される）。%date%および%session%は自動的にセッション日付や参照として使用される。",
     "GMTOOLKIT.Dialog.AddXP.Title" : "経験点追加",
-    "GMTOOLKIT.Dialog.AddXP.Recipients" : "経験点の獲得：<br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Full" : "Full experience will be awarded to: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "どれだけ？",
     "GMTOOLKIT.Dialog.AddXP.Reason" : "理由",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "変更されませんでした。XPとして有効な数値を追加。端数は四捨五入され最も近い整数になります。負値が入力されるとキャラクターの合計から減算されます。",
+    "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "セッション管理設定",
     "GMTOOLKIT.Settings.SessionManagement.menu.label" : "セッションのオプション設定",

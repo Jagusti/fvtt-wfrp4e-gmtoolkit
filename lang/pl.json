@@ -89,7 +89,7 @@
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters": "Nie ma postaci graczy którym można zresetować Szczęście.",
 
     "GMTOOLKIT.AddXP.Success": "<p><strong>{recipient}.</strong> Całkowite PD: {XPTotal} -> {newXPTotal} | Obecne PD: {XPCurrent} -> {newXPCurrent}.</p>",
-    "GMTOOLKIT.AddXP.Flavor": "{XP} Punktów Doświadczenia przyznano za {reason}",
+    "GMTOOLKIT.AddXP.Flavor": "Punktów Doświadczenia przyznano za {reason}",
 
     "GMTOOLKIT.Advantage.Increased": "Przewaga wzrosła z {startingAdvantage} do {newAdvantage} dla {actorName}.",
     "GMTOOLKIT.Advantage.Max": "{actorName} ma już maksymalną ilość Przewagi ({maxAdvantage}). Nie wprowadzono żadnych zmian.",
@@ -140,10 +140,12 @@
     "GMTOOLKIT.Settings.AddXP.Reason.name": "Domyślny powód PD",
     "GMTOOLKIT.Settings.AddXP.Reason.hint": "Domyślny powód przyznawania doświadczenia, zapisany w Dzienniku Doświadczenia w zakładce Notatki na Karcie Postaci). Użyj %date% lub %session%, aby automatycznie uwzględnić datę sesji lub referencje.",
     "GMTOOLKIT.Dialog.AddXP.Title": "Dodaj Punkty Doświadczenia",
-    "GMTOOLKIT.Dialog.AddXP.Recipients" : "Następujące postaci otrzymają PD: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Full" : "Full experience will be awarded to: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Ilość PD",
     "GMTOOLKIT.Dialog.AddXP.Reason": "Powód",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP": "Nie wprowadzono żadnych zmian. Dodaj prawidłową liczbę PD. Ułamki zostaną zaokrąglone do najbliższej liczby całkowitej. Liczby ujemne spowodują odjęcie ilośći PD postaci.",
+    "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name": "Ustawienia zarządzania sesjami",
     "GMTOOLKIT.Settings.SessionManagement.menu.label": "Konfiguruj opcje sesji",
