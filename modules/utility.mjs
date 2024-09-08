@@ -293,6 +293,13 @@ export function getGroup (groupType, options = []) {
     case "company":  // All actors in the world owned by players, including characters, NPCs and creatures, but not vehicles
       group = game.actors.filter(a => a.hasPlayerOwner && a.type !== "vehicle")
       break
+    case "henchmen":  // All unassigned actors in the world owned by players, including characters, NPCs and creatures, but not vehicles
+      group = game.actors.filter(a => a.hasPlayerOwner && a.type !== "vehicle") // same as "company" ...
+        .filter( el => !game.users.filter(u => u.character)
+          .map(g => g.character)
+          .includes( el )
+        ) // ... removing "party"
+      break
     case "entourage":  // All actors in the world owned by players, including characters, NPCs, vehicles and creatures
       group = game.actors.filter(a => a.hasPlayerOwner)
       break
@@ -354,6 +361,7 @@ export function getGroup (groupType, options = []) {
       case "party": // game.actors
       case "entourage": // game.actors
       case "company": // game.actors
+      case "henchmen": // game.actors
       case "tokens":  // game.tokens
       case "nonparty":  // game.tokens
       case "pcTokens":  // game.tokens
@@ -399,6 +407,7 @@ export function getGroup (groupType, options = []) {
       case "characters": // game.actors
       case "party": // game.actors
       case "company": // game.actors
+      case "henchmen": // game.actors
       case "entourage": // game.actors
         group.forEach(a => {
           if (present === (a.getActiveTokens().length > 0)) {
@@ -447,6 +456,7 @@ export function getGroup (groupType, options = []) {
       case "characters": // game.actors
       case "party": // game.actors
       case "company": // game.actors
+      case "henchmen": // game.actors
       case "entourage": // game.actors
         filteredByOption = hasInteraction
           .filter(i => group.includes(i.actor))
