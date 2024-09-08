@@ -88,7 +88,7 @@
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
   
     "GMTOOLKIT.AddXP.Success" : "<strong>{recipient}.</strong> PX total : {XPTotal} -> {newXPTotal} | PX actuels : {XPCurrent} -> {newXPCurrent}.</p>",
-    "GMTOOLKIT.AddXP.Flavor" : "{XP} Experience Points Awarded for {reason}",
+    "GMTOOLKIT.AddXP.Flavor" : "Experience Points Awarded for {reason}",
 
     "GMTOOLKIT.Advantage.Increased" : "Points d'Avantage augmentés de {startingAdvantage} à {newAdvantage} pour {actorName}.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} possède déjà {startingAdvantage} points d'Avantage pour un maximum de {maxAdvantage}. Aucun changement.",
@@ -140,10 +140,12 @@
     "GMTOOLKIT.Settings.AddXP.Reason.name" : "Default XP Reason",
     "GMTOOLKIT.Settings.AddXP.Reason.hint" : "Default reason for awarding experience, recorded in the Experience Log on the Notes tab of character sheet). Use %date% or %session% to automatically include the session date or reference.",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Ajouter des PX",
-    "GMTOOLKIT.Dialog.AddXP.Recipients" : "Experience will be awarded to: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Full" : "Full experience will be awarded to: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Combien ?",
     "GMTOOLKIT.Dialog.AddXP.Reason" : "Reason",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Aucun changement effectué. Ajoutez un montant valide de PX. Les fractions seront arrondis à l'entier le plus proche. Les nombres négatifs seront retirés du total des PX du Personnage.", 
+    "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Session Management Settings",
     "GMTOOLKIT.Settings.SessionManagement.menu.label" : "Configure Session Options",

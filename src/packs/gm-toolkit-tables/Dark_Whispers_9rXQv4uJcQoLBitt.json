@@ -2,7 +2,7 @@
   "_id": "9rXQv4uJcQoLBitt",
   "name": "Dark Whispers",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-  "description": "Generic Dark Whispers that are used as placeholder prompts by the Send Dark Whispers macro.",
+  "description": "<p>Generic Dark Whispers that are used as placeholder prompts by the Send Dark Whispers macro.</p>",
   "results": [
     {
       "_id": "g9rsj2kp26oh6r3z",
@@ -166,22 +166,17 @@
   },
   "flags": {
     "wfrp4e": {
-      "key": "darkwhispers"
-    },
-    "wfrp4e-gm-toolkit": {
-      "version": "0.9.2"
-    },
-    "core": {
-      "sourceId": "RollTable.9rXQv4uJcQoLBitt"
+      "key": "darkwhispers",
+      "column": ""
     }
   },
   "_stats": {
-    "coreVersion": "12.329",
-    "systemId": null,
-    "systemVersion": null,
+    "coreVersion": "12.330",
+    "systemId": "wfrp4e",
+    "systemVersion": "7.2.4",
     "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null,
+    "modifiedTime": 1723425266787,
+    "lastModifiedBy": "Pt7qzajGGC2jofTq",
     "compendiumSource": null,
     "duplicateSource": null
   },

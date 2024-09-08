@@ -194,11 +194,12 @@ export default class Advantage {
     GMToolkit.log(false, "Advantage Flags: Unset.")
   }
 
-  static async loseMomentum (combat, round) {
+  static async loseMomentum (combat) {
     let checkNotGained = "" // List of tokens that have not accrued advantage
     let checkGained = "" // List of tokens that have accrued advantage
     let noAdvantage = "" // List of tokens that have no advantage at the end of the round
     let combatantLine = "" // Html string for constructing dialog
+    let round = combat.round
     const combatantAdvantage = []
 
     combat.combatants.forEach(combatant => {
@@ -345,8 +346,8 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   // For Group Advantage, handle tests which should not generate advantage
   if (
-    game.settings.get("wfrp4e", "useGroupAdvantage") &&
-    attackerTest.data?.result?.options?.preventAdvantage === true
+    game.settings.get("wfrp4e", "useGroupAdvantage")
+    && attackerTest.data?.result?.options?.preventAdvantage === true
   ) {
     GMToolkit.log(true, "No advantage gained for winning an opposed test that should not generate advantage.")
     return
@@ -515,19 +516,14 @@ Hooks.on("deleteCombatant", function (combatant) {
 
 Hooks.on("preUpdateCombat", async function (combat, change) {
   if (!game.user.isUniqueGM || !combat.combatants.size || !change.round) return
-  if (combat.round > change.round) return // Exit if going backwards through combat
+  if ( !(change.round > combat.round) ) return // Exit if not advancing combat round, including going backwards through combat
+  if (!combat.started) return // Exit when beginning combat; prevents loseMomentum firing prematurely
 
   // Lose Momentum: proceed only if enabled, and Group Advantage is not being used
-  if (game.settings.get(GMToolkit.MODULE_ID, "promptMomentumLoss") && !game.settings.get("wfrp4e", "useGroupAdvantage")) {
-    // Check for momentum (actor has more Advantage at the end of the round than at start)
+  if (game.settings.get(GMToolkit.MODULE_ID, "promptMomentumLoss")
+    && !game.settings.get("wfrp4e", "useGroupAdvantage")) {
     GMToolkit.log(false, "preUpdateCombat: compare Advantage at start and end of round")
-    if (
-      combat.previous.round != null
-      || (combat.previous.round == null && combat.round > 0)
-    ) {
-      const round = (change.turn) ? combat.previous.round : combat.current.round
-      if (round > 0) Advantage.loseMomentum(combat, round)
-    }
+    Advantage.loseMomentum(combat)
   }
 
   // Clear Advantage flags when the combat round changes

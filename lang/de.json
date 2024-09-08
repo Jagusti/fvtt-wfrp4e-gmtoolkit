@@ -88,7 +88,7 @@
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "Es gibt keine Spielercharaktere, für die das Glück wiederhergestellt werden muss.",
   
     "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Totale  XP: {XPTotal} -> {newXPTotal} | Aktuelle XP: {XPCurrent} -> {newXPCurrent}.</p>",
-    "GMTOOLKIT.AddXP.Flavor" : "{XP} Erfahrungspunkte vergeben für {Grund}",
+    "GMTOOLKIT.AddXP.Flavor" : "Erfahrungspunkte vergeben für {Grund}",
 
     "GMTOOLKIT.Advantage.Increased" : "Vorteil von {startingAdvantage} auf {newAdvantage} für {actorName} erhöht.",
     "GMTOOLKIT.Advantage.Max" : "{actorName} hat bereits {startingAdvantage} von maximal {maxAdvantage} Vorteile. Keine Änderung vorgenommen.",
@@ -140,10 +140,12 @@
     "GMTOOLKIT.Settings.AddXP.Reason.name" : "Standard-XP-Grund",
     "GMTOOLKIT.Settings.AddXP.Reason.hint" : "Standardgrund für die Vergabe von Erfahrung, der im Erfahrungsprotokoll auf der Registerkarte Notizen des Charakterbogens festgehalten wird). Verwenden Sie %date% oder %session% um automatisch das Sitzungsdatum oder die Referenz einzuschließen.",
     "GMTOOLKIT.Dialog.AddXP.Title" : "Erfahrungspunkte hinzufügen",
-    "GMTOOLKIT.Dialog.AddXP.Recipients" : "Die Erfahrung wird vergeben an: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Full" : "Full experience will be awarded to: <br>{recipients}",
+    "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Wie viele?",
     "GMTOOLKIT.Dialog.AddXP.Reason" : "Grund",
     "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Keine Änderung vorgenommen. Fügen Sie eine gültige Anzahl von XP hinzu. Zahlen nach dem Komme werden auf die nächste ganze Zahl gerundet. Negative Zahlen werden von der Gesamtsumme des Charakters entfernt.",
+    "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Einstellungen für die Sitzungsverwaltung",
     "GMTOOLKIT.Settings.SessionManagement.menu.label" : "Sitzungsoptionen konfigurieren",

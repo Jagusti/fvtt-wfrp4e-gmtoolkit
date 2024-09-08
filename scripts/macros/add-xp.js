@@ -16,7 +16,7 @@ async function addXP () {
       .filter(g => g.type === "character")
   }
 
-  // Setup: exit with notice if there are no player-assigned characters
+  // Setup: exit with notice if there are no player-owned characters
   if (awardees.length < 1) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Token.TargetPCs"), {})
 
   // Get  session ID/date, default XP award and default reason
@@ -36,82 +36,139 @@ async function addXP () {
   }
 
   // Prompt for XP if option is set
-  if (game.settings.get("wfrp4e-gm-toolkit", "addXPPrompt")) {
-    let awardeeList = "<ul>"
-    awardees.forEach(pc => {
-      awardeeList += `<li>${pc?.actor?.name || pc.name}</li>`
-    })
-    awardeeList += "</ul>"
-    const dialog = new Dialog({
-      title: game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Title"),
-      content: `<form>
-              <p>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients", { recipients: awardeeList })}</p>
-              <div class="form-group">
-                <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Prompt")}</label> 
-                <input type="text" id="add-xp" name="add-xp" value="${XP}" />
-              </div>
-              <div class="form-group">
-                <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Reason")}</label> 
-                <input type="text" id="xp-reason" name="xp-reason" value="${reason}" />
-              </div>
-          </form>`,
-      buttons: {
-        yes: {
-          icon: "<i class='fas fa-check'></i>",
-          label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
-          callback: html => {
-            const XP = Math.round(html.find("#add-xp").val())
-            if (isNaN(XP)) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Dialog.AddXP.InvalidXP"))
-            const reason = html.find("#xp-reason").val()
-            updateXP(awardees, XP, reason)
-          }
-        },
-        no: {
-          icon: "<i class='fas fa-times'></i>",
-          label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
-        }
-      },
-      default: "yes"
-    }).render(true)
-  } else {
-    updateXP(awardees, XP, reason)
-  }
+  (game.settings.get("wfrp4e-gm-toolkit", "addXPPrompt"))
+    ? promptForXP( awardees, XP, reason )
+    : updateXP( awardees, XP, reason )
 
 } // END: addXP
 
-function updateXP (awardees, XP, reason) {
+function updateXP (allAwardees, XP, reason) {
   let chatContent = ""
+  const awardees = groupAwardees(allAwardees)
+  const awards = {
+    pc: XP,
+    henchman: (XP / 2) | 0
+  }
 
   // Cycle through player characters, gathering experience change data for report message
-  awardees.forEach(pc => {
-    const recipient = pc?.actor?.name || pc.name
-    const XPTotal = pc?.details?.experience?.total
-    const newXPTotal = Math.max(XPTotal + XP, 0)
-    const XPCurrent = pc?.details?.experience?.current || 0
-    const newXPCurrent = Math.max(XPCurrent + XP, 0)
+  if ( awardees.pcs.length > 0 ) {
+    chatContent += `<h3>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Awarded", { award: awards.pc })}</h3><ul>`
+    awardees.pcs.forEach(character => {
+      applyAward(character, awards.pc)
+    }) // End cycle
+    chatContent += "</ul>"
+  }
 
-    // Update token actor or actor
-    pc?.actor ? pc.actor.awardExp(XP, reason) : pc.awardExp(XP, reason)
-
-    // Build report message
-    chatContent += game.i18n.format("GMTOOLKIT.AddXP.Success", { recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent } )
-  }) // End cycle
+  // Cycle through henchmen, gathering experience change data for report message
+  if ( awardees.henchmen.length > 0 ) {
+    chatContent += `<h3>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Awarded", { award: awards.henchman })}</h3><ul>`
+    awardees.henchmen.forEach(character => {
+      applyAward(character, awards.henchman)
+    }) // End cycle
+    chatContent += "</ul>"
+  }
 
   // confirm changes made in whisper to GM
   const chatData = game.wfrp4e.utility.chatDataSetup(chatContent, "gmroll", false)
-  chatData.flavor = game.i18n.format("GMTOOLKIT.AddXP.Flavor", { XP, reason })
+  chatData.flavor = game.i18n.format("GMTOOLKIT.AddXP.Flavor", { reason })
   ChatMessage.create(chatData, {})
   console.log(chatContent)
 
+  // Update actor and build report
+  function applyAward (character, award) {
+    const recipient = character?.actor?.name || character.name
+    const XPTotal = character?.details?.experience?.total
+    const newXPTotal = Math.max(XPTotal + award, 0)
+    const XPCurrent = character?.details?.experience?.current || 0
+    const newXPCurrent = Math.max(XPCurrent + award, 0)
+
+    // Update token actor or actor
+    character?.actor
+      ? character.actor.system.awardExp(award, reason)
+      : character.system.awardExp(award, reason)
+
+    // Build report message
+    chatContent += `<li>${game.i18n.format("GMTOOLKIT.AddXP.Success", { recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent })}</li>`
+  }
 } // END: updateXP
+
+function promptForXP (allAwardees, XP, reason) {
+  const awardees = groupAwardees(allAwardees)
+  const awardeeList = {}
+  let awardeeNotice = ""
+
+  // Build player character awardee list
+  if (awardees.pcs.length > 0) {
+    awardeeList.pcs = "<ul>"
+    awardees.pcs.forEach(character => {
+      awardeeList.pcs += `<li>${character?.actor?.name || character.name}</li>`
+    })
+    awardeeList.pcs += "</ul>"
+    awardeeNotice += `<p>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Full", { recipients: awardeeList.pcs })}</p>`
+  }
+
+  // Build henchmen awardee list
+  if (awardees.henchmen.length > 0) {
+    awardeeList.henchmen = "<ul>"
+    awardees.henchmen.forEach(character => {
+      awardeeList.henchmen += `<li>${character?.actor?.name || character.name}</li>`
+    })
+    awardeeList.henchmen += "</ul>"
+    awardeeNotice += `<p>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Half", { recipients: awardeeList.henchmen })}</p>`
+  }
+
+  const dialog = new Dialog({
+    title: game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Title"),
+    content: `<form>
+            ${awardeeNotice}
+            <div class="form-group">
+              <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Prompt")}</label> 
+              <input type="text" id="add-xp" name="add-xp" value="${XP}" />
+            </div>
+            <div class="form-group">
+              <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Reason")}</label> 
+              <input type="text" id="xp-reason" name="xp-reason" value="${reason}" />
+            </div>
+        </form>`,
+    buttons: {
+      yes: {
+        icon: "<i class='fas fa-check'></i>",
+        label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
+        callback: html => {
+          const XP = Math.round(html.find("#add-xp").val())
+          if (isNaN(XP)) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Dialog.AddXP.InvalidXP"))
+          const reason = html.find("#xp-reason").val()
+          updateXP(allAwardees, XP, reason)
+        }
+      },
+      no: {
+        icon: "<i class='fas fa-times'></i>",
+        label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
+      }
+    },
+    default: "yes"
+  }).render(true)
+
+} // END: promptForXP
+
+function groupAwardees (allAwardees) {
+  const party = game.gmtoolkit.utility.getGroup("party")
+  const henchmen = game.gmtoolkit.utility.getGroup("henchmen")
+  const awardees = {
+    pcs: allAwardees.filter(character => party.includes(character)),
+    henchmen: allAwardees.filter(character => henchmen.includes(character))
+  }
+  return awardees
+} // END: groupAwardees
 
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 6.1.0
- * UPDATED: 2022-10-23
+ * VERSION: 8.0.0
+ * UPDATED: 2024-09-08
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the chat log.
  * TIP: Characters must have a player assigned (if default group is 'party') or be player-owned (if default group is 'company').
+ * TIP: When default group is company, characters who are not assigned to a player are treated as henchmen, and receive half XP.
  * TIP: Default XP amount and reason can be preset in module settings, along with option to bypass prompt for XP amount each time.
- * TIP: Non-whole numbers are rounded off. Negative numbers are subtracted.
+ * TIP: Non-whole numbers are rounded off. Negative numbers are subtracted. Henchman awards are rounded down.
  ========== */

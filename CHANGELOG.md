@@ -5,8 +5,20 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+* *Fixed* end of round operations happening at the end every combat turn. Lose Momentum is no longer triggered after each character turn. [[#275](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/275)]
+* *Added* WFRP4e v8 compatibility for Add XP macro. This is a **breaking** change.
+  * v7.x is no longer supported beyond GM Toolkit v7.2.4.
+  * v8.0.2 is the minimum version required for GM Toolkit.
+* *Removed* unnecessary reload when changing Add XP settings.
+* *Added* new option for `getGroup` utility to return "henchmen" - all player-owned, non-vehicle characters that are not assigned to users. 
+* *Changed* Add XP macro to only give half XP to henchmen characters. 
+  * This applies only when default group in Session Manangement settings is "company". 
+  * If default group is "party", henchmen are still not considered for Add XP macro. 
 
-## [Version 7.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.0.3)  (2024-08-12)
+## [Version 7.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.1.1)  (2024-08-12)
+* *Fixed* Maintenance utility not loading when (RollTable) content version flag is missing
+
+## [Version 7.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v7.1.0)  (2024-08-12)
 * *Added* compatibility for Foundry VTT v12. This is a **breaking** change:
   * v11 is no longer supported beyond GM Toolkit v7.0.3.
   * v12 the minimum version required for GM Toolkit.
