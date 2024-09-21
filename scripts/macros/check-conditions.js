@@ -5,8 +5,8 @@ async function checkConditions () {
 
   if (endOfCombatRoundOnly && !isEndOfRound()) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.CheckConditions.WaitForEndOfRound"))
 
-  const tokens = game.gmtoolkit.utility.getGroup("tokens").filter(g => g.actor.conditions.length !== 0)
-  const party = game.gmtoolkit.utility.getGroup("party").filter(g => g.conditions.length !== 0)
+  const tokens = game.gmtoolkit.utility.getGroup("tokens").filter(g => g.actor.statuses.length !== 0)
+  const party = game.gmtoolkit.utility.getGroup("party").filter(g => g.statuses.length !== 0)
 
   const testOptions = {
     absolute: { difficulty: "challenging" },
@@ -19,9 +19,9 @@ async function checkConditions () {
     if (skipPCs && party.includes(tokenActor.actor)) continue
     testOptions.appendTitle = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.For", { name: tokenActor.actor.name })
 
-    for await (cond of tokenActor.actor.conditions) {
+    for await (cond of tokenActor.actor.statuses) {
       await processConditionTest(
-        tokenActor, testOptions, cond.conditionId, removedConditions
+        tokenActor, testOptions, cond, removedConditions
       )
     }
   }
@@ -127,8 +127,8 @@ async function checkConditions () {
 
 /* ==========
 * MACRO: Check Conditions
-* VERSION: 0.9.5
-* UPDATED: 2022-08-14
+* VERSION: 8.0.0
+* UPDATED: 2024-09-21
 * DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters.
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat.
