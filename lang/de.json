@@ -29,6 +29,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "Tooltips und Interaktionen für Schlüsselattribute und -fertigkeiten sind über das Hud der kontrollierten Token verfügbar. Standardmäßig aktiviert.",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name" : "Initiative immer in Token Hud Extension anzeigen",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "Wenn diese Option deaktiviert ist, sind die Tooltips und Shortcuts für Initiative und Gewandtheit nur in aktiven Szenen verfügbar. Standardmäßig aktiviert.",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.name" : "Override Status Effects HUD Background Colour",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.hint" : "Leave blank for system default. GM Toolkit default is #CECECEFF. Specify alternatives in any of the following formats, without quotes: '#000000aa', 'rgba(0,0,0,0.6)', 'yellow'.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} geändert von {originalStatus} auf {newStatus} für {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} ist unverändert bei {originalStatus} für {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} hat ein kleines Gebet zu den Göttern gesprochen ({littlePrayerResult}).</p>",

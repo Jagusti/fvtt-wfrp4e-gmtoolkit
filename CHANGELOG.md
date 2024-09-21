@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+- *Added* setting to choose background colour of status effects (conditions) in token hud. [#240](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/240)
+  - Leave blank for system default.
+  - GM Toolkit default is #cececeff.
+
 ## [Version 8.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.1)  (2024-09-21)
 - *Added* WFRP4e v8 compatibility for Check Conditions macro.
 - *Added* Japanese translation updates. Thanks @doumoku! [[#281](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/281)]

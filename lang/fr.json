@@ -29,6 +29,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "Crée des info-bulles et des interactions pour les attributs et les Compétences clés disponibles grâce à l'ATH des Pions contrôlés. Activé par défaut.",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name" : "Toujours montrer l'Initiative dans l'Extension de l'ATH de Pion",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "En cas de désactivation, les info-bulles et les raccourcis de l'Initiative et de l'Agilité seront uniquement disponibles dans les Scènes actives. Activé par défaut.",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.name" : "Override Status Effects HUD Background Colour",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.hint" : "Leave blank for system default. GM Toolkit default is #CECECEFF. Specify alternatives in any of the following formats, without quotes: '#000000aa', 'rgba(0,0,0,0.6)', 'yellow'.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetStatus} est passé de {originalStatus} à {newStatus} pour {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetStatus} demeure à {originalStatus} pourr {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName} a offert une Modeste Prière aux Dieux ({littlePrayerResult}).</p>",

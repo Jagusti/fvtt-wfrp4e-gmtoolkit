@@ -129,6 +129,7 @@ Hooks.on("preUpdateToken", (token, change) => {
 // Display Token Hud Extension if enabled
 Hooks.on("renderTokenHUD", (app, html, data) => {
   if (game.settings.get(GMToolkit.MODULE_ID, "enableTokenHudExtensions")) TokenHudExtension.addTokenHudExtensions(app, html, data)
+  document.getElementsByClassName("status-effects")[0].style = `background: ${game.settings.get("wfrp4e-gm-toolkit", "tokenHudStatusEffectsBackground")}`
 })
 
 // If Babele is installed, wait until it completed initialisation and then compile localized skills list used for Group Tests

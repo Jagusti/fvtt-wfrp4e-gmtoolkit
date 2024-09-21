@@ -305,6 +305,17 @@ export class GMToolkitSettings {
       feature: "tokenhud"
     })
 
+    // Settings for Token Hud Extension
+    game.settings.register(GMToolkit.MODULE_ID, "tokenHudStatusEffectsBackground", {
+      name: "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.name",
+      hint: "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.hint",
+      scope: "client",
+      config: true,
+      default: "#cececeff",
+      type: String,
+      feature: "tokenhud"
+    })
+
     // Settings for suppressing Spectator notification
     game.settings.register(GMToolkit.MODULE_ID, "suppressSpectatorNotice", {
       name: "GMTOOLKIT.Settings.Spectators.name",

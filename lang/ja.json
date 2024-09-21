@@ -29,6 +29,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint" : "操作中のコマHUDに、主要な能力値や技能のツールチップとインタラクションを追加します。既定値は「許可」です。",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name" : "コマのHUD拡張で、常に【機転】を表示",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint" : "無効にすると、【機転】と【敏捷】のツールチップとショートカットは有効なシーンでのみ使用できるようになります。既定値は「有効」です。",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.name" : "Override Status Effects HUD Background Colour",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.hint" : "Leave blank for system default. GM Toolkit default is #CECECEFF. Specify alternatives in any of the following formats, without quotes: '#000000aa', 'rgba(0,0,0,0.6)', 'yellow'.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged" : "{targetName}の{targetStatus}が、{originalStatus}から{newStatus}に変更された",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged" : "{targetName}の{targetStatus}は{originalStatus}で、変更されなかった",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult" : "<p>{actorName}は神々に「小さな願い」を捧げた（{littlePrayerResult}）。</p>",

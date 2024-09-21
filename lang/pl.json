@@ -29,6 +29,8 @@
     "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint": "Udostępniaj podpowiedzi i interakcje dotyczące kluczowych atrybutów i umiejętności z poziomu kontrolowanych tokenów. Domyślnie włączone.",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.name": "Zawsze pokazuj Inicjatywę przy rozszerzeniu ekranu tokenów",
     "GMTOOLKIT.Settings.TokenHudExtensions.AlwaysShowInitiative.hint": "Po wyłączeniu podpowiedzi i skróty Inicjatywy i Zwinności są dostępne tylko w aktywnych scenach. Domyślnie włączone.",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.name" : "Override Status Effects HUD Background Colour",
+    "GMTOOLKIT.Settings.TokenHudExtensions.StatusEffectsBackground.hint" : "Leave blank for system default. GM Toolkit default is #CECECEFF. Specify alternatives in any of the following formats, without quotes: '#000000aa', 'rgba(0,0,0,0.6)', 'yellow'.",
     "GMTOOLKIT.TokenHudExtension.StatusChanged": "{targetStatus} zmieniono z {originalStatus} na {newStatus} dla {targetName}",
     "GMTOOLKIT.TokenHudExtension.StatusNotChanged": "{targetStatus} pozostaje niezmieniony w {originalStatus} dla {targetName}",
     "GMTOOLKIT.TokenHudExtension.LittlePrayerResult": "<p>{actorName} ofiarował małą modlitwę bogom ({littlePrayerResult}).</p>",

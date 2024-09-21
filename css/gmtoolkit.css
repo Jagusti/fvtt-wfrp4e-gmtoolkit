@@ -108,15 +108,13 @@
 /* 1d. Override Status Effects to avoid overlap */
 
 #token-hud .status-effects {
-    /* top: -36px;  /* Realign to avoid placement conflict wth combat hud extensions */
 	bottom: unset;
-	background: #ececec; /* Change background to improve status effect visibility */
 	width: 144px; /* Accommodate larger (wider) effect controls */
 }
 
 #token-hud .status-effects .effect-control {
-    width: 36px;  /* Accommodate larger effect controls */
-    height: 36px;  /* Accommodate larger (wider) effect controls */
+  width: 36px;  /* Accommodate larger effect controls */
+  height: 36px;  /* Accommodate larger (wider) effect controls */
 	opacity: 0.75;  /* Improve visual clarity */
 }
 
