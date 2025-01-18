@@ -245,7 +245,7 @@
 
     "GMTOOLKIT.Settings.DarkWhispers.message.name": "Szablon Wiadomości Mrocznego Szeptu",
     "GMTOOLKIT.Settings.DarkWhispers.message.hint": "Wybierz ton Mrocznego Szeptu, który będzie pasował do Twojej gry.",
-    "GMTOOLKIT.Settings.DarkWhispers.message.taunt": "<p><strong>Mroczni Bogowie widzą, że jesteś w tarapatach.</strong></p><p><em>Za dyskretną przysługę mogą uwolnić cię od 1 Zepsucia.</em></p>< blockquote >{message}</blockquote><p>Czy to doprawdy takie szkodliwe? Skorzystaj z oferty i wycofaj się z krawędzi Chaosu.</p>",
+    "GMTOOLKIT.Settings.DarkWhispers.message.taunt": "<p><strong>Mroczni Bogowie widzą, że jesteś w tarapatach.</strong></p><p><em>Za dyskretną przysługę mogą uwolnić cię od 1 Zepsucia.</em></p><blockquote>{message}</blockquote><p>Czy to doprawdy takie szkodliwe? Skorzystaj z oferty i wycofaj się z krawędzi Chaosu.</p>",
     "GMTOOLKIT.Settings.DarkWhispers.message.threat": "<p><strong>Mroczne Podszepty Utkwiły w Twych Uszach...</strong></p><p><em>W żaden sposób nie ujawniaj, że otrzymałeś tę wiadomość.</em></p><blockquote>{message}</blockquote><p>Jeśli postąpisz zgodnie z instrukcjami, twoja wartość Zepsucia zostanie zmniejszona o 1.</p>",
     "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.name": "Domyślny wybór grupy",
     "GMTOOLKIT.Settings.DarkWhispers.DefaultGroup.hint": "Wybierz 'drużyna' (domyślne) aby zawrzeć tylko postacie przypisane do graczy, lub 'kompania' aby zawrzeć również należące do graczy postaci (takie jak najemnicy, poplecznicy i chowańce). Indywidualne postaci mogą zośtać odznaczone w dialogu Testu Grupowago.",
