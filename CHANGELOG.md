@@ -9,6 +9,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Added* setting to choose background colour of status effects (conditions) in token hud. [#240](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/240)
   - Leave blank for system default.
   - GM Toolkit default is #cececeff.
+- *Fixed* blockquote formatting for Dark Whispers in Polish translation. Thanks @Runlik! [#285](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/285)
 
 ## [Version 8.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.1)  (2024-09-21)
 - *Added* WFRP4e v8 compatibility for Check Conditions macro.
