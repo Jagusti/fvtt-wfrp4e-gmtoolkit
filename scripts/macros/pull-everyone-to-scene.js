@@ -7,8 +7,9 @@ async function pullEveryoneToScene () {
 
   switch (game.settings.get("wfrp4e-gm-toolkit", "scenePullActivate")) {
     case "prompt":
-      const dialog = new Dialog({
-        title: game.i18n.localize("GMTOOLKIT.Dialog.ScenePullActivate.Title"),
+      const promptPullActivate = await foundry.applications.api.DialogV2.wait({
+        window: { title: game.i18n.localize("GMTOOLKIT.Dialog.ScenePullActivate.Title") },
+        rejectClose: false,
         content: `<form>
                         <div class="form-group">
                         <label>
@@ -16,30 +17,33 @@ async function pullEveryoneToScene () {
                             </label>
                         </div>
                     </form>`,
-        buttons: {
-          activate: {
+        buttons: [
+          {
+            icon: "fas fa-target",
             label: game.i18n.localize("GMTOOLKIT.Dialog.ScenePullActivate.ActivateScene"),
-            callback: async () => pullToScene(true)
+            action: "activate"
           },
-          pull: {
+          {
+            icon: "fas fa-door",
             label: game.i18n.localize("GMTOOLKIT.Dialog.ScenePullActivate.PullOnly"),
-            callback: async () => pullToScene(false)
+            action: "pull",
+            default: "yes"
           }
-        },
-        default: "pull"
-      }).render(true)
+        ]
+      })
+      pullToScene(promptPullActivate)
       break
     case "always":
-      pullToScene(true)
+      pullToScene("activate")
       break
     case "never":
-      pullToScene(false)
+      pullToScene("pull")
       break
   }
 
   function pullToScene (activateScene) {
     let thisScene = game.scenes.viewed
-    if (activateScene) {
+    if (activateScene === "activate") {
       thisScene.update({ active: true })
       let sceneActiveState = thisScene.active
       ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Activated", { sceneName: thisScene.name }), { console: false })
@@ -60,8 +64,8 @@ async function pullEveryoneToScene () {
 
 /* ==========
 * MACRO: Pull Everyone to Scene
-* VERSION: 0.9.5
-* UPDATED: 2022-08-14
+* VERSION: 8.1.0
+* UPDATED: 2025-03-13
 * DESCRIPTION: Yanks every player into the scene that the GM is on.
 * TIP: Optionally activate (or prompt to activate) the scene through Configure Session Options in module settings.
 ========== */

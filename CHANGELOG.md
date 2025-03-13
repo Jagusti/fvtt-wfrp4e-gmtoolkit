@@ -12,6 +12,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* blockquote formatting for Dark Whispers in Polish translation. Thanks @Runlik! [#285](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/285)
 - *Changed* Set Token Vision and Light UI to use DialogV2. [#307](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/307)
 - *Changed* Edit Message Flavor UI to use DialogV2. [#303](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/303)
+- *Changed* Pull Everyone to Scene UI to use DialogV2. [#301](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/301)
 
 ## [Version 8.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.1)  (2024-09-21)
 - *Added* WFRP4e v8 compatibility for Check Conditions macro.
