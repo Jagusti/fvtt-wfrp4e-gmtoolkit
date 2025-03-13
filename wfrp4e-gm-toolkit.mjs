@@ -154,35 +154,45 @@ Hooks.on("getChatLogEntryContext", (html, options) => {
       icon: '<i class="fas fa-pen-fancy"></i>',
       condition: game.user.isGM,
       callback: li => {
-        let message = game.messages.get(li.attr("data-message-id"))
-        const flavor = new Dialog({
-          title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
+        const message = game.messages.get(li.attr("data-message-id"))
+        let result
+        foundry.applications.api.DialogV2.wait({
+          window: { title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title") },
+          rejectClose: false,
           content: `<form>
                 <div class="form-group">
                   <input type="text"
-                    id="message-flavor"
-                    name="message-flavor"
+                    id="messageflavor"
+                    name="messageflavor"
                     placeholder="${game.i18n.localize("GMTOOLKIT.ChatFlavour.Placeholder")}"
                     value="${message?.flavor}"
                   />
                 </div>
                 </form>`,
-          buttons: {
-            submit: {
+          buttons: [
+            {
               icon: "<i class='fas fa-check'></i>",
               label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
-              callback: async html => {
-                const messageFlavor = html.find("#message-flavor").val()
-                await message.update({ flavor: messageFlavor })
+              action: "apply",
+              default: "yes",
+              callback: (event, button, dialog) => {
+                result = new FormDataExtended(button.form).object
               }
             },
-            cancel: {
+            {
               icon: "<i class='fas fa-times'></i>",
-              label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
+              label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+              action: "cancel"
             }
-          },
-          default: "submit"
-        }).render(true)
+          ],
+          close: () => {
+            console.log(result)
+            if (result) {
+              const messageFlavor = result.messageflavor
+              message.update({ flavor: messageFlavor })
+            }
+          }
+        })
       }
     }
   )
