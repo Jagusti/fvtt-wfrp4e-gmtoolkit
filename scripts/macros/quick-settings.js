@@ -1,4 +1,4 @@
-(() => {
+(async () => {
   const settings = [
     "advantage",
     "darkwhispers",
@@ -8,30 +8,36 @@
   ]
 
   const root = "game.gmtoolkit.settings."
-  let buttons = {}
-  let content = "<div style=\"width: 100%; " // Closing this bracket seems to break the form
+  let content = "<div style=\"width: 100%;>"
+  let buttons = []
 
   settings.forEach(name => {
     const path = root + name
     const settingsApp = eval(`new ${path}()`)
+    console.log(settingsApp)
     label = game.i18n.localize(settingsApp.title)
-    buttons[name] = {
+    buttons.push({
       label: label,
+      action: name,
       callback: () => {
         settingsApp.render(true)
-        // dialog.render(true)
       }
-    }
-
+    })
   })
 
-  const dialog = new Dialog({ title: game.i18n.localize("GMTOOLKIT.Dialog.QuickSettings.Title"), content, buttons }).render(true)
+  const dialog = await foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize("GMTOOLKIT.Dialog.QuickSettings.Title") },
+    form: { closeOnSubmit: false },
+    content,
+    buttons
+  })
+
 })()
 
 
 /* ==========
 * MACRO: GM Toolkit Settings Toolbox
-* VERSION: 6.1.0
-* UPDATED: 2022-02-23
+* VERSION: 8.1.0
+* UPDATED: 2025-03-13
 * DESCRIPTION: Adds a floating dialog for quick access to GM Toolkit settings
 ========== */
