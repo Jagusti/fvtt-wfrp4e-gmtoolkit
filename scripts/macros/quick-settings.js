@@ -27,6 +27,7 @@
 
   const dialog = await foundry.applications.api.DialogV2.wait({
     window: { title: game.i18n.localize("GMTOOLKIT.Dialog.QuickSettings.Title") },
+    rejectClose: false,
     form: { closeOnSubmit: false },
     content,
     buttons
