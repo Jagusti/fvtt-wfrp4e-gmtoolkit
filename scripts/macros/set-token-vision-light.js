@@ -4,6 +4,7 @@ async function setTokenVisionLight () {
   if (canvas.tokens.controlled.length < 1) return ui.notifications.error( game.i18n.localize("GMTOOLKIT.Token.Select"), {} )
 
   let applyChanges = false
+  let result = false
   const dialogContent = `
         <form> 
           <div class="form-group">
