@@ -47,7 +47,7 @@ function updateXP (allAwardees, XP, reason) {
   const awardees = groupAwardees(allAwardees)
   const awards = {
     pc: XP,
-    henchman: (XP / 2) | 0
+    henchman: Math.floor(XP / 2)
   }
 
   // Cycle through player characters, gathering experience change data for report message
@@ -72,7 +72,6 @@ function updateXP (allAwardees, XP, reason) {
   const chatData = game.wfrp4e.utility.chatDataSetup(chatContent, "gmroll", false)
   chatData.flavor = game.i18n.format("GMTOOLKIT.AddXP.Flavor", { reason })
   ChatMessage.create(chatData, {})
-  console.log(chatContent)
 
   // Update actor and build report
   function applyAward (character, award) {
