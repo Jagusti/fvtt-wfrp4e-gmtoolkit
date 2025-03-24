@@ -83,8 +83,8 @@ function updateXP (allAwardees, XP, reason) {
 
     // Update token actor or actor
     character?.actor
-      ? character.actor.system.awardExp(award, reason)
-      : character.system.awardExp(award, reason)
+      ? character.actor.system.awardExp(award, reason, null, true)
+      : character.system.awardExp(award, reason, null, true)
 
     // Build report message
     chatContent += `<li>${game.i18n.format("GMTOOLKIT.AddXP.Success", { recipient, XPTotal, newXPTotal, XPCurrent, newXPCurrent })}</li>`
