@@ -15,6 +15,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Pull Everyone to Scene UI to use DialogV2. [#301](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/301)
 - *Changed* Quick Settings UI to use DialogV2. [#300](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/300)
 - *Changed* GM Macro Toolbox UI to use DialogV2. [#299](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/299)
+- *Changed* Add XP UI to use DialogV2. [#304](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/304)
+  - Revised calculation of henchman XP award to use `Math.floor()`. XP continues to be rounded down.
+  - Restrict XP amount to only accept numbers. Remove redundant translation strings.
 
 ## [Version 8.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.1)  (2024-09-21)
 - *Added* WFRP4e v8 compatibility for Check Conditions macro.
