@@ -146,7 +146,6 @@
     "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "どれだけ？",
     "GMTOOLKIT.Dialog.AddXP.Reason" : "理由",
-    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "変更されませんでした。XPとして有効な数値を追加。端数は四捨五入され最も近い整数になります。負値が入力されるとキャラクターの合計から減算されます。",
     "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XPを獲得：",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "セッション管理設定",

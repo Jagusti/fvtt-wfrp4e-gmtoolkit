@@ -146,7 +146,6 @@
     "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Wie viele?",
     "GMTOOLKIT.Dialog.AddXP.Reason" : "Grund",
-    "GMTOOLKIT.Dialog.AddXP.InvalidXP" : "Keine Änderung vorgenommen. Fügen Sie eine gültige Anzahl von XP hinzu. Zahlen nach dem Komme werden auf die nächste ganze Zahl gerundet. Negative Zahlen werden von der Gesamtsumme des Charakters entfernt.",
     "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name" : "Einstellungen für die Sitzungsverwaltung",
