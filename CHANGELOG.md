@@ -17,8 +17,9 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* GM Macro Toolbox UI to use DialogV2. [#299](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/299)
 - *Changed* Add XP UI to use DialogV2. [#304](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/304)
   - Revised calculation of henchman XP award to use `Math.floor()`. XP continues to be rounded down.
-  - Restrict XP amount to only accept numbers. Remove redundant translation strings.
+  - Restrict XP amount to only accept numbers. Remove redundant translation strings. 
 - *Changed* Session Turnover UI to use DialogV2. [#302](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/302)
+- *Changed* Add XP to suppress duplicate system chat messages for experience awards.
 
 ## [Version 8.0.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.0.1)  (2024-09-21)
 - *Added* WFRP4e v8 compatibility for Check Conditions macro.
