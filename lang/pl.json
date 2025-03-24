@@ -90,7 +90,7 @@
     "GMTOOLKIT.ResetFortune.Restored": "Szczęście zostało zresetowane",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters": "Nie ma postaci graczy którym można zresetować Szczęście.",
 
-    "GMTOOLKIT.AddXP.Success": "<p><strong>{recipient}.</strong> Całkowite PD: {XPTotal} -> {newXPTotal} | Obecne PD: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.Success": "<p><strong>{recipient}.</strong> Całkowite PD: {XPTotal} &rarr; {newXPTotal} | Obecne PD: {XPCurrent} &rarr; {newXPCurrent}.</p>",
     "GMTOOLKIT.AddXP.Flavor": "Punktów Doświadczenia przyznano za {reason}",
 
     "GMTOOLKIT.Advantage.Increased": "Przewaga wzrosła z {startingAdvantage} do {newAdvantage} dla {actorName}.",

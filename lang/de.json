@@ -89,7 +89,7 @@
     "GMTOOLKIT.ResetFortune.Restored" : "Das Glück ist wiederhergestellt",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "Es gibt keine Spielercharaktere, für die das Glück wiederhergestellt werden muss.",
   
-    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Totale  XP: {XPTotal} -> {newXPTotal} | Aktuelle XP: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Totale  XP: {XPTotal} &rarr; {newXPTotal} | Aktuelle XP: {XPCurrent} &rarr; {newXPCurrent}.</p>",
     "GMTOOLKIT.AddXP.Flavor" : "Erfahrungspunkte vergeben für {Grund}",
 
     "GMTOOLKIT.Advantage.Increased" : "Vorteil von {startingAdvantage} auf {newAdvantage} für {actorName} erhöht.",

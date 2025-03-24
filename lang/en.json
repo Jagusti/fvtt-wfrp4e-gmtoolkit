@@ -89,7 +89,7 @@
     "GMTOOLKIT.ResetFortune.Restored" : "Fortune has been restored",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "There are no player characters to restore Fortune for.",
   
-    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Total  XP: {XPTotal} -> {newXPTotal} | Current XP: {XPCurrent} -> {newXPCurrent}.</p>",
+    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}.</strong> Total  XP: {XPTotal} &rarr; {newXPTotal} | Current XP: {XPCurrent} &rarr; {newXPCurrent}.</p>",
     "GMTOOLKIT.AddXP.Flavor" : "Experience Points Awarded for {reason}",
 
     "GMTOOLKIT.Advantage.Increased" : "Advantage increased from {startingAdvantage} to {newAdvantage} for {actorName}.",

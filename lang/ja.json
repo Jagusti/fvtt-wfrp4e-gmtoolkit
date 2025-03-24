@@ -89,7 +89,7 @@
     "GMTOOLKIT.ResetFortune.Restored" : "幸運ポイントが回復した",
     "GMTOOLKIT.ResetFortune.NoPlayerCharacters" : "幸運ポイントを回復するプレイヤーキャラクターが一人もいない。",
 
-    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}</strong>＝合計経験点：{XPTotal}⇒{newXPTotal}｜現在の経験点{XPCurrent}⇒{newXPCurrent}。</p>",
+    "GMTOOLKIT.AddXP.Success" : "<p><strong>{recipient}</strong>＝合計経験点：{XPTotal} &rarr;{newXPTotal}｜現在の経験点{XPCurrent} &rarr; {newXPCurrent}。</p>",
     "GMTOOLKIT.AddXP.Flavor" : "経験点が与えられた：理由「{reason}」",
 
     "GMTOOLKIT.Advantage.Increased" : "{actorName}の優位が{startingAdvantage}から{newAdvantage}に増加。",
