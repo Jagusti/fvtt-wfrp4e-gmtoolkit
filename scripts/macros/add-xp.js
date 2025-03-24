@@ -123,7 +123,7 @@ function promptForXP (allAwardees, XP, reason) {
             ${awardeeNotice}
             <div class="form-group">
               <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Prompt")}</label> 
-              <input type="text" id="add-xp" name="add-xp" value="${XP}" />
+              <input type="number" id="xp" name="xp" value="${XP}" />
             </div>
             <div class="form-group">
               <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Reason")}</label> 

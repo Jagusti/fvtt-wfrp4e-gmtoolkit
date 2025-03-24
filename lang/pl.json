@@ -146,7 +146,6 @@
     "GMTOOLKIT.Dialog.AddXP.Recipients.Half" : "Half experience will be awarded to: <br>{recipients}",
     "GMTOOLKIT.Dialog.AddXP.Prompt" : "Ilość PD",
     "GMTOOLKIT.Dialog.AddXP.Reason": "Powód",
-    "GMTOOLKIT.Dialog.AddXP.InvalidXP": "Nie wprowadzono żadnych zmian. Dodaj prawidłową liczbę PD. Ułamki zostaną zaokrąglone do najbliższej liczby całkowitej. Liczby ujemne spowodują odjęcie ilośći PD postaci.",
     "GMTOOLKIT.Dialog.AddXP.Awarded" : "{award} XP awarded to:",
 
     "GMTOOLKIT.Settings.SessionManagement.menu.name": "Ustawienia zarządzania sesjami",
