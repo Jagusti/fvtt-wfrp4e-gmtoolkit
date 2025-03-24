@@ -103,7 +103,7 @@ function promptForXP (allAwardees, XP, reason) {
       awardeeList.pcs += `<li>${character?.actor?.name || character.name}</li>`
     })
     awardeeList.pcs += "</ul>"
-    awardeeNotice += `<p>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Full", { recipients: awardeeList.pcs })}</p>`
+    awardeeNotice += `${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Full", { recipients: awardeeList.pcs })}`
   }
 
   // Build henchmen awardee list
@@ -113,11 +113,12 @@ function promptForXP (allAwardees, XP, reason) {
       awardeeList.henchmen += `<li>${character?.actor?.name || character.name}</li>`
     })
     awardeeList.henchmen += "</ul>"
-    awardeeNotice += `<p>${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Half", { recipients: awardeeList.henchmen })}</p>`
+    awardeeNotice += `${game.i18n.format("GMTOOLKIT.Dialog.AddXP.Recipients.Half", { recipients: awardeeList.henchmen })}`
   }
 
-  const dialog = new Dialog({
-    title: game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Title"),
+  foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Title") },
+    rejectClose: false,
     content: `<form>
             ${awardeeNotice}
             <div class="form-group">
@@ -126,27 +127,30 @@ function promptForXP (allAwardees, XP, reason) {
             </div>
             <div class="form-group">
               <label>${game.i18n.localize("GMTOOLKIT.Dialog.AddXP.Reason")}</label> 
-              <input type="text" id="xp-reason" name="xp-reason" value="${reason}" />
+              <input type="text" id="reason" name="reason" value="${reason}" />
             </div>
         </form>`,
-    buttons: {
-      yes: {
+    buttons: [
+      {
         icon: "<i class='fas fa-check'></i>",
         label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
-        callback: html => {
-          const XP = Math.round(html.find("#add-xp").val())
+        action: "apply",
+        default: true,
+        callback: (event, button, dialog) => {
+          result = new FormDataExtended(button.form).object
+          const XP = Math.round(result.xp)
           if (isNaN(XP)) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Dialog.AddXP.InvalidXP"))
-          const reason = html.find("#xp-reason").val()
+          const reason = result.reason
           updateXP(allAwardees, XP, reason)
         }
       },
-      no: {
+      {
         icon: "<i class='fas fa-times'></i>",
-        label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
+        label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+        action: "cancel"
       }
-    },
-    default: "yes"
-  }).render(true)
+    ]
+  })
 
 } // END: promptForXP
 
@@ -163,8 +167,8 @@ function groupAwardees (allAwardees) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 8.0.0
- * UPDATED: 2024-09-08
+ * VERSION: 8.1.0
+ * UPDATED: 2025-03-24
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the chat log.
  * TIP: Characters must have a player assigned (if default group is 'party') or be player-owned (if default group is 'company').
  * TIP: When default group is company, characters who are not assigned to a player are treated as henchmen, and receive half XP.
