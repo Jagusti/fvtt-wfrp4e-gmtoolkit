@@ -21,8 +21,8 @@
         "id": "wfrp4e",
         "type": "system",
         "compatibility": {
-          "minimum": "8.0.2",
-          "verified": "8.0.4"
+          "minimum": "8.5.0",
+          "verified": "8.5.0"
         }
       }
     ]
