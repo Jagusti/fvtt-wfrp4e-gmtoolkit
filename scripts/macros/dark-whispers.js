@@ -44,7 +44,7 @@ async function formDarkWhispers () {
     const checked = (actor.targeted && actor.corruption.value) ? "checked" : ""
     const playerOwners = actor.owners.map(m => m.name).join(", ")
     checkOptions += `
-      <div class="form-group">
+      <div class="form-group" style="margin-block: -0.75rem;">
       <input type="checkbox" id="${actor.actorId}" name="${actor.actorId}" value="${actor.name}" ${canWhisperTo} ${checked}>
       <label for="${actor.actorId}" title="${game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.PlayerTooltip", { assignedUser: actor.assignedUser?.name || game.i18n.localize("GMTOOLKIT.Dialog.None"), playerOwners: playerOwners })}"> <strong>${actor.name}</strong> (${actor.assignedUser?.name || game.i18n.localize("GMTOOLKIT.Dialog.NotAssigned")})</label>
       <label for="${actor.actorId}"> ${actor.corruption.value} / ${actor.corruption.max} ${game.i18n.localize("NAME.Corruption")} </label>
@@ -60,14 +60,14 @@ async function formDarkWhispers () {
     : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
 
   const dialogContent = `
-    <div class="form-group ">
-      <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets")} </label>
-    </div>
-    ${checkOptions} 
-    <div class="form-group message">
+    <div class="form-group">
+      <label for="targets">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperTargets")}</label>
+      </div>
+    ${checkOptions}
+    <div class="form-group message style="margin-block: -0.75rem;">
       <label for="message">${game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.WhisperMessage")}</label>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="margin-block: -0.75rem;">
       <textarea id="message" name="message" rows="4" cols="50">${darkwhisper}</textarea>
     </div>
     <div class="form-group">
@@ -76,38 +76,44 @@ async function formDarkWhispers () {
     </div>
   `
 
-  new Dialog({
-    title: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title"),
+  foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title") },
+    rejectClose: false,
     content: dialogContent,
-    buttons: {
-      cancel: {
+    buttons: [
+      {
         label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
-        callback: () => abortWhisper()
+        callback: () => abortWhisper(),
+        action: "cancel"
       },
-      whisper: {
+      {
         label: game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.SendWhisper"),
-        callback: html => sendDarkWhispers(html, characterList, html.find('[name="sendToOwners"]')[0].checked)
+        action: "whisper",
+        default: true,
+        callback: (event, button, dialog) => {
+          result = new FormDataExtended(button.form).object
+          sendDarkWhispers(result, characterList, result.sendToOwners)
+        }
       }
-    }
-  }).render(true)
+    ]
+  })
 }
 
-function sendDarkWhispers (html, characterList, sendToOwners) {
+function sendDarkWhispers (result, characterList, sendToOwners) {
   // Build list of selected players ids for whispers target
   const characterTargets = []
   const playerRecipients = []
 
   for ( const character of characterList ) {
-    if (html.find(`[name="${character.actorId}"]`)[0].checked) {
+    if (result[character?.actorId] === character.name) {
       characterTargets.push(character.name)
-      sendToOwners
+      result.sendToOwners
         ? playerRecipients.push(...character.owners.map(m => m.id))
         : playerRecipients.push(character.assignedUser?.id)
     }
   }
-
   // Check for whisper message
-  darkwhisper = html.find('[name="message"]')[0].value
+  darkwhisper = result.message
   // Abort if no whisper or character is selected
   if (playerRecipients.filter(p => p === undefined).length
     === playerRecipients.length
@@ -144,8 +150,8 @@ function abortWhisper () {
 
 /* ==========
 * MACRO: Send Dark Whispers
-* VERSION: 0.9.5
-* UPDATED: 2022-08-14
+* VERSION: 8.1.0
+* UPDATED: 2025-03-25
 * DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
 * TIP: Only player-assigned or player-owned characters with Corruption can be sent a Dark Whisper.
 * TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers.
