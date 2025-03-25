@@ -44,7 +44,7 @@ jobs:
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/${{steps.moduleID.outputs.prop}}.zip
 
       # Create a zip file with all files required by the system to add to the release
-      - run: zip -r ./${{steps.moduleID.outputs.prop}}.zip apps/ assets/ css/ lang/ modules/ packs/ scripts/ tables/ templates/ CHANGELOG.md LICENSE README.md module.json ${{steps.moduleID.outputs.prop}}.mjs
+      - run: zip -r ./${{steps.moduleID.outputs.prop}}.zip apps/ assets/ css/ lang/ modules/ packs/ tables/ templates/ CHANGELOG.md LICENSE README.md module.json ${{steps.moduleID.outputs.prop}}.mjs
 
       # Create a release for this specific version
       - name: Update Release with Files
