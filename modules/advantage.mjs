@@ -213,14 +213,14 @@ export default class Advantage {
 
       // TODO: Define and replace the inline styles within the stylesheet
       if (!combatantAdvantage.endOfRound) {
-        noAdvantage += `<img src="${combatant.img}" style = "height: 2rem; border: none; padding-right: 2px; padding-left: 2px;" alt="${combatant.name}" title="${combatant.name}">&nbsp;${combatant.name}</img>`
+        noAdvantage += `<img src="${combatant.img}" style = "height: 2rem; border: none; padding-right: 2px; padding-left: 2px; max-width: fit-content;" alt="${combatant.name}" title="${combatant.name}">&nbsp;${combatant.name}</img>`
       } else {
         combatantLine = `
                 <div class="form-group">
                 <input type="checkbox" id="${combatant.tokenId}" name="${combatant.tokenId}" value="${combatant.name}" ${checkToLoseMomentum}> 
-                <img src="${combatant.img}" style = "height: 2rem; vertical-align : middle; border: none; padding-right: 6px; padding-left: 2px;" />
+                <img src="${combatant.img}" style = "height: 2rem; vertical-align : middle; border: none; padding-right: 6px; padding-left: 2px; max-width: fit-content;" />
                 <label for="${combatant.tokenId}" style = "text-align: left;  border: none;">  <strong>${combatant.name}</strong></label>
-                <label for="${combatant.tokenId}"  style = "text-align: left;  border: none;"> ${combatantAdvantage.startOfRound} -> ${combatantAdvantage.endOfRound} </label>
+                <label for="${combatant.tokenId}"  style = "text-align: left;  border: none;"> ${combatantAdvantage.startOfRound} &rarr; ${combatantAdvantage.endOfRound} </label>
                 </div>
                 `;
         (checkToLoseMomentum)
@@ -249,20 +249,23 @@ export default class Advantage {
     const dialogContent = await renderTemplate("modules/wfrp4e-gm-toolkit/templates/gm-toolkit-advantage-momentum.html", templateData)
     let lostAdvantage = ""
 
-    new Dialog({
-      title: game.i18n.format("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title", { combatRound: round }),
+    foundry.applications.api.DialogV2.wait({
+      window: { title: game.i18n.format("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Title", { combatRound: round }) },
+      rejectClose: false,
       content: dialogContent,
-      buttons: {
-        reduceAdvantage: {
+      buttons: [
+        {
           label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button"),
-          callback: async html => {
+          action: "reduceAdvantage",
+          callback: async (event, button, dialog) => {
+            const response = new FormDataExtended(button.form).object
             // Reduce advantage for selected combatants
             for ( const combatant of combat.combatants ) {
-              if (html.find(`[name="${combatant.tokenId}"]`)[0]?.checked) {
+              if (response[combatant.tokenId] === combatant.name) {
                 const token = canvas.tokens.placeables
                   .filter(a => a.id === combatant.tokenId)[0]
                 const result = await this.update(token, "reduce", "loseMomentum")
-                lostAdvantage += `${token.name}: ${result.starting} -> ${result.new} <br/>`
+                lostAdvantage += `${token.name}: ${result.starting} &rarr; ${result.new} <br/>`
               }
             }
             // Confirm changes made in whisper to GM
@@ -273,12 +276,13 @@ export default class Advantage {
             }
           }
         },
-        cancel: {
-          label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel")
+        {
+          label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+          action: "cancel"
         }
-      }
+      ]
     }
-    ).render(true)
+    )
 
     GMToolkit.log(false, "Lose Momentum at End of Round: Finished.")
 
