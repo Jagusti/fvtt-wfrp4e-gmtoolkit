@@ -4,7 +4,7 @@ import GMToolkitDarkWhispersSettings from "../apps/gm-toolkit-darkwhispers-setti
 import GMToolkitSessionManagementSettings from "../apps/gm-toolkit-session-management-settings.js"
 import GMToolkitVisionSettings from "../apps/gm-toolkit-vision-settings.js"
 import GMToolkitGroupTestSettings from "../apps/gm-toolkit-grouptest-settings.js"
-import GMToolkitMaintenanceWrapper from "../apps/gm-toolkit-maintenance.js"
+import GMToolkitMaintenance from "../apps/gm-toolkit-maintenance.js"
 import { strip } from "./utility.mjs"
 
 export class GMToolkitSettings {
@@ -333,7 +333,7 @@ export class GMToolkitSettings {
       label: "GMTOOLKIT.Settings.Maintenance.menu.label",
       hint: "GMTOOLKIT.Settings.Maintenance.menu.hint",
       icon: "fas fa-cog",
-      type: GMToolkitMaintenanceWrapper,
+      type: GMToolkitMaintenance,
       restricted: true
     })
 

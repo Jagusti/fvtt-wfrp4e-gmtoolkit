@@ -1,60 +1,90 @@
 import GMToolkit from "../modules/gm-toolkit.mjs"
 import { refreshToolkitContent, strip } from "../modules/utility.mjs"
 
-export default class GMToolkitMaintenanceWrapper extends FormApplication {
-  async render () {
-    let listToolkitContent = []
-    listToolkitContent.macros = await buildLocalizedContent(game.macros)
-    listToolkitContent.tables = await buildLocalizedContent(game.tables)
+export default class GMToolkitMaintenance
+  extends HandlebarsApplicationMixin(ApplicationV2) {
 
-    let html = await renderTemplate("modules/wfrp4e-gm-toolkit/templates/gm-toolkit-maintenance.html", listToolkitContent)
-
-    new GMToolkitMaintenance(`${GMToolkit.MODULE_NAME_FULL} Maintenance`, html, "wfrp4e-gm-toolkit").render(true)
+  static DEFAULT_OPTIONS = {
+    id: "gmtoolkit-maintenance",
+    tag: "form",
+    form: {
+      handler: GMToolkitMaintenance.onSubmit,
+      submitOnChange: false,
+      closeOnSubmit: false
+    },
+    position: { width: 560 },
+    window: {
+      icon: "fas fa-gear",
+      title: `${GMToolkit.MODULE_NAME_FULL} Maintenance`,
+      contentClasses: ["standard-form"]
+    },
+    actions: {
+      macros: GMToolkitMaintenance.updateMacros,
+      tables: GMToolkitMaintenance.updateRollTable
+    }
   }
-} // End class GMToolkitMaintenanceWrapper
 
-class GMToolkitMaintenance extends Dialog {
+  static PARTS = {
+    form: {
+      template: "/modules/wfrp4e-gm-toolkit/templates/gm-toolkit-maintenance.html"
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs"
+    }
+  }
 
-  constructor (title, html, module = GMToolkit.MODULE_ID) {
-    super({
-      title,
-      content: html,
-      module: game.modules.get(module),
-      buttons: {
-        macros: {
-          label: "Macros",
-          callback: async () => {
-            await refreshToolkitContent("Macro")
-          }
-        },
-        tables: {
-          label: "Tables",
-          callback: async () => {
-            await refreshToolkitContent("RollTable")
-          }
-        }
+  async _prepareContext (options) {
+    const context = await super._prepareContext(options)
+
+    context.macros = await buildLocalizedContent(game.macros)
+    context.tables = await buildLocalizedContent(game.tables)
+    context.buttons = [
+      {
+        type: "submit",
+        icon: "fa-solid fa-ban",
+        label: "Cancel",
+        action: "cancel"
+      },
+      {
+        type: "button",
+        icon: "fa-solid fa-th-list",
+        label: "Update RollTables",
+        action: "tables"
+      },
+      {
+        type: "button",
+        icon: "fa-solid fa-code",
+        label: "Update Macros",
+        action: "macros"
       }
-    })
+    ]
+
+    return context
   }
 
-  static get defaultOptions () {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      popOut: true,
-      width: 560,
-      resizable: true
-    })
+  static async onSubmit (event, form, formData) {
+    if (event.submitter.dataset.action === "cancel") this.close()
   }
+
+  static async updateMacros () {
+    await refreshToolkitContent("Macro")
+  }
+
+  static async updateRollTable () {
+    await refreshToolkitContent("RollTable")
+  }
+
 } // End class GMToolkitMaintenance
 
 async function buildLocalizedContent (documentType) {
   GMToolkit.log(false, "Starting buildLocalizedContent")
-  let toolkitContent = documentType.filter(
+  const toolkitContent = documentType.filter(
     m => m.folder?.name === game.gmtoolkit.module.MODULE_NAME
   ).sort((a, b) => a.name.localeCompare(b.name))
-  let contentArray = []
+  const contentArray = []
   let pack = []
 
-  // Set translationKey prefix
+  // Set translationKey prefix, depending on document type
   let translationKeyPrefix = ""
   if (documentType === game.macros) {
     translationKeyPrefix = "GMTOOLKIT.Macro"
@@ -66,14 +96,14 @@ async function buildLocalizedContent (documentType) {
   }
 
   // Get Compendium documents
-  let documents = await pack.getDocuments()
+  const documents = await pack.getDocuments()
 
   // Build localized array
   for (const content of toolkitContent) {
     content.translationKey = strip(content.name, translationKeyPrefix, ".")
     content.compendiumVersion = documents
       .filter(d => d.name === game.i18n.localize(content.translationKey))
-      .map(i => i.flags["wfrp4e-gm-toolkit"]?.version)
+      .map(i => i.flags["wfrp4e-gm-toolkit"]?.version)[0]
     contentArray.push(content)
   }
 
