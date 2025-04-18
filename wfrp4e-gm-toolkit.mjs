@@ -24,7 +24,7 @@ import GMToolkitDarkWhispersSettings from "./apps/gm-toolkit-darkwhispers-settin
 import GMToolkitGroupTestSettings from "./apps/gm-toolkit-grouptest-settings.js"
 import GMToolkitSessionManagementSettings from "./apps/gm-toolkit-session-management-settings.js"
 import GMToolkitVisionSettings from "./apps/gm-toolkit-vision-settings.js"
-import GMToolkitMaintenanceWrapper from "./apps/gm-toolkit-maintenance.js"
+import GMToolkitMaintenance from "./apps/gm-toolkit-maintenance.js"
 
 
 /* -------------------------------------------- */
@@ -57,7 +57,7 @@ Hooks.once("init", function () {
       grouptest: GMToolkitGroupTestSettings,
       session: GMToolkitSessionManagementSettings,
       vision: GMToolkitVisionSettings,
-      maintenance: GMToolkitMaintenanceWrapper
+      maintenance: GMToolkitMaintenance
     }
   }
 

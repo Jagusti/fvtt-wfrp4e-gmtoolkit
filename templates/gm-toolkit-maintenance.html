@@ -1,21 +1,25 @@
-<form autocomplete="off" onsubmit="event.preventDefault();">
+<div class="standard-form">
 
-    <p>{{{ localize "GMTOOLKIT.Dialog.Maintenance.Hint"}}}</p>
-
+  {{{ localize "GMTOOLKIT.Dialog.Maintenance.Hint"}}}
+  
   <div><h4>{{ localize "GMTOOLKIT.Dialog.Maintenance.Macros" }}</h4>
         {{#each macros as |macro id|}}
+            <img src="{{ macro.thumbnail }}" title="{{ macro.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ localize macro.translationKey }} <span class="gmtoolkit list-metadata version">{{macro.flags.wfrp4e-gm-toolkit.version}} -> {{macro.compendiumVersion}}</span> <span class="gmtoolkit list-metadata id">({{ macro.id }})</span>
             {{#if (ne macro.flags.wfrp4e-gm-toolkit.version macro.compendiumVersion)}}
               &nbsp; <img src="icons/vtt.png" title="Updated" class = "gmtoolkit list-thumbnail";/> 
             {{/if}}
+            <br>
         {{/each}}
     </div>
-    
+        
     <div><h4>{{ localize "GMTOOLKIT.Dialog.Maintenance.Tables" }}</h4>
         {{#each tables as |table id|}}
+            <img src="{{ table.thumbnail }}" title="{{ table.name }}" class = "gmtoolkit list-thumbnail";/> &nbsp; {{ localize table.translationKey }} <span class="gmtoolkit list-metadata version">{{table.flags.wfrp4e-gm-toolkit.version}} -> {{table.compendiumVersion}}</span>  <span class="gmtoolkit list-metadata id">({{ table.id }})</span>
             {{#if (ne table.flags.wfrp4e-gm-toolkit.version table.compendiumVersion)}}
               &nbsp; <img src="icons/vtt.png" title="Updated" class = "gmtoolkit list-thumbnail";/> 
             {{/if}}
+            <br>
         {{/each}}
     </div>
-
-</form>
+    
+</div>
