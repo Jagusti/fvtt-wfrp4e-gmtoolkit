@@ -157,6 +157,11 @@ button.priority {
 	background: url(../../../systems/wfrp4e/ui/sidebar_button-background_cyan.webp) repeat!important;
 }
 
+/* @override */
+.application button > i {
+  margin-right: 0.75rem;
+}
+
 /* 3d. Flex Col */
 
 .gmtoolkit .form-group.flexcol {
