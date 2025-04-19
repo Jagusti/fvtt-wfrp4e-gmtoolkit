@@ -1,26 +1,53 @@
 import GMToolkit from "../modules/gm-toolkit.mjs"
-import { getDataSettings } from "../modules/gm-toolkit-settings.mjs"
+import { prepareSettingsFormData } from "../modules/gm-toolkit-settings.mjs"
 
-export default class GMToolkitAdvantageSettings extends FormApplication {
-  static get defaultOptions () {
-    const options = super.defaultOptions
-    options.id = "homebrew-settings"
-    options.template = "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html"
-    options.width = 560
-    options.minimizable = true
-    options.resizable = true
-    options.title = "GMTOOLKIT.Settings.Advantage.menu.title"
-    return options
+export default class GMToolkitAdvantageSettings
+  extends HandlebarsApplicationMixin(ApplicationV2) {
+
+  static DEFAULT_OPTIONS = {
+    id: "gmtoolkit-settings-advantage",
+    tag: "form",
+    form: {
+      handler: GMToolkitAdvantageSettings.onSubmit,
+      submitOnChange: false,
+      closeOnSubmit: true
+    },
+    position: { width: 560 },
+    window: {
+      icon: "fas fa-gear",
+      title: "GMTOOLKIT.Settings.Advantage.menu.title",
+      contentClasses: ["standard-form"]
+    }
   }
 
-  getData () {
-    const data = super.getData()
-    getDataSettings(data, "advantage")
-    return data
+  static PARTS = {
+    form: {
+      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings-V2.html"
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs"
+    }
   }
 
-  async _updateObject (event, formData) {
-    for (const setting in formData) game.settings
-      .set(GMToolkit.MODULE_ID, setting, formData[setting])
+  async _prepareContext (options) {
+    const context = await super._prepareContext(options)
+
+    context.settings = await prepareSettingsFormData("advantage")
+    context.buttons = [
+      {
+        type: "submit",
+        icon: "fa-solid fa-save",
+        label: "Submit",
+        action: "submit"
+      }
+    ]
+
+    return context
+  }
+
+  static async onSubmit (event, form, formData) {
+    const inputFields = formData.object
+    for (const setting in inputFields) game.settings
+      .set(GMToolkit.MODULE_ID, setting, inputFields[setting])
   }
 }
