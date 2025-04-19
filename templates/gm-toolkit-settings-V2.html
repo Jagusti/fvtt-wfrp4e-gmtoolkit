@@ -2,7 +2,7 @@
 
   {{#each settings as |setting s|}}
   <div class="form-group">
-      <label>{{localize setting.name}}</label>
+      <label class="gmtoolkit settings label">{{localize setting.name}}</label>
       <div class="form-fields">
           
           {{#if setting.choices}}
@@ -35,7 +35,7 @@
       
       </div>
   </div>
-  <p class="notes">{{localize hint}}</p>
+  <p class="gmtoolkit settings notes">{{localize hint}}</p>
   {{/each}}
 
 </div>

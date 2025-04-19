@@ -230,3 +230,13 @@ button.priority {
 .gmtoolkit input:disabled {
 	opacity: 0.7;
 }
+
+/* 3g. Settings */
+
+.gmtoolkit.settings.label {
+  line-height: normal;
+}
+
+.gmtoolkit.settings.notes {
+  padding-bottom: 0.75rem;
+}
