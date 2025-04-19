@@ -18,9 +18,14 @@
           <input type="checkbox" name="{{setting.key}}" data-dtype="Boolean"  value="{{value}}" {{checked setting.value}}/>
           
           {{else if setting.isRange}}
-          <input type="range" name="{{setting.key}}" data-dtype="Number" value="{{ setting.value }}"
-                  min="{{ setting.range.min }}" max="{{ setting.range.max }}" step="{{ setting.range.step }}"/>
-          <span class="range-value">{{setting.value}}</span>
+            <button data-action="subtract" type="button" data-name="{{ setting.key}}">-</button>
+            <input type="number" 
+              name="{{ setting.key }}" 
+              value="{{ setting.value }}" 
+              min="{{ setting.range.min }}" 
+              max="{{ setting.range.max }}" 
+              step="{{ setting.range.step }}"/>
+            <button data-action="add" type="button" data-name="{{ setting.key}}">+</button>
           
           {{else if setting.isNumber}}
           <input type="number" name="{{setting.key}}" data-dtype="Number" value="{{setting.value}}" step="{{setting.step}}"/>
