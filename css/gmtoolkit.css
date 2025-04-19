@@ -240,3 +240,7 @@ button.priority {
 .gmtoolkit.settings.notes {
   padding-bottom: 0.75rem;
 }
+
+.gmtoolkit.scrollable {
+  scrollbar-width: unset;
+}
