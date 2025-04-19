@@ -381,7 +381,7 @@ export async function prepareSettingsFormData (feature) {
     }
     if (s.range) {
       s.isRange = true
-      s.inputType = "range"
+      s.inputType = "number"
     }
     if (s.type === Number & !s.range) {
       s.isNumber = true
