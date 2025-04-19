@@ -341,7 +341,7 @@ export class GMToolkitSettings {
 
 }
 
-
+// TODO: Remove when conversion of settings to ApplicationV2 is complete.
 export function getDataSettings (data, feature) {
   data.settings = Array.from(game.settings.settings)
     .filter(s => s[1].feature === feature)
@@ -362,6 +362,36 @@ export function getDataSettings (data, feature) {
     }
     s.value = game.settings.get(s.namespace, s.key)
   })
+}
+
+/**
+ * Adds data to settings to be used in ApplicationV2 templates.
+ *
+ * @param   {string}  feature         Category of settings, corresponding to those settings that are grouped together individual settings application
+ * @returns {Array}  Array of settings with additional data for UI processing
+ */
+export async function prepareSettingsFormData (feature) {
+  settings = Array.from(game.settings.settings)
+    .filter(s => s[1].feature === feature)
+    .map(i => i[1])
+  settings.forEach(s => {
+    if (s.type === Boolean) {
+      s.boolean = true
+      s.inputType = "checkbox"
+    }
+    if (s.range) {
+      s.isRange = true
+      s.inputType = "range"
+    }
+    if (s.type === Number & !s.range) {
+      s.isNumber = true
+      s.inputType = "number"
+      s.step = s.step ?? 1
+    }
+    s.value = game.settings.get(s.namespace, s.key)
+  })
+
+  return settings
 }
 
 
