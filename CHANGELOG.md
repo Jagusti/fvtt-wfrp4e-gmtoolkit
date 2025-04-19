@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Toolkit Maintenance UI to use ApplicationV2 [#298](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/298)
   - Improve visual cues to highlight updated content
+- *Changed* Token Vision Settings UI to use ApplicationV2 [#295](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/295)
 
 ## [Version 8.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.1.0)  (2025-03-25)
 - *Added* setting to choose background colour of status effects (conditions) in token hud. [#240](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/240)
