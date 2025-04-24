@@ -174,6 +174,12 @@ button.priority {
 }
 
 /* 3e. Flex Row */
+.gmtoolkit.console.flexrow {
+	align-items: flex-start;
+	flex-shrink: 0;
+	/* align-items: center; */
+}
+
 .gmtoolkit .form-group .flexrow {
 	padding-bottom: 4px;
 	padding-top: 1px;
@@ -183,6 +189,10 @@ button.priority {
 .gmtoolkit .flexrow .member-list .checkbox-label {
 	border: none;
 	text-align: unset;
+  line-height: normal;
+  text-align: start;
+  flex-shrink: 1;
+  flex-grow: 7;
 }
 
 .gmtoolkit .flexrow .member-list input[type="checkbox"] {
@@ -190,19 +200,23 @@ button.priority {
 }
 
 .gmtoolkit .flexrow.parameter {
-	text-align-last: center;
-	padding-top: 2px;
+	text-align-last: right;
+	padding-block: 0.25em;
 }
 
 .gmtoolkit .flexrow.parameter label {
 	text-align-last: start;
+  font-size: 1em;
 }
 
 .flexrow.parameter.option label, 
 .flexrow.parameter.option input[type="checkbox"] {
-  padding-top: 0px;
+  padding-top: 2px;
   border: none;
   position: unset;
+  line-height: normal;
+  margin-bottom: 1em;
+  flex-basis: max-content;
 }
 
 .gmtoolkit .flexrow.footer {
@@ -210,16 +224,29 @@ button.priority {
 }
 
 .gmtoolkit .member-list {
-	max-height: 240px;
-	overflow-y: auto;
+	max-height: 310px;
+  overflow-y: auto;
   align-self: flex-start;
 }
 
 .gmtoolkit .section-title {
-	margin-bottom: 2px;
+	/* margin-block: 1rem; */
 	font-variant: small-caps;
 	font-weight: bold;
 }
+
+.gmtoolkit .section-title label {
+	margin-bottom: 1rem;
+	/* font-variant: small-caps;
+	font-weight: bold; */
+  font-size: 1.25em;
+  border: 1px solid #5d513e;
+  border-radius: 4px;
+  padding: 0.25rem;
+  text-align: center;
+  font-family: auto;
+}
+
 
 /* 3f. Input */
 
@@ -235,6 +262,7 @@ button.priority {
 
 .gmtoolkit.settings.label {
   line-height: normal;
+  flex-basis: max-content;
 }
 
 .gmtoolkit.settings.notes {
