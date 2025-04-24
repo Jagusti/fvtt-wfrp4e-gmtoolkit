@@ -1,5 +1,5 @@
-<form>
-  <div class = "flexrow">{{!-- multi-column outer --}}
+
+  <div class = "gmtoolkit console flexrow">{{!-- multi-column outer --}}
     <div id = "parameters">{{!-- left column --}}
       <div class = "form-group flexcol" id = "damage-criteria">{{!-- SET DAMAGE CRITERIA >> --}}
         <div class = "form-group section-title">
@@ -20,7 +20,7 @@
         {{!-- DROPDOWN: Select Hit Location --}}
         <div class="form-group custom-select">
           <label for = "selectedHitLocation" title = "{{localize "GMTOOLKIT.Damage.Dialog.HitLocation.Hint"}}">{{localize "GMTOOLKIT.Damage.Dialog.HitLocation.Label"}}</label>
-          <select name = "selectedHitLocation" id = "selectedHitLocation" selected = "roll">
+          <select name = "selectedHitLocation" id = "selectedHitLocation" selected = "roll" data-action="toggleRandomiseHitLocation">
               <option value="roll">{{localize "Roll"}}</option>
               <option value="none">{{localize "None"}}</option>
               <option value="head">{{localize "Head"}}</option>
@@ -96,11 +96,3 @@
       </div> {{!-- << TARGET SELECTION --}}
     </div>{{!-- right column --}}
   </div>{{!-- multi-column outer --}}
-
-  {{!-- Form Submission --}}
-  <footer class = "flexrow footer">
-    <button type = "submit" name="cancel">{{localize "GMTOOLKIT.Dialog.Cancel"}}</button>
-    <button type = "submit" name="submit">{{localize "GMTOOLKIT.Dialog.Apply"}}</button>
-  </footer>
-</form>
-

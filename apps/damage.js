@@ -1,55 +1,95 @@
-export class DamageConsole extends FormApplication {
+export class DamageConsole
+  extends HandlebarsApplicationMixin(ApplicationV2) {
 
-  static get defaultOptions () {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["gmtoolkit"],
-      popOut: true,
-      id: "damage-console",
-      title: game.i18n.localize("GMTOOLKIT.Damage.Dialog.Title"),
-      template: "modules/wfrp4e-gm-toolkit/templates/damage.hbs",
+  static DEFAULT_OPTIONS = {
+    id: "damage-console",
+    tag: "form",
+    form: {
+      handler: DamageConsole.onSubmit,
+      submitOnChange: false,
+      closeOnSubmit: true
+    },
+    position: {
       width: 740
-    })
+    },
+    window: {
+      icon: "fas fa-bolt",
+      title: "GMTOOLKIT.Damage.Dialog.Title",
+      contentClasses: ["standard-form", "gmtoolkit"]
+    }
   }
 
+  static PARTS = {
+    form: {
+      template: "modules/wfrp4e-gm-toolkit/templates/damage.hbs"
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs"
+    }
+  }
 
-  /**
-   * Build data set to be presented and manipulated in form, applying default values where not provided in the form application request.
-   * @returns {data} object : The data to be presented in the form
-   **/
-  getData () {
-    // Send data to the template
-    const data = super.getData()
+  async _prepareContext (options) {
+    const context = await super._prepareContext(options)
 
     // Set group defaults if not provided
-    data.group = {
+    context.group = {
       /* Uncomment this to leverage or add user defined default group,
-       * such as that used for Group Tests
+        * such as that used for Group Tests
       options: {
         type: this.object.groupOptions?.type || game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest")
       } */
     }
+
     // Build member list
-    data.group.members = {
+    context.group.members = {
       playerGroup: game.gmtoolkit.utility.getGroup("entourage"),
       npcTokens: game.gmtoolkit.utility.getGroup("npcTokens")
     }
 
     const tokenTargets = game.gmtoolkit.utility.getGroup("tokens", { interaction: "targeted", present: true })
     const companyTargets = game.gmtoolkit.utility.getGroup("entourage", { interaction: "targeted", present: true })
-    data.group.members.targeted = [...companyTargets, ...tokenTargets]
+    context.group.members.targeted = [...companyTargets, ...tokenTargets]
 
-    return data
+    context.buttons = [
+      {
+        type: "submit",
+        icon: "fa-solid fa-ban",
+        label: "Cancel",
+        action: "cancel"
+      },
+      {
+        type: "submit",
+        icon: "fa-solid fa-bolt",
+        label: "Apply",
+        action: "damage"
+      }
+    ]
+
+    return context
   }
 
-
   /**
-   * Process application options and call the group test routine.
-   * @param {object} event : The submission event. Used to identify which button is used to submit the form.
-   * @param {object} formData : The data submitted by the form
-   * @private
-   **/
-  async _updateObject (event, formData) {
-    if (event.submitter.name === "cancel") return ui.notifications.info(game.i18n.localize("GMTOOLKIT.Damage.Message.Abort"))
+   * Identify interaction events and call relevant function
+   * @param {ApplicationRenderContext} context      Prepared context data
+   * @param {RenderOptions} options                 Provided render options
+   * @protected
+   */
+  _onRender (context, options) {
+
+    const selectedHitLocation = document.getElementById("selectedHitLocation")
+    selectedHitLocation.addEventListener("change", () => {
+      toggleRandomiseHitLocation(selectedHitLocation)
+    })
+
+    const damageFormula = document.getElementById("damageFormula")
+    damageFormula.addEventListener("change", () => {
+      toggleRandomiseDamage(damageFormula)
+    })
+
+  }
+
+  static async onSubmit (event, form, formData) {
+    if (event.submitter.dataset.action === "cancel") return ui.notifications.info(game.i18n.localize("GMTOOLKIT.Damage.Message.Abort"))
 
     // If randomiseDamage checkbox is disabled, damage must be a whole number
     if (document.getElementById("randomiseDamage").disabled === true && !Number.isInteger(Number(document.getElementById("damageFormula").value))) {
@@ -57,45 +97,39 @@ export class DamageConsole extends FormApplication {
     }
 
     // Call the damage dealer outer, passing in submitted parameters
-    await dealDamage(formData).then(this.close())
+    const choices = foundry.utils.expandObject(formData.object)
+    await dealDamage(choices)
+
   }
 
+}
 
-  /**
-   * Identify interaction events and call relevant function
-   * @param {object} html : The form application content
-   **/
-  activateListeners (html) {
-    super.activateListeners(html)
-    html.find("select#selectedHitLocation").change(event => this._toggleRandomiseHitLocation(event))
-    html.find("input#damageFormula").change(event => this._toggleRandomiseDamage(event))
-  }
+/**
+ * Disable randomise hit location option if 'Roll' is not selected
+ * @param {Object} target : The originating control: selectedHitLocation dropdown
+ **/
+function toggleRandomiseHitLocation ( target ) {
+  document.getElementById("randomiseHitLocation").disabled = target.value !== "roll"
+}
 
-
-  /**
-   * Disable randomise hit location option if 'Roll' is not selected
-   * @param {Event} event : The originating event: change in selectedHitLocation dropdown
-   * @private
-   **/
-  _toggleRandomiseHitLocation (event) {
-    document.getElementById("randomiseHitLocation").disabled = event.target.value !== "roll"
-  }
-
-  /**
-   * Disable randomise damage if number or non-roll formula
-   * @param {Event} event : The originating event: change in damageFormula field
-   * @private
-   **/
-  _toggleRandomiseDamage (event) {
-    try {
-      const roll = new Roll(event.target.value).evaluate()
-      document.getElementById("randomiseDamage").disabled = roll.isDeterministic
-    } catch(err) {
-      document.getElementById("randomiseDamage").disabled = true
-    }
+/**
+ * Disable randomise damage if number or non-roll formula
+ * @param {Object} target : The originating control: damageFormula field
+ **/
+async function toggleRandomiseDamage ( target ) {
+  try {
+    const roll = await new Roll(target.value).evaluate()
+    document.getElementById("randomiseDamage").disabled = roll.isDeterministic
+  } catch(err) {
+    document.getElementById("randomiseDamage").disabled = true
   }
 }
 
+
+/**
+ * Process damage application based on selected options
+ * @param {Object} data : Data submitted through Damage Console form
+ **/
 async function dealDamage (data) {
   let actorProcessingResult = ""
   let dealDamageSummary = []
