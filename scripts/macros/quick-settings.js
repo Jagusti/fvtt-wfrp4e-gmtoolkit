@@ -4,7 +4,8 @@
     "darkwhispers",
     "grouptest",
     "session",
-    "vision"
+    "vision",
+    "maintenance"
   ]
 
   const root = "game.gmtoolkit.settings."
@@ -14,7 +15,7 @@
   settings.forEach(name => {
     const path = root + name
     const settingsApp = eval(`new ${path}()`)
-    console.log(settingsApp)
+
     label = game.i18n.localize(settingsApp.title)
     buttons.push({
       label: label,
@@ -38,7 +39,7 @@
 
 /* ==========
 * MACRO: GM Toolkit Settings Toolbox
-* VERSION: 8.1.0
-* UPDATED: 2025-03-13
+* VERSION: 8.1.1
+* UPDATED: 2025-04-25
 * DESCRIPTION: Adds a floating dialog for quick access to GM Toolkit settings
 ========== */
