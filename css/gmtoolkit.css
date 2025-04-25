@@ -177,7 +177,10 @@ button.priority {
 .gmtoolkit.console.flexrow {
 	align-items: flex-start;
 	flex-shrink: 0;
-	/* align-items: center; */
+}
+
+.quickbuttons {
+  gap: 0.25rem;
 }
 
 .gmtoolkit .form-group .flexrow {
@@ -201,7 +204,8 @@ button.priority {
 
 .gmtoolkit .flexrow.parameter {
 	text-align-last: right;
-	padding-block: 0.25em;
+	padding-block-start: 0.5rem;
+	padding-block-end: 0.25rem;
 }
 
 .gmtoolkit .flexrow.parameter label {
@@ -230,21 +234,27 @@ button.priority {
 }
 
 .gmtoolkit .section-title {
-	/* margin-block: 1rem; */
 	font-variant: small-caps;
 	font-weight: bold;
 }
 
 .gmtoolkit .section-title label {
-	margin-bottom: 1rem;
-	/* font-variant: small-caps;
-	font-weight: bold; */
+	margin-block: 0.5rem;
   font-size: 1.25em;
   border: 1px solid #5d513e;
   border-radius: 4px;
   padding: 0.25rem;
   text-align: center;
   font-family: auto;
+}
+
+.maxlabel {
+  flex-shrink: 1;
+  flex-grow: 7;
+}
+
+.maxcontent {
+  flex-basis: max-content!important;
 }
 
 

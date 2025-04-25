@@ -1,111 +1,168 @@
 import { runGroupTest } from "../modules/group-test.mjs"
 
-export class GroupTest extends FormApplication {
+export class GroupTest
+  extends HandlebarsApplicationMixin(ApplicationV2) {
 
-  static get defaultOptions () {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["gmtoolkit"],
-      popOut: true,
-      id: "group-test",
-      title: game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.Title"),
-      template: "modules/wfrp4e-gm-toolkit/templates/group-test.hbs",
+  static DEFAULT_OPTIONS = {
+    id: "group-test",
+    tag: "form",
+    form: {
+      handler: GroupTest.onSubmit,
+      submitOnChange: false,
+      closeOnSubmit: true
+    },
+    position: {
       width: 740
-    })
+    },
+    window: {
+      icon: "fas fa-dice",
+      title: "GMTOOLKIT.Dialog.MakeSecretGroupTest.Title",
+      contentClasses: ["standard-form", "gmtoolkit"]
+    }
+  }
+
+  static PARTS = {
+    form: {
+      template: "modules/wfrp4e-gm-toolkit/templates/group-test.hbs"
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs"
+    }
   }
 
 
   /**
    * Build data set to be presented and manipulated in form, applying default values where not provided in the form application request.
-   * @returns {data} object : The data to be presented in the form
+   * @param {Object} options : Form application options
+   * @returns {Object} context : The data to be presented in the form
    **/
-  getData () {
-    // Send data to the template
-    const data = super.getData()
+  async _prepareContext (options) {
+    const context = await super._prepareContext(options)
 
-    data.skills = {
+    context.skills = {
       list: game.gmtoolkit.skills,
-      target: this.object.testParameters?.testSkill || game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest"),
+      target: game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest"),
       quickTest1: game.settings.get("wfrp4e-gm-toolkit", "quicktest1GroupTest"),
       quickTest2: game.settings.get("wfrp4e-gm-toolkit", "quicktest2GroupTest"),
       quickTest3: game.settings.get("wfrp4e-gm-toolkit", "quicktest3GroupTest"),
       quickTest4: game.settings.get("wfrp4e-gm-toolkit", "quicktest4GroupTest")
     }
 
-    data.skills.target
+    context.skills.target
       = (game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest") === "null")
         ? ""
         : game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
-    data.skills.custom = data.skills.list.map(m => m.name).includes(data.skills.target) ? "" : data.skills.target
+    context.skills.custom = context.skills.list.map(m => m.name).includes(context.skills.target) ? "" : context.skills.target
 
-    data.testParameters = {
-      testModifier: this.object.testParameters?.testModifier || game.settings.get("wfrp4e-gm-toolkit", "defaultTestModifierGroupTest"),
-      rollMode: this.object.testParameters?.rollMode || game.settings.get("wfrp4e-gm-toolkit", "defaultRollModeGroupTest"),
-      testDifficulty: this.object.testParameters?.difficulty || game.settings.get("wfrp4e-gm-toolkit", "defaultDifficultyGroupTest")
+    context.testParameters = {
+      testModifier: game.settings.get("wfrp4e-gm-toolkit", "defaultTestModifierGroupTest"),
+      rollMode: game.settings.get("wfrp4e-gm-toolkit", "defaultRollModeGroupTest"),
+      testDifficulty: game.settings.get("wfrp4e-gm-toolkit", "defaultDifficultyGroupTest")
       // _slBonus: this.object.testParameters?.slBonus || 0,
       // _successBonus: this.object.testParameters?.successBonus || 0,
     }
 
-    data.testParameters.bypass = this.object.testParameters?.bypass === undefined ? game.settings.get("wfrp4e-gm-toolkit", "bypassTestDialogGroupTest") : this.object.testParameters?.bypass
-    data.testParameters.fallback = this.object.testParameters?.fallback === undefined ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills") : this.object.testParameters?.fallback
+    context.testParameters.bypass = this.object?.testParameters?.bypass === undefined ? game.settings.get("wfrp4e-gm-toolkit", "bypassTestDialogGroupTest") : this.object?.testParameters?.bypass
+    context.testParameters.fallback = this.object?.testParameters?.fallback === undefined ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills") : this.object?.testParameters?.fallback
 
-    data.rollModeOptions = CONFIG.Dice.rollModes
-    data.difficultyOptions = game.wfrp4e.config.difficultyLabels
+    context.rollModeOptions = CONFIG.Dice.rollModes
+    context.difficultyOptions = game.wfrp4e.config.difficultyLabels
 
     // Set group defaults if not provided
-    data.group = {
+    context.group = {
       options: {
-        type: this.object.groupOptions?.type || game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest") // ,
+        type: this.object?.groupOptions?.type || game.settings.get("wfrp4e-gm-toolkit", "defaultPartyGroupTest") // ,
         // _present: this.object.groupOptions?.present || true,
         // _interaction: this.object.groupOptions?.interaction || undefined
       }
     }
+
     // Build member list
-    data.group.members = {
-      playerGroup: game.gmtoolkit.utility.getGroup(data.group.options.type),
+    context.group.members = {
+      playerGroup: game.gmtoolkit.utility.getGroup(context.group.options.type),
       selected: game.gmtoolkit.utility.getGroup("company", { interaction: "selected", present: true }),
       npcTokens: game.gmtoolkit.utility.getGroup("npcTokens"),
       // _game.gmtoolkit.utility.getGroup("tokens", { interaction: "selected" })
       controlled: canvas.tokens.controlled
     }
 
-    return data
+    context.buttons = [
+      {
+        type: "submit",
+        icon: "fa-solid fa-ban",
+        label: "GMTOOLKIT.Dialog.Cancel",
+        action: "cancel"
+      },
+      {
+        type: "submit",
+        icon: "fa-solid fa-dice",
+        label: "GMTOOLKIT.Dialog.MakeSecretGroupTest.RunTest",
+        action: "submit"
+      }
+    ]
+
+    return context
+  }
+
+
+  /**
+   * Identify interaction events and call relevant function
+   * @param {ApplicationRenderContext} context      Prepared context data
+   * @param {RenderOptions} options                 Provided render options
+   * @protected
+   */
+  _onRender (context, options) {
+
+    const selectedSkill = document.getElementById("skill-list")
+    selectedSkill.addEventListener("change", () => {
+      toggleGroupedSkill(selectedSkill)
+    })
+
+    const bypassDialog = document.getElementById("bypass")
+    bypassDialog.addEventListener("change", () => {
+      toggleBypassTestDialog(bypassDialog)
+    })
+
   }
 
 
   /**
    * Process application options and call the group test routine.
    * @param {object} event : The submission event. Used to identify which button is used to submit the form.
+   * @param {object} form : The form object.
    * @param {object} formData : The data submitted by the form
    * @private
    **/
-  async _updateObject (event, formData) {
+  static async onSubmit (event, form, formData) {
+    const choices = foundry.utils.expandObject(formData.object)
+
     let testSkill = ""
 
     // Set target skill depending on how the form is submitted
-    switch (event.submitter.name) {
+    switch (event.submitter.dataset.action) {
       case "quicktest":
         testSkill = event.submitter.title
         ui.notifications.info(game.i18n.format("GMTOOLKIT.Message.MakeSecretGroupTest.RunningGroupSkillTest", { skill: testSkill }))
         break
       case "submit":
-        testSkill = formData["skill-name"] ? formData["skill-name"] : formData["skill-list"]
+        testSkill = choices["skill-name"] ? choices["skill-name"] : choices["skill-list"]
         // Has a skill choice been made?
         if (testSkill) {
           // Is it a grouped skill that require a specialisation?
           // some skills indicate grouped with "( )"
-          if (formData["skill-list"].slice(-3) === "( )") {
+          if (choices["skill-list"].slice(-3) === "( )") {
             testSkill = [
-              formData["skill-list"].slice(0, formData["skill-list"].length - 2),
-              formData["skill-name"], // Insert specified skill as specialisation
-              formData["skill-list"].slice(formData["skill-list"].length - 2)
+              choices["skill-list"].slice(0, choices["skill-list"].length - 2),
+              choices["skill-name"], // Insert specified skill as specialisation
+              choices["skill-list"].slice(choices["skill-list"].length - 2)
             ].join("")
           }
           // Some skills indicate grouped with "()"
-          if (formData["skill-list"].slice(-2) === "()") {
+          if (choices["skill-list"].slice(-2) === "()") {
             testSkill = [
-              formData["skill-list"].slice(0, formData["skill-list"].length - 1),
-              formData["skill-name"], // Insert specified skill as specialisation
-              formData["skill-list"].slice(formData["skill-list"].length - 1)
+              choices["skill-list"].slice(0, choices["skill-list"].length - 1),
+              choices["skill-name"], // Insert specified skill as specialisation
+              choices["skill-list"].slice(choices["skill-list"].length - 1)
             ].join("")
           }
           // Is the skill name well-formed?
@@ -122,57 +179,45 @@ export class GroupTest extends FormApplication {
     }
 
     // Call the secret group test, passing in submitted parameters
-    runGroupTest(testSkill, formData)
+    runGroupTest(testSkill, choices)
   }
 
+}
 
-  /**
-   * Identify interaction events and call relevant function
-   * @param {object} html : The form application content
-   **/
-  activateListeners (html) {
-    super.activateListeners(html)
-    html.find("select#skill-list").change(event => this._toggleGroupedSkill(event))
-    html.find("input#bypass").change(event => this._toggleBypassTestDialog(event))
+
+/**
+ * Toggle form label to reflect whether a skill or specialisation is needed
+ * @param {Element} control : The originating control: skill-list dropdown
+ **/
+function toggleGroupedSkill (control) {
+  const label = document.getElementById("skill-name-label")
+  const field = document.getElementById("skill-name")
+  // Set text field label
+  if (control.value.slice(-2) === "()" || control.value.slice(-3) === "( )") {
+    label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisation")
+    field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisationPlaceholder")
+  } else {
+    label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill")
+    field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkillPlaceholder")
   }
-
-
-  /**
-   * Toggle form label to reflect whether a skill or specialisation is needed
-   * @param {Event} event : The originating event: change in skill-list dropdown
-   * @private
-   **/
-  _toggleGroupedSkill (event) {
-    const label = document.getElementById("skill-name-label")
-    const field = document.getElementById("skill-name")
-    // Set text field label
-    if (event.target.value.slice(-2) === "()" || event.target.value.slice(-3) === "( )") {
-      label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisation")
-      field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SetSpecialisationPlaceholder")
-    } else {
-      label.innerHTML = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill")
-      field.placeholder = game.i18n.localize("GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkillPlaceholder")
-    }
-    // Set text field value
-    if (event.target.value !== "") {
-      field.value = ""
-    }
-    if (event.target.value === "") {
-      field.value
-      = (game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest") === "null")
-          ? ""
-          : game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
-    }
+  // Set text field value
+  if (control.value !== "") {
+    field.value = ""
   }
-
-  /**
-   * Toggle modifiers, disabling if not bypassing roll dialog, as they are ignored in interactive tests
-   * @param {Event} event : The originating event: change in bypass checkbox
-   * @private
-   **/
-  _toggleBypassTestDialog (event) {
-    document.getElementById("testModifier").disabled = !event.target.checked
-    document.getElementById("difficulty").disabled = !event.target.checked
+  if (control.value === "") {
+    field.value
+    = (game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest") === "null")
+        ? ""
+        : game.settings.get("wfrp4e-gm-toolkit", "defaultSkillGroupTest")
   }
+}
 
+/**
+ * Toggle modifiers, disabling if not bypassing roll dialog, as they are ignored in interactive tests
+ * @param {Element} control : The originating control: bypass checkbox
+ * @private
+ **/
+function toggleBypassTestDialog (control) {
+  document.getElementById("testModifier").disabled = !control.checked
+  document.getElementById("difficulty").disabled = !control.checked
 }
