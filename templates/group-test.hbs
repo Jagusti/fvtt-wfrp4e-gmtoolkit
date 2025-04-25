@@ -27,7 +27,6 @@
           <label for = "skill-list">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.ChooseSkill"}}</label>
           <select id = "skill-list" name = "skill-list">
             {{#with skills}}
-            {{log this}}
               {{#selectOptions list valueAttr = "name" labelAttr = "name" localize = true blank = "" selected = target }}
               {{/selectOptions}}
             {{/with}}
