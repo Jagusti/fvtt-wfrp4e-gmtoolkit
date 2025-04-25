@@ -14,7 +14,8 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - Default XP amount can now be set by entering a numeric value (between 0 and 200 inclusive) or using the +/- buttons to increment or decrement the value by 1. Holding `SHIFT` while using the +/- buttons will increase or decrease by 10.
 - *Changed* Group Test Settings UI to use ApplicationV2 [#292](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/292)
 - *Added* Toolkit Maintenance to Quick Settings launcher. 
-- *Changed* Damage Console to use ApplicationV2 [#296](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/296)
+- *Changed* Damage Console to use ApplicationV2 [#296](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/296)- 
+- *Changed* Group Test Console to use ApplicationV2 [#297](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/297)
 
 ## [Version 8.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.1.0)  (2025-03-25)
 - *Added* setting to choose background colour of status effects (conditions) in token hud. [#240](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/240)

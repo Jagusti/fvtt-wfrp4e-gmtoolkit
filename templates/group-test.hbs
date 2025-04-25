@@ -1,21 +1,21 @@
-<form>
-      <div class = "form-group flexcol" id = "quicktest">{{!-- QUICK TEST BUTTONS >> --}}
-        {{#with skills}}
-        {{!-- Instant roll priority skills --}}
-        <div class = "form-group section-title">
-          <label for = "quicktest" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.QuickTest"}}</label>
-        </div>
-        <div class = "flexrow">
-          <button type = "submit" name = "quicktest" id = "quicktest1" class = "priority" title = "{{localize quickTest1}}">{{localize quickTest1}}</button>
-          <button type = "submit" name = "quicktest" id = "quicktest2" class = "priority" title = "{{localize quickTest2}}">{{localize quickTest2}}</button>
-          <button type = "submit" name = "quicktest" id = "quicktest3" class = "priority" title = "{{localize quickTest3}}">{{localize quickTest3}}</button>
-          <button type = "submit" name = "quicktest" id = "quicktest4" class = "priority" title = "{{localize quickTest4}}">{{localize quickTest4}}</button>
-        </div>
-        {{/with}}
-      </div>{{!-- << QUICK TEST BUTTONS --}}
+  <div>
+  <div class = "form-group flexcol" id = "quicktest">{{!-- QUICK TEST BUTTONS >> --}}
+    {{#with skills}}
+    {{!-- Instant roll priority skills --}}
+    <div class = "form-group section-title">
+      <label for = "quicktest" class = "section-title">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.QuickTest"}}</label>
+    </div>
+    <div class = "gmtoolkit console flexrow quickbuttons">
+      <button type = "submit" data-action = "quicktest" id = "quicktest1" class = "priority" title = "{{localize quickTest1}}">{{localize quickTest1}}</button>
+      <button type = "submit" data-action = "quicktest" id = "quicktest2" class = "priority" title = "{{localize quickTest2}}">{{localize quickTest2}}</button>
+      <button type = "submit" data-action = "quicktest" id = "quicktest3" class = "priority" title = "{{localize quickTest3}}">{{localize quickTest3}}</button>
+      <button type = "submit" data-action = "quicktest" id = "quicktest4" class = "priority" title = "{{localize quickTest4}}">{{localize quickTest4}}</button>
+    </div>
+    {{/with}}
+  </div>{{!-- << QUICK TEST BUTTONS --}}
 
-  <div class = "flexrow">{{!-- multi-column outer --}}
-    <div class = "flexcol grouptest criteria">{{!-- left column --}}
+  <div class = "gmtoolkit console flexrow">{{!-- multi-column outer --}}
+    <div class = "parameters">{{!-- left column --}}
     
       <div class = "form-group flexcol" id = "skills">{{!-- SKILL SELECTION >> --}}
         {{!-- Custom skill --}}
@@ -34,9 +34,9 @@
           </select>
         </div>
         {{!-- Or specify a custom skill / specialisation --}}
-        <div class = "form-group">
+        <div class = "gmtoolkit flexrow parameter">
           {{#with skills}}
-          <label for = "skill-name" id = "skill-name-label">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill"}}</label> 
+          <label for = "skill-name" id = "skill-name-label" class="maxlabel">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkill"}}</label> 
           <input type = "text" id = "skill-name" name = "skill-name" placeholder="{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.SpecifySkillPlaceholder"}}" value = "{{localize custom}}">
           {{/with}}
         </div>
@@ -70,7 +70,7 @@
         </div>
         {{!-- fallback --}}
         <div class = "flexrow parameter" id = "parameter-fallback">
-          <label for  = "fallback" title = "{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint"}}">{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name"}}</label>
+          <label for  = "fallback" title = "{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.hint"}}" class="maxcontent">{{localize "GMTOOLKIT.Settings.MakeSecretGroupTests.FallbackAdvanced.name"}}</label>
           <input type = "checkbox" id = "fallback" name = "fallback" {{checked fallback}}>
         </div>
         {{!-- bypass --}}
@@ -83,7 +83,7 @@
     </div>{{!-- left column --}}
 
 
-    <div class = "flexcol grouptest grouptargets">{{!-- right column --}}
+    <div class = "app-targets">{{!-- right column --}}
       <div class = "form-group flexcol" id = "group-members">{{!-- TARGET SELECTION >> --}}
         {{!-- Specify Group Targets   --}}
         <div class = "form-group section-title">
@@ -112,11 +112,4 @@
       </div>{{!-- << TARGET SELECTION --}}
     </div>{{!-- right column --}}
   </div>{{!-- multi-column outer --}}
-
-  {{!-- Form Submission --}}
-  <footer class = "flexrow footer">
-    <button type = "submit" name="cancel">{{localize "GMTOOLKIT.Dialog.Cancel"}}</button>
-    <button type = "submit" name="submit">{{localize "GMTOOLKIT.Dialog.MakeSecretGroupTest.RunTest"}}</button>
-  </footer>
-</form>
-
+</div>
