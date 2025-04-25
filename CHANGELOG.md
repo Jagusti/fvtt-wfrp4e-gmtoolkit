@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+## [Version 8.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.2.0)  (2025-04-25)
 - *Changed* Toolkit Maintenance UI to use ApplicationV2 [#298](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/298)
   - Improve visual cues to highlight updated content
 - *Changed* Token Vision Settings UI to use ApplicationV2 [#295](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/295)
