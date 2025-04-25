@@ -26,7 +26,7 @@ export default class GMToolkitSessionManagementSettings
 
   static PARTS = {
     form: {
-      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings-V2.html"
+      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html"
     },
     footer: {
       template: "templates/generic/form-footer.hbs"
