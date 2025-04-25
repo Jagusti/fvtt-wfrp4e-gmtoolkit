@@ -341,29 +341,6 @@ export class GMToolkitSettings {
 
 }
 
-// TODO: Remove when conversion of settings to ApplicationV2 is complete.
-export function getDataSettings (data, feature) {
-  data.settings = Array.from(game.settings.settings)
-    .filter(s => s[1].feature === feature)
-    .map(i => i[1])
-  data.settings.forEach(s => {
-    if (s.type === Boolean) {
-      s.boolean = true
-      s.inputType = "checkbox"
-    }
-    if (s.range) {
-      s.isRange = true
-      s.inputType = "range"
-    }
-    if (s.type === Number & !s.range) {
-      s.isNumber = true
-      s.inputType = "number"
-      s.step = s.step ?? 1
-    }
-    s.value = game.settings.get(s.namespace, s.key)
-  })
-}
-
 /**
  * Adds data to settings to be used in ApplicationV2 templates.
  *
@@ -394,7 +371,9 @@ export async function prepareSettingsFormData (feature) {
   return settings
 }
 
-
+/**
+ * Register settings for Group Test. Decoupled from GMToolkitSettings.register to avoid race condition while skill list is localized.
+ */
 export async function registerGroupTestSettings () {
   const skillList = await game.gmtoolkit.skills.reduce((skills, skill) => ({ ...skills, [`${game.i18n.localize(skill.name)}`]: `${game.i18n.localize(skill.name)}` }), {})
 
