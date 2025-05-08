@@ -19,13 +19,14 @@ export default class GMToolkitGroupTestSettings
     window: {
       icon: "fas fa-gear",
       title: "GMTOOLKIT.Settings.GroupTest.menu.name",
-      contentClasses: ["standard-form", "gmtoolkit scrollable"]
+      contentClasses: ["standard-form"]
     }
   }
 
   static PARTS = {
     form: {
-      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html"
+      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html",
+      classes: ["gmtoolkit", "scrollable"]
     },
     footer: {
       template: "templates/generic/form-footer.hbs"
