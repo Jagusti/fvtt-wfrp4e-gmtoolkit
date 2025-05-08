@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+* *Added* WFRP4e v9 compatibility (requiring Foundry VTT v13). This is a **breaking** change.
+  * v8.x is no longer supported beyond GM Toolkit v8.2.0.
+  * v9.0.3 is the minimum version required for GM Toolkit.
+
 ## [Version 8.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.2.0)  (2025-04-25)
 - *Changed* Toolkit Maintenance UI to use ApplicationV2 [#298](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/298)
   - Improve visual cues to highlight updated content
