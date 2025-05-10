@@ -7,7 +7,6 @@
     {
       "_id": "g9rsj2kp26oh6r3z",
       "type": "text",
-      "text": "Let your quarry go.",
       "range": [
         1,
         1
@@ -15,14 +14,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Let your quarry go.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.g9rsj2kp26oh6r3z"
     },
     {
       "_id": "h3hvuahahukmiklq",
       "type": "text",
-      "text": "'Accidentally' strike an ally.",
       "range": [
         2,
         2
@@ -30,14 +40,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "'Accidentally' strike an ally.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.h3hvuahahukmiklq"
     },
     {
       "_id": "9ltv15jz9n4pkc7m",
       "type": "text",
-      "text": "Fall asleep on watch.",
       "range": [
         3,
         3
@@ -45,14 +66,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fall asleep on watch.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.9ltv15jz9n4pkc7m"
     },
     {
       "_id": "j1z9hqs65ife4pqx",
       "type": "text",
-      "text": "Kneel before the Magister. Show your allegiance.",
       "range": [
         4,
         4
@@ -60,14 +92,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Kneel before the Magister. Show your allegiance.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.j1z9hqs65ife4pqx"
     },
     {
       "_id": "ds7tn3xsonqyquvo",
       "type": "text",
-      "text": "Nobody's that good or lucky. However popular or powerful they are. Call out the cheat!",
       "range": [
         5,
         5
@@ -75,14 +118,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Nobody's that good or lucky. However popular or powerful they are. Call out the cheat!",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.ds7tn3xsonqyquvo"
     },
     {
       "_id": "3cx7xfwzxscq40p2",
       "type": "text",
-      "text": "You're not as prepared as you thought you were.",
       "range": [
         6,
         6
@@ -90,14 +144,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "You're not as prepared as you thought you were.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.3cx7xfwzxscq40p2"
     },
     {
       "_id": "2rq045im6k1pft53",
       "type": "text",
-      "text": "Exert your authority. Make an example of the weakest or most vulnerable.",
       "range": [
         7,
         7
@@ -105,14 +170,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Exert your authority. Make an example of the weakest or most vulnerable.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.2rq045im6k1pft53"
     },
     {
       "_id": "5iq16gdx32qx83yv",
       "type": "text",
-      "text": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own.",
       "range": [
         8,
         8
@@ -120,14 +196,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.5iq16gdx32qx83yv"
     },
     {
       "_id": "azxfuejsd1v28wym",
       "type": "text",
-      "text": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
       "range": [
         9,
         9
@@ -135,14 +222,25 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.azxfuejsd1v28wym"
     },
     {
       "_id": "gmfs74ty8wbm8eoy",
       "type": "text",
-      "text": "Secrets are burdensome. Be generous and give them away.",
       "range": [
         10,
         10
@@ -150,8 +248,20 @@
       "drawn": false,
       "flags": {},
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
-      "documentId": null,
       "weight": 1,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Secrets are burdensome. Be generous and give them away.",
+      "name": "",
       "_key": "!tables.results!9rXQv4uJcQoLBitt.gmfs74ty8wbm8eoy"
     }
   ],
@@ -171,14 +281,15 @@
     }
   },
   "_stats": {
-    "coreVersion": "12.330",
+    "coreVersion": "13.341",
     "systemId": "wfrp4e",
     "systemVersion": "7.2.4",
     "createdTime": null,
     "modifiedTime": 1723425266787,
     "lastModifiedBy": "Pt7qzajGGC2jofTq",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_key": "!tables!9rXQv4uJcQoLBitt"
 }

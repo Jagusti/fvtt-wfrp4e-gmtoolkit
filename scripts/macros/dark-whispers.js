@@ -56,7 +56,7 @@ async function formDarkWhispers () {
   const darkwhisper = (game.tables.getName(game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title")))
     ? await game.tables.getName(game.i18n.localize("GMTOOLKIT.Dialog.DarkWhispers.Title")).draw(
       { displayChat: false }
-    ).then(w => w.results[0].text)
+    ).then(w => w.results[0].description)
     : game.i18n.format("GMTOOLKIT.Dialog.DarkWhispers.ImportTable")
 
   const dialogContent = `
@@ -91,7 +91,8 @@ async function formDarkWhispers () {
         action: "whisper",
         default: true,
         callback: (event, button, dialog) => {
-          result = new FormDataExtended(button.form).object
+          result = new foundry.applications.ux
+            .FormDataExtended(button.form).object
           sendDarkWhispers(result, characterList, result.sendToOwners)
         }
       }
@@ -127,9 +128,9 @@ function sendDarkWhispers (result, characterList, sendToOwners) {
   const whisperMessage = `${game.i18n.format(messageTemplate, { message: darkwhisper })}`
   // Add response buttons for chat card. data- attributes are used by listener.
   const responseButtons = `
-    <span class="chat-card-button-area">
-    <a class="chat-card-button darkwhisper-button" data-button="actOnWhisper" data-ask="${game.i18n.format(darkwhisper)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Accept")}</a>
-    <a class="chat-card-button darkwhisper-button" data-button="denyDarkGods" data-ask="${game.i18n.format(darkwhisper)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Reject")}</a>
+    <span class="chat-buttons">
+    <button class="chat darkwhisper-button" data-button="darkwhispers" data-action="accept" data-ask="${game.i18n.format(darkwhisper)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Accept")}</button>
+    <button class="chat darkwhisper-button" data-button="darkwhispers" data-action="reject" data-ask="${game.i18n.format(darkwhisper)}">${game.i18n.localize("GMTOOLKIT.Message.DarkWhispers.Reject")}</button>
     </span>
     `
   // Post the message
@@ -150,8 +151,8 @@ function abortWhisper () {
 
 /* ==========
 * MACRO: Send Dark Whispers
-* VERSION: 8.1.0
-* UPDATED: 2025-03-25
+* VERSION: 9.0.0
+* UPDATED: 2025-05-10
 * DESCRIPTION: Open a dialog to send a Dark Whisper (WFRP p183) to one or more selected player character(s).
 * TIP: Only player-assigned or player-owned characters with Corruption can be sent a Dark Whisper.
 * TIP: The placeholder whisper is drawn from the Dark Whispers table. Change this for different random whispers.
