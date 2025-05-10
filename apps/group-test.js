@@ -136,6 +136,14 @@ export class GroupTest
   static async onSubmit (event, form, formData) {
     const choices = foundry.utils.expandObject(formData.object)
 
+    if (!Array.isArray(choices.targetGroup)) {
+      choices.targetGroup = [choices.targetGroup]
+    }
+
+    if (choices.targetGroup.filter(member => member !== null).length === 0) {
+      return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.MakeSecretGroupTest.NoGroup"))
+    }
+
     let testSkill = ""
 
     // Set target skill depending on how the form is submitted

@@ -10,19 +10,18 @@
     "WpuDIfNQnefaTyuV": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "Macro.wopPq4OaNATXh6Tt"
-    }
+    "core": {}
   },
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.4.0",
-    "coreVersion": "12.329",
+    "coreVersion": "13.341",
     "createdTime": 1682374661491,
     "modifiedTime": 1682376871344,
     "lastModifiedBy": "WpuDIfNQnefaTyuV",
     "compendiumSource": "Macro.wopPq4OaNATXh6Tt",
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "folder": null,
   "sort": 0,
