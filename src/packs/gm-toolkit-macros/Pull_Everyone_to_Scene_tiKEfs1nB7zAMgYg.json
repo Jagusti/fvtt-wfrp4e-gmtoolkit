@@ -19,12 +19,13 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "8.4.1",
-    "coreVersion": "12.331",
+    "coreVersion": "13.341",
     "createdTime": null,
     "modifiedTime": 1741876082147,
     "lastModifiedBy": "Pt7qzajGGC2jofTq",
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_key": "!macros!tiKEfs1nB7zAMgYg"
 }

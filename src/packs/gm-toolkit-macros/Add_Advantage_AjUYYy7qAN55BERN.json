@@ -14,14 +14,15 @@
     }
   },
   "_stats": {
-    "coreVersion": "12.329",
+    "coreVersion": "13.341",
     "systemId": null,
     "systemVersion": null,
     "createdTime": null,
     "modifiedTime": null,
     "lastModifiedBy": null,
     "compendiumSource": null,
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "ownership": {
     "default": 0

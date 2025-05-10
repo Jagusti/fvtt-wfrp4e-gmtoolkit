@@ -15,9 +15,7 @@
     "wfrp4e-gm-toolkit": {
       "version": "0.9.5"
     },
-    "core": {
-      "sourceId": "Compendium.wfrp4e-gm-toolkit.gm-toolkit-macros.6UwKY8nGZyXzAXCa"
-    }
+    "core": {}
   },
   "ownership": {
     "default": 0
@@ -25,12 +23,13 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.0.0",
-    "coreVersion": "12.329",
+    "coreVersion": "13.341",
     "createdTime": null,
     "modifiedTime": 1661497795728,
     "lastModifiedBy": "WpuDIfNQnefaTyuV",
     "compendiumSource": "Compendium.wfrp4e-gm-toolkit.gm-toolkit-macros.6UwKY8nGZyXzAXCa",
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_key": "!macros!OiQ0cS3QsmQadxqR"
 }

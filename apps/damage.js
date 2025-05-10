@@ -98,6 +98,16 @@ export class DamageConsole
 
     // Call the damage dealer outer, passing in submitted parameters
     const choices = foundry.utils.expandObject(formData.object)
+
+    if (!Array.isArray(choices.targetGroup)) {
+      choices.targetGroup = [choices.targetGroup]
+    }
+
+    // If no target group is selected, abort
+    if (choices.targetGroup.filter(member => member !== null).length === 0) {
+      return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Damage.Message.Abort"))
+    }
+
     await dealDamage(choices)
 
   }

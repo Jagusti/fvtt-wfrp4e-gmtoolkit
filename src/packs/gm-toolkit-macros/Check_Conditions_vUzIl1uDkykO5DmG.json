@@ -9,9 +9,7 @@
   "folder": null,
   "sort": 0,
   "flags": {
-    "core": {
-      "sourceId": "Macro.YSvf5jsBKPTkkULa"
-    },
+    "core": {},
     "wfrp4e-gm-toolkit": {
       "version": "8.0.0"
     }
@@ -22,12 +20,13 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.0.0",
-    "coreVersion": "12.331",
+    "coreVersion": "13.341",
     "createdTime": null,
     "modifiedTime": 1726925869170,
     "lastModifiedBy": "Pt7qzajGGC2jofTq",
     "compendiumSource": "Macro.YSvf5jsBKPTkkULa",
-    "duplicateSource": null
+    "duplicateSource": null,
+    "exportSource": null
   },
   "_key": "!macros!vUzIl1uDkykO5DmG"
 }
