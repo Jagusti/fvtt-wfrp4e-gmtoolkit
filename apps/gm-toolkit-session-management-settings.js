@@ -16,7 +16,10 @@ export default class GMToolkitSessionManagementSettings
       add: GMToolkitSessionManagementSettings.increaseValue,
       subtract: GMToolkitSessionManagementSettings.decreaseValue
     },
-    position: { width: 560 },
+    position: {
+      width: 560,
+      height: 600
+    },
     window: {
       icon: "fas fa-gear",
       title: "GMTOOLKIT.Settings.SessionManagement.menu.title",
@@ -26,7 +29,8 @@ export default class GMToolkitSessionManagementSettings
 
   static PARTS = {
     form: {
-      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html"
+      template: "modules/wfrp4e-gm-toolkit/templates/gm-toolkit-settings.html",
+      classes: ["gmtoolkit", "scrollable"]
     },
     footer: {
       template: "templates/generic/form-footer.hbs"
