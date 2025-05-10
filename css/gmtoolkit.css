@@ -165,6 +165,19 @@ button.priority {
   margin-right: 0.75rem;
 }
 
+button.chat {
+  font-family: Signika, "Palatino Linotype", sans-serif;
+  height: 3.5rem;
+  margin-bottom: 8px;
+  border: 1px solid black;
+  border-image: url(../../../systems/wfrp4e/ui/borders/footer-button.webp) 10 repeat;
+  border-image-width: 4px;
+  border-image-outset: 0px;
+  box-shadow: 4px 4px 1px rgba(0, 0, 0, 0.5215686275);
+  background: url(../../../systems/wfrp4e/ui/buttons/button-wide-red.webp) repeat;
+  color: var(--color-cream);
+}
+
 /* 3d. Flex Col */
 
 .gmtoolkit .form-group.flexcol {
