@@ -9,7 +9,7 @@ export class GMToolkitWelcome {
    * @param {html} html
    */
   static async chatListeners (html) {
-    html.on("click", ".updateToolkitContent-button", event => {
+    html.addEventListener("click", async event => {
       event.preventDefault()
       if (!game.user.isGM) return
 
@@ -42,7 +42,7 @@ export class GMToolkitWelcome {
       releases: game.modules.get(GMToolkit.MODULE_ID).changelog
     }
 
-    renderTemplate("modules/wfrp4e-gm-toolkit/templates/welcomeMessage.hbs", templateData).then(html => {
+    foundry.applications.handlebars.renderTemplate("modules/wfrp4e-gm-toolkit/templates/welcomeMessage.hbs", templateData).then(html => {
       let options = {
         whisper: [game.user.id],
         speaker: { alias: GMToolkit.MODULE_NAME },
@@ -59,6 +59,9 @@ export class GMToolkitWelcome {
 
 // ---- Set up Hooks ----
 // Activate chat listeners
-Hooks.on("renderChatLog", (log, html, data) => {
-  GMToolkitWelcome.chatListeners(html)
+Hooks.on("renderChatMessageHTML", (chatMessage, html) => {
+  const welcomeButtons = html.querySelectorAll(".updateToolkitContent-button")
+  welcomeButtons.forEach(button => {
+    GMToolkitWelcome.chatListeners(button)
+  })
 })
