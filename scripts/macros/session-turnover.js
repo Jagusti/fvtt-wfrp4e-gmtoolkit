@@ -49,7 +49,8 @@ async function endSession () {
           label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
           action: "apply",
           callback: (event, button, dialog) => {
-            result = new FormDataExtended(button.form).object
+            result = new foundry.applications.ux
+              .FormDataExtended(button.form).object
             nextSession = result.nextsession
             game.settings.set("wfrp4e-gm-toolkit", "sessionID", nextSession)
             game.gmtoolkit.module.log(true, `Previous Session ID was ${thisSession}. Next Session ID is ${nextSession}.`)
@@ -69,8 +70,8 @@ async function endSession () {
 
 /* ==========
  * MACRO: Session Turnover
- * VERSION: 8.1.0
- * UPDATED: 2025-03-24
+ * VERSION: 9.0.0
+ * UPDATED: 2025-05-11
  * DESCRIPTION: Unified macro to run start and end of session admin, including awarding Experience Points, resetting Fortune, pausing the game and exporting the chat log.
  * TIP: Various default options can be defined in Session Management Settings under Module Settings.
  ========== */

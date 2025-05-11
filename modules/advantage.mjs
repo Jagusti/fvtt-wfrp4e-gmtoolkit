@@ -258,7 +258,8 @@ export default class Advantage {
           label: game.i18n.localize("GMTOOLKIT.Dialog.Advantage.LoseMomentum.Button"),
           action: "reduceAdvantage",
           callback: async (event, button, dialog) => {
-            const response = new FormDataExtended(button.form).object
+            const response = new foundry.applications.ux
+              .FormDataExtended(button.form).object
             // Reduce advantage for selected combatants
             for ( const combatant of combat.combatants ) {
               if (response[combatant.tokenId] === combatant.name) {
