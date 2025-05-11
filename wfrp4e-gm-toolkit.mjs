@@ -147,14 +147,14 @@ Hooks.once("babele.ready", async function () {
 /*  Entry Context                               */
 /* -------------------------------------------- */
 
-Hooks.on("getChatLogEntryContext", (html, options) => {
+Hooks.on("getChatMessageContextOptions", (html, options) => {
   options.push(
     {
       name: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
       icon: '<i class="fas fa-pen-fancy"></i>',
       condition: game.user.isGM,
       callback: li => {
-        const message = game.messages.get(li.attr("data-message-id"))
+        const message = game.messages.get(li.dataset.messageId)
         let result
         foundry.applications.api.DialogV2.wait({
           window: { title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title") },
@@ -176,7 +176,8 @@ Hooks.on("getChatLogEntryContext", (html, options) => {
               action: "apply",
               default: "yes",
               callback: (event, button, dialog) => {
-                result = new FormDataExtended(button.form).object
+                result = new foundry.applications.ux
+                  .FormDataExtended(button.form).object
               }
             },
             {
