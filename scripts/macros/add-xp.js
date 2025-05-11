@@ -137,7 +137,8 @@ function promptForXP (allAwardees, XP, reason) {
         action: "apply",
         default: true,
         callback: (event, button, dialog) => {
-          result = new FormDataExtended(button.form).object
+          result = new foundry.applications.ux
+            .FormDataExtended(button.form).object
           const XP = Math.round(result.xp)
           if (isNaN(XP)) return ui.notifications.error(game.i18n.localize("GMTOOLKIT.Dialog.AddXP.InvalidXP"))
           const reason = result.reason
@@ -167,8 +168,8 @@ function groupAwardees (allAwardees) {
 
 /* ==========
  * MACRO: Add XP
- * VERSION: 8.1.0
- * UPDATED: 2025-03-24
+ * VERSION: 9.0.0
+ * UPDATED: 2025-05-11
  * DESCRIPTION: Adds a set amount of XP to all or targeted player character(s). Adds XP update note to the chat log.
  * TIP: Characters must have a player assigned (if default group is 'party') or be player-owned (if default group is 'company').
  * TIP: When default group is company, characters who are not assigned to a player are treated as henchmen, and receive half XP.

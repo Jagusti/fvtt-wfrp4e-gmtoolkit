@@ -98,7 +98,8 @@ async function setTokenVisionLight () {
         action: "apply",
         default: "yes",
         callback: (event, button, dialog) => {
-          result = new FormDataExtended(button.form).object
+          result = new foundry.applications.ux
+            .FormDataExtended(button.form).object
         }
       }
     ],
@@ -401,8 +402,8 @@ async function canvasTokensUpdate (data) {
 
 /* ==========
  * MACRO: Set Token Vision and Light
- * VERSION: 8.0.0
- * UPDATED: 2025-03-13
+ * VERSION: 9.0.0
+ * UPDATED: 2025-05-11
  * DESCRIPTION: Open a dialog for quickly changing vision and lighting parameters of the selected token(s).
  * TIP: Default sight range and Darkvision / Night Vision overrides can be configured in Configure Token Vision Settings under Module Settings.
  ========== */
