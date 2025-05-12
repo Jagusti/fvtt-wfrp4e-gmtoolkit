@@ -2,7 +2,7 @@ pullEveryoneToScene()
 
 async function pullEveryoneToScene () {
   if (!game.user.isGM) {
-    ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.ScenePullActivate.NoPermission"), { console: false })
+    ui.notifications.error(game.i18n.localize("GMTOOLKIT.Message.ScenePullActivate.NoPermission"))
   }
 
   switch (game.settings.get("wfrp4e-gm-toolkit", "scenePullActivate")) {
@@ -46,7 +46,7 @@ async function pullEveryoneToScene () {
     if (activateScene === "activate") {
       thisScene.update({ active: true })
       let sceneActiveState = thisScene.active
-      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Activated", { sceneName: thisScene.name }), { console: false })
+      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Activated", { sceneName: thisScene.name }))
     } else {
       for ( let u of game.users.players ) {
         game.socket.emit("pullToScene", thisScene.id, u.id)
@@ -57,15 +57,15 @@ async function pullEveryoneToScene () {
       } else {
         sceneActiveState = game.i18n.localize("GMTOOLKIT.Scene.NotActive")
       }
-      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Pulled", { sceneName: thisScene.name, sceneActiveState }), { console: false })
+      ui.notifications.notify(game.i18n.format("GMTOOLKIT.Message.ScenePullActivate.Pulled", { sceneName: thisScene.name, sceneActiveState }))
     }
   }
 }
 
 /* ==========
 * MACRO: Pull Everyone to Scene
-* VERSION: 8.1.0
-* UPDATED: 2025-03-13
+* VERSION: 9.0.0
+* UPDATED: 2025-05-12
 * DESCRIPTION: Yanks every player into the scene that the GM is on.
 * TIP: Optionally activate (or prompt to activate) the scene through Configure Session Options in module settings.
 ========== */
