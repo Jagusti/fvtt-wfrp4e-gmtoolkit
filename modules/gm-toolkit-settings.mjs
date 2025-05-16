@@ -298,12 +298,12 @@ export class GMToolkitSettings {
       name: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.name",
       hint: "GMTOOLKIT.Settings.TokenHudExtensions.Enabled.hint",
       scope: "client",
-      config: true,
-      default: true,
+      config: false,
+      default: false,
       type: Boolean,
-      onChange: foundry.utils.debouncedReload,
       feature: "tokenhud"
     })
+    if (game.settings.get("wfrp4e-gm-toolkit", "enableTokenHudExtensions")) game.settings.set("wfrp4e-gm-toolkit", "enableTokenHudExtensions", false)
 
     // Settings for Token Hud Extension
     game.settings.register(GMToolkit.MODULE_ID, "tokenHudStatusEffectsBackground", {
