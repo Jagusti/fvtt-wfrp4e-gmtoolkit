@@ -9,7 +9,7 @@ async function pullEveryoneToScene () {
     case "prompt":
       const promptPullActivate = await foundry.applications.api.DialogV2.wait({
         window: { title: game.i18n.localize("GMTOOLKIT.Dialog.ScenePullActivate.Title") },
-        rejectClose: false,
+        rejectClose: true,
         content: `<form>
                         <div class="form-group">
                         <label>
@@ -65,7 +65,7 @@ async function pullEveryoneToScene () {
 /* ==========
 * MACRO: Pull Everyone to Scene
 * VERSION: 9.0.0
-* UPDATED: 2025-05-12
+* UPDATED: 2025-05-25
 * DESCRIPTION: Yanks every player into the scene that the GM is on.
 * TIP: Optionally activate (or prompt to activate) the scene through Configure Session Options in module settings.
 ========== */
