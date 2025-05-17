@@ -4,7 +4,7 @@
   "scope": "global",
   "author": "Yz8naH0UqWS3uLwh",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/quick-settings.svg",
-  "command": "(async () => {\n  const settings = [\n    \"advantage\",\n    \"darkwhispers\",\n    \"grouptest\",\n    \"session\",\n    \"vision\",\n    \"maintenance\"\n  ]\n\n  const root = \"game.gmtoolkit.settings.\"\n  let content = \"<div style=\\\"width: 100%;>\"\n  let buttons = []\n\n  settings.forEach(name => {\n    const path = root + name\n    const settingsApp = eval(`new ${path}()`)\n\n    label = game.i18n.localize(settingsApp.title)\n    buttons.push({\n      label: label,\n      action: name,\n      callback: () => {\n        settingsApp.render(true)\n      }\n    })\n  })\n\n  const dialog = await foundry.applications.api.DialogV2.wait({\n    window: { title: game.i18n.localize(\"GMTOOLKIT.Dialog.QuickSettings.Title\") },\n    rejectClose: false,\n    form: { closeOnSubmit: false },\n    content,\n    buttons\n  })\n\n})()\n\n\n/* ==========\n* MACRO: GM Toolkit Settings Toolbox\n* VERSION: 8.1.1\n* UPDATED: 2025-04-25\n* DESCRIPTION: Adds a floating dialog for quick access to GM Toolkit settings\n========== */",
+  "command": "const title = \"GM Toolkit Settings\"\n\nconst macros = [\n  // \"Add Advantage\",\n  // \"Clear Advantage\",\n  // \"Reduce Advantage\",\n  // \"Check Conditions\",\n  // \"Session Turnover\",\n  // \"Add XP\",\n  // \"Reset Fortune\",\n  // \"Launch Damage Console\",\n  // \"Make Secret Group Test\",\n  // \"Send Dark Whispers\",\n  // \"Toggle Scene Visibility and Light\",\n  // \"Set Token Vision and Light\",\n  // \"Pull Everyone to Scene\",\n  // \"Change Scene to Yards\",\n  // \"Simply d100\",\n  // \"Toggle Compendium Pack Visibility\",\n]\n\nconst settings = [\n  \"advantage\",\n  \"darkwhispers\",\n  \"grouptest\",\n  \"session\",\n  \"vision\",\n  \"maintenance\"\n]\n\n\nclass QuickMenu extends HandlebarsApplicationMixin(ApplicationV2) {\n  static DEFAULT_OPTIONS = {\n    tag: \"form\",\n    form: {\n      handler: QuickMenu.formHandler,\n      submitOnChange: false,\n      closeOnSubmit: false\n    },\n    position: { width: 350 },\n    window: { title: title }\n  }\n\n  static PARTS = {\n    form: {\n      template: \"/modules/wfrp4e-gm-toolkit/templates/quickmenu.hbs\"\n    }\n  }\n\n  async _prepareContext () {\n    const quickMenu = []\n    buildMacroMenu()\n    buildSettingsMenu()\n    return { quickMenu }\n\n    // Build Macro quick menu buttons\n    function buildMacroMenu () {\n      if (macros.length > 0) {\n        for (const macro of macros) {\n          const name = macro.trim()\n          if (!game.macros.getName(name)) continue\n\n          const label = (game.i18n.localize(game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n            === game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n            ? name\n            : game.i18n.localize(game.gmtoolkit.utility.strip(name, \"GMTOOLKIT.Macro\", \".\"))\n\n          const icon = game.macros.getName(name)?.img\n\n          quickMenu.push({\n            name: name,\n            label: label,\n            icon: icon,\n            action: \"macro\"\n          })\n        }\n      }\n    }\n\n    // Build Settings quick menu buttons\n    function buildSettingsMenu () {\n      if (settings.length > 0) {\n        const root = \"game.gmtoolkit.settings.\"\n        for (const setting of settings) {\n          const name = setting.trim()\n          const path = root + name\n          try {\n            eval(`new ${path}()`)\n          } catch(e) {\n            console.error(`GM Toolkit: Quick Menu - ${name} is not a valid settings app`)\n            continue\n          }\n          const settingsApp = eval(`new ${path}()`)\n          const label = game.i18n.localize(settingsApp?.title)\n\n          quickMenu.push({\n            name: name,\n            label: label,\n            // icon: \"modules/wfrp4e-gm-toolkit/assets/icons/quick-settings.svg\",\n            action: \"setting\"\n          })\n        }\n      }\n    }\n  }\n\n  static async formHandler (event, form, formData) {\n    if (event.submitter.dataset.action === \"macro\") {\n      game.macros.getName(event.submitter.dataset.name).execute()\n    }\n    if (event.submitter.dataset.action === \"setting\") {\n      new game.gmtoolkit.settings[event.submitter.dataset.name]().render(true)\n    }\n  }\n\n}\n\nnew QuickMenu().render({ force: true })\n\n\n/* ==========\n* MACRO: GM Toolkit Settings Toolbox\n* VERSION: 9.0.0\n* UPDATED: 2025-05-17\n* DESCRIPTION: Adds a floating dialog for quick access to GM Toolkit settings\n========== */",
   "ownership": {
     "default": 0,
     "Yz8naH0UqWS3uLwh": 3
@@ -12,16 +12,16 @@
   "flags": {
     "core": {},
     "wfrp4e-gm-toolkit": {
-      "version": "8.1.1"
+      "version": "9.0.0"
     }
   },
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "8.4.1",
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "createdTime": 1666481515510,
-    "modifiedTime": 1745574131193,
-    "lastModifiedBy": "Pt7qzajGGC2jofTq",
+    "modifiedTime": 1747485681739,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": "Macro.aR3XyJte6cYFE1rQ",
     "duplicateSource": null,
     "exportSource": null
