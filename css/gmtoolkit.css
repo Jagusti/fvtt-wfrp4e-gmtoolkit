@@ -199,6 +199,23 @@ button.chat {
   gap: 0.25rem;
 }
 
+.standard-form.gmtoolkit.quickmenu {
+  row-gap: unset;
+}
+
+button.gmtoolkit.quickmenu{
+  padding-block: 1.25em;
+  border-radius: 2px;
+}
+
+button.gmtoolkit.quickmenu img {
+  height: 1.75rem; 
+  vertical-align : middle;
+  margin: 0.25rem; 
+  border: none;
+  display: inline;
+}
+
 .gmtoolkit .form-group .flexrow {
 	padding-bottom: 4px;
 	padding-top: 1px;
