@@ -79,8 +79,14 @@ export default class GMToolkitMaintenance
 
 async function buildLocalizedContent (documentType) {
   GMToolkit.log(false, "Starting buildLocalizedContent")
+
+  const gmtFolders = await game.folders.tree.entries
+    .filter(f => (f.name === game.gmtoolkit.module.MODULE_NAME
+      || f.ancestors[0]?.name === game.gmtoolkit.module.MODULE_NAME
+      || f.ancestors[1]?.name === game.gmtoolkit.module.MODULE_NAME))
+    .map(g => g.id)
   const toolkitContent = documentType.filter(
-    m => m.folder?.name === game.gmtoolkit.module.MODULE_NAME
+    m => gmtFolders.includes(m.folder?.id)
   ).sort((a, b) => a.name.localeCompare(b.name))
   const contentArray = []
   let pack = []
