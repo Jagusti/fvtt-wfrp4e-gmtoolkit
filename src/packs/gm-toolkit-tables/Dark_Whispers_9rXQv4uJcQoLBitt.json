@@ -16,15 +16,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Let your quarry go.",
       "name": "",
@@ -42,15 +40,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "'Accidentally' strike an ally.",
       "name": "",
@@ -68,15 +64,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Fall asleep on watch.",
       "name": "",
@@ -94,15 +88,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Kneel before the Magister. Show your allegiance.",
       "name": "",
@@ -120,15 +112,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Nobody's that good or lucky. However popular or powerful they are. Call out the cheat!",
       "name": "",
@@ -146,15 +136,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "You're not as prepared as you thought you were.",
       "name": "",
@@ -172,15 +160,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Exert your authority. Make an example of the weakest or most vulnerable.",
       "name": "",
@@ -198,15 +184,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "The big indestructible one over there is looking at you funny. Don't stand for it. Defend your honour. Publicly and on your own.",
       "name": "",
@@ -224,15 +208,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "You didn't come all this way to make friends. Sometimes you end up making enemies. This is one of those opportunities.",
       "name": "",
@@ -250,15 +232,13 @@
       "img": "modules/wfrp4e-gm-toolkit/assets/icons/dark-whispers.svg",
       "weight": 1,
       "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
-        "exportSource": null
+        "exportSource": null,
+        "coreVersion": "13.342",
+        "systemId": "wfrp4e",
+        "systemVersion": "9.0.6",
+        "lastModifiedBy": null
       },
       "description": "Secrets are burdensome. Be generous and give them away.",
       "name": "",
@@ -269,27 +249,30 @@
   "replacement": true,
   "displayRoll": true,
   "folder": null,
-  "sort": 0,
   "ownership": {
     "default": 0,
-    "Lngg3hbkX3DayZX9": 3
+    "doYSkxebQ4PJhL5x": 3
   },
   "flags": {
     "wfrp4e": {
       "key": "darkwhispers",
       "column": ""
+    },
+    "wfrp4e-gm-toolkit": {
+      "version": "0.9.5"
     }
   },
   "_stats": {
-    "coreVersion": "13.341",
-    "systemId": "wfrp4e",
-    "systemVersion": "7.2.4",
-    "createdTime": null,
-    "modifiedTime": 1723425266787,
-    "lastModifiedBy": "Pt7qzajGGC2jofTq",
     "compendiumSource": null,
     "duplicateSource": null,
-    "exportSource": null
+    "exportSource": null,
+    "coreVersion": "13.342",
+    "systemId": "wfrp4e",
+    "systemVersion": "9.0.6",
+    "createdTime": 1747603250554,
+    "modifiedTime": 1747603250554,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x"
   },
+  "sort": 0,
   "_key": "!tables!9rXQv4uJcQoLBitt"
 }
