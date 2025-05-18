@@ -18,16 +18,16 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.1.2",
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "createdTime": 1662044738596,
-    "modifiedTime": 1662429198488,
-    "lastModifiedBy": "Yz8naH0UqWS3uLwh",
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": "Macro.zS3GG60wLtsRvc0F",
     "duplicateSource": null,
     "exportSource": null
   },
   "folder": null,
-  "sort": 0,
+  "sort": 300000,
   "_id": "74OvSfTs3slii0RR",
   "_key": "!macros!74OvSfTs3slii0RR"
 }

@@ -7,19 +7,19 @@
   "scope": "global",
   "command": "game.gmtoolkit.advantage.update(token, \"reduce\")\n\n/* ==========\n* MACRO: Reduce Advantage\n* VERSION: 0.9.5\n* UPDATED: 2022-08-04\n* DESCRIPTION: Reduces Advantage for the selected token by 1 (to minimum 0).\n* TIP: Token must be added to an encounter in the Combat Tracker.\n========== */",
   "folder": null,
-  "sort": 0,
+  "sort": 100000,
   "flags": {
     "wfrp4e-gm-toolkit": {
       "version": "0.9.5"
     }
   },
   "_stats": {
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "systemId": null,
     "systemVersion": null,
     "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null,
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

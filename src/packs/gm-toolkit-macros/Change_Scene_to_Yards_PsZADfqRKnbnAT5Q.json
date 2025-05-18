@@ -15,16 +15,16 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.4.0",
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "createdTime": 1682374661491,
-    "modifiedTime": 1682376871344,
-    "lastModifiedBy": "WpuDIfNQnefaTyuV",
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": "Macro.wopPq4OaNATXh6Tt",
     "duplicateSource": null,
     "exportSource": null
   },
   "folder": null,
-  "sort": 0,
+  "sort": 800000,
   "_id": "PsZADfqRKnbnAT5Q",
   "_key": "!macros!PsZADfqRKnbnAT5Q"
 }

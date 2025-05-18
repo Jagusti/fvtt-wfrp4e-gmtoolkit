@@ -7,7 +7,7 @@
   "scope": "global",
   "command": "let thisScene = game.scenes.viewed\nlet uiNotice = game.i18n.format(\"GMTOOLKIT.Message.UnexpectedNoChange\", {})\n\nawait thisScene.update( { tokenVision: !thisScene.tokenVision})\nawait thisScene.update( { globalLight: !thisScene.tokenVision})\n\nuiNotice = (thisScene.tokenVision) \n  ? game.i18n.format(\"GMTOOLKIT.Scene.TokenNotGlobal\", { sceneName: thisScene.name })\n  : game.i18n.format(\"GMTOOLKIT.Scene.GlobalNotToken\", { sceneName: thisScene.name })\n\nui.notifications.info(uiNotice, { console: false })\n\n/* ==========\n* MACRO: Toggle Scene Vision and Light\n* VERSION: 0.9.5\n* UPDATED: 2022-08-14\n* DESCRIPTION: Toggles the Token Vision and Global Illumination settings.\n* TIP: If Token Vision is set, Global Illumination is unset (and vice-versa).\n* TIP: Applies to the scene being viewed, which is not necessarily the active scene.\n========== */",
   "folder": null,
-  "sort": 0,
+  "sort": 700000,
   "flags": {
     "furnace": {
       "runAsGM": false
@@ -23,10 +23,10 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.0.0",
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "createdTime": null,
-    "modifiedTime": 1661497795728,
-    "lastModifiedBy": "WpuDIfNQnefaTyuV",
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": "Compendium.wfrp4e-gm-toolkit.gm-toolkit-macros.6UwKY8nGZyXzAXCa",
     "duplicateSource": null,
     "exportSource": null
