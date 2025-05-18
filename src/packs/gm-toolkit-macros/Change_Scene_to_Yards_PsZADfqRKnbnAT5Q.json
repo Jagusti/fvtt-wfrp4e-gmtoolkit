@@ -10,7 +10,10 @@
     "WpuDIfNQnefaTyuV": 3
   },
   "flags": {
-    "core": {}
+    "core": {},
+    "wfrp4e-gm-toolkit": {
+      "version": "6.0.3"
+    }
   },
   "_stats": {
     "systemId": "wfrp4e",
