@@ -270,6 +270,9 @@
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Sichtbarkeit des Kompendiumspacks umschalten",
     "GMTOOLKIT.Macro.CheckConditions": "Zustände prüfen",
     "GMTOOLKIT.Macro.LaunchDamageConsole": "Launch Damage Console",
+    "GMTOOLKIT.Macro.CanvasToolbox": "Canvas Toolbox",
+    "GMTOOLKIT.Macro.CombatToolbox": "Combat Toolbox",
+    "GMTOOLKIT.Macro.SessionToolbox": "Session Toolbox",
     
     "GMTOOLKIT.Table.DarkWhispers": "Dunkles Geflüster",
 
