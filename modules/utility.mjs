@@ -196,28 +196,32 @@ export function inActiveCombat (character, notification = true) {
 export async function refreshToolkitContent (documentType) {
 
   let toolkitContent = []
+  const module_name = game.gmtoolkit.module.MODULE_NAME
+  const gmtFolders = await game.folders.tree.entries
+    .filter(f => (f.name === module_name
+      || f.ancestors[0]?.name === module_name
+      || f.ancestors[1]?.name === module_name))
+    .filter(f => f.type === documentType)
+    .map(g => g.id)
 
   switch (documentType) {
     case "Macro":
-      // Delete macros
-      await Macro.deleteDocuments(game.macros
-        .filter(m => m.folder?.name === GMToolkit.MODULE_NAME)
-        .map(m => m.id)
-      )
-      // Delete Macro folder
-      await Folder.deleteDocuments(game.folders.filter(f => f.name === GMToolkit.MODULE_NAME && f.type === "Macro").map(f => f.id))
-      // Import macros from compendium
+      const gmtMacros = await game.macros
+        .filter(m => gmtFolders.includes(m.folder?.id))
+        .map(d => d.id)
+      await Macro.implementation.deleteDocuments(gmtMacros)
+      await Folder.implementation.deleteDocuments(gmtFolders)
       toolkitContent = await game.packs.get(`${GMToolkit.MODULE_ID}.gm-toolkit-macros`).importAll({
         folderName: GMToolkit.MODULE_NAME,
         options: { keepId: true }
       })
       break
     case "RollTable":
-      // Delete tables within GM Toolkit directory
-      await RollTable.deleteDocuments(game.tables
-        .filter(t => t.folder?.name === GMToolkit.MODULE_NAME)
-        .map(t => t.id))
-      // Delete RollTable folder
+      const gmtTables = await game.tables
+        .filter(m => gmtFolders.includes(m.folder?.id))
+        .map(d => d.id)
+      await RollTable.implementation.deleteDocuments(gmtTables)
+      await Folder.implementation.deleteDocuments(gmtFolders)
       await Folder.deleteDocuments(game.folders.filter(f => f.name === GMToolkit.MODULE_NAME && f.type === "RollTable").map(f => f.id))
       // Import tables from compendium
       toolkitContent = await game.packs.get(`${GMToolkit.MODULE_ID}.gm-toolkit-tables`).importAll({
