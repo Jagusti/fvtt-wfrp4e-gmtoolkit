@@ -7,19 +7,19 @@
   "scope": "global",
   "command": "/r 1d100",
   "folder": null,
-  "sort": 0,
+  "sort": 1000000,
   "flags": {
     "wfrp4e-gm-toolkit": {
       "version": "0.9.3"
     }
   },
   "_stats": {
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "systemId": null,
     "systemVersion": null,
     "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null,
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

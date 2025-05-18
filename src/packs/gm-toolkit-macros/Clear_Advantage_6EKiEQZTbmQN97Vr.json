@@ -7,19 +7,19 @@
   "scope": "global",
   "command": "game.gmtoolkit.advantage.update(token, \"clear\")\n\n/* ==========\n* MACRO: Clear Advantage\n* VERSION: 0.9.5\n* UPDATED: 2022-08-04\n* DESCRIPTION: Resets Advantage for the selected token to 0.\n* TIP: Token does not have to be added to an encounter in the Combat Tracker.\n========== */",
   "folder": null,
-  "sort": 0,
+  "sort": 200000,
   "flags": {
     "wfrp4e-gm-toolkit": {
       "version": "0.9.5"
     }
   },
   "_stats": {
-    "coreVersion": "13.341",
+    "coreVersion": "13.342",
     "systemId": null,
     "systemVersion": null,
     "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null,
+    "modifiedTime": 1747487611306,
+    "lastModifiedBy": "doYSkxebQ4PJhL5x",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
