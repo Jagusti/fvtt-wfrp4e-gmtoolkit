@@ -270,6 +270,9 @@
     "GMTOOLKIT.Macro.ToggleCompendiumPackVisibility": "Przełącz widoczność paczek kompendium",
     "GMTOOLKIT.Macro.CheckConditions": "Sprawdz Stany",
     "GMTOOLKIT.Macro.LaunchDamageConsole": "Pokaż Okno Obrażeń",
+    "GMTOOLKIT.Macro.CanvasToolbox": "Canvas Toolbox",
+    "GMTOOLKIT.Macro.CombatToolbox": "Combat Toolbox",
+    "GMTOOLKIT.Macro.SessionToolbox": "Session Toolbox",
 
     "GMTOOLKIT.Table.DarkWhispers": "Mroczne Podszepty",
 
