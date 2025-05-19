@@ -6,7 +6,7 @@
   "compatibility": {
     "minimum": "13",
     "maximum": "13",
-    "verified": "12.331"
+    "verified": "13.342"
   },
   "authors": [
     {
@@ -21,8 +21,8 @@
         "id": "wfrp4e",
         "type": "system",
         "compatibility": {
-          "minimum": "9.0.3",
-          "verified": "9.0.3"
+          "minimum": "9.0.6",
+          "verified": "9.0.6"
         }
       }
     ]

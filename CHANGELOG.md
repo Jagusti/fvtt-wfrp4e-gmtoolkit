@@ -6,10 +6,15 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+## [Version 9.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.0.0)  (2025-05-18)
 * *Added* WFRP4e v9 compatibility (requiring Foundry VTT v13). This is a **breaking** change.
   * v8.x is no longer supported beyond GM Toolkit v8.2.0.
-  * v9.0.3 is the minimum version required for GM Toolkit.
-  * *Removed* option to use Token Hud Extensions and disabled by default to prevent v13 conflict.
+  * v9.0.6 is the minimum version required for GM Toolkit.
+* *Removed* option to use Token Hud Extensions and disabled by default to prevent v13 conflict.
+* *Added* new GM Toolbox macros to provide streamlined quick launch menus for canvas, combat and session related macros and settings. These build on a new GM Toolbox structure, and can be found in the Macros > GM Toolkit > Toolboxes subfolder.
+* *Changed* Toolkit Maintenance to support and handle Toolkit content in subfolders. Anything in child folders of the GM Toolkit macro or rolltable folders is removed when refreshing Toolkit content.
+
+Known Issue: Roll Dialog can no longer be bypassed, so Group Tests cannot skip the roll dialog. When the WFRP4e system has been updated to [handle bypass](https://github.com/moo-man/WFRP4e-FoundryVTT/blob/2d9ea2ff23110f427d8ce668aecbc6c1f7d6d5b2/src/apps/roll-dialog/characteristic-dialog.js#L50), this should continue to function. Until then, the Bypass Roll Dialog options in the Group Test console and Group Test settings are ignored. 
 
 ## [Version 8.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v8.2.0)  (2025-04-25)
 - *Changed* Toolkit Maintenance UI to use ApplicationV2 [#298](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/298)
