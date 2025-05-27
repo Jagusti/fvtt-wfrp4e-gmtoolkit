@@ -55,7 +55,7 @@ async function checkConditions () {
     let skill = {}
     // Show the roll dialog for broken condition tests, so the difficulty can be correctly set
     // note: cancelling the roll dialog cancels any outstanding condition checks
-    condition === "broken" ? testOptions.bypass = false : testOptions.bypass = true
+    condition === "broken" ? testOptions.skipDialog = false : testOptions.skipDialog = true
 
     switch (condition) {
       case "surprised": // Lose condition
@@ -127,8 +127,8 @@ async function checkConditions () {
 
 /* ==========
 * MACRO: Check Conditions
-* VERSION: 8.0.0
-* UPDATED: 2024-09-21
+* VERSION: 9.0.0
+* UPDATED: 2025-06-27
 * DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters.
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat.

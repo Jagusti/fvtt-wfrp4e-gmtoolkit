@@ -136,7 +136,7 @@ async function sendAggregateGroupTestResults (testSkill, testOptions) {
 export async function runActorTest (actor, testSkill, testOptions) {
   let actorSkill = game.gmtoolkit.utility.hasSkill(actor, testSkill, "silent")
   let setupData = {
-    bypass: testOptions.bypass,
+    skipDialog: testOptions.bypass,
     fields: {
       modifier: testOptions?.testModifier || 0,
       rollMode: testOptions.rollMode,
