@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
-*Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. Check Conditions macro will need to be re-imported.
+
+## [Version 9.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.0)  (2025-05-27)
+- *Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. 
+  - This raises minimum system compatibility to WFRP4e 9.1.0.
+  - Check Conditions macro will need to be re-imported.  
 
 
 ## [Version 9.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.0.0)  (2025-05-18)
