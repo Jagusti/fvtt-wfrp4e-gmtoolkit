@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+- *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
+
 ## [Version 9.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.0)  (2025-05-27)
 - *Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. 
   - This raises minimum system compatibility to WFRP4e 9.1.0.
