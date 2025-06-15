@@ -531,17 +531,18 @@ Hooks.on("preUpdateCombat", async function (combat, change) {
     Advantage.loseMomentum(combat)
   }
 
-  // Clear Advantage flags when the combat round changes
-  // Still required when Group Advantage is used because of Opposed Test flags
-  GMToolkit.log(true, "preUpdateCombat: unsetting Advantage flags")
-  const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
-  if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 })
 
 
 Hooks.on("updateCombat", async function (combat, change) {
   if (!combat.round || !game.user.isUniqueGM || !combat.combatants.size) return
   if (!change.round) return // Exit if this isn't the start of a round
+
+  // Clear Advantage flags when the combat round changes
+  // Still required when Group Advantage is used because of Opposed Test flags
+  GMToolkit.log(true, "updateCombat: unsetting Advantage flags")
+  const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
+  if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 
   GMToolkit.log(false, "updateCombat: Setting startOfRound flag")
   // Skip individual start of round Advantage tracking if Group Advantage is being used
