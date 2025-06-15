@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+## [Version 9.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.1)  (2025-06-15)
 - *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
 - *Fixed* issue with combatant not changing at round change when advantage has been automatically applied and when using Group Advantage. [#334](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/334)
 - *Changed* advantage notifications to use green success styled notifications where applicable. [#289](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/289)
@@ -14,7 +15,6 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. 
   - This raises minimum system compatibility to WFRP4e 9.1.0.
   - Check Conditions macro will need to be re-imported.  
-
 
 ## [Version 9.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.0.0)  (2025-05-18)
 * *Added* WFRP4e v9 compatibility (requiring Foundry VTT v13). This is a **breaking** change.
