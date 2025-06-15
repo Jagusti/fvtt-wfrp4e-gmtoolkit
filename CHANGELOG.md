@@ -8,6 +8,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
 - *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
 - *Fixed* issue with combatant not changing at round change when advantage has been automatically applied and when using Group Advantage. [#334](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/334)
+- *Changed* advantage notifications to use green success styled notifications where applicable. [#289](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/289)
 
 ## [Version 9.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.0)  (2025-05-27)
 - *Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. 
