@@ -128,7 +128,7 @@ export default class Advantage {
 
   static async report (updatedAdvantage, character, resourceBase, context) {
     const update = []
-    const type = "info"
+    let type = "success"
     const options = {
       permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"),
       console: true
@@ -164,13 +164,16 @@ export default class Advantage {
         break
       case "min":
         update.notice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting })
+        type = "info"
         break
       case "max":
         update.notice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max })
+        type = "info"
         break
       case "nochange":
       default:
         update.notice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange")
+        type = "warning"
         break
     }
 
@@ -302,7 +305,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
 
   const uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Outmanoeuvre", { actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss } )}`
   const message = uiNotice
-  const type = "info"
+  const type = "success"
   const options = { permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"), console: true }
 
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
@@ -418,7 +421,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   const uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedTest", { winner: winner.name, loser: loser.name } )}`
   const message = uiNotice
-  const type = "info"
+  const type = "success"
   const options = { permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"), console: true }
 
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
