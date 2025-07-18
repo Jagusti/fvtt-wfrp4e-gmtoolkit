@@ -16,13 +16,13 @@ See the [wiki](../../wiki) for details about features, including (but not only):
 * Rolling secret [group skill tests](../../wiki/group-test) 
 * Dealing out non-combat [damage](../../wiki/launch-damage-console) to multiple actors and vehicles
 * Managing [session turnover](../../wiki/session-turnover) admin (including [adding Experience Points](../../wiki/add-xp) and [resetting Fortune](../../wiki/reset-fortune))
-* ~~Extending the [Token Hud](../../wiki/token-hud-extensions) (to access key attributes and skills without opening the character sheet)~~ Token Hud Extensions are disabled in 9.0.0.
+* ~~Extending the [Token Hud](../../wiki/token-hud-extensions) (to access key attributes and skills without opening the character sheet)~~ Token Hud Extensions are disabled since 9.0.0.
 
 ## Compatibility
 
 Version 9.x requires
-- Foundry VTT: v13.344
-- WFRP4e: 9.1.0
+- Foundry VTT: v13.346
+- WFRP4e: 9.1.3
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki). 
