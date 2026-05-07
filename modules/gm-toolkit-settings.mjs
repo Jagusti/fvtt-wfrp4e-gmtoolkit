@@ -451,7 +451,7 @@ export async function registerGroupTestSettings () {
     scope: "world",
     config: false,
     type: String,
-    choices: { ...CONFIG.Dice.rollModes },
+    choices: { ...CONFIG.ChatMessage.modes },
     default: "blindroll",
     feature: "grouptest"
   })
