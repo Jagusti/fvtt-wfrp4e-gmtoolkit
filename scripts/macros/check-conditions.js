@@ -18,6 +18,7 @@ async function checkConditions () {
   for await (const tokenActor of tokens) {
     if (skipPCs && party.includes(tokenActor.actor)) continue
     testOptions.appendTitle = game.i18n.format("GMTOOLKIT.Dialog.CheckConditions.For", { name: tokenActor.actor.name })
+    testOptions.context = { success: "Removed SL + 1 Conditions.", failure: "Failed to remove Conditions." }
 
     for await (cond of tokenActor.actor.statuses) {
       await processConditionTest(
@@ -55,7 +56,7 @@ async function checkConditions () {
     let skill = {}
     // Show the roll dialog for broken condition tests, so the difficulty can be correctly set
     // note: cancelling the roll dialog cancels any outstanding condition checks
-    condition === "broken" ? testOptions.bypass = false : testOptions.bypass = true
+    condition === "broken" ? testOptions.skipDialog = false : testOptions.skipDialog = true
 
     switch (condition) {
       case "surprised": // Lose condition
@@ -67,8 +68,6 @@ async function checkConditions () {
         const ablazeDamage = await new Roll(`1d10 + ${conditionCount} - 1`).evaluate()
         tokenActor.actor.applyBasicDamage(ablazeDamage.total, {})
         break
-      case "stunned": // Challenging Endurance: remove 1+SL (min 1) condition
-        // fall through:
       case "poisoned": // Challenging Endurance: remove 1+SL (min 1) condition
         skill = game.gmtoolkit.utility.hasSkill(tokenActor.actor, game.i18n.localize("NAME.Endurance"), "silent")
         // Setup test data
@@ -127,9 +126,9 @@ async function checkConditions () {
 
 /* ==========
 * MACRO: Check Conditions
-* VERSION: 8.0.0
-* UPDATED: 2024-09-21
-* DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned, Stunned and Broken conditions, and Ablaze damage (including to vehicles).
+* VERSION: 9.1.0
+* UPDATED: 2025-07-18
+* DESCRIPTION: Process end of round condition checks. Automatically handle removal of Surprised condition, tests to remove Poisoned and Broken conditions, and Ablaze damage (including to vehicles).
 * TIP: Set `skipPCs = false` to automatically make condition checks for player-assigned characters.
 * TIP: Set `endOfCombatRoundsOnly = false` to use the macro in any combat round, or even outside combat.
 ========== */

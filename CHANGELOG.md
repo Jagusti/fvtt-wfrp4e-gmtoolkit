@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Changed* Check Conditions macro [#344](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/344) to
+  - not prompt for Stunned condition checks. This is [now handled](https://redirect.github.com/moo-man/WFRP4e-FoundryVTT/pull/2507) by the system. 
+  - report success and failure context in condition test results.
+
+## [Version 9.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.1)  (2025-06-15)
+- *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
+- *Fixed* issue with combatant not changing at round change when advantage has been automatically applied and when using Group Advantage. [#334](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/334)
+- *Changed* advantage notifications to use green success styled notifications where applicable. [#289](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/289)
+
+## [Version 9.1.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.0)  (2025-05-27)
+- *Changed* Group Test and Check Conditions functionality to bypass roll dialogs, in line with updated Warhammer Library 2.0.5 implementation. 
+  - This raises minimum system compatibility to WFRP4e 9.1.0.
+  - Check Conditions macro will need to be re-imported.  
+
+## [Version 9.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.0.0)  (2025-05-18)
+* *Added* WFRP4e v9 compatibility (requiring Foundry VTT v13). This is a **breaking** change.
+  * v8.x is no longer supported beyond GM Toolkit v8.2.0.
+  * v9.0.6 is the minimum version required for GM Toolkit.
+* *Removed* option to use Token Hud Extensions and disabled by default to prevent v13 conflict.
+* *Added* new GM Toolbox macros to provide streamlined quick launch menus for canvas, combat and session related macros and settings. These build on a new GM Toolbox structure, and can be found in the Macros > GM Toolkit > Toolboxes subfolder.
+* *Changed* Toolkit Maintenance to support and handle Toolkit content in subfolders. Anything in child folders of the GM Toolkit macro or rolltable folders is removed when refreshing Toolkit content.
+
+Known Issue: Roll Dialog can no longer be bypassed, so Group Tests cannot skip the roll dialog. When the WFRP4e system has been updated to [handle bypass](https://github.com/moo-man/WFRP4e-FoundryVTT/blob/2d9ea2ff23110f427d8ce668aecbc6c1f7d6d5b2/src/apps/roll-dialog/characteristic-dialog.js#L50), this should continue to function. Until then, the Bypass Roll Dialog options in the Group Test console and Group Test settings are ignored. 
 
 ## [Version 9.0.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.0.0)  (2025-05-18)
 * *Added* WFRP4e v9 compatibility (requiring Foundry VTT v13). This is a **breaking** change.

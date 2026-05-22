@@ -128,7 +128,7 @@ export default class Advantage {
 
   static async report (updatedAdvantage, character, resourceBase, context) {
     const update = []
-    const type = "info"
+    let type = "success"
     const options = {
       permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"),
       console: true
@@ -164,13 +164,16 @@ export default class Advantage {
         break
       case "min":
         update.notice = game.i18n.format("GMTOOLKIT.Advantage.None", { actorName: character.name, startingAdvantage: updatedAdvantage.starting })
+        type = "info"
         break
       case "max":
         update.notice = game.i18n.format("GMTOOLKIT.Advantage.Max", { actorName: character.name, startingAdvantage: updatedAdvantage.starting, maxAdvantage: resourceBase.max })
+        type = "info"
         break
       case "nochange":
       default:
         update.notice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange")
+        type = "warning"
         break
     }
 
@@ -302,7 +305,7 @@ Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
 
   const uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.Outmanoeuvre", { actorName: scriptArgs.actor.name, attackerName: scriptArgs.attacker.name, totalWoundLoss: scriptArgs.totalWoundLoss } )}`
   const message = uiNotice
-  const type = "info"
+  const type = "success"
   const options = { permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"), console: true }
 
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
@@ -406,7 +409,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   // WINNING: Update Advantage for Opposed Tests
   if (defenderTest.context.unopposed) return // Unopposed Test. Advantage from outmanouevring is handled if damage is applied (on wfrp4e:applyDamage hook)
-  if (attackerTest.preData.dualWielding) return // Exit if this is the first strike when Dual Wielding
+  if (attackerTest.data.result.canDualWield) return // Exit if this is the first strike when Dual Wielding
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateOpposedTestAdvantage")) return
 
   const attacker = attackerTest.actor
@@ -418,7 +421,7 @@ Hooks.on("wfrp4e:opposedTestResult", async function (opposedTest, attackerTest, 
 
   const uiNotice = `${game.i18n.format("GMTOOLKIT.Advantage.Automation.OpposedTest", { winner: winner.name, loser: loser.name } )}`
   const message = uiNotice
-  const type = "info"
+  const type = "success"
   const options = { permanent: game.settings.get(GMToolkit.MODULE_ID, "persistAdvantageNotifications"), console: true }
 
   if (game.user.isGM) {ui.notifications.notify(message, type, options)}
@@ -531,17 +534,18 @@ Hooks.on("preUpdateCombat", async function (combat, change) {
     Advantage.loseMomentum(combat)
   }
 
-  // Clear Advantage flags when the combat round changes
-  // Still required when Group Advantage is used because of Opposed Test flags
-  GMToolkit.log(true, "preUpdateCombat: unsetting Advantage flags")
-  const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
-  if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 })
 
 
 Hooks.on("updateCombat", async function (combat, change) {
   if (!combat.round || !game.user.isUniqueGM || !combat.combatants.size) return
   if (!change.round) return // Exit if this isn't the start of a round
+
+  // Clear Advantage flags when the combat round changes
+  // Still required when Group Advantage is used because of Opposed Test flags
+  GMToolkit.log(true, "updateCombat: unsetting Advantage flags")
+  const advFlagged = combat.combatants.filter(c => c.getFlag("wfrp4e-gm-toolkit", "advantage"))
+  if (advFlagged.length) await Advantage.unsetFlags(advFlagged)
 
   GMToolkit.log(false, "updateCombat: Setting startOfRound flag")
   // Skip individual start of round Advantage tracking if Group Advantage is being used
