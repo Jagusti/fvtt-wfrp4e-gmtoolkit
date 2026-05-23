@@ -169,7 +169,9 @@ async function dealDamage (data) {
     randomiseDamage: data.randomiseDamage,
     selectedHitLocation: selectedHitLocation,
     randomiseHitLocation: data.randomiseHitLocation,
-    minimumOne: data.minimumOne
+    minimumOne: data.minimumOne,
+    ignoreAP: data.ignoreAP,
+    ignoreTB: data.ignoreTB
   }
 
   // Get the target actors
@@ -209,7 +211,7 @@ async function processActorDamage (actor, options) {
   let msg = await actor.applyBasicDamage(Number(damage),
     { damageType: options.damageType,
       minimumOne: options.minimumOne,
-      loc: selectedHitLocation,
+      loc: selectedHitLocation === "none" ? "body" : selectedHitLocation,
       suppressMsg: true
     })
 
@@ -229,8 +231,8 @@ async function processActorDamage (actor, options) {
   // Add hit location details to the results message if armour is not being ignored
   if (!options.ignoreAP) {
     const hitLocation = game.i18n.localize(game.wfrp4e.config.locations[selectedHitLocation])
-    const explainedAP = `<abbr title = "${hitLocation}">AP</abbr>`
-    msg = msg.replace("AP", explainedAP)
+    const explainedAP = `<p><strong>Location:</strong> ${hitLocation}</p><hr><p><strong>Wounds`
+    msg = msg.replace("</p><hr><p><strong>Wounds", explainedAP)
   }
 
   // Add heartbeat icon to the results message if character has zero wounds
