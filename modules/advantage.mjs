@@ -297,8 +297,8 @@ export default class Advantage {
 
 Hooks.on("wfrp4e:applyDamage", async function (scriptArgs) {
   GMToolkit.log(false, scriptArgs)
-  if (!scriptArgs.opposedTest.defenderTest.context.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test).
-  if (scriptArgs.opposedTest.attackerTest.preData.dualWielding) return // Exit if this is the first strike when Dual Wielding
+  if (!scriptArgs.opposedTest?.defenderTest?.context?.unopposed) return // Only apply when Outmanouevring (ie, damage from an unopposed test).
+  if (scriptArgs.opposedTest?.attackerTest?.preData?.dualWielding) return // Exit if this is the first strike when Dual Wielding
   if (!game.settings.get(GMToolkit.MODULE_ID, "automateDamageAdvantage")) return
   if (!inActiveCombat(scriptArgs.opposedTest.attackerTest.actor)
     | !inActiveCombat(scriptArgs.opposedTest.defenderTest.actor)) return // Exit if either actor is not in the active combat
