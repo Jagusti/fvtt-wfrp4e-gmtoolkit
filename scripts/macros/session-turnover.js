@@ -8,7 +8,7 @@ async function endSession () {
   game.gmtoolkit.module.log(false, "Processing Session Turnover.")
 
   game.gmtoolkit.module.log(false, "Pausing game.")
-  await game.togglePause(pause = true, push = true)
+  game.togglePause(true, { broadcast: true })
 
   game.gmtoolkit.module.log(false, "Switching to holding scene.")
   game.scenes.getName(game.settings.get("wfrp4e-gm-toolkit", "holdingScene"))?.activate(true)
@@ -70,8 +70,8 @@ async function endSession () {
 
 /* ==========
  * MACRO: Session Turnover
- * VERSION: 9.0.0
- * UPDATED: 2025-05-11
+ * VERSION: 10.0.0
+ * UPDATED: 2026-05-23
  * DESCRIPTION: Unified macro to run start and end of session admin, including awarding Experience Points, resetting Fortune, pausing the game and exporting the chat log.
  * TIP: Various default options can be defined in Session Management Settings under Module Settings.
  ========== */
