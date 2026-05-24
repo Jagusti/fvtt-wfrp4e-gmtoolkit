@@ -70,8 +70,8 @@ async function endSession () {
 
 /* ==========
  * MACRO: Session Turnover
- * VERSION: 10.0.0
- * UPDATED: 2026-05-23
+ * VERSION: 9.2.0
+ * UPDATED: 2026-05-24
  * DESCRIPTION: Unified macro to run start and end of session admin, including awarding Experience Points, resetting Fortune, pausing the game and exporting the chat log.
  * TIP: Various default options can be defined in Session Management Settings under Module Settings.
  ========== */
