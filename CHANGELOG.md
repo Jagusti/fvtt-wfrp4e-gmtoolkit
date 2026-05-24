@@ -10,6 +10,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
   - report success and failure context in condition test results.
 - *Changed* Session Turnover macro to use "broadcast" option instead of deprecated "push" boolean to Game#togglePause.
 - *Fixed* issues with applying and presenting Damage Console results, related to unopposed test handling and damage breakdown tooltip
+- *Fixed* issue where a token actor may be treated as in combat when there are no active combats.
 
 ## [Version 9.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.1)  (2025-06-15)
 - *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
