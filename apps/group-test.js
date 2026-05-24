@@ -65,7 +65,7 @@ export class GroupTest
     context.testParameters.bypass = this.object?.testParameters?.bypass === undefined ? game.settings.get("wfrp4e-gm-toolkit", "bypassTestDialogGroupTest") : this.object?.testParameters?.bypass
     context.testParameters.fallback = this.object?.testParameters?.fallback === undefined ? game.settings.get("wfrp4e-gm-toolkit", "fallbackAdvancedSkills") : this.object?.testParameters?.fallback
 
-    context.rollModeOptions = CONFIG.ChatMessage.modes
+    context.rollModeOptions = CONFIG.ChatMessage?.modes || CONFIG.Dice?.rollModes // TODO: Remove deprecated v13 compatibility
     context.difficultyOptions = game.wfrp4e.config.difficultyLabels
 
     // Set group defaults if not provided

@@ -451,7 +451,9 @@ export async function registerGroupTestSettings () {
     scope: "world",
     config: false,
     type: String,
-    choices: { ...CONFIG.ChatMessage.modes },
+    choices: CONFIG.ChatMessage?.modes  // TODO: Remove deprecated v13 compatibility.
+      ? { ...CONFIG.ChatMessage.modes }
+      : { ...CONFIG.Dice?.rollModes },
     default: "blindroll",
     feature: "grouptest"
   })
