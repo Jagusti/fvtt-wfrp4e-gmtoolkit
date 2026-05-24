@@ -20,9 +20,9 @@ See the [wiki](../../wiki) for details about features, including (but not only):
 
 ## Compatibility
 
-Version 9.x requires
-- Foundry VTT: v13.346
-- WFRP4e: 9.1.3
+Version 9.2.x requires
+- Foundry VTT: v13.346 or v14.363
+- WFRP4e: 9.6.1
 
 ## Installation Instructions
 For full details, see the [Getting Started guide](../../wiki/getting-started) on the [wiki](../../wiki). 
