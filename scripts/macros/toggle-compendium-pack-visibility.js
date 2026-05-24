@@ -44,12 +44,7 @@ if (packsource.length > 0 && packtypes.length > 0) {
 
 console.log(packs)
 
-// Add support for v10 and v11
-if (game.release.generation < 11) {
-  togglePrivate(packs, forceLimited)
-} else {
-  togglePermissions(packs, forceLimited)
-}
+togglePermissions(packs, forceLimited)
 
 async function togglePermissions (packs, force) {
   const permsLimited = {
@@ -81,23 +76,12 @@ async function togglePermissions (packs, force) {
   }
 }
 
-async function togglePrivate (packs, force) {
-  for (const pack of packs) {
-    if (force) {
-      await pack.configure({ private: true })
-    } else {
-      await pack.configure({ private: !pack.private })
-    }
-  }
-}
-
 
 /* ==========
 * MACRO: Toggle Compendium Pack Visibility
-* VERSION: 6.0.4
-* UPDATED: 2023-06-04
+* VERSION: 6.1.0
+* UPDATED: 2025-05-25
 * DESCRIPTION: Toggles effective visibility of compendium packs
 * TIP: If no compendium source is specified, only modules declared for the "wfrp4e" system are included
-* TIP: From v11, toggles between Limited and Observer ownership permissions on compendium packs for players and trusted players
-* TIP: Prior to v11, toggles private flag on packs
+* TIP: Toggles between Limited and Observer ownership permissions on compendium packs for players and trusted players
 ========== */
