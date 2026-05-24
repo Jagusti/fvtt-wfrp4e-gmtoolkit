@@ -5,13 +5,17 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+
+
+## [Version 9.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.0)  (2026-05-24)
 - *Changed* Check Conditions macro [#344](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/344) to
   - not prompt for Stunned condition checks. This is [now handled](https://redirect.github.com/moo-man/WFRP4e-FoundryVTT/pull/2507) by the system. 
   - report success and failure context in condition test results.
-- *Changed* Session Turnover macro to use "broadcast" option instead of deprecated "push" boolean to Game#togglePause.
-- *Fixed* issues with applying and presenting Damage Console results, related to unopposed test handling and damage breakdown tooltip
-- *Fixed* issue where a token actor may be treated as in combat when there are no active combats.
-- *Fixed* issue where Change Scene to Yards macro would always be reported as updated in Toolkit Maintenance.
+- *Changed* Session Turnover macro to use "broadcast" option instead of deprecated "push" boolean to Game#togglePause. [a78821b](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/a78821b90c41a8a4d317cb7865be12817864be7f)
+- *Fixed* issues with applying and presenting Damage Console results, related to unopposed test handling and damage breakdown tooltip. [27db4dd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/27db4dd3d56ef1b97d6da016fa568929f1d9671e)
+- *Fixed* issue where a token actor may be treated as in combat when there are no active combats. [b8a3bcd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/b8a3bcdc31719c4fbe4618efdd9b8b2c3d03db0a)
+- *Fixed* issue where Change Scene to Yards macro would always be reported as updated in Toolkit Maintenance. [27db4dd](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/27db4dd3d56ef1b97d6da016fa568929f1d9671e)
+- *Added* dual support for v13 and v14 dice roll modes [3b7858ce](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/commit/3b7858ce21f0c02bc1bb517cf66489de6e0caa66)
 
 ## [Version 9.1.1](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.1.1)  (2025-06-15)
 - *Fixed* advantage automation when using Dual Wielder to only increase when both hits are successful. [#338](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/issues/338)
