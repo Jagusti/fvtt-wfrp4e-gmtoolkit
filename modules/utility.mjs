@@ -172,8 +172,7 @@ export function getSession () {
  **/
 export function inActiveCombat (character, notification = true) {
   let inActiveCombat = false
-
-  if (game.combats?.active?.combatants?.contents
+  if (!character.inCombat || game.combats?.active?.combatants?.contents
     .filter(a => a.actorId === character.id).length === 0
   ) {
     // character is not in combat
