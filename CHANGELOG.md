@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.  The format
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Fixed* renderTemplate deprecation warning when calling Advantage Momentum dialog. [#356](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/356)
 - *Changed* Toggle Scene Vision and Light macro to use scene environment data model `environment.globalLight.enabled`. [#357](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/357)
+- *Changed* Dark Whispers to use dataset actions for chat message intereactions rather than button attributes.  [#358](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/358)
 
 
 ## [Version 9.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.0)  (2026-05-24)
