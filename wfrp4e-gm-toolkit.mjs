@@ -153,8 +153,8 @@ Hooks.on("getChatMessageContextOptions", (html, options) => {
       name: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
       icon: '<i class="fas fa-pen-fancy"></i>',
       condition: game.user.isGM,
-      callback: li => {
-        const message = game.messages.get(li.dataset.messageId)
+      onClick: (event, target) => {
+        const message = game.messages.get(target.dataset.messageId)
         let result
         foundry.applications.api.DialogV2.wait({
           window: { title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title") },
