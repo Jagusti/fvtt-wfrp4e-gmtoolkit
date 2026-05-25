@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Fixed* renderTemplate deprecation warning when calling Advantage Momentum dialog.
 
 
 ## [Version 9.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.0)  (2026-05-24)

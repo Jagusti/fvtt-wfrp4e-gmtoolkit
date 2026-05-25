@@ -249,7 +249,7 @@ export default class Advantage {
       notgained: checkNotGained,
       none: noAdvantage
     }
-    const dialogContent = await renderTemplate("modules/wfrp4e-gm-toolkit/templates/gm-toolkit-advantage-momentum.html", templateData)
+    const dialogContent = await foundry.applications.handlebars.renderTemplate("modules/wfrp4e-gm-toolkit/templates/gm-toolkit-advantage-momentum.html", templateData)
     let lostAdvantage = ""
 
     foundry.applications.api.DialogV2.wait({
