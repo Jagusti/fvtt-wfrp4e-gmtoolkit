@@ -9,7 +9,7 @@ See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 - *Changed* Toggle Scene Vision and Light macro to use scene environment data model `environment.globalLight.enabled`. [#357](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/357)
 - *Changed* Dark Whispers to use dataset actions for chat message intereactions rather than button attributes.  [#358](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/358)
 - *Removed* redundant script for Apply Basic Damage macro (which uses DialogV1), which is superceded by the Damage Console (which uses AppV2). [#359](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/359)
-- *Fixed* ContextMenuEntry#callback deprecation warning when calling Edit Message Flavour in chatlog [#360](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/360)
+- *Fixed* ContextMenuEntry#callback deprecation warning when calling Edit Message Flavour in chatlog (v14). Maintains v13 compatibility for Edit Message Flavour ContextMenuEntry#callback. [#360](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/360) 
 
 
 ## [Version 9.2.0](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.0)  (2026-05-24)

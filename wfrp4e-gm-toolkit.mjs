@@ -153,48 +153,54 @@ Hooks.on("getChatMessageContextOptions", (html, options) => {
       name: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title"),
       icon: '<i class="fas fa-pen-fancy"></i>',
       condition: game.user.isGM,
+      callback: li => {  // TODO: Remove deprecated v13 compatibility
+        _editMessage(game.messages.get(li.dataset.messageId))
+      },
       onClick: (event, target) => {
-        const message = game.messages.get(target.dataset.messageId)
-        let result
-        foundry.applications.api.DialogV2.wait({
-          window: { title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title") },
-          rejectClose: false,
-          content: `<form>
-                <div class="form-group">
-                  <input type="text"
-                    id="messageflavor"
-                    name="messageflavor"
-                    placeholder="${game.i18n.localize("GMTOOLKIT.ChatFlavour.Placeholder")}"
-                    value="${message?.flavor}"
-                  />
-                </div>
-                </form>`,
-          buttons: [
-            {
-              icon: "<i class='fas fa-check'></i>",
-              label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
-              action: "apply",
-              default: "yes",
-              callback: (event, button, dialog) => {
-                result = new foundry.applications.ux
-                  .FormDataExtended(button.form).object
-              }
-            },
-            {
-              icon: "<i class='fas fa-times'></i>",
-              label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
-              action: "cancel"
-            }
-          ],
-          close: () => {
-            console.log(result)
-            if (result) {
-              const messageFlavor = result.messageflavor
-              message.update({ flavor: messageFlavor })
-            }
-          }
-        })
+        _editMessage(game.messages.get(target.dataset.messageId))
       }
     }
   )
+
+  function _editMessage (message) {
+    let result
+    foundry.applications.api.DialogV2.wait({
+      window: { title: game.i18n.localize("GMTOOLKIT.ChatFlavour.Title") },
+      rejectClose: false,
+      content: `<form>
+            <div class="form-group">
+              <input type="text"
+                id="messageflavor"
+                name="messageflavor"
+                placeholder="${game.i18n.localize("GMTOOLKIT.ChatFlavour.Placeholder")}"
+                value="${message?.flavor}"
+              />
+            </div>
+            </form>`,
+      buttons: [
+        {
+          icon: "<i class='fas fa-check'></i>",
+          label: game.i18n.localize("GMTOOLKIT.Dialog.Apply"),
+          action: "apply",
+          default: "yes",
+          callback: (event, button, dialog) => {
+            result = new foundry.applications.ux
+              .FormDataExtended(button.form).object
+          }
+        },
+        {
+          icon: "<i class='fas fa-times'></i>",
+          label: game.i18n.localize("GMTOOLKIT.Dialog.Cancel"),
+          action: "cancel"
+        }
+      ],
+      close: () => {
+        console.log(result)
+        if (result) {
+          const messageFlavor = result.messageflavor
+          message.update({ flavor: messageFlavor })
+        }
+      }
+    })
+  }
 })
