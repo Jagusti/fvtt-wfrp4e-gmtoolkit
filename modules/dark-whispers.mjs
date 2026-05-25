@@ -7,10 +7,9 @@ export default class DarkWhispers {
       if (!game.user.isGM) {
         let actor = game.user.character
         if ( actor ) {  // Assigned player character
-          let response = ""
+          let response = event.currentTarget.dataset.action
           // eslint-disable-next-line capitalized-comments
-          // data-action tells us what button was clicked
-          switch ($(event.currentTarget).attr("data-action")) {
+          switch (response) {
             case "accept":
               response = `${game.i18n.format("GMTOOLKIT.Message.DarkWhispers.Accepted", { currentUser: actor.name })}`
               // Adjusting Corruption is left as a manual intervention.
@@ -23,7 +22,7 @@ export default class DarkWhispers {
           }
 
           // Add the ask from the original message
-          response += `<blockquote>${$(event.currentTarget).attr("data-ask")}</blockquote>`
+          response += `<blockquote>${event.currentTarget.dataset.ask}</blockquote>`
           let chatData = {
             speaker: ChatMessage.getSpeaker("token"),
             content: response,
